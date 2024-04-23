@@ -1,0 +1,33 @@
+.sidebar {
+    display: flex; 
+    flex-direction: column; 
+    height: 100%;
+    color: white; 
+    background-color: #343a40; 
+  
+  }
+  .button {
+    margin-bottom: 100px;
+    background-color: skyblue; 
+    padding: 10px 20px; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    transition: background-color 0.3s ease; 
+   
+  }
+  
+  .button:hover {
+    color: white;
+    background-color: blue;
+  }
+  .nav-item:hover{
+    border-radius: 5px; 
+   background-color: blue;
+  }
+  .user-icon{
+    background-color: aqua;
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+  }

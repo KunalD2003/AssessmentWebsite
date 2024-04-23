@@ -1,0 +1,30 @@
+.cards{
+  background-color: skyblue;
+}
+.card {
+  height: 200px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  border: 1px solid #ddd; /* Adds a light border */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* Adds a shadow */
+  border-radius: 8px; /* Adds rounded corners */
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.3); /* Increases shadow on hover */
+}
+
+  .card-item {
+    flex: 0 0 30%; 
+  }
+  
+  .card-body {
+    min-height: 150px; 
+  }
+  .bx{
+    font-size: 30px;
+  }
+  .btn{
+   
+  }
+  
