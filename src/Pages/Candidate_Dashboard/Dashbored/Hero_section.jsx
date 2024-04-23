@@ -3,6 +3,7 @@ import './Hero_Section.css';
 
 function Hero_section() {
   return (
+    <div className='herosection'>
     <div className="grid-container">
     {/* First Card */}
     <div className="card">
@@ -46,6 +47,7 @@ function Hero_section() {
       <p>Learn how to develop complete web applications, from frontend to backend.</p>
       <button onClick={() => navigate('/page3')}>Next Page</button>
     </div>
+  </div>
   </div>
   )
 }

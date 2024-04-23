@@ -1,14 +1,14 @@
 import React from 'react';
-import './Navbar.css';
+import './Navbar.css'
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/js/bootstrap.js';
 
-const Navbar = ({ user }) => {
+const Navbar = () => {
   return (
-    <div className="container">
-        <div className="user-details">
-          <span className="user-name">Priyanks Parihar</span>
-          <span className="user-email">priyankaparihar421@gmail.com</span>
-        </div>  
-      
+    <div className="bg-dark text-white navbar">
+      <div className='d-flex justify-content-center align-items-center heading'>
+        <h3>Welcome to candidate assesment website</h3>
+      </div>
     </div>
   );
 };

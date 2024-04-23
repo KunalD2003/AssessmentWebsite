@@ -1,33 +1,35 @@
 .grid-container {
-    display: grid; /* Use CSS grid layout */
-    grid-template-columns: repeat(3, 1fr); /* Three columns of equal size */
-    gap: 20px; /* Space between cards */
-    padding: 20px; /* Padding around the grid */
+    display: grid; 
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 20px;
+    padding: 20px; 
   }
-  
+  .herosection{
+    background-color: skyblue;
+  }
   .card {
+    background-attachment: skyblue;
     justify-content: space-between;
-    background-color: #f9f9f9; /* Light background for cards */
-    padding: 20px; /* Padding inside the card */
-    border-radius: 10px; /* Rounded corners */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    text-align: center; /* Centered text */
+    padding: 20px; 
+    border-radius: 10px; 
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
+    text-align: center; 
   }
   
   .card h2 {
-    margin-bottom: 10px; /* Space below the header */
+    margin-bottom: 10px; 
   }
   
   .card button {
-    background-color: #007bff; /* Bootstrap primary color */
-    color: white; /* White text */
-    border: none; /* No border */
-    border-radius: 5px; /* Rounded corners */
-    padding: 10px 20px; /* Padding for the button */
-    cursor: pointer; /* Pointer cursor on hover */
+    background-color: #007bff;
+    color: white;
+    border: none; 
+    border-radius: 5px; 
+    padding: 10px 20px;
+    cursor: pointer; 
   }
   
   .card button:hover {
-    background-color: #0056b3; /* Darker blue on hover */
+    background-color: #0056b3; 
   }
   

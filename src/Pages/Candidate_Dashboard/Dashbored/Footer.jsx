@@ -1,10 +1,11 @@
 import React from 'react';
-import 'bootstrap/dist/css/bootstrap.css'; // Import Bootstrap CSS
+import 'bootstrap/dist/css/bootstrap.css'; 
+import './Footer.css';
 const Footer = () => {
   return (
     <footer className="bg-dark text-white py-4">
       <div className="container">
-        <div className="row">
+        <div className="row justify-content-center align-items-center">
           <div className="col-12 col-md-4">
             <h5>AveryBit Solutions Private Limited</h5>
             <p>36, Bicholi Hapsi Road,
