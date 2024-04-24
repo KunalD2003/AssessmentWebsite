@@ -1,6 +1,7 @@
 import React from 'react';
 import './Sidebar.css'; // Ensure this CSS file has the correct styles
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { NavLink } from 'react-router-dom';
 import logo from '../../../assets/img/logo.png'
 const Sidebar = () => {
   return (
@@ -14,17 +15,17 @@ const Sidebar = () => {
       
       <ul className="nav nav-pills flex-column mb-auto justify-content-center align-items-center"> 
         <li className="nav-item">
-          <a href="#" className="nav-link text-white"><h4>Dashboard</h4></a> 
+          <NavLink to="" className="nav-link text-white"><h4>Dashboard</h4></NavLink> 
         </li>
        
         <li className="nav-item">
-          <a href="#" className="nav-link text-white"><h4>Archived Exams</h4></a> 
+          <NavLink to="/archievedexams" className="nav-link text-white"><h4>Archived Exams</h4></NavLink> 
         </li>
         <li className="nav-item">
-          <a href="#" className="nav-link text-white"><h4>Support</h4></a> 
+          <NavLink to="/support" className="nav-link text-white"><h4>Support</h4></NavLink> 
         </li>
         <li className="nav-item">
-          <a href="#" className="nav-link text-white"><h4>Settings</h4></a> 
+          <NavLink to="/settings" className="nav-link text-white"><h4>Settings</h4></NavLink> 
         </li>
       </ul>
     

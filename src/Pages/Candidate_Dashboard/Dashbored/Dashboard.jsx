@@ -4,6 +4,7 @@ import Footer from './Footer';
 import Hero_section from './Hero_section';
 import Navbar from './Navbar';
 import Sidebar from './Sidebar';
+import { Outlet } from 'react-router-dom';
 function Dashboard() {
    
 
@@ -22,15 +23,13 @@ function Dashboard() {
                             <Navbar/>
                         </div>
                         <div className='col-12 bgcolor-skyblue vh-100 py-3'>
-                           <Hero_section></Hero_section>
+                            <Outlet />
                         </div>
                         <div className='col-12 position-sticky-bottom bg-dark'>
                             <Footer/>
                         </div>
                     </div>
                 </div>
-                    
-                
             </div>
         </div>
     </div>
