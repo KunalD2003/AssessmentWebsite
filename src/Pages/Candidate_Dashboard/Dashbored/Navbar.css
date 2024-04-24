@@ -1,3 +1,12 @@
+.user-icon{
+  background-color: aqua;
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+}
+.user{
+  align-items: center;
+}
 
 .navbar{
   height: 100px;

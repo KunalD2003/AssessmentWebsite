@@ -1,35 +1,101 @@
-.grid-container {
-    display: grid; 
-    grid-template-columns: repeat(3, 1fr); 
-    gap: 20px;
-    padding: 20px; 
-  }
-  .herosection{
-    background-color: skyblue;
-  }
-  .card {
-    background-attachment: skyblue;
-    justify-content: space-between;
-    padding: 20px; 
-    border-radius: 10px; 
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
-    text-align: center; 
-  }
-  
-  .card h2 {
-    margin-bottom: 10px; 
-  }
-  
-  .card button {
-    background-color: #007bff;
-    color: white;
-    border: none; 
-    border-radius: 5px; 
-    padding: 10px 20px;
-    cursor: pointer; 
-  }
-  
-  .card button:hover {
-    background-color: #0056b3; 
-  }
-  
+/* .grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 20px;
+} */
+
+/* .herosection {
+  background-color: skyblue;
+} */
+
+.asses-card {
+  height: 250px;
+  background-color: white;
+  justify-content: space-between;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.asses-card h2 {
+  margin-bottom: 10px;
+}
+
+.asses-card button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.asses-card button:hover {
+  background-color: #0056b3;
+}
+
+.card-content-with-background {
+  background-image: url('https://images.rawpixel.com/image_800/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvcm0zMDktYWV3LTAxM18xXzEuanBn.jpg');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  padding: 20px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.card-content {
+  position: relative;
+  color: white;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  margin-right: 10px;
+}
+
+
+
+.question ,.duration{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px;
+}
+
+.clock-icon {
+  width: 25px;
+  height: 25px;
+  margin-right: 5px;
+}
+
+.time {
+  flex: 1;
+  text-align: right;
+}
+
+.file-icon {
+  height: 25px;
+  width: 25px;
+}
+
+.start-button {
+  background-color: #00A4E6;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 10px 20px;
+}
+
+.start-button:hover {
+  background-color: #008CB3;
+}
+.test{
+  color: white;
+}

@@ -23,6 +23,8 @@ const Footer = () => {
           <div className="col-12 col-md-4">
             <h5>Follow Us</h5>
             <ul className="list-unstyled d-flex gap-3">
+              <li><a href="https://github.com" className="text-white"><i className="bx bxl-github"></i></a></li>
+              <li><a href="https://linkedin.com" className="text-white"><i className="bx bxl-linkedin-square"></i></a></li>
               <li><a href="https://facebook.com" className="text-white"><i className="bx bxl-facebook bg-color-primary"></i></a></li>
               <li><a href="https://instagram.com" className="text-white"><i className="bx bxl-instagram"></i></a></li>
               <li><a href="https://youtube.com" className="text-white"><i className="bx bxl-youtube"></i></a></li>

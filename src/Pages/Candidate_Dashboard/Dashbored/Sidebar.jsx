@@ -1,40 +1,36 @@
 import React from 'react';
 import './Sidebar.css'; // Ensure this CSS file has the correct styles
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import logo from '../../../assets/img/logo.png'
 const Sidebar = () => {
   return (
     <>
-    <div className="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style={{ height:'100%'}}>
-    <div className='profile justify-content-center align-items-center'>
-
-         <a href="#" className="d-flex justify-content-center align-items-center text-white text-decoration-none d-flex">
-      <div className='user-icon d-flex justify-content-center align-items-center'>
-        <i class='bx bx-user'></i>
-        </div>
-      </a>
-      <span className="fs-4 user ">Priyanka Parihar</span>
+ <div className="d-flex flex-column flex-shrink-0 text-white bg-dark" style={{ height: '100%' }}>
+      {/* Center the logo horizontally */}
+      <div className="d-flex justify-content-center"> {/* Flexbox for horizontal centering */}
+        <img src={logo} alt="Company Logo" className="logo" /> {/* Adjust width as needed */}
       </div>
       <hr />
       
       <ul className="nav nav-pills flex-column mb-auto justify-content-center align-items-center"> 
         <li className="nav-item">
-          <a href="#" className="nav-link text-white">Dashboard</a> 
+          <a href="#" className="nav-link text-white"><h4>Dashboard</h4></a> 
         </li>
        
         <li className="nav-item">
-          <a href="#" className="nav-link text-white">Archived Exams</a> 
+          <a href="#" className="nav-link text-white"><h4>Archived Exams</h4></a> 
         </li>
         <li className="nav-item">
-          <a href="#" className="nav-link text-white">Support</a> 
+          <a href="#" className="nav-link text-white"><h4>Support</h4></a> 
         </li>
         <li className="nav-item">
-          <a href="#" className="nav-link text-white">Settings</a> 
+          <a href="#" className="nav-link text-white"><h4>Settings</h4></a> 
         </li>
       </ul>
-      <button className="button" style={{ color: "black"}}> 
+    
+      {/* <button className="button" style={{ color: "black"}}> 
       Log Out
-    </button>
+    </button> */}
     </div>
     </>
   );

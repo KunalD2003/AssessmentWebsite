@@ -1,54 +1,126 @@
 import React from 'react';
-import './Hero_Section.css';
+// import { useNavigate } from 'react-router-dom'; 
+import './Hero_Section.css'; 
+import clockIcon from '../../../assets/img/time-icon.svg';
+import fileIcon from '../../../assets/img/file-icon.svg'; 
 
 function Hero_section() {
+  // const navigate = useNavigate(); 
+
   return (
-    <div className='herosection'>
-    <div className="grid-container">
-    {/* First Card */}
-    <div className="card">
-    <div className='content'>
-      <h2>Web Development</h2>
-      <p>Learn the basics of HTML, CSS, and JavaScript to build your own websites.</p>
-      </div>
-      <button onClick={() => navigate('/TermsAndCondition')}>Next Page</button>
+    <div className="col-12 herosection">
+    
+      {/* <div className="container pt-3">  */}
+      <div className='row'>
+        {/* First Card */}
+        <div className='col'>
+        <div className="asses-card"> 
+     
+          <div className="card-content-with-background"> 
+          
+            <div className="content-with-background bgimg ">
+              <h2 className='test'>Web Developer</h2>
+            </div>
+            </div>
+      
+            <div className=" question d-flex">
+            <div className='d-flex'>
+              <img src={fileIcon} alt="File icon" className="file-icon" />
+              <h6>Number of question.</h6>
+            </div>
+            <div>16</div>
+            </div>
+            
+            <div className=" duration">
+            <div className='d-flex'>
+              <img src={clockIcon} alt="Clock icon" className="clock-icon" />
+              <h6>Duration:</h6>
+              </div>
+              <div> 45 minutes</div>
+            </div>
+
+            {/* Navigation button */}
+            <button onClick={() => navigate('/TermsAndCondition')} className="start-button">
+              Start Test
+            </button>
+          
+        </div>
+
+</div>
+        <div className='col'>
+        <div className="asses-card"> 
+     
+          <div className="card-content-with-background"> 
+          
+            <div className="content-with-background bgimg ">
+              <h2 className='test'>Back-End Developer</h2>
+            </div>
+            </div>
+      
+            <div className=" question d-flex">
+            <div className='d-flex'>
+              <img src={fileIcon} alt="File icon" className="file-icon" />
+              <h6>Number of question.</h6>
+            </div>
+            <div>16</div>
+            </div>
+            
+            <div className=" duration">
+            <div className='d-flex'>
+              <img src={clockIcon} alt="Clock icon" className="clock-icon" />
+              <h6>Duration:</h6>
+              </div>
+              <div> 45 minutes</div>
+            </div>
+
+            {/* Navigation button */}
+            <button onClick={() => navigate('/TermsAndCondition')} className="start-button">
+              Start Test
+            </button>
+          
+        </div>
+
+</div>
+        <div className='col'>
+        <div className="asses-card"> 
+     
+          <div className="card-content-with-background"> 
+          
+            <div className="content-with-background bgimg ">
+              <h2 className='test'>Front-End Developer</h2>
+            </div>
+            </div>
+      
+            <div className=" question d-flex">
+            <div className='d-flex'>
+              <img src={fileIcon} alt="File icon" className="file-icon" />
+              <h6>Number of question.</h6>
+            </div>
+            <div>16</div>
+            </div>
+            
+            <div className=" duration">
+            <div className='d-flex'>
+              <img src={clockIcon} alt="Clock icon" className="clock-icon" />
+              <h6>Duration:</h6>
+              </div>
+              <div> 45 minutes</div>
+            </div>
+
+            {/* Navigation button */}
+            <button onClick={() => navigate('/TermsAndCondition')} className="start-button">
+              Start Test
+            </button>
+          
+        </div>
+
+</div>
+
     </div>
 
-    {/* Second Card */}
-    <div className="card">
-      <h2>Advanced Web Development</h2>
-      <p>Explore advanced topics in web development, including frameworks and backend technologies.</p>
-      <button onClick={() => navigate('/page2')}>Next Page</button>
-    </div>
-
-    {/* Third Card */}
-    <div className="card">
-      <h2>Full-Stack Development</h2>
-      <p>Learn how to develop complete web applications, from frontend to backend.</p>
-      <button onClick={() => navigate('/page3')}>Next Page</button>
-    </div>
-
-    <div className="card">
-      <h2>Web Development</h2>
-      <p>Learn the basics of HTML, CSS, and JavaScript to build your own websites.</p>
-      <button onClick={() => navigate('/page1')}>Next Page</button>
-    </div>
-
-    {/* Second Card */}
-    <div className="card">
-      <h2>Advanced Web Development</h2>
-      <p>Explore advanced topics in web development, including frameworks and backend technologies.</p>
-      <button onClick={() => navigate('/page2')}>Next Page</button>
-    </div>
-
-    {/* Third Card */}
-    <div className="card">
-      <h2>Full-Stack Development</h2>
-      <p>Learn how to develop complete web applications, from frontend to backend.</p>
-      <button onClick={() => navigate('/page3')}>Next Page</button>
-    </div>
+    
   </div>
-  </div>
+  // </div>
   )
 }
 

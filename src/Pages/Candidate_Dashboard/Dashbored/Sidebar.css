@@ -26,12 +26,10 @@
   border-radius: 5px; 
  background-color: blue;
 }
-.user-icon{
-  background-color: aqua;
-  border-radius: 50%;
-  width: 70px;
-  height: 70px;
-}
-.user{
-  align-items: center;
+
+.logo {
+  margin-top: 10px;
+  width: 200px; /* Adjust size */
+  height: auto; /* Maintain aspect ratio */
+  display: inline-block; /* Align with other elements */
 }
