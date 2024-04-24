@@ -10,7 +10,7 @@
 } */
 
 .asses-card {
-  height: 250px;
+
   background-color: white;
   justify-content: space-between;
   border-radius: 10px;
@@ -23,6 +23,7 @@
 }
 
 .asses-card button {
+  margin-bottom: 5px;
   background-color: #007bff;
   color: white;
   border: none;
