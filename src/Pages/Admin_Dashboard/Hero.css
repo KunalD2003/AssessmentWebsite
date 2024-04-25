@@ -10,7 +10,7 @@
 } */
 
 .asses-card {
-  height: 250px;
+  height: 100%;
   background-color: white;
   justify-content: space-between;
   border-radius: 10px;
@@ -43,6 +43,7 @@
   padding: 20px;
   border-radius: 5px;
   overflow: hidden;
+  height: 40%;
 }
 
 .card-content {

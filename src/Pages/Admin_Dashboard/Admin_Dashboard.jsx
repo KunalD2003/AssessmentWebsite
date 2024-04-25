@@ -20,7 +20,7 @@ function Admin_Dashboard() {
                             <Navbar/>
                         </div>
                         <div className='col-12 bgcolor-skyblue vh-100 py-3'>
-                            <Hero/>
+                            <Outlet/>
                         </div>
                         <div className='col-12 position-sticky-bottom bg-dark'>
                             <Footer/>
