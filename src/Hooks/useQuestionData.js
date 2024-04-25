@@ -1,4 +1,4 @@
-import { useEffect,useCallback,useState } from "react";
+import { useEffect, useCallback, useState } from "react";
 
 
 const TestData = [
@@ -18,19 +18,17 @@ const TestData = [
         text: "text 6"
     },
 ]
-let useQuestionData = () => {
+export default function useQusetionData() {
     const [data, setData] = useState("")
     useEffect(() => {
         fetch(`https://api.github.com/users/KunalD2003`)
-        .then((response) => {
-            // console.log(response);
-            return response.json()
-        })
-        .then((response) => {
-            return setData(TestData)
-        })
-    },[])
+            .then((response) => {
+                // console.log(response);
+                return response.json()
+            })
+            .then((response) => {
+                return setData(TestData)
+            })
+    }, [])
     return data
 }
-
-export default useQuestionData

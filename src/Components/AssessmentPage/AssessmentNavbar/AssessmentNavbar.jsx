@@ -1,10 +1,16 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './AssessmentNavbar.css'
 import useQuestionData from '../../../Hooks/useQuestionData';
+import { useDispatch, useSelector } from 'react-redux';
+import { setQuestionSection } from '../../../Store/assessmentData';
+import ReactPaginate from 'react-paginate'
 
 function AssessmentNavbar() {
-    const currentPageData = useQuestionData()
-    console.log(currentPageData);
+    const AssessmentData = useSelector((state) => {
+        return state.getAssessment
+    })
+    const dispatch = useDispatch()
+    const [section, setSection] = useState(AssessmentData.questionBank[0].sectionName)
     return (
         <div className='assessment-navbar'>
             <div className='camera-monitoring'>
@@ -23,9 +29,18 @@ function AssessmentNavbar() {
                 <div className='camera-questions'>
                     <div className='questions-pagination'>
                         <div>
-                            <select name="Choose Section" id="id">
-                                <option value="Logical Aptitude">Logical Aptitude</option>
-                                <option value="Coding Question">Coding question</option>
+                            <select name="Choose Section" id="id" value={section} onChange={(e) => {
+                                setSection(e.target.value)
+                                console.log(e.target.value);
+                                AssessmentData.questionBank.map((index) => {
+                                    if(e.target.value === index.sectionName){
+                                        dispatch(setQuestionSection([index.sectionName, index.sectionType]))
+                                    }
+                                })
+                            }}>
+                                {AssessmentData.questionBank.map((index) => (
+                                    <option key={`${index.sectionName}`} value={`${index.sectionName}`} >{index.sectionName}</option>
+                                ))}
                             </select>
                         </div>
                         <div className='pagination-pages'>

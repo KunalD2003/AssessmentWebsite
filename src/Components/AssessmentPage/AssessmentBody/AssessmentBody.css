@@ -6,11 +6,13 @@
 }
 .assessment-body-first-half{
     grid-column: 1/2;
+    height: 100%;
 }
 .assessment-body-second-half{
     grid-column: 2/3;
 }
 .assessment-grid{
-    border: 1px solid black;
+    border: 1px solid rgb(214, 214, 214);
+    border-radius: 0.5rem;
     padding-block: 0.3rem;
 }
