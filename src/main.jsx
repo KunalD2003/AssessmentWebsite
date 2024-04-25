@@ -8,6 +8,7 @@ import Dashboard from './Pages/Candidate_Dashboard/Dashbored/Dashboard.jsx';
 import Hero_section from './Pages/Candidate_Dashboard/Dashbored/Hero_section.jsx';
 import ArchievedExams from './Pages/ArchievedExams/ArchievedExams.jsx';
 import Support from './Pages/Support/Support.jsx';
+import User from './Pages/User/User.jsx';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -15,6 +16,7 @@ const router = createBrowserRouter(
       <Route path='' element={<Hero_section />} />
       <Route path='/archievedexams' element={<ArchievedExams />} />
       <Route path='/support' element={<Support />} />
+      <Route path='/user' element={<User />} />
     </Route>
   )
 )
