@@ -1,166 +1,128 @@
 import React from 'react';
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap/dist/js/bootstrap.js';
-import './Hero.css';
+// import { useNavigate } from 'react-router-dom'; 
+import './Hero.css'; 
+import clockIcon from '../../assets/img/time-icon.svg';
+import fileIcon from '../../assets/img/file-icon.svg';
 
-const Hero = () => {
+
+function Hero() {
+  // const navigate = useNavigate(); 
+
   return (
-    <div className='col-12'>
-    <div className="container text-white cards">
-     <div className="row justify-content-center align-item-center"> 
-     <div className="col-12 col-md-4 p-4">
-      <div className="card">
-        <div className="card-body text-center">
-          {/* Use Bootstrap Icon */}
-          <i class='bx bxl-dev-to'></i>
-         
-          <h5 className="card-title">Web Development</h5> 
+    <div className="col-12 herosection">
+    
+    
+      <div className='row'>
+        {/* First Card */}
+        <div className='col'>
+        <div className="asses-card"> 
+     
+          <div className="card-content-with-background"> 
+          
+            <div className="content-with-background bgimg ">
+              <h2 className='test'>Web Developer</h2>
+            </div>
+            </div>
+      
+            <div className=" question d-flex">
+            <div className='d-flex'>
+              <img src={fileIcon} alt="File icon" className="file-icon" />
+              <h6>Number of question.</h6>
+            </div>
+            <div>16</div>
+            </div>
+            
+            <div className=" duration">
+            <div className='d-flex'>
+              <img src={clockIcon} alt="Clock icon" className="clock-icon" />
+              <h6>Duration:</h6>
+              </div>
+              <div> 45 minutes</div>
+            </div>
 
-          <a 
-          href="/web-development-detail"  
-          className="btn btn-primary mt-3"  
-        >
-          Learn More 
-        </a>
+            {/* Navigation button */}
+            <button onClick={() => navigate('/TermsAndCondition')} className="start-button">
+              Explore
+            </button>
           
         </div>
-      </div>
+
+</div>
+        <div className='col'>
+        <div className="asses-card"> 
+     
+          <div className="card-content-with-background"> 
+          
+            <div className="content-with-background bgimg ">
+              <h2 className='test'>Back-End Developer</h2>
+            </div>
+            </div>
+      
+            <div className=" question d-flex">
+            <div className='d-flex'>
+              <img src={fileIcon} alt="File icon" className="file-icon" />
+              <h6>Number of question.</h6>
+            </div>
+            <div>16</div>
+            </div>
+            
+            <div className=" duration">
+            <div className='d-flex'>
+              <img src={clockIcon} alt="Clock icon" className="clock-icon" />
+              <h6>Duration:</h6>
+              </div>
+              <div> 45 minutes</div>
+            </div>
+
+            {/* Navigation button */}
+            <button onClick={() => navigate('/TermsAndCondition')} className="start-button">
+            Explore
+            </button>
+          
+        </div>
+
+</div>
+        <div className='col'>
+        <div className="asses-card"> 
+     
+          <div className="card-content-with-background"> 
+          
+            <div className="content-with-background bgimg ">
+              <h2 className='test'>Front-End Developer</h2>
+            </div>
+            </div>
+      
+            <div className=" question d-flex">
+            <div className='d-flex'>
+              <img src={fileIcon} alt="File icon" className="file-icon" />
+              <h6>Number of question.</h6>
+            </div>
+            <div>16</div>
+            </div>
+            
+            <div className=" duration">
+            <div className='d-flex'>
+              <img src={clockIcon} alt="Clock icon" className="clock-icon" />
+              <h6>Duration:</h6>
+              </div>
+              <div> 45 minutes</div>
+            </div>
+
+            {/* Navigation button */}
+            <button onClick={() => navigate('/TermsAndCondition')} className="start-button">
+            Explore
+            </button>
+          
+        </div>
+
+</div>
+
     </div>
 
-        <div className="col-12 col-md-4 p-4"> 
-          <div className="card"> 
-            <div className="card-body text-center">
-            <i class='bx bx-buildings' ></i>
+    
+  </div>
+  // </div>
+  )
+}
 
-              <h5 className="card-text">Front-End Devloper</h5>
-
-              <a 
-          href="/web-development-detail"  
-          className="btn btn-primary mt-3"  
-        >
-          Learn More 
-        </a>
-            </div>
-          </div>
-        </div>
-
-        <div className="col-12 col-md-4 p-4"> 
-          <div className="card"> 
-            <div className="card-body text-center">
-            <i class='bx bx-data' ></i>
-              <h5 className="card-text">Back-End Devloper</h5>
-
-              <a 
-          href="/web-development-detail"  
-          className="btn btn-primary mt-3"  
-        >
-          Learn More 
-        </a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="row"> 
-        <div className="col-12 col-md-4 p-4"> 
-          <div className="card"> 
-            <div className="card-body text-center">
-            <i class='bx bxs-user-badge' ></i>
-              <h5 className="card-text">Human Resource</h5>
-
-              <a 
-          href="/web-development-detail"  
-          className="btn btn-primary mt-3"  
-        >
-          Learn More 
-        </a>
-            </div>
-          </div>
-        </div>
-
-        <div className="col-12 col-md-4 p-4"> 
-          <div className="card">
-            <div className="card-body text-center">
-            <i class='bx bxs-user-badge ' ></i>
-              <h5 className="card-text">Bussiness Devlopment Executive</h5>
-
-              <a 
-          href="/web-development-detail"  
-          className="btn btn-primary mt-3"  
-        >
-          Learn More 
-        </a>
-            </div>
-          </div>
-        </div>
-
-        <div className="col-12 col-md-4 p-4"> 
-          <div className="card"> 
-            <div className="card-body text-center">
-            <i class='bx bx-data' ></i>
-              <h5 className="card-text">DevOps</h5>
-
-              <a 
-          href="/web-development-detail"  
-          className="btn btn-primary mt-3"  
-        >
-          Learn More 
-        </a>
-            </div>
-          </div>
-        </div>
-    </div>
-    <div className="row"> 
-
-        <div className="col-12 col-md-4 p-4"> 
-          <div className="card">
-            <div className="card-body text-center">
-            <i class='bx bxs-business' ></i>
-              <h5 className="card-text">Bussiness Devlopment Executive</h5>
-
-              <a 
-          href="/web-development-detail"  
-          className="btn btn-primary mt-3"  
-        >
-          Learn More 
-        </a>
-            </div>
-          </div>
-        </div>
-
-        <div className="col-12 col-md-4 p-4"> 
-          <div className="card"> 
-            <div className="card-body text-center">
-            <i class='bx bx-data' ></i>
-              <h5 className="card-text">DevOps</h5>
-
-              <a 
-          href="/web-development-detail"  
-          className="btn btn-primary mt-3"  
-        >
-          Learn More 
-        </a>
-            </div>
-          </div>
-        </div>
-        <div className="col-12 col-md-4 p-4"> 
-          <div className="card"> 
-            <div className="card-body text-center">
-            <i class='bx bxs-user-badge' ></i>
-              <h5 className="card-text">Human Resource</h5>
-              <a 
-          href="/web-development-detail"  
-          className="btn btn-primary mt-3"  
-        >
-          Learn More 
-        </a>
-            </div>
-          </div>
-        </div>
-    </div>
-    </div>
-    </div>
-  );
-};
-
-export default Hero;
+export default Hero
