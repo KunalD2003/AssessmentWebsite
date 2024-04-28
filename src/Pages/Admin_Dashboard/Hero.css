@@ -1,102 +1,49 @@
-/* .grid-container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  padding: 20px;
-} */
-
-/* .herosection {
-  background-color: skyblue;
-} */
-
-.asses-card {
-  height: 100%;
-  background-color: white;
-  justify-content: space-between;
-  border-radius: 10px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  text-align: center;
+.herosection{
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
-.asses-card h2 {
-  margin-bottom: 10px;
+.user-dashboard-card{
+  width: 20rem;
+  border-radius: 5px;
 }
-
-.asses-card button {
-  background-color: #007bff;
+.assessment-role-title{
+  display: flex;
+  padding-block: 2rem;
+  background: url('https://images.rawpixel.com/image_800/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvcm0zMDktYWV3LTAxM18xXzEuanBn.jpg');
+  background-size: 100%;
   color: white;
-  border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
-  cursor: pointer;
-}
-
-.asses-card button:hover {
-  background-color: #0056b3;
-}
-
-.card-content-with-background {
-  background-image: url('../../assets/img/images.jpeg');
-  background-size: cover;
-  background-position: center;
-  position: relative;
-  padding: 20px;
-  border-radius: 5px;
-  overflow: hidden;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
   height: 40%;
 }
-
-.card-content {
-  position: relative;
-  color: white;
+.assessment-role-title h1{
+  margin: auto;
+  text-align: center;
 }
-
-.header {
+.assessment-details{
   display: flex;
-  align-items: center;
-}
-
-.icon {
-  margin-right: 10px;
-}
-
-
-
-.question ,.duration{
-  display: flex;
-  align-items: center;
+  width: 100%;
   justify-content: space-between;
-  gap: 10px;
-  padding: 10px;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  color: rgb(44, 44, 44);
 }
-
-.clock-icon {
-  width: 25px;
-  height: 25px;
-  margin-right: 5px;
+.assessment-details div{
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
 }
-
-.time {
-  flex: 1;
-  text-align: right;
+.assessment-details p{
+  margin-bottom: 0;
 }
-
-.file-icon {
-  height: 25px;
-  width: 25px;
+.assessment-details-icon{
+  font-size: 24px;
 }
-
-.start-button {
-  background-color: #00A4E6;
-  color: white;
-  border-radius: 5px;
-  cursor: pointer;
-  padding: 10px 20px;
-}
-
-.start-button:hover {
-  background-color: #008CB3;
-}
-.test{
-  color: white;
+.start-assesment-btn{
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  padding-top: 0.5rem;
 }

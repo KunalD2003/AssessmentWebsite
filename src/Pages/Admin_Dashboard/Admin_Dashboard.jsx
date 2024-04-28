@@ -19,7 +19,7 @@ function Admin_Dashboard() {
                         <div className='col-12 bg-dark'>
                             <Navbar/>
                         </div>
-                        <div className='col-12 bgcolor-skyblue vh-100 py-3'>
+                        <div className='col-12 bgcolor-skyblue py-3'>
                             <Outlet/>
                         </div>
                         <div className='col-12 position-sticky-bottom bg-dark'>

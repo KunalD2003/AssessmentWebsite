@@ -9,7 +9,7 @@ const Navbar = () => {
   return (
     <div className="bg-dark text-white navbar">
       <div className='note mx-auto'>
-        <h4 className='welnote '>Welcome to Candidate Assessment Test</h4>
+        <h4 className='welnote '>Welcome to Candidate Assessment Website</h4>
       </div>
 
       <div className='profile justify-content-center align-items-center'>
