@@ -1,13 +1,24 @@
-.user-icon{
-  background-color: aqua;
-  border-radius: 50%;
-  width: 70px;
-  height: 70px;
-}
-.user{
+.navbar-candidate{
+  padding-block: 1rem;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  width: 98%;
   align-items: center;
+  margin-left: 1%;
 }
-
-.navbar{
-  height: 100px;
+.navbar-candidate h2{
+  margin: auto;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+.user-btn-div{
+  border-radius: 50%;
+  background-color: aqua;
+  padding: 0.7rem 1.2rem;
+}
+.user-btn-div a {
+  text-decoration: none;
+  color: white;
+  font-size: 28px;
 }

@@ -7,18 +7,10 @@ import { Link } from 'react-router-dom';
 const Navbar = () => {
 
   return (
-    <div className="bg-dark text-white navbar">
-      <div className='note mx-auto'>
-        <h4 className='welnote '>Welcome to Candidate Assessment Test</h4>
-      </div>
-
-      <div className='profile justify-content-center align-items-center'>
-
-        <Link to="/user" className="d-flex justify-content-center align-items-center text-white text-decoration-none d-flex">
-          <div className='user-icon d-flex justify-content-center align-items-center'>
-            <i class='bx bx-user'></i>
-          </div>
-        </Link>
+    <div className='navbar-candidate'>
+      <h2>Welcome to Candidate Assessment Website</h2>
+      <div className='user-btn-div'>
+        <Link to="/user"><i className='bx bx-user'></i></Link>
       </div>
     </div>
   );

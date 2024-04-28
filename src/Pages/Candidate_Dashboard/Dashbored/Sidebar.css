@@ -1,35 +1,30 @@
-.sidebar {
-  display: flex; 
-  flex-direction: column; 
-  height: 100%;
-  color: white; 
-  background-color: #343a40; 
-
+.sidebar-logo-div{
+  width: 100%;
 }
-.button {
-  margin-bottom: 100px;
-  background-color: skyblue; 
-  padding: 10px 20px; 
-  border: none; 
-  border-radius: 5px; 
-  cursor: pointer; 
-  transition: background-color 0.3s ease, color 0.3s ease; 
-  color: black; /* Default text color */
+.sidebar-logo{
+  width: 100%;
+  padding: 0.3rem;
 }
-
-.button:hover {
-  background-color: blue;
-  color: white; /* Hover text color */
+.sidebar-naivgation{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1rem;
+  gap: 0.5rem;
 }
-
-.nav-item:hover{
-  border-radius: 5px; 
- background-color: blue;
+.sidebar-naivgation div{
+  padding-block: 0.5rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  
 }
-
-.logo {
-  margin-top: 10px;
-  width: 200px; /* Adjust size */
-  height: auto; /* Maintain aspect ratio */
-  display: inline-block; /* Align with other elements */
+.sidebar-naivgation div h2{
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 0;
+}
+.sidebar-naivgation div a {
+  text-decoration: none;
+  color: white;
 }

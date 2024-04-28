@@ -1,3 +1,36 @@
-.bx{
-    font-size: 30px;
+.footer{
+    display: grid;
+    color: white;
+    width: 98%;
+    margin-left: 1rem;
+    gap: 2%;
+    grid-template-columns: 32% 32% 32%;
+    padding-top: 1rem;
+    padding-bottom: 2.5rem;
+}
+.footer a{
+    text-decoration: none;
+    color: white;
+}
+.footer h3{
+    font-size: 1.17em;
+}
+.footer p{
+    margin-bottom: 0;
+}
+.social-icons a{
+    font-size: 2rem;
+    padding-right: 0.5rem;
+}
+.address{
+    grid-column: 1/2;
+}
+.contact{
+    grid-column: 2/3;
+}
+.socials{
+    grid-column: 3/4;
+}
+.footer h3{
+    margin-bottom: 0.8rem;
 }
