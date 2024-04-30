@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Outlet } from "react-router-dom";
 
 import {AssessmentPage} from './index'
 import Login from './Components/Authentication/Login'
@@ -11,14 +11,8 @@ function App() {
 
   return (
     <>
-
-    <Routes>
-      <Route path="/" elemment={<Login/>}/>
-      <Route path="/register" elemment={<Register/>}/>
-      <Route path="/assessment" elemment={<AssessmentPage/>}/>
-    </Routes>
       <div>
-        <AssessmentPage />
+        <Outlet />
       </div>
     </>
   )
