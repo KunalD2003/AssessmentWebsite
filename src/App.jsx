@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Outlet } from "react-router-dom";
 
 
 import {AssessmentPage} from './index'
@@ -30,6 +30,7 @@ function App() {
 
   return (
     <>
+<<<<<<< HEAD
 
 <Routes>
         <Route path='/' element={<Login/>}/>
@@ -39,6 +40,15 @@ function App() {
       <div>
         {/* <AssessmentPage /> */}
         <Login/>
+=======
+      <div>
+<<<<<<< HEAD
+        <Outlet />
+=======
+        <AssessmentPage />
+        {/* <Login/> */}
+>>>>>>> ace1c47bd52f24af3ee2f640682a1edca89a4407
+>>>>>>> refs/remotes/origin/Authentication
       </div>
     </>
   )
