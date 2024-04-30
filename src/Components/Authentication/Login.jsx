@@ -3,6 +3,7 @@ import './CSS/Login.css';
 import loginImage from './images/andrew-neel-ute2XAFQU2I-unsplash.jpg'; // Assuming this is your image path
 import { Link,useNavigate } from 'react-router-dom';
 import { getAuth, signInWithEmailAndPassword ,updateProfile} from "firebase/auth";
+
 import logo from './images/AveryBit-Full-114.webp'
 
 function Login() {
@@ -31,7 +32,7 @@ function Login() {
                 displayName:user.email,
             });
             console.log("Login successfully")
-            navigate("/");
+            navigate("/assessment");
           
             // Redirect to a new page or handle successful login
         } catch (error) {
