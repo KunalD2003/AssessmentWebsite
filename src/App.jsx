@@ -12,7 +12,12 @@ function App() {
   return (
     <>
       <div>
+<<<<<<< HEAD
         <Outlet />
+=======
+        <AssessmentPage />
+        {/* <Login/> */}
+>>>>>>> ace1c47bd52f24af3ee2f640682a1edca89a4407
       </div>
     </>
   )
