@@ -88,7 +88,9 @@ function Hero() {
               <p>{index.endDate} <span className='start-assessment-time'>{index.endTime}</span></p>
             </div>
             <div className='start-assesment-btn'>
-              <button type="button" className="btn btn-primary" disabled>Explore</button>
+              <button type="button" className="btn btn-info" >View Results</button>
+              <button type="button" className="btn btn-primary" >Edit</button>
+              <button type="button" className="btn btn-danger" >Delete</button>
             </div>
           </div>
         </div>

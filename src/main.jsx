@@ -8,6 +8,7 @@ import Hero from './Pages/Admin_Dashboard/Hero.jsx'
 import UserData from './Pages/UserData/UserData.jsx'
 import ScheduleExam from './Pages/ScheduleExam/ScheduleExam.jsx'
 import QuestionBank from './Pages/QuestionBank/QuestionBank.jsx'
+import ShowQuestions from './Pages/QuestionBank/ShowQuestions/ShowQuestions.jsx'
 import Admin from './Pages/Admin/Admin.jsx'
 
 const router = createBrowserRouter(
@@ -17,6 +18,7 @@ const router = createBrowserRouter(
       <Route path='/userdata' element={<UserData />} />
       <Route path='/scheduleexam' element={<ScheduleExam />} />
       <Route path='/questionbank' element={<QuestionBank />} />
+      <Route path='/questionbank/showquestions/:sectionID' element={<ShowQuestions />} />
       <Route path='/admin' element={<Admin />} />
     </Route>
   )

@@ -16,7 +16,7 @@ const Navbar = () => {
 
         <Link to="/admin" className="d-flex justify-content-center align-items-center text-white text-decoration-none d-flex">
           <div className='user-icon d-flex justify-content-center align-items-center'>
-            <i class='bx bx-user'></i>
+            <i className='bx bx-user'></i>
           </div>
         </Link>
       </div>
