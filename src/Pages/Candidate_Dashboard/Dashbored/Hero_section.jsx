@@ -13,7 +13,7 @@ function Hero_section() {
       {/* <div className="container pt-3">  */}
       <div className='row'>
         {/* First Card */}
-        <div className='col'>
+        <div className='col-4'>
           <div className="asses-card">
 
             <div className="card-content-with-background">
@@ -47,7 +47,7 @@ function Hero_section() {
           </div>
 
         </div>
-        <div className='col'>
+        <div className='col-4'>
           <div className="asses-card">
 
             <div className="card-content-with-background">
@@ -81,7 +81,7 @@ function Hero_section() {
           </div>
 
         </div>
-        <div className='col'>
+        <div className='col-4'>
           <div className="asses-card">
 
             <div className="card-content-with-background">
@@ -115,6 +115,211 @@ function Hero_section() {
           </div>
 
         </div>
+        <div className='col-4'>
+          <div className="asses-card">
+
+            <div className="card-content-with-background">
+
+              <div className="content-with-background bgimg ">
+                <h2 className='test'>Front-End Developer</h2>
+              </div>
+            </div>
+
+            <div className=" question d-flex">
+              <div className='d-flex'>
+                <img src={fileIcon} alt="File icon" className="file-icon" />
+                <h6>Number of question.</h6>
+              </div>
+              <div>16</div>
+            </div>
+
+            <div className=" duration">
+              <div className='d-flex'>
+                <img src={clockIcon} alt="Clock icon" className="clock-icon" />
+                <h6>Duration:</h6>
+              </div>
+              <div> 45 minutes</div>
+            </div>
+
+            {/* Navigation button */}
+            <button onClick={() => navigate('/TermsAndCondition')} className="start-button">
+              Start Test
+            </button>
+
+          </div>
+
+        </div>
+        <div className='col-4'>
+          <div className="asses-card">
+
+            <div className="card-content-with-background">
+
+              <div className="content-with-background bgimg ">
+                <h2 className='test'>Front-End Developer</h2>
+              </div>
+            </div>
+
+            <div className=" question d-flex">
+              <div className='d-flex'>
+                <img src={fileIcon} alt="File icon" className="file-icon" />
+                <h6>Number of question.</h6>
+              </div>
+              <div>16</div>
+            </div>
+
+            <div className=" duration">
+              <div className='d-flex'>
+                <img src={clockIcon} alt="Clock icon" className="clock-icon" />
+                <h6>Duration:</h6>
+              </div>
+              <div> 45 minutes</div>
+            </div>
+
+            {/* Navigation button */}
+            <button onClick={() => navigate('/TermsAndCondition')} className="start-button">
+              Start Test
+            </button>
+
+          </div>
+
+        </div>
+        <div className='col-4'>
+          <div className="asses-card">
+
+            <div className="card-content-with-background">
+
+              <div className="content-with-background bgimg ">
+                <h2 className='test'>Front-End Developer</h2>
+              </div>
+            </div>
+
+            <div className=" question d-flex">
+              <div className='d-flex'>
+                <img src={fileIcon} alt="File icon" className="file-icon" />
+                <h6>Number of question.</h6>
+              </div>
+              <div>16</div>
+            </div>
+
+            <div className=" duration">
+              <div className='d-flex'>
+                <img src={clockIcon} alt="Clock icon" className="clock-icon" />
+                <h6>Duration:</h6>
+              </div>
+              <div> 45 minutes</div>
+            </div>
+
+            {/* Navigation button */}
+            <button onClick={() => navigate('/TermsAndCondition')} className="start-button">
+              Start Test
+            </button>
+
+          </div>
+
+        </div>
+        <div className='col-4'>
+          <div className="asses-card">
+
+            <div className="card-content-with-background">
+
+              <div className="content-with-background bgimg ">
+                <h2 className='test'>Front-End Developer</h2>
+              </div>
+            </div>
+
+            <div className=" question d-flex">
+              <div className='d-flex'>
+                <img src={fileIcon} alt="File icon" className="file-icon" />
+                <h6>Number of question.</h6>
+              </div>
+              <div>16</div>
+            </div>
+
+            <div className=" duration">
+              <div className='d-flex'>
+                <img src={clockIcon} alt="Clock icon" className="clock-icon" />
+                <h6>Duration:</h6>
+              </div>
+              <div> 45 minutes</div>
+            </div>
+
+            {/* Navigation button */}
+            <button onClick={() => navigate('/TermsAndCondition')} className="start-button">
+              Start Test
+            </button>
+
+          </div>
+
+        </div>
+        <div className='col-4'>
+          <div className="asses-card">
+
+            <div className="card-content-with-background">
+
+              <div className="content-with-background bgimg ">
+                <h2 className='test'>Front-End Developer</h2>
+              </div>
+            </div>
+
+            <div className=" question d-flex">
+              <div className='d-flex'>
+                <img src={fileIcon} alt="File icon" className="file-icon" />
+                <h6>Number of question.</h6>
+              </div>
+              <div>16</div>
+            </div>
+
+            <div className=" duration">
+              <div className='d-flex'>
+                <img src={clockIcon} alt="Clock icon" className="clock-icon" />
+                <h6>Duration:</h6>
+              </div>
+              <div> 45 minutes</div>
+            </div>
+
+            {/* Navigation button */}
+            <button onClick={() => navigate('/TermsAndCondition')} className="start-button">
+              Start Test
+            </button>
+
+          </div>
+
+        </div>
+        <div className='col-4'>
+          <div className="asses-card">
+
+            <div className="card-content-with-background">
+
+              <div className="content-with-background bgimg ">
+                <h2 className='test'>Front-End Developer</h2>
+              </div>
+            </div>
+
+            <div className=" question d-flex">
+              <div className='d-flex'>
+                <img src={fileIcon} alt="File icon" className="file-icon" />
+                <h6>Number of question.</h6>
+              </div>
+              <div>16</div>
+            </div>
+
+            <div className=" duration">
+              <div className='d-flex'>
+                <img src={clockIcon} alt="Clock icon" className="clock-icon" />
+                <h6>Duration:</h6>
+              </div>
+              <div> 45 minutes</div>
+            </div>
+
+            {/* Navigation button */}
+            <button onClick={() => navigate('/TermsAndCondition')} className="start-button">
+              Start Test
+            </button>
+
+          </div>
+
+        </div>
+        
 
       </div>
 
