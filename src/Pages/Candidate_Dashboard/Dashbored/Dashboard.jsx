@@ -1,13 +1,13 @@
 import React from 'react';
-import './Dashbored.css';
+import './Dashboard.css';
 import Footer from './Footer';
 import Hero_section from './Hero_section';
 import Navbar from './Navbar';
 import Sidebar from './Sidebar';
 import { Outlet } from 'react-router-dom';
 function Dashboard() {
-   
 
+<<<<<<< HEAD
   return (
 <>
     {/* <div className='container-fluid'>
@@ -25,6 +25,22 @@ function Dashboard() {
                         <div className='col-12 bgcolor-skyblue py-3'>
                             <Outlet />
                         </div>
+=======
+    return (
+        <div className='user-side-dashboard'>
+            <div className='sidebar-outer-div'>
+                <Sidebar />
+            </div>
+            <div className='rest-section'>
+                <div className='navbar-outer-div'>
+                    <Navbar />
+                </div>
+                <div className='hero-section'>
+                    <Outlet />
+                </div>
+                <div className='footer-outer-div'>
+                    <Footer />
+>>>>>>> ae154594bf3d5e6ff24a2d5a385a09bef357b03e
                 </div>
                 </div>
                 <div className='row justify-content-center'>
@@ -35,6 +51,7 @@ function Dashboard() {
         
             
         </div>
+<<<<<<< HEAD
     </div> */}
     {/* <div class="container">
   <div class="row">
@@ -89,9 +106,12 @@ function Dashboard() {
 
     </>
   )
+=======
+    )
+>>>>>>> ae154594bf3d5e6ff24a2d5a385a09bef357b03e
 }
 
 
- 
+
 
 export default Dashboard
