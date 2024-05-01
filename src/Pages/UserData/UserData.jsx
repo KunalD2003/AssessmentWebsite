@@ -185,9 +185,9 @@ function UserData() {
         </Modal.Header>
         <Modal.Body>
           <h6>Enter Name :</h6>
-          <input className="input" type="number" placeholder="Enter Name" />
+          <input className="input" type="text" placeholder="Enter Name" />
           <h6>Enter Location :</h6>
-          <input className="input" type="number" placeholder="Enter Location" />
+          <input className="input" type="text" placeholder="Enter Location" />
           <h6>Enter Mobile Number :</h6>
           <input
             className="input"
