@@ -1,0 +1,86 @@
+[
+  {
+      "question": "What is the capital of India?",
+      "options": ["Delhi", "Mumbai", "Kolkata", "Chennai"],
+      "correctAnswer": "Delhi",
+      "userAnswer": null,
+      "isCorrect": null
+  },
+  {
+      "question": "Who is known as the father of the Indian Constitution?",
+      "options": ["Mahatma Gandhi", "Jawaharlal Nehru", "B.R. Ambedkar", "Sardar Vallabhbhai Patel"],
+      "correctAnswer": "B.R. Ambedkar",
+      "userAnswer": null,
+      "isCorrect": null
+  },
+  {
+      "question": "What is the chemical symbol for water?",
+      "options": ["O", "H", "W", "H2O"],
+      "correctAnswer": "H2O",
+      "userAnswer": null,
+      "isCorrect": null
+  },
+  {
+      "question": "Which planet is known as the Red Planet?",
+      "options": ["Mercury", "Venus", "Mars", "Jupiter"],
+      "correctAnswer": "Mars",
+      "userAnswer": null,
+      "isCorrect": null
+  },
+  {
+      "question": "What is 15% of 300?",
+      "options": ["45", "50", "60", "75"],
+      "correctAnswer": "45",
+      "userAnswer": null,
+      "isCorrect": null
+  },
+  {
+      "question": "If a car travels at a speed of 60 km/hour, how far will it travel in 3 hours?",
+      "options": ["120 km", "150 km", "180 km", "200 km"],
+      "correctAnswer": "180 km",
+      "userAnswer": null,
+      "isCorrect": null
+  },
+  {
+      "question": "If x + 5 = 12, what is the value of x?",
+      "options": ["5", "7", "8", "10"],
+      "correctAnswer": "7",
+      "userAnswer": null,
+      "isCorrect": null
+  },
+  {
+      "question": "If the perimeter of a square is 40 cm, what is the length of one side?",
+      "options": ["5 cm", "8 cm", "10 cm", "20 cm"],
+      "correctAnswer": "10 cm",
+      "userAnswer": null,
+      "isCorrect": null
+  },
+  {
+      "question": "What is the next number in the series: 2, 5, 10, 17, ...?",
+      "options": ["21", "24", "25", "27"],
+      "correctAnswer": "24",
+      "userAnswer": null,
+      "isCorrect": null
+  },
+  {
+      "question": "If 2x + 3 = 15, what is the value of x?",
+      "options": ["4", "5", "6", "7"],
+      "correctAnswer": "6",
+      "userAnswer": null,
+      "isCorrect": null
+  },
+  {
+      "question": "A book costs $25. If the price increases by 20%, what will be the new price?",
+      "options": ["$28", "$30", "$32", "$35"],
+      "correctAnswer": "$30",
+      "userAnswer": null,
+      "isCorrect": null
+  },
+  {
+      "question": "What is the value of 3^4?",
+      "options": ["27", "64", "81", "243"],
+      "correctAnswer": "81",
+      "userAnswer": null,
+      "isCorrect": null
+  }
+]
