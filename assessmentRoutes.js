@@ -66,9 +66,9 @@ router.get('/assessments', async (req, res) => {
     console.log("hello from Get Assessment method");
    
     try {
-        const assessments = await Assessment.find({}, 'AssessmentTitle AssessmentStartDate AssessmentEndDate'); // Selecting specific fields
+        const assessments = await Assessment.find({}, 'AssessmentTitle AssessmentStartDate AssessmentEndDate AssessmentDuration,'); // Selecting specific fields
         assessments.forEach(assessment => {
-            console.log(`Title: ${assessment.AssessmentTitle}, Start Date: ${assessment.AssessmentStartDate}, End Date: ${assessment.AssessmentEndDate}`);
+            console.log(`Title: ${assessment.AssessmentTitle}, Start Date: ${assessment.AssessmentStartDate}, End Date: ${assessment.AssessmentEndDate}, AssessmentDuration : ${assessment.AssessmentDuration}`);
         });
 
         res.json(assessments);
