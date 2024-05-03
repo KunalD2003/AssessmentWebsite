@@ -28,76 +28,56 @@ function UserData() {
       <div id="userDataContainer">
         <Container>
           <Row>
-            <div id="tableHead">
-          <h6 style={{fontWeight:800}}>S.N.</h6>
-          <h6 style={{fontWeight:800,position:'absolute',right:'65%'}}>Name</h6>
-          <h6 style={{fontWeight:800,position:'absolute',right:'45%'}}>Email</h6>
-          </div>
-            {Users.map((currentElement) => {
-              return (
-                <Col lg={12}>
-                  {/* <Table striped bordered hover>
-                    <thead>
-                      <tr>
-                        <th colSpan={6}>User Data</th>
-                      </tr>
-
-                      <tr>
-                        <th>S.No.</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Delete</th>
-                        <th>Explore</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>{currentElement.id}</td>
-                        <td>{currentElement.name}</td>
-                        <td>{currentElement.Email}</td>
-                        <td>
-                          <div id="buttonD">
-                            <Button variant="success">Delete</Button>
-                          </div>
-                        </td>
-                        <td>
-                          <div id="button">
-                            <Button variant="success" onClick={handleShow}>
-                              Explore
-                            </Button>
-                          </div>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </Table> */}
-
-                  <div id="dataContainer">
-                  <h5 >
-                      {currentElement.id}
-                    </h5>
-                    
-                    <h5 style={{position:'absolute',right:'65%',textAlign:'left'}}>
-                      {currentElement.name}
-                    </h5>
-                    <h5 style={{ position: "absolute", right: "40%" }}>
-                      {currentElement.Email}
-                    </h5>
-
-                    <div id="buttonD">
-                      <Button variant="success">Delete</Button>
-                    </div>
-
-                    <div id="button">
-                      <Button variant="success" onClick={handleShow}>
-                        Explore
-                      </Button>
-                    </div>
-                  </div>
-                </Col>
-              );
-            })}
+            <Col lg={1}>
+              <h6 style={{ fontWeight: 800, textAlign: "center" }}>S.N.</h6>
+            </Col>
+            <Col lg={3} style={{}}>
+              <h6 style={{ fontWeight: 800, textAlign: "center" }}>Name</h6>
+            </Col>
+            <Col lg={4}>
+              <h6 style={{ fontWeight: 800, textAlign: "center" }}>Email</h6>
+            </Col>
           </Row>
         </Container>
+        {Users.map((currentElement) => {
+          return (
+            <Container>
+              <Row>
+                <Col lg={1}>
+                  <h5
+                    style={{
+                      textAlign: "center",
+                    }}
+                  >
+                    {currentElement.id}
+                  </h5>
+                </Col>
+                <Col lg={3}>
+                  <h5
+                    style={{
+                      textAlign: "center",
+                    }}
+                  >
+                    {currentElement.name}
+                  </h5>
+                </Col>
+                <Col lg={4}>
+                  <h5 style={{ marginLeft: "20%" }}>{currentElement.Email}</h5>
+                </Col>
+
+                <Col lg={2} style={{ paddingBottom: "1%" }}>
+                  <Button variant="success">Delete</Button>
+                </Col>
+
+                <Col lg={2}>
+                  <Button variant="success" onClick={handleShow}>
+                    Explore
+                  </Button>
+                </Col>
+              </Row>
+            </Container>
+          );
+        })}
         <div id="buttonAdd">
           <Button variant="success" onClick={AddhandleShow}>
             Add User
