@@ -6,7 +6,9 @@ import { getAuth, signInWithEmailAndPassword ,updateProfile} from "firebase/auth
 
 import logo from './images/AveryBit-Full-114.webp'
 
+
 function Login() {
+    
     const navigate=useNavigate();
     const [formData, setFormData] = useState({
         email: '',
@@ -38,6 +40,7 @@ function Login() {
         } catch (error) {
             console.error('Login error:', error.message);
             // Display an error message to the user
+            
         }
     };
 
@@ -72,6 +75,7 @@ function Login() {
                                 <button type='submit'>Login</button>
                             </form>
                             <p>Don't have an account? <Link to='/register'>Register</Link></p>
+                            <h1></h1>
                         </div>
                     </div>
                     <div className='col'>

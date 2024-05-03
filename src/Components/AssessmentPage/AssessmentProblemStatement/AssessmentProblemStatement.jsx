@@ -14,6 +14,7 @@ function AssessmentProblemStatement() {
     const fetchData = async () => {
       try {
         const response = await axios.get(`http://localhost:3000/api/codingProblems/${count}`);
+
         setQuestionData(response.data); // Update state with fetched data
         console.log(response.data)
       } catch (error) {
