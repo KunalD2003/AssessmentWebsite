@@ -116,7 +116,7 @@ function AssessmentMCQ() {
   const [answeredCount, setAnsweredCount] = useState(0);
   const [unansweredCount, setUnansweredCount] = useState(12);
   const [score, setScore] = useState(0);
-
+  
 
   useEffect(() => {
     // Fetch MCQ questions from the API
@@ -188,19 +188,34 @@ function AssessmentMCQ() {
       <AssessmentQuestionHeading number={currentQuestionIndex} />
       {mcqQuestions.length > 0 && (
         <div>
-          <h4>{mcqQuestions[currentQuestionIndex].question}</h4>
+          <h4 className='mcq-question-heading'>{mcqQuestions[currentQuestionIndex].question}</h4>
           <AssessmentMCQ_Options
             mcqOptions={mcqQuestions[currentQuestionIndex].options}
             handleOptionSelect={handleOptionSelect}
             userAnswers={userAnswers}
             currentQuestionIndex={currentQuestionIndex}
           />
-          <button onClick={() => setCurrentQuestionIndex(currentQuestionIndex - 1)} disabled={currentQuestionIndex === 0}>Previous</button>
-          <button onClick={() => setCurrentQuestionIndex(currentQuestionIndex + 1)} disabled={currentQuestionIndex === 11}>Next</button>
-          <button onClick={handleSubmit}>Submit</button>
-          <h4 >Answered : {answeredCount} </h4>
-          <h4>UnAnswered: {unansweredCount} </h4>
-
+          <div className='question-navigation-btn'>
+            <div className='question-navigation'>
+              <button onClick={() => setCurrentQuestionIndex(currentQuestionIndex - 1)} disabled={currentQuestionIndex === 0} className='btn btn-outline-primary'>Previous</button>
+              <button onClick={() => setCurrentQuestionIndex(currentQuestionIndex + 1)} disabled={currentQuestionIndex === mcqQuestions.length-1} className='btn btn-outline-primary'>Next</button>
+              <button onClick={handleSubmit} className='btn btn-success'>Submit</button>
+            </div>
+            <div className='questions-staticstics'>
+              <div>
+                <div className='questions-count'>{answeredCount}</div>
+                <div>Answered</div>
+              </div>
+              <div className='questions-count'>
+                <div>0</div>
+                <div>Flag</div>
+              </div>
+              <div className='questions-count'>
+                <div>{unansweredCount}</div>
+                <div>Unanswered</div>
+              </div>
+            </div>
+          </div>
         </div>
       )}
       {submitStatus && <p>{submitStatus}</p>}

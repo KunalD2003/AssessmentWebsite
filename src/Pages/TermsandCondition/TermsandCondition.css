@@ -1,0 +1,44 @@
+.terms {
+    margin-top: 30px;
+    margin-bottom: 30px;
+      padding: 20px; /* Padding around the container */
+      background-color: #f9f9f9; /* Light background color */
+      border: 1px solid #ddd; /* Border around the container */
+      border-radius: 5px; /* Rounded corners */
+      max-width: 800px; /* Max width for the component */
+    }
+    
+    .terms h2 {
+      text-align: center; /* Center the title */
+    }
+    
+    .terms ul {
+      list-style-type: disc; /* Bullet points for the list */
+      padding-left: 20px; /* Padding for the list */
+    }
+    
+    .agreement-section {
+      display: flex;
+      justify-content: space-between; /* Align items to the edges */
+      align-items: center; /* Center the checkbox and button vertically */
+      margin-top: 20px; /* Space between list and agreement section */
+    }
+    
+    .submit-button {
+      background-color: #007bff; /* Blue color */
+      color: white; /* White text */
+      border: none; /* No border */
+      border-radius: 5px; /* Rounded corners */
+      padding: 10px 20px; /* Padding for the button */
+      cursor: pointer; /* Pointer cursor on hover */
+    }
+    
+    .submit-button:hover {
+      background-color: #0056b3; /* Darker shade of blue on hover */
+    }
+    
+    .submit-button:disabled {
+      background-color: #cccccc; /* Gray color when disabled */
+      cursor: not-allowed; /* No pointer cursor when disabled */
+    }
+    
