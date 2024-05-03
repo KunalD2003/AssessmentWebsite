@@ -1,9 +1,11 @@
 import React from 'react'
 import './TermsandCondition.css';
 import { useState } from 'react';
+import { useNavigate } from 'react-router';
 
 function TermsandCondition() {
     const [isAgreed, setIsAgreed] = useState(false);
+    const navigate = useNavigate()
 
     const handleCheckboxChange = (e) => {
         setIsAgreed(e.target.checked);
@@ -13,6 +15,7 @@ function TermsandCondition() {
         if (isAgreed) {
             // Handle form submission logic here
             console.log("Terms and Conditions accepted");
+            navigate('/assessment')
         } else {
             console.log("You must agree to the terms and conditions");
         }
