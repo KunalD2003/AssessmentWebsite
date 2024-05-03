@@ -1,10 +1,10 @@
 import React from 'react'
 import './ArchievedExams.css'
-import archievedResult from '../../Hooks/archievedResults'
+import assessmentData from '../../Hooks/assessmentData'
 
 
 function ArchievedExams() {
-  const tempData = archievedResult();
+  const tempData = assessmentData();
   console.log(tempData);
   return (
     <div className='archieved-exams'>

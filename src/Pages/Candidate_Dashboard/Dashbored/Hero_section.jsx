@@ -5,6 +5,7 @@ import clockIcon from '../../../assets/img/time-icon.svg';
 import fileIcon from '../../../assets/img/file-icon.svg';
 import { nanoid } from '@reduxjs/toolkit';
 import { Key } from '@mui/icons-material';
+import assessmentData from '../../../Hooks/assessmentData'
 
 
 const AssessmentCard = [
@@ -54,17 +55,19 @@ function Hero_section() {
   // const navigate = useNavigate(); 
   const date = new Date();
   const [usedDate,setDate] = useState(new Date().toLocaleDateString())
+  const assessments = assessmentData()
+  console.log(assessments);
   useEffect (() => {
     setDate(new Date().toLocaleDateString())
     console.log(new Date().toLocaleDateString());
-  },[setDate])
+  },[])
 
   return (
     <div className="herosection">
-      {AssessmentCard.map((index) => (
+      {assessments.map((index) => (
         <div className="card user-dashboard-card"key={index.id}>
           <div className='assessment-role-title'>
-            <h1>{index.title}</h1>
+            <h1>{index.AssessmentTitle}</h1>
           </div>
           <div className="card-body assessment-start-card-body">
             <div className='assessment-details'>
@@ -72,28 +75,28 @@ function Hero_section() {
                 <i className='bx bx-question-mark assessment-details-icon'></i>
                 <p>Questions:</p>
               </div>
-              <p>{index.totalQuestions} Questions</p>
+              <p>45 Questions</p>
             </div>
             <div className='assessment-details'>
               <div>
                 <i className='bx bx-stopwatch assessment-details-icon'></i>
                 <p>Duration:</p>
               </div>
-              <p>{index.duration}</p>
+              <p>1 hour</p>
             </div>
             <div className='assessment-details'>
               <div>
                 <i className='bx bx-calendar assessment-details-icon'></i>
                 <p>Start on:</p>
               </div>
-              <p>{index.startDate} <span className='start-assessment-time'>{index.startTime}</span></p>
+              <p>{index.AssessmentStartDate}</p>
             </div>
             <div className='assessment-details'>
               <div>
                 <i className='bx bx-calendar assessment-details-icon'></i>
                 <p>End on:</p>
               </div>
-              <p>{index.endDate} <span className='start-assessment-time'>{index.endTime}</span></p>
+              <p>{index.AssessmentEndDate}</p>
             </div>
             <div className='start-assesment-btn'>
               {(index.startDate === usedDate

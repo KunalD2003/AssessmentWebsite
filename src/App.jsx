@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
 import './App.css'
 import Dashboard from './Pages/Candidate_Dashboard/Dashbored/Dashboard';
-// import TermsAndConditions from './Pages/Terms_And_Conditions/TermsAndCondition';
+import TermsAndConditions from './Pages/Terms_And_Conditions/TermsAndCondition';
 
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
   return (
     <>
     <div>
-    <Dashboard></Dashboard>
+    <Dashboard></Dashboard> 
       {/* <TermsAndConditions></TermsAndConditions> */}
     </div>
     </>
