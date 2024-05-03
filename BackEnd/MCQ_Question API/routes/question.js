@@ -1,39 +1,53 @@
 const express = require("express");
-const router =express.Router();
+const router = express.Router();
 const MCQ = require("../models/question.js");
-const Numbers = require("../models/number.js")
+const UserScore = require("../models/userScore.js");
 
 
-const{
+const {
     getAllquestions,
     getAllquestionsTesting,
 } = require("../controllers/question");
 
+
 router.route("/").get(getAllquestions);
 router.route("/testing").get(getAllquestionsTesting);
 
+
 router.post('/', async (req, res) => {
     try {
-        const { score, codingScore,id } = req.body;
-       const number1=score
-        const number2=codingScore
-         await Numbers.findByIdAndUpdate(id, { number1, number2 }, { new: true });
-        res.status(201).json({ message: 'Numbers created successfully' });
+        const { score, codingScore, answeredQuestions, totalQuestions, correctAnswers ,id} = req.body;
+        /*  const id = req.params.id;*/
+        const Uscore = score
+        const UcodingScore = codingScore
+        const UansweredQuestions = answeredQuestions
+        const UtotalQuestions = totalQuestions
+        const UcorrectAnswers = correctAnswers
+        await UserScore.findByIdAndUpdate(id, { Uscore, UcodingScore, UansweredQuestions, UtotalQuestions,UcorrectAnswers  });
+
+        res.status(201).json({ message: 'User test submitted successfully' });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
 });
 
+// Get user's result
 router.get('/result', async (req, res) => {
     try {
-        const numbers = await Numbers.findById("6631222bac1ba08073756af0");
-        if (!numbers) {
-            return res.status(404).json({ message: 'Numbers not found' });
+       /* const id = req.params.id;*/
+        const userScore = await UserScore.findById("6633eb8ace767dbde2b4ff49");
+
+        if (!userScore) {
+            return res.status(404).json({ message: 'User score not found' });
         }
-        res.status(200).json(numbers);
+
+        res.status(200).json(userScore);
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
 });
 
- module.exports=router;
+module.exports = router;
+
+
+
