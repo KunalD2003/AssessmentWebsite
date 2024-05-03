@@ -10,6 +10,7 @@ const WebcamCapture = () => {
   const [captureMode, setCaptureMode] = useState('face'); // Toggle between capturing face or ID
   const [capturedFace, setCapturedFace] = useState(null); // State to store captured face image
   const [capturedID, setCapturedID] = useState(null); // State to store captured ID image
+  const [submitedMessage, setSubmitedMessage] = useState(""); // State to store captured ID image
 
   // Function to capture images based on the current mode
   const captureImage = () => {
@@ -29,7 +30,7 @@ const WebcamCapture = () => {
   const handleSubmit = () => {
     if (capturedFace && capturedID) { // Ensure both images are captured
       const uniqueID = uuidv4(); // Generate a unique ID for this submission
-      
+
       fetch('http://localhost:3000/webcam/saveImage', { // POST request to backend
         method: 'POST',
         headers: {
@@ -49,6 +50,7 @@ const WebcamCapture = () => {
         })
         .then((data) => {
           console.log('Server response:', data); // Log successful response
+          setSubmitedMessage("Images Submitted Successfully! Now Start the Test")
         })
         .catch((error) => {
           console.error('Error submitting data:', error); // Handle errors
@@ -59,46 +61,61 @@ const WebcamCapture = () => {
   };
 
   return (
-    <div style={{ padding: '20px', textAlign: 'center' }}>
+    <div style={{ textAlign: 'center', display: 'flex', justifyContent: 'center', gap: '3rem' }}>
       {/* Display message based on capture mode */}
-      {captureMode === 'face' ? (
-        <h3>Capture a clear, well-lit image of your face.</h3>
-      ) : (
-        <h3>Ensure your ID is clear and free of glare.</h3>
-      )}
+      <div >
+        {captureMode === 'face' ? (
+          <h3>Capture a clear, well-lit image of your face.</h3>
+        ) : (
+          <h3>Ensure your ID is clear and free of glare.</h3>
+        )}
 
-      {/* Webcam component and capture button */}
-      <Webcam ref={webcamRef} screenshotFormat="image/jpeg" />
-      <button onClick={captureImage} >
-        {captureMode === 'face' ? 'Capture Face' : 'Capture ID'} {/* Label changes based on mode */}
-      </button>
-
+        {/* Webcam component and capture button */}
+        <div className='webcam-div'>
+          <Webcam ref={webcamRef} screenshotFormat="image/jpeg" />
+        </div>
+        <button onClick={captureImage} className='capture-btn'>
+          {captureMode === 'face' ? 'Capture Face' : 'Capture ID'} {/* Label changes based on mode */}
+        </button>
+      </div>
       {/* Display captured images */}
-      <div style={{ display: 'flex', justifyContent: 'space-around', marginTop: '10px' }}>
-        {capturedFace && (
-          <div>
+      <div style={{ display: 'flex', flexDirection: 'column', marginTop: '10px', gap: '1rem' }}>
+        <div className='img-container'>
+          <div className='img-captured-container'>
             <h3>Face Capture</h3>
-            <img src={capturedFace} alt="Captured Face" width="150" /> {/* Display captured face */}
+            {capturedFace && (
+              <div style={{ height: '100%' }}>
+                <img src={capturedFace} alt="Captured Face" width="250" height="100%" /> {/* Display captured face */}
+              </div>
+            )}
           </div>
-        )}
-        
-        {capturedID && (
-          <div>
+
+          <div className='img-captured-container'>
             <h3>ID Capture</h3>
-            <img src={capturedID} alt="Captured ID" width="150" /> {/* Display captured ID */}
+            {capturedID && (
+              <div style={{ height: '100%'}}>
+              <img src={capturedID} alt="Captured ID" width="250" height="100%" /> {/* Display captured ID */}
+              </div>
+            )}
           </div>
-        )}
+        </div>
+        {/* Submit button */}
+        <div className='submit-btn'>
+          <button onClick={handleSubmit} className="button mx-5">
+            Submit
+          </button>
+          <button className="button margin-left-5px">
+            Start Test
+          </button>
+        </div>
+        <div>
+          
+          {submitedMessage}
+        </div>
       </div>
 
-      {/* Submit button */}
-      <button onClick={handleSubmit} className="button mx-5">
-        Submit
-      </button>
-      <button className="button margin-left-5px">
-        Start Test
-      </button>
     </div>
-    
+
   );
 };
 
