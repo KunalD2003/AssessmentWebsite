@@ -63,60 +63,17 @@ function Hero_section() {
   },[])
 
   return (
-<<<<<<< HEAD
     <div className="herosection">
       {assessments.map((index) => (
         <div className="card user-dashboard-card"key={index.id}>
           <div className='assessment-role-title'>
             <h1>{index.AssessmentTitle}</h1>
-=======
-    <div className="col-12 herosection">
-
-      {/* <div className="container pt-3">  */}
-      <div className='row'>
-        {/* First Card */}
-        <div className='col'>
-          <div className="asses-card">
-
-            <div className="card-content-with-background">
-
-              <div className="content-with-background bgimg ">
-                <h2 className='test'>Web Developer</h2>
-              </div>
-            </div>
-
-            <div className=" question d-flex">
-              <div className='d-flex'>
-                <img src={fileIcon} alt="File icon" className="file-icon" />
-                <h6>Number of question.</h6>
-              </div>
-              <div>16</div>
-            </div>
-
-            <div className=" duration">
-              <div className='d-flex'>
-                <img src={clockIcon} alt="Clock icon" className="clock-icon" />
-                <h6>Duration:</h6>
-              </div>
-              <div> 45 minutes</div>
-            </div>
-
-            {/* Navigation button */}
-            <button onClick={() => navigate('/TermsAndCondition')} className="start-button">
-              Start Test
-            </button>
-
->>>>>>> c439e6e247c65f8908f755472512a46f84a83fa4
           </div>
-
-        </div>
-        <div className='col'>
-          <div className="asses-card">
-
-            <div className="card-content-with-background">
-
-              <div className="content-with-background bgimg ">
-                <h2 className='test'>Back-End Developer</h2>
+          <div className="card-body assessment-start-card-body">
+            <div className='assessment-details'>
+              <div>
+                <i className='bx bx-question-mark assessment-details-icon'></i>
+                <p>Questions:</p>
               </div>
               <p>45 Questions</p>
             </div>
@@ -134,22 +91,10 @@ function Hero_section() {
               </div>
               <p>{index.AssessmentStartDate}</p>
             </div>
-
-            {/* Navigation button */}
-            <button onClick={() => navigate('/TermsAndCondition')} className="start-button">
-              Start Test
-            </button>
-
-          </div>
-
-        </div>
-        <div className='col'>
-          <div className="asses-card">
-
-            <div className="card-content-with-background">
-
-              <div className="content-with-background bgimg ">
-                <h2 className='test'>Front-End Developer</h2>
+            <div className='assessment-details'>
+              <div>
+                <i className='bx bx-calendar assessment-details-icon'></i>
+                <p>End on:</p>
               </div>
               <p>{index.AssessmentEndDate}</p>
             </div>
@@ -160,10 +105,7 @@ function Hero_section() {
             </div>
           </div>
         </div>
-
-      </div>
-
-
+      ))}
     </div>
   )
 }
