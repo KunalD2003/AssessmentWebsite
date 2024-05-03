@@ -1,13 +1,33 @@
+
 import React, { useEffect, useRef, useState } from 'react';
-import * as blazeface from '@tensorflow-models/blazeface'; // Face detection model
-import * as cocoSsd from '@tensorflow-models/coco-ssd'; // Object detection model
+import * as blazeface from '@tensorflow-models/blazeface';
+import * as cocoSsd from '@tensorflow-models/coco-ssd';
 
 const FaceDetection = () => {
   const videoRef = useRef(null);
   const [noFaceWarning, setNoFaceWarning] = useState(false);
   const [gadgetWarning, setGadgetWarning] = useState(false);
-  const [multipleFacesWarning, setMultipleFacesWarning] = useState(false); // New state for multiple faces
+  const [multipleFacesWarning, setMultipleFacesWarning] = useState(false);
+  const [warningCount, setWarningCount] = useState(0); // Track warning counts
   const faceTimer = useRef(null);
+
+  const handleWarning = (message) => {
+ 
+
+    alert(message); // Display an alert with the warning message
+
+    setWarningCount((prevCount) => {
+      const newCount = prevCount + 1;
+
+      if (newCount >= 3) {
+        alert("Test submitted due to multiple warnings."); // Show final alert
+        navigate('/SampleHome.jsx'); // Redirect to the results page
+        return newCount; // Stop further processing after redirecting
+      }
+
+      return newCount; 
+    });
+  };
 
   useEffect(() => {
     const initializeCamera = async () => {
@@ -31,19 +51,21 @@ const FaceDetection = () => {
           const facePredictions = await faceModel.estimateFaces(videoRef.current);
 
           if (facePredictions.length > 1) {
-            setMultipleFacesWarning(true); // Show warning if more than one face
+            handleWarning("Multiple faces detected. Click OK to continue.");
+            setMultipleFacesWarning(true); // Multiple faces detected
           } else {
-            setMultipleFacesWarning(false); // Clear the warning if one or zero faces
+            setMultipleFacesWarning(false); // Clear the warning
           }
 
           if (facePredictions.length === 0) {
             // Start a 10-second timer to trigger the no-face warning
             faceTimer.current = setTimeout(() => {
+              handleWarning("No face detected for 10 seconds. Click OK to continue.");
               setNoFaceWarning(true);
             }, 10000); // 10 seconds
           } else {
-            setNoFaceWarning(false);
             clearTimeout(faceTimer.current); // Clear the no-face timer
+            setNoFaceWarning(false); // Reset warning
           }
 
           // Detect electronic gadgets
@@ -52,7 +74,13 @@ const FaceDetection = () => {
           const gadgetsFound = objectPredictions.some(prediction =>
             gadgetClasses.includes(prediction.class)
           );
-          setGadgetWarning(gadgetsFound);
+
+          if (gadgetsFound) {
+            handleWarning("Electronic gadget detected. Click OK to continue.");
+            setGadgetWarning(true); // Gadget detected
+          } else {
+            setGadgetWarning(false); // Reset warning
+          }
 
           requestAnimationFrame(checkForFacesAndObjects); // Continue checking
         }
@@ -66,7 +94,7 @@ const FaceDetection = () => {
 
     return () => {
       if (videoRef.current && videoRef.current.srcObject) {
-        videoRef.current.srcObject.getTracks().forEach(track => track.stop());
+        videoRef.current.srcObject.getTracks().forEach((track) => track.stop()); // Stop the camera
       }
     };
   }, []); // Run only once when component mounts
@@ -93,126 +121,12 @@ const FaceDetection = () => {
   );
 };
 
-export default FaceDetection; 
+export default FaceDetection;
 
 
-// import React, { useEffect, useRef, useState } from 'react';
-// import * as blazeface from '@tensorflow-models/blazeface';
-// import * as cocoSsd from '@tensorflow-models/coco-ssd';
-// import Modal from './Model';
 
-// const FaceDetection = () => {
-//   const videoRef = useRef(null);
-//   const [noFaceWarning, setNoFaceWarning] = useState(false);
-//   const [gadgetWarning, setGadgetWarning] = useState(false);
-//   const [multipleFacesWarning, setMultipleFacesWarning] = useState(false);
-//   const [warningCount, setWarningCount] = useState(0); // Track the warning count
-//   const [isModalOpen, setIsModalOpen] = useState(false); // Control modal visibility
-//   const faceTimer = useRef(null);
 
-//   const closeWarningModal = () => {
-//     setIsModalOpen(false); // Close the modal
-//   };
-//   console.log("no face waarning",noFaceWarning);
 
-//   useEffect(() => {
-//     if (noFaceWarning || gadgetWarning || multipleFacesWarning) {
-//       setWarningCount(prevCount => prevCount + 1);
-//       if (warningCount >= 2) {
-//         // After 3 warnings, submit the test or perform desired action
-//         alert("Test submitted due to multiple warnings.");
-//         return; // Exit early
-//       }
-//       setIsModalOpen(true); // Open the modal
-//     }
 
-//     const initializeCamera = async () => {
-//       try {
-//         const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-//         if (videoRef.current) {
-//           videoRef.current.srcObject = stream;
-//         }
-//       } catch (error) {
-//         console.error("Error accessing camera:", error);
-//       }
-//     };
 
-//     const detectFacesAndObjects = async () => {
-//       const faceModel = await blazeface.load();
-//       const objectModel = await cocoSsd.load();
 
-//       const checkForFacesAndObjects = async () => {
-//         if (videoRef.current) {
-//           // Detect faces
-//           const facePredictions = await faceModel.estimateFaces(videoRef.current);
-
-//           if (facePredictions.length > 1) {
-//             setMultipleFacesWarning(true);
-//           } else {
-//             setMultipleFacesWarning(false);
-//           }
-
-//           if (facePredictions.length === 0) {
-//             faceTimer.current = setTimeout(() => {
-//               setNoFaceWarning(true);
-//             }, 10000); // 10 seconds
-//           } else {
-//             setNoFaceWarning(false);
-//             clearTimeout(faceTimer.current);
-//           }
-
-//           // Detect gadgets
-//           const objectPredictions = await objectModel.detect(videoRef.current);
-//           const gadgetClasses = ['cell phone', 'laptop', 'tablet'];
-//           const gadgetsFound = objectPredictions.some(prediction =>
-//             gadgetClasses.includes(prediction.class)
-//           );
-//           setGadgetWarning(gadgetsFound);
-
-//           requestAnimationFrame(checkForFacesAndObjects); // Continue checking
-//         }
-//       };
-
-//       checkForFacesAndObjects();
-//     };
-
-//     initializeCamera();
-//     detectFacesAndObjects(); // Start detection
-
-//     return () => {
-//       if (videoRef.current && videoRef.current.srcObject) {
-//         videoRef.current.srcObject.getTracks().forEach(track => track.stop());
-//       }
-//     };
-//   }, [warningCount]); // Re-run if the warning count changes
-
-//   return (
-//     <div>
-//       {/* {noFaceWarning && (
-//         <div style={{ color: 'red', fontWeight: 'bold' }}>
-        
-//           Warning: No face detected for 10 seconds!
-//         </div>
-//       )}
-//       {gadgetWarning && (
-//         <div style={{ color: 'orange', fontWeight: 'bold' }}>
-//           Warning: Electronic gadget detected!
-//         </div>
-//       )}
-//       {multipleFacesWarning && (
-//         <div style={{ color: 'yellow', fontWeight: 'bold' }}>
-//           Warning: Multiple faces detected!
-//         </div>
-//       )} */}
-//       <video ref={videoRef} autoPlay playsInline style={{ width: '100%' }} /> {/* Display the video */}
-
-//       <Modal
-//         noFaceWarning = {noFaceWarning}
-//         isOpen={isModalOpen}
-//         onClose={closeWarningModal} // Close modal on click
-//       />
-//     </div>
-//   );
-// };
-
-// export default FaceDetection;
