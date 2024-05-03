@@ -4,8 +4,26 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setQuestionSection } from '../../../Store/assessmentData';
 import ReactPaginate from 'react-paginate';
 import axios from 'axios'; // Importing axios
+import FaceDetection from '../../Webcame/FaceDetection';
+import * as tf from '@tensorflow/tfjs';
+
 
 function AssessmentNavbar() {
+    useEffect(() => {
+        // Set WebGL as backend
+        tf.setBackend('webgl')
+          .then(() => console.log('Using WebGL backend'))
+          .catch((error) => {
+            console.error('Error setting backend:', error);
+            // Optionally fallback to another backend
+          });
+    
+        // Ensure TensorFlow.js is ready
+        tf.ready().then(() => {
+          console.log('TensorFlow.js is ready');
+        });
+      }, []);
+
     const AssessmentData = useSelector((state) => {
         return state.getAssessment;
     });
@@ -45,7 +63,7 @@ function AssessmentNavbar() {
     return (
         <div className='assessment-navbar'>
             <div className='camera-monitoring'>
-                camera
+             <FaceDetection ></FaceDetection>
             </div>
             <div className='assessment-navbar-two-section'>
                 <div className='camera-title-timer-submit'>
