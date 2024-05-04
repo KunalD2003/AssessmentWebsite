@@ -4,13 +4,11 @@ const Schema = mongoose.Schema;
 
 // Create User schema
 const userSchema = new Schema({
-    userId: { type: Number, required: true },
+    userId: { type: String, required: true },
   name: { type: String, required: true },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  location: { type: String }, // Optional field for user's location
-  dob: { type: Date }, // Date of Birth field
-  linkedinProfile: { type: String }, // LinkedIn profile URL
+ phone:{type:String, required:true},
 });
 
 // Create and export User model based on the schema
