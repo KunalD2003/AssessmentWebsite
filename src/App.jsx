@@ -1,8 +1,8 @@
 import { useState } from 'react'
-import { Route, Routes } from "react-router-dom";
+import { Outlet, Route, Routes } from "react-router-dom";
 
 
-import {AssessmentPage} from './index'
+import { AssessmentPage } from './index'
 import Login from './Components/Authentication/Login'
 import Register from './Components/Authentication/Register'
 import './App.css'
@@ -30,15 +30,8 @@ function App() {
 
   return (
     <>
-
-<Routes>
-        <Route path='/' element={<Login/>}/>
-        <Route path='/register' element={<Register/>}/>
-        <Route path='/assessment' element={<AssessmentPage/>}/>
-      </Routes>
       <div>
-        {/* <AssessmentPage /> */}
-        {/* <Login/> */}
+        <Outlet />
       </div>
     </>
   )

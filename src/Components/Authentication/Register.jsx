@@ -82,7 +82,7 @@ function Register() {
                                 </div>
                                 <div className='form-group'>
                                     <label htmlFor='phone'>Phone Number</label>
-                                    <input type='tel' id='phone' name='phone' value={formData.phone} onChange={handleChange} placeholder='Enter your phone number' required />
+                                    <input type='tel' id='phone' name='phone' value={formData.phone} onChange={handleChange} placeholder='Enter your phone number' required style={{padding: '10px', border: '1px solid #ccc', borderRadius: '3px'}}/>
                                 </div>
                                 <button type='submit'>Register</button>
                                 {error && <p className="error-message">{error}</p>}
