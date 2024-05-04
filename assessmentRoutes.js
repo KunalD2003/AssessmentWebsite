@@ -7,45 +7,29 @@ const Assessment = require('./model/assessmentModel'); // Import the Assessment 
 // Create a new assessment
 router.post('/assessments', async (req, res) => {
     try {
-        const { AssessmentTitle, AssessmentStartDate,AssessmentStartTime, AssessmentEndDate, AssessmentEndTime,AssessmentDuration, Sections } = req.body;
+        const { AssessmentTitle, AssessmentDate,AssessmentStartTime, AssessmentEndTime,AssessmentDuration, } = req.body;
         console.log(AssessmentTitle);
-        console.log(AssessmentStartDate);
+        console.log(AssessmentDate);
         console.log(AssessmentStartTime);
-        console.log(AssessmentEndDate);
+      
         console.log(AssessmentDuration);
-        console.log(Sections);
+       
 
-        if (!AssessmentTitle || !AssessmentStartDate || !AssessmentEndDate || !Sections) {
+        if (!AssessmentTitle || !AssessmentDate || !AssessmentStartTime  || !AssessmentEndTime || !AssessmentDuration) {
             return res.status(400).json({ error: 'Missing required fields' });
         }
 
-        // Check if Sections array is empty
-        if (Sections.length === 0) {
-            return res.status(400).json({ error: 'Sections array must not be empty' });
-        }
-
-        // Validate Sections structure
-        const isValidSections = Sections.every(section =>
-            section.hasOwnProperty('sectionName') &&
-            section.hasOwnProperty('sectionType') &&
-            section.hasOwnProperty('questions') &&
-            Array.isArray(section.questions) &&
-            section.questions.length > 0
-        );
-
-        if (!isValidSections) {
-            return res.status(400).json({ error: 'Invalid Sections structure' });
-        }
-
+       
+       
         // Create a new assessment document
         const newAssessment = new Assessment({
             AssessmentTitle,
-            AssessmentStartDate,
+            AssessmentDate,
             AssessmentStartTime,
-            AssessmentEndDate,
+           
             AssessmentEndTime,
             AssessmentDuration,
-            Sections,
+          
         });
 
         // Save the assessment to the database
@@ -53,7 +37,7 @@ router.post('/assessments', async (req, res) => {
         console.log("Saved assessment successfully.");
         res.status(201).send("Saved assessment successfully.");
 
-        res.status(201).json(savedAssessment);
+       
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Internal Server Error' });
@@ -64,11 +48,12 @@ router.post('/assessments', async (req, res) => {
 // Get all assessments
 router.get('/assessments', async (req, res) => {
     console.log("hello from Get Assessment method");
-   
+
     try {
-        const assessments = await Assessment.find({}, 'AssessmentTitle AssessmentStartDate AssessmentEndDate AssessmentDuration,'); // Selecting specific fields
+        const assessments = await Assessment.find({});
+
         assessments.forEach(assessment => {
-            console.log(`Title: ${assessment.AssessmentTitle}, Start Date: ${assessment.AssessmentStartDate}, End Date: ${assessment.AssessmentEndDate}, AssessmentDuration : ${assessment.AssessmentDuration}`);
+            console.log(`Title: ${assessment.AssessmentTitle}, Start Date: ${assessment.AssessmentStartDate}, End Date: ${assessment.AssessmentEndDate}, Duration: ${assessment.AssessmentDuration}`);
         });
 
         res.json(assessments);
@@ -77,6 +62,7 @@ router.get('/assessments', async (req, res) => {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });
+
 
 // Get an assessment by ID
 router.get('/assessments/:id', async (req, res) => {
