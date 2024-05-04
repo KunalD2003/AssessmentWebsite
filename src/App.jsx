@@ -1,3 +1,4 @@
+
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
@@ -5,16 +6,19 @@ import {AssessmentPage} from './index'
 import './App.css'
 import { Outlet } from 'react-router'
 
-function App() {
-  const [count, setCount] = useState(0)
+import React from 'react';
+;
+import WebScanning from './Pages/WebScanning/WebcamCapture';
 
+
+
+function App() {
   return (
-    <>
-      <div>
+    <div className="App">
+     <WebScanning></WebScanning>
         <Outlet />
       </div>
-    </>
   )
 }
 
-export default App
+export default App;
