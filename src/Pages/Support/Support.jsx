@@ -1,9 +1,60 @@
-import React from 'react'
-import { Button, Col, Container, Row } from "react-bootstrap";
+import React, { useState } from 'react'
+import { Alert, Button, Col, Container, Row } from "react-bootstrap";
 import "./Support.css";
+import axios from "axios";
 
 
 function Support() {
+  const [formData, setFormData] = useState({
+    name: "",
+    mobile: "",
+    email: "",
+    message: "",
+  });
+  const [errors, setErrors] = useState({});
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+    setErrors({ ...errors, [name]: "" }); // Clear the error when user starts typing again
+  };
+  const validateForm = () => {
+    const newErrors = {};
+    if (!formData.name.trim()) {
+      newErrors.name = "Name is required";
+    }
+    if (!formData.email.trim()) {
+      newErrors.email = "Email is required";
+    } else if (!/^\S+@\S+\.\S+$/.test(formData.email)) {
+      newErrors.email = "Email is invalid";
+    }
+    if (!formData.mobile.trim()) {
+      newErrors.mobile = "Mobile is required";
+    } else if (!/^\d{10}$/.test(formData.mobile)) {
+      newErrors.mobile = "Mobile is invalid";
+    }
+    if (!formData.message.trim()) {
+      newErrors.message = "Message is required";
+    }
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (validateForm()) {
+      try {
+        const response = await axios.post("http://localhost:3000/contacts", formData);
+        if (response) {
+          console.log(response)
+          alert("Successfully send ",);
+        }
+      } catch (error) {
+        alert("Error:", error);
+        console.log(error)
+        // Handle error, maybe show an error message to the user
+      }
+    }
+  };
+
   return (
     <div id="main">
       <Container>
@@ -20,31 +71,56 @@ function Support() {
               </div>
               {/* .................input............. */}
               <div className='label-input-field'>
-                <h6 className="inputText">Enter Name :</h6>
-                <input className="support-input" type="text" placeholder="Enter Name" />
+                <h6 className="inputText"><span style={{ color: "red" }}>*</span>Enter Name :</h6>
+                <input className="support-input" type="text" placeholder="Enter Name" name="name"
+                  alue={formData.name}
+                  required
+                  onChange={handleChange}
+                />
+                {errors.name && <h6 style={{ color: 'red', marginLeft: '2%' }}>:exclamation:{errors.name}</h6>}
               </div>
               <div className='label-input-field'>
-                <h6 className="inputText">Enter Mobile :</h6>
+                <h6 className="inputText"><span style={{ color: "red" }}>*</span>Enter Mobile :</h6>
                 <input
                   className="support-input"
                   type="text"
                   placeholder="Enter Mobile"
+                  required
+                  name="mobile"
+                  onChange={handleChange}
+                  alue={formData.mobile}
                 />
+                {errors.mobile && <h6 style={{ color: 'red', marginLeft: '2%' }}>:exclamation:{errors.mobile}</h6>}
               </div>
               <div className='label-input-field'>
-                <h6 className="inputText">Enter Email :</h6>
-                <input className="support-input" type="email" placeholder="Enter Email" />
+                <h6 className="inputText"><span style={{ color: "red" }}>*</span>Enter Email :</h6>
+                <input className="support-input" type="email" placeholder="Enter Email" required
+                  name="email"
+                  alue={formData.email}
+                  onChange={handleChange}
+                />
+                {errors.email && <h6 style={{ color: 'red', marginLeft: '2%' }}>:exclamation:{errors.email}</h6>}
               </div>
               <div className='label-input-field'>
-                <h6 className="inputText">Message</h6>
+                <h6 className="inputText"><span style={{ color: "red" }}>*</span>Message</h6>
                 <textarea
                   placeholder="Message..."
                   rows={6} // Number of visible text lines
                   cols={60} // Width of the text area (number of characters)
+                  required
+                  name="message"
+                  alue={formData.message}
+                  onChange={handleChange}
                 />
+                {errors.message && (
+                  <h6 style={{ color: 'red', marginLeft: '2%' }}>:exclamation:{errors.message}</h6>
+                )}
               </div>
               <Button
                 variant="success"
+                type="submit"
+                onClick={handleSubmit}
+
               >
                 Send Message
               </Button>
