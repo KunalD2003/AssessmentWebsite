@@ -1,0 +1,90 @@
+
+#Details{
+    background-color: white;
+    margin: 1%;
+    border-radius: 10px;
+    box-shadow: 4px 4px 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 3%;
+}
+#userPic{
+    height: 100px;
+    width: 100px;
+    border-radius: 50px;
+    margin-bottom: 1rem;
+}
+#logo{
+    height: 80px;
+    width: 80px;
+    border-radius: 50px;
+    margin: 2%;
+}
+#user{
+    height: 100px;
+    width: 100px;
+    border-radius: 50px;
+    margin: 2%;
+    border: 1px solid black;
+}
+#firstDetails{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-inline: 1rem;
+    padding-top: 1rem;
+}
+#secondDetails{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+#textDetails{
+    margin-left: 3%;
+    justify-content: center;
+    align-items: center;
+    margin-top: 4%;
+}
+#line{
+    margin-left: 3%;
+    margin-right: 3%;
+}
+#editmain :hover{
+background-color: gray;
+}
+#editContainer{
+    height: 30px;
+    width: 30px;
+    border-radius: 50px;
+    border: 1px solid black;
+    margin-left: 12px;
+    margin-top: 18px;
+    justify-content: center;
+    align-items: center;
+    /* background-color: white; */
+}
+#Editbtn{
+    border: none;
+}
+#editImg{
+    height: 20px;
+    width: 20px;
+    border-radius: 50px;
+}
+.detailsContainer{
+    border: 1px solid black;
+    display: flex;
+    flex-direction: row;
+    margin-top: 2%;
+    margin-inline: 0.5rem;
+}
+.input{
+    width: 100%;
+    border-radius: 5px;
+    border: 2px solid;
+    border-color: gray;
+    margin-top: 3%;
+}
+.log-out-btn{
+    width: 5rem;
+}
