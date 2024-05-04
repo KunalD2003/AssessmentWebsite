@@ -1,53 +1,62 @@
 import React, { useState } from 'react';
 import './CSS/Register.css';
-import { Link ,useNavigate} from 'react-router-dom';
-import { getAuth, createUserWithEmailAndPassword, } from "firebase/auth";
+import { Link, useNavigate } from 'react-router-dom';
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 function Register() {
-    const navigate=useNavigate();
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
-        firstName: '',
-        lastName: '',
+        name: '',
         email: '',
-        password: ''
+        password: '',
+        phone: ''
     });
-    const [error,setError]=useState(false);
-    
+    const [error, setError] = useState(null);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
-        console.log()
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         const auth = getAuth();
 
-        createUserWithEmailAndPassword(auth, formData.email, formData.password)
-        .then((userCredential) => {
-          // Signed up 
-          const user = userCredential.user;
-          console.log(user);
-          console.log("Register successfuly")
-          navigate("/");
-          user.updateProfile({
-            displayName: user.firstName // Replace with actual display name
-        
-        }).then(() => {
-            // Display name updated successfully
-            console.log("profile name");
-        }).catch((error) => {
-            console.error("Error updating display name:", error.message);
-        });
-          // ...
-        })
-        .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          setError(errorMessage);
-          // ..
-        });
+        try {
+            const userCredential = await createUserWithEmailAndPassword(auth, formData.email, formData.password);
+            const user = userCredential.user;
+
+            // Fetch the userId from Firebase
+            const userId = user.uid;
+
+            // Prepare data to send to the backend API
+            const userData = {
+                userId,
+                name: formData.name,
+                email: formData.email,
+                password: formData.password,
+                phone: formData.phone
+            };
+
+            // Send userData to the backend API for storing in the database
+            const response = await fetch('http://localhost:3000/api/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(userData)
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to save user data in the database');
+            }
+
+            console.log("User registered successfully");
+            navigate("/"); // Redirect to login or home page
+        } catch (error) {
+            console.error("Error registering user:", error.message);
+            setError('Error registering user');
+        }
     };
 
     return (
@@ -60,12 +69,8 @@ function Register() {
                         <div className='Register-container'>
                             <form onSubmit={handleSubmit}>
                                 <div className='form-group'>
-                                    <label htmlFor='firstName'>First Name</label>
-                                    <input type='text' id='firstName' name='firstName' value={formData.firstName} onChange={handleChange} placeholder='Enter your first name' required />
-                                </div>
-                                <div className='form-group'>
-                                    <label htmlFor='lastName'>Last Name</label>
-                                    <input type='text' id='lastName' name='lastName' value={formData.lastName} onChange={handleChange} placeholder='Enter your last name' required />
+                                    <label htmlFor='name'>Full Name</label>
+                                    <input type='text' id='name' name='name' value={formData.name} onChange={handleChange} placeholder='Enter your full name' required />
                                 </div>
                                 <div className='form-group'>
                                     <label htmlFor='email'>Email Address</label>
@@ -75,8 +80,12 @@ function Register() {
                                     <label htmlFor='password'>Password</label>
                                     <input type='password' id='password' name='password' value={formData.password} onChange={handleChange} placeholder='Enter your password' required />
                                 </div>
+                                <div className='form-group'>
+                                    <label htmlFor='phone'>Phone Number</label>
+                                    <input type='tel' id='phone' name='phone' value={formData.phone} onChange={handleChange} placeholder='Enter your phone number' required />
+                                </div>
                                 <button type='submit'>Register</button>
-
+                                {error && <p className="error-message">{error}</p>}
                             </form>
                             <p>Already have an account? <Link to='/'>Login</Link></p>
                         </div>
@@ -94,4 +103,3 @@ function Register() {
 }
 
 export default Register;
- 
