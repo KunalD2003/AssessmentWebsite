@@ -10,7 +10,7 @@ const Navbar = () => {
     <div className='navbar-candidate'>
       <h2>Welcome to Candidate Assessment Website</h2>
       <div className='user-btn-div'>
-        <Link to="/user"><i className='bx bx-user'></i></Link>
+        <Link to="/userid/profile"><i className='bx bx-user'></i></Link>
       </div>
     </div>
   );

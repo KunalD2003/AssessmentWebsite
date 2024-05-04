@@ -35,7 +35,6 @@ function App() {
 
   return (
     <div>
-        <Dashboard></Dashboard>
         <Outlet />
     </div>
   )

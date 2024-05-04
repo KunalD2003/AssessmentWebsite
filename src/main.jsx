@@ -39,8 +39,26 @@ const router = createBrowserRouter([
         element: <Register />
       },
       {
-        path: '/assessment',
-        element: <AssessmentPage />
+        path: '/userid',
+        element: <Dashboard />,
+        children: [
+          {
+            path: '/userid/assessments',
+            element: <Hero_section />
+          },
+          {
+            path: '/userid/archivedexams',
+            element: <ArchievedExams />
+          },
+          {
+            path: '/userid/support',
+            element: <Support />
+          },
+          {
+            path: '/userid/profile',
+            element: <User />
+          },
+        ]
       }
     ]
   }

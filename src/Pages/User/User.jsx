@@ -6,10 +6,12 @@ import logo from "../../assets/img/logo.webp";
 import CallIcon from "@mui/icons-material/Call";
 import { Button, Col, Container, Modal, Row } from "react-bootstrap";
 import { DateRange, Email, EmailRounded, Link, LocationCity, Person } from "@mui/icons-material";
+import { useNavigate } from 'react-router';
 
 
 function User() {
   const inputRef = useRef(null);
+  const navigate = useNavigate()
   //Modal state
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -25,6 +27,9 @@ function User() {
     console.log(file);
     setImage(event.target.files[0]);
   };
+  const logout = () => {
+    navigate('/')
+  }
 
   return (
     <div id="Details">
@@ -35,7 +40,7 @@ function User() {
           <h1 style={{ textAlign: "center", marginTop: '1%', alignSelf: 'center' }}>User Profile</h1>
         </div>
         <div>
-          <button type="button" class="btn btn-danger log-out-btn">Log out</button>
+          <button type="button" class="btn btn-danger log-out-btn" onClick={logout}>Log out</button>
         </div>
       </div>
       <hr id="line" />

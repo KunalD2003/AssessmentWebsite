@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './CSS/Register.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import logo from './images/AveryBit-Full-114.webp'
 
 function Register() {
     const navigate = useNavigate();
@@ -61,11 +62,11 @@ function Register() {
 
     return (
         <>
-            <div className='container'>
-                <div className='row'>
-                    <div className='col'>
-                        <h4>AveryBit Solutions</h4>
-                        <h1>Create an Account</h1>
+            <div className='register-container'>
+                <div className='register-row'>
+                    <div className='register-col'>
+                        <img className='login-logo' src={logo} alt='logo' />
+                        <h1 className='register-col-heading'>Create an Account</h1>
                         <div className='Register-container'>
                             <form onSubmit={handleSubmit}>
                                 <div className='form-group'>
@@ -82,7 +83,7 @@ function Register() {
                                 </div>
                                 <div className='form-group'>
                                     <label htmlFor='phone'>Phone Number</label>
-                                    <input type='tel' id='phone' name='phone' value={formData.phone} onChange={handleChange} placeholder='Enter your phone number' required style={{padding: '10px', border: '1px solid #ccc', borderRadius: '3px'}}/>
+                                    <input type='tel' id='phone' name='phone' value={formData.phone} onChange={handleChange} placeholder='Enter your phone number' required style={{ padding: '10px', border: '1px solid #ccc', borderRadius: '3px' }} />
                                 </div>
                                 <button type='submit'>Register</button>
                                 {error && <p className="error-message">{error}</p>}
@@ -90,7 +91,7 @@ function Register() {
                             <p>Already have an account? <Link to='/'>Login</Link></p>
                         </div>
                     </div>
-                    <div className='col'>
+                    <div className='register-col'>
                         <div className='register-image'>
                             <h1>Register Image</h1>
                             <p>Some text about registration</p>

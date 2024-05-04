@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Alert, Button, Col, Container, Row } from "react-bootstrap";
 import "./Support.css";
 import axios from "axios";
+import Sman from '../../assets/img/sman.png'
 
 
 function Support() {
@@ -65,7 +66,7 @@ function Support() {
               style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}
             >
               <div>
-                <img src="src/assets/img/sman.png" alt="" id="sMan" className='support-img'></img>
+                <img src={Sman} alt="" id="sMan" className='support-img'></img>
                 <h1 style={{ textAlign: "center" }}>Support</h1>
                 <p className="para">24/7 Hours Support</p>
               </div>
