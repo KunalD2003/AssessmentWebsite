@@ -1,0 +1,18 @@
+.AssementInputExample{
+    margin-inline: 0.5rem;
+    margin-bottom: 0.75rem;
+}
+.AssementInputExample div{
+    padding: 1rem;
+    background-color: rgb(240, 240, 240);
+    border-radius: 5px;
+}
+.AssementInputExample div p{
+    margin-bottom: 0.3rem;
+}
+.AssementInputExample > div {
+    /* Example box styles */
+    margin-bottom: 20px; /* Adjust as needed */
+    padding: 10px; /* Adjust as needed */
+    border: 1px solid #ccc; /* Example box border */
+  }

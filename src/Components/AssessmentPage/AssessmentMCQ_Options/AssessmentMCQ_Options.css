@@ -1,0 +1,10 @@
+.mcq-options{
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
+    gap: 1rem;
+}
+.mcq-option-btn{
+    display: flex;
+    padding: 1rem;
+}

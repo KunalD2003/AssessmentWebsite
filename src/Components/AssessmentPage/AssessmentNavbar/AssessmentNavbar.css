@@ -1,0 +1,53 @@
+.assessment-navbar {
+    display: flex;
+    gap: 0.5rem;
+    padding-right: 0.5rem;
+}
+.camera-monitoring{
+    border: 1px solid black;
+    width:7rem;
+}
+.assessment-navbar-two-section{
+    width: 100%;
+    margin-top: 0.5rem;
+}
+.camera-title-timer-submit {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.timer-submit {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-right: 0.5rem;
+}
+
+.camera-questions {
+    display: flex;
+    align-items: center;
+    margin-block: 0.2rem;
+}
+
+.questions-pagination {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
+
+.questions-staticstics {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.pagination-pages ul{
+    margin-bottom: 0rem;
+}
+
+.questions-count {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

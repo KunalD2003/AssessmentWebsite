@@ -10,23 +10,46 @@ import ArchievedExams from './Pages/ArchievedExams/ArchievedExams.jsx';
 import Support from './Pages/Support/Support.jsx';
 import User from './Pages/User/User.jsx';
 
-const router = createBrowserRouter(
-  createRoutesFromElements(
-    <Route path='/' element={<Dashboard />}>
-      <Route path='' element={<Hero_section />} />
-      <Route path='/archivedexams' element={<ArchievedExams />} />
-      <Route path='/support' element={<Support />} />
-      <Route path='/user' element={<User />} />
-    </Route>
-  )
-)
+// const router = createBrowserRouter(
+//   createRoutesFromElements(
+//     <Route path='/' element={<Dashboard />}>
+//       <Route path='' element={<Hero_section />} />
+//       <Route path='/archivedexams' element={<ArchievedExams />} />
+//       <Route path='/support' element={<Support />} />
+//       <Route path='/user' element={<User />} />
+//     </Route>
+//   )
+// )
+import { Provider } from "react-redux";
+import store from "./Store/store.js";
+import { AssessmentPage, Login, Register } from './index.js'
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+
+const router = createBrowserRouter([
+  {
+    path: '',
+    element: <App />,
+    children: [
+      {
+        path: '',
+        element: <Login />
+      },
+      {
+        path: '/register',
+        element: <Register />
+      },
+      {
+        path: '/assessment',
+        element: <AssessmentPage />
+      }
+    ]
+  }
+])
+
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
-    {/* <App /> */}
-  </React.StrictMode>,
-)
-
-
-
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
+  </React.StrictMode>
+);
