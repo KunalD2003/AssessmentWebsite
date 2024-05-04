@@ -4,6 +4,7 @@ import React, { useRef, useState } from 'react';
 import Webcam from 'react-webcam';
 import { v4 as uuidv4 } from 'uuid'; // Generate unique IDs
 import './WebcamCapture.css';
+import { useNavigate } from 'react-router';
 
 const WebcamCapture = () => {
   const webcamRef = useRef(null); // Reference for the webcam component
@@ -11,6 +12,8 @@ const WebcamCapture = () => {
   const [capturedFace, setCapturedFace] = useState(null); // State to store captured face image
   const [capturedID, setCapturedID] = useState(null); // State to store captured ID image
   const [submitedMessage, setSubmitedMessage] = useState(""); // State to store captured ID image
+  const [startDisplay, setStartDisplay] = useState("none")
+  const navigate = useNavigate()
 
   // Function to capture images based on the current mode
   const captureImage = () => {
@@ -51,6 +54,7 @@ const WebcamCapture = () => {
         .then((data) => {
           console.log('Server response:', data); // Log successful response
           setSubmitedMessage("Images Submitted Successfully! Now Start the Test")
+          setStartDisplay("block")
         })
         .catch((error) => {
           console.error('Error submitting data:', error); // Handle errors
@@ -59,6 +63,10 @@ const WebcamCapture = () => {
       console.error('Face and/or ID not captured.'); // Ensure both images are captured before submitting
     }
   };
+
+  function StartTest() {
+    navigate('/assessment')
+  }
 
   return (
     <div style={{ textAlign: 'center', display: 'flex', justifyContent: 'center', gap: '3rem' }}>
@@ -101,10 +109,10 @@ const WebcamCapture = () => {
         </div>
         {/* Submit button */}
         <div className='submit-btn'>
-          <button onClick={handleSubmit} className="button mx-5">
+          <button onClick={handleSubmit} className="button">
             Submit
           </button>
-          <button className="button margin-left-5px">
+          <button className="button" onClick={StartTest}>
             Start Test
           </button>
         </div>

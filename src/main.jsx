@@ -5,13 +5,13 @@ import './index.css'
 import { createBrowserRouter, RouterProvider, Route, createRoutesFromElements } from 'react-router-dom'
 import { Provider } from 'react-redux';
 import store from './Store/store.js';
-import TermsandCondition from './Pages/TermsandCondition/TermsandCondition.jsx'
-import AssessmentPage from './Pages/AssessmentPage/AssessmentPage.jsx'
+import {AssessmentPage,TermsandCondition,WebcamCapture} from './index.js'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<App />}>
       <Route path='/' element={<TermsandCondition />} />
+      <Route path='/scanfaceid' element={<WebcamCapture />} />
       <Route path='/assessment' element={<AssessmentPage />} />
     </Route>
   )

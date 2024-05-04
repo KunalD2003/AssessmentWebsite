@@ -15,7 +15,6 @@ import WebScanning from './Pages/WebScanning/WebcamCapture';
 function App() {
   return (
     <div className="App">
-     <WebScanning></WebScanning>
         <Outlet />
       </div>
   )

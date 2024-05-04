@@ -15,7 +15,7 @@ function TermsandCondition() {
         if (isAgreed) {
             // Handle form submission logic here
             console.log("Terms and Conditions accepted");
-            navigate('/assessment')
+            navigate('/scanfaceid')
         } else {
             console.log("You must agree to the terms and conditions");
         }
