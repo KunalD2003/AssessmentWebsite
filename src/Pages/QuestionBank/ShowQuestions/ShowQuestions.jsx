@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { editQuestion, getquestionDataUsingID } from '../../Hooks/questionData'
+import { editQuestion, getquestionDataUsingID } from '../../../Hooks/questionData'
 import Accordion from 'react-bootstrap/Accordion';
 import { useAccordionButton } from 'react-bootstrap/AccordionButton';
 import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
-import { useForm } from "react-hook-form"
+import { useForm } from "react-hook-form";
+import './ShowQuestions.css'
 
 
 function CustomToggle({ children, eventKey }) {
@@ -29,7 +30,7 @@ function ShowQuestions() {
   const { sectionID } = useParams()
   const getQuestion = getquestionDataUsingID(sectionID)
   const [inputValue, changeInputVal] = useState()
-  console.log(getQuestion);
+  console.log(getQuestion.questions);
 
 
   const { register, handleSubmit } = useForm()
@@ -42,32 +43,29 @@ function ShowQuestions() {
     <div>sectionName: {getQuestion.sectionName}
       <Accordion defaultActiveKey="0">
         {getQuestion.questions.map((index) => (
+          
           <Card key={`${index.id}`}>
             <Card.Header>
               <CustomToggle eventKey={`${index.id}`} >Click me!</CustomToggle>
             </Card.Header>
             <Accordion.Collapse eventKey={`${index.id}`}>
               <Card.Body>
+                {index.questionDescription}
                 <Form onSubmit={handleSubmit(onSubmit)}>
-                  <Form.Group className="mb-3" controlId="exampleForm.ControlInput1" >
-                    <Form.Label>Enter Section Title</Form.Label>
+                  <Form.Group className="mb-3" controlId={`${index.id}`} >
+                    <Form.Label>Enter Question Description</Form.Label>
                     <Form.Control
-                      placeholder="name@example.com"
+                      placeholder="Enter Question Description"
                       autoFocus
                       rows={5} 
                       as="textarea"
+                      defaultValue={index.questionDescription}
                       {...register("sectionName")}  
-                      value={index.questionDescription}
-                      onChange={(e) => editQuestion(index.id, e.target.value, sectionID)}
+                      key={index.id}
                     />
                   </Form.Group>
-                  <Form.Select aria-label="Default select example" {...register("sectionType")}>
-                    <option>Select Section Type</option>
-                    <option value="Coding">Coding</option>
-                    <option value="MCQ">MCQ</option>
-                  </Form.Select>
-                  <Form.Group className="mb-3" controlId="exampleForm.ControlInput1" >
-                    <Form.Label>Enter Section Title</Form.Label>
+                  
+                  <Form.Group className="mb-3 " controlId="exampleForm.ControlInput1" >
                     <Form.Control
                       type="submit"
                       value={"Add"}

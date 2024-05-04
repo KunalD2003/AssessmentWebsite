@@ -4,6 +4,7 @@ import { nanoid } from '@reduxjs/toolkit';
 import './Hero.css';
 import clockIcon from '../../assets/img/time-icon.svg';
 import fileIcon from '../../assets/img/file-icon.svg';
+import assessmentData from '../../Hooks/assessmentData'
 
 const AssessmentCard = [
   {
@@ -50,13 +51,14 @@ const AssessmentCard = [
 
 function Hero() {
   // const navigate = useNavigate(); 
-
+  const assessment = assessmentData()
+  console.log(assessment);
   return (
     <div className="herosection">
-      {AssessmentCard.map((index) => (
+      {assessment.map((index) => (
         <div className="card user-dashboard-card" key={index.id}>
           <div className='assessment-role-title'>
-            <h1>{index.title}</h1>
+            <h1>{index.AssessmentTitle}</h1>
           </div>
           <div className="card-body assessment-start-card-body">
             <div className='assessment-details'>
@@ -64,28 +66,28 @@ function Hero() {
                 <i className='bx bx-question-mark assessment-details-icon'></i>
                 <p>Questions:</p>
               </div>
-              <p>{index.totalQuestions} Questions</p>
+              <p> Questions</p>
             </div>
             <div className='assessment-details'>
               <div>
                 <i className='bx bx-stopwatch assessment-details-icon'></i>
                 <p>Duration:</p>
               </div>
-              <p>{index.duration}</p>
+              <p>min</p>
             </div>
             <div className='assessment-details'>
               <div>
                 <i className='bx bx-calendar assessment-details-icon'></i>
                 <p>Start on:</p>
               </div>
-              <p>{index.startDate} <span className='start-assessment-time'>{index.startTime}</span></p>
+              <p>{index.AssessmentStartDate} <span className='start-assessment-time'></span></p>
             </div>
             <div className='assessment-details'>
               <div>
                 <i className='bx bx-calendar assessment-details-icon'></i>
                 <p>End on:</p>
               </div>
-              <p>{index.endDate} <span className='start-assessment-time'>{index.endTime}</span></p>
+              <p>{index.AssessmentEndDate} <span className='start-assessment-time'></span></p>
             </div>
             <div className='start-assesment-btn'>
               <button type="button" className="btn btn-info" >View Results</button>

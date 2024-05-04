@@ -45,8 +45,8 @@ const questionData = [
                
             },
             {
-                id: nanoid(),
-                questionDescription: "", //Description of Questionoption selected, this will turn equals to marksAssigned
+                id: 123,
+                questionDescription: "xyz", //Description of Questionoption selected, this will turn equals to marksAssigned
                 Options: [
                     {
                         id: "",
@@ -79,7 +79,7 @@ const questionData = [
                 ]
             },
             {
-                id: nanoid(),
+                id: 456,
                 questionDescription: "", //Description of Question
                 Options: [
                     {

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './QuestionBank.css'
 import { Navigate, useNavigate } from 'react-router-dom'
-import { deleteSection, getquestionData,setSection } from '../Hooks/questionData'
+import { deleteSection, getquestionData, setSection } from '../../Hooks/questionData'
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
@@ -12,9 +12,14 @@ import { useForm } from "react-hook-form"
 function QuestionBank() {
   const [deleteBtnDisplay, setDeleteBtnDisplay] = useState("none")
   const navigate = useNavigate()
-  const [sections, setSections] = useState(getquestionData())
+  const [sectionList, setSectionList] = useState(getquestionData())
   const [show, setShow] = useState(false);
 
+  const sections = getquestionData()
+  useEffect(() => {
+    setSectionList(sections)
+    console.log(sections);
+  },[sections, sectionList, setSectionList])
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -48,18 +53,18 @@ function QuestionBank() {
               <option value="Coding">Coding</option>
               <option value="MCQ">MCQ</option>
             </Form.Select>
-              <Form.Group className="mb-3" controlId="exampleForm.ControlInput1" >
-                <Form.Label>Enter Section Title</Form.Label>
-                <Form.Control
-                  type="submit"
-                  value={"Add"}
-                />
-              </Form.Group>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1" >
+              <Form.Label>Enter Section Title</Form.Label>
+              <Form.Control
+                type="submit"
+                value={"Add"}
+              />
+            </Form.Group>
           </Form>
         </Modal.Body>
       </Modal>
       <div className='question-bank-cards-container'>
-        {sections.map((index) => (
+        {sectionList.map((index) => (
           <div className="card question-bank-card" key={index.id}>
             <div className="card-body question-bank-card-body">
               <h3 className="card-title section-title">{index.sectionName}</h3>
@@ -72,8 +77,9 @@ function QuestionBank() {
                 <p>{index.sectionType}</p>
               </div>
               <div className='section-card-btn'>
-                <button type="button" className="btn btn-danger" style={{ display: `${deleteBtnDisplay}` }} onClick={() => {
+                <button type="button" className="btn btn-danger" style={{ display: `${deleteBtnDisplay}` }} onClick={async () => {
                   sections.pop(index.id)
+                  console.log(sections);
                 }}>Delete</button>
                 <button type="button" className="btn btn-primary" onClick={() => navigate(`/questionbank/showquestions/${index.id}`)}>Edit</button>
               </div>
