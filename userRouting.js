@@ -2,38 +2,50 @@
 const express = require('express');
 const router = express.Router();
 const User = require('./model/user'); // Import the User model
+const bcrypt = require('bcrypt');
+const saltRounds = 10; // Number of salt rounds for bcrypt hashing
+const cors = require('cors');
 
+
+// app.use(express.json());
 // Handle POST request for user registration
 router.post('/register', async (req, res) => {
   try {
-    // Extract user data from request body
-    const { userId, name, email, password, location, dob, linkedinProfile } = req.body;
+      // Extract user data from request body
+      const { userId, name, email, password, phone } = req.body;
 
-    // Check if user with the same email already exists
-    const existingUser = await User.findOne({ email });
-    if (existingUser) {
-        console.log("User already exists");
-      return res.status(400).json({ message: 'User already exists' });
-    }
+      // Check if user with the same email already exists
+      const existingUser = await User.findOne({ email });
+      if (existingUser) {
+          console.log("User already exists");
+          return res.status(400).json({ message: 'User already exists' });
+      }
 
-    // Create a new user instance based on User model
-    const newUser = new User({ userId, name, email, password, location, dob, linkedinProfile });
+      // Hash the password using bcrypt
+      bcrypt.hash(password, saltRounds, async (err, hash) => {
+          if (err) {
+              console.error('Error hashing password:', err);
+              return res.status(500).json({ message: 'Error hashing password' });
+          }
 
-    // Save the new user to the database
-    await newUser.save();
-    console.log("User registered successfully'");
-    console.log(newUser);
+          // Create a new user instance with the hashed password
+          const newUser = new User({ userId, name, email, password: hash, phone });
 
-    // Send success response
-    res.status(201).json({ message: 'User registered successfully' });
+          // Save the new user to the database
+          await newUser.save();
+          console.log("User registered successfully'");
+          console.log(newUser);
+
+          // Send success response
+          res.status(201).json({ message: 'User registered successfully' });
+      });
   } catch (error) {
-    // Handle errors
-    console.error(error);
-    console.log("User registered successfully'");
-    res.status(500).json({ message: 'Internal server error' });
+      // Handle errors
+      console.error(error);
+      console.log("User registration failed'");
+      res.status(500).json({ message: 'Internal server error' });
   }
 });
-
 
 // Handle GET request to get all users
 router.get('/users', async (req, res) => {
