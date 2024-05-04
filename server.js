@@ -63,6 +63,8 @@ mongoose
     console.error("Error connecting to MongoDB:", error);
   });
 
+
+  
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
@@ -71,41 +73,11 @@ app.get("/about", (req, res) => {
   res.send("Hello from about server");
 });
 
-app.get("/api/questions", async (req, res) => {
-  try {
-    // Your code to fetch questions from MongoDB collection
-    const questions = await Question.find({});
-    res.json(questions);
-  } catch (error) {
-    console.error("Error fetching questions:", error);
-    res.status(500).send("Error fetching questions");
-  }
-});
+
 
 // POST endpoint to store new question data
-app.post("/api/questions", async (req, res) => {
-  try {
-    const { questionId, question, problem, sectionType } = req.body;
 
-    // Create a new question document using the Question model
-    const newQuestion = new Question({
-      questionId,
-      question,
-      problem,
-      sectionType,
-    });
 
-    // Save the new question document to the database
-    await newQuestion.save();
-
-    res.status(201).send("Question saved successfully");
-    console.log(" Problem added succeessfullly");
-    console.log(newQuestion);
-  } catch (error) {
-    console.error("Error saving question:", error);
-    res.status(500).send("Error saving question");
-  }
-});
 
 // GET endpoint to list databases
 app.get("/api/databases", async (req, res) => {
@@ -196,7 +168,7 @@ app.post("/compilex", (req, res) => {
           if (data.output) {
             res.send(data);
           } else {
-            res.send({ output: "error" });
+            res.send({ output: "syntax error" });
           }
           //data.error = error message
           //data.output = output value
@@ -210,7 +182,7 @@ app.post("/compilex", (req, res) => {
           if (data.output) {
             res.send(data);
           } else {
-            res.send({ output: "error" });
+            res.send({ output: " Syntax error" });
           }
         });
       }
@@ -236,7 +208,7 @@ app.post("/compilex", (req, res) => {
           if (data.output) {
             res.send(data);
           } else {
-            res.send({ output: "error" });
+            res.send({ output: "syntax error" });
           }
         });
       }
@@ -249,7 +221,7 @@ app.post("/compilex", (req, res) => {
           if (data.output) {
             res.send(data);
           } else {
-            res.send({ output: "error" });
+            res.send({ output: "syntax error" });
           }
         });
       } else {
@@ -260,7 +232,7 @@ app.post("/compilex", (req, res) => {
           if (data.output) {
             res.send(data);
           } else {
-            res.send({ output: "error" });
+            res.send({ output: "syntax error" });
           }
         });
       }
