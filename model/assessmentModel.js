@@ -6,7 +6,7 @@ const assessmentSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    AssessmentStartDate: {
+    AssessmentDate: {
         type: Date,
         required: true,
     },
@@ -14,10 +14,7 @@ const assessmentSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    AssessmentEndDate: {
-        type: Date,
-        required: true,
-    },
+  
     AssessmentEndTime: {
         type: String,
         required: true,
@@ -26,49 +23,7 @@ const assessmentSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    Sections: [{
-        id: {
-            type: Number, // Changed to Number type
-            required: true,
-        },
-        sectionName: {
-            type: String,
-            required: true,
-        },
-        sectionType: {
-            type: String,
-            enum: ['MCQ', 'Coding'],
-            required: true,
-        },
-        questions: [{
-            id: {
-                type: Number, // Changed to Number type
-                required: true,
-            },
-            questionDescription: {
-                type: String,
-                required: true,
-            },
-            Options: [{
-                id: {
-                    type: Number, // Changed to Number type
-                    required: true,
-                },
-                optionTitle: {
-                    type: String,
-                    required: true,
-                },
-                isSelected: {
-                    type: Boolean,
-                    default: false,
-                },
-                isCorrect: {
-                    type: Boolean,
-                    required: true,
-                },
-            }],
-        }],
-    }],
+   
 });
 
 // Create the Assessment model using the schema
