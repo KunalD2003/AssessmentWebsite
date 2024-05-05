@@ -15,12 +15,14 @@ const PORT = process.env.PORT || 3000;
 
 const question_routes = require("./routes/question");
 const contact_routes =require("./routes/contact");
+const archievedexam_routes = require("./routes/archievedexam.js");
 app.get("/", (req, res) => {
   res.send("Hii, I am seeing MCQ question on screen");
 });
 //middle ware or to set router
 app.use("/api/mcqquestions",question_routes);
 app.use("/contacts",contact_routes);
+app.use("/archievedexamresult",archievedexam_routes);
 const start = async () => {
   try {
     await connectDB(process.env.MONGODB_URL);
