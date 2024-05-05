@@ -92,33 +92,7 @@ function AssessmentNavbar() {
                                 ))}
                             </select>
                         </div>
-                        <div className='pagination-pages'>
-                            <ReactPaginate
-                                previousLabel={"Previous"}
-                                nextLabel={"Next"}
-                                pageCount={10} // Assuming total 10 pages
-                                onPageChange={handlePageClick}
-                                containerClassName={"pagination"}
-                                previousLinkClassName={"page-link"}
-                                nextLinkClassName={"page-link"}
-                                disabledClassName={"pagination-disabled"}
-                                activeClassName={"pagination-active"}
-                            />
-                        </div>
-                        <div className='questions-staticstics'>
-                            <div>
-                                <div className='questions-count'>0</div>
-                                <div>Answered</div>
-                            </div>
-                            <div className='questions-count'>
-                                <div>0</div>
-                                <div>Flag</div>
-                            </div>
-                            <div className='questions-count'>
-                                <div>0</div>
-                                <div>Unanswered</div>
-                            </div>
-                        </div>
+                                
                     </div>
                 </div>
             </div>

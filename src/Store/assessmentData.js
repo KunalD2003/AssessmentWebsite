@@ -1,5 +1,6 @@
 import { createSlice, nanoid } from "@reduxjs/toolkit";
-
+import useQusetionData from "../Hooks/useQuestionData";
+import { useState,useEffect } from "react";
 // const MCQ = [
 //     {
 //         id: nanoid(),
@@ -266,19 +267,11 @@ const QuestionBank = [
         id: nanoid(),
         sectionType: "MCQ",
         sectionName: "Logical Aptitude",
-        // questions: () => {
-        //     const questionArr = null
-        //     MCQ.map((index) => {
-        //         if(index.sectionName === "Logical Aptitude"){
-        //             questionArr = index.Questions
-        //         }
-        //     })
-        //     return questionArr
-        // }
     }
 ]
 const initialState = {
     questionBank: QuestionBank,
+    codingQuestions: null,
     currentPage: `${QuestionBank[0].sectionName}`,
     currentPageType: `${QuestionBank[0].sectionType}`
 }
@@ -288,11 +281,15 @@ export const assessmentData = createSlice({
     initialState,
     reducers: {
         setQuestionSection: (state, action) => {
+            console.log(action);
             if (state.currentPage != action.payload[0]) {
                 state.currentPage = action.payload[0]
                 state.currentPageType = action.payload[1]
-                console.log(state.currentPage, state.currentPageType);
             }
+        },
+        setCodingQuestion: (state,action) => {
+            console.log(action.payload);
+            state.questionBank = action.payload
         }
     }
 })

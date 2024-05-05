@@ -40,17 +40,9 @@
     align-items: center;
 }
 
-.questions-staticstics {
-    display: flex;
-    gap: 1.5rem;
-}
+
 
 .pagination-pages ul{
     margin-bottom: 0rem;
 }
 
-.questions-count {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}

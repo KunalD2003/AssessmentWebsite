@@ -1,33 +1,16 @@
 import { useEffect, useCallback, useState } from "react";
+import axios from 'axios';
+import { useDispatch } from "react-redux";
 
-
-const TestData = [
-    {
-        text: "text 1"
-    },
-    {
-        text: "text 3"
-    },
-    {
-        text: "text 4"
-    },
-    {
-        text: "text 5"
-    },
-    {
-        text: "text 6"
-    },
-]
 export default function useQusetionData() {
-    const [data, setData] = useState("")
+    const [data, setData] = useState()
     useEffect(() => {
-        fetch(`https://api.github.com/users/KunalD2003`)
+        axios.get("/api/codingProblems")
             .then((response) => {
-                // console.log(response);
-                return response.json()
+                return response.data
             })
             .then((response) => {
-                return setData(TestData)
+                return setData(response)
             })
     }, [])
     return data
