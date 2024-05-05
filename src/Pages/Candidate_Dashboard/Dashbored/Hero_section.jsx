@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-// import { useNavigate } from 'react-router-dom'; 
 import './Hero_Section.css';
 import clockIcon from '../../../assets/img/time-icon.svg';
 import fileIcon from '../../../assets/img/file-icon.svg';
 import { nanoid } from '@reduxjs/toolkit';
 import { Key } from '@mui/icons-material';
 import assessmentData from '../../../Hooks/assessmentData'
+import { useNavigate } from 'react-router';
 
 
 const AssessmentCard = [
@@ -52,7 +52,7 @@ const AssessmentCard = [
 ]
 
 function Hero_section() {
-  // const navigate = useNavigate(); 
+  const navigate = useNavigate(); 
   const date = new Date();
   const [usedDate,setDate] = useState(new Date().toLocaleDateString())
   const assessments = assessmentData()
@@ -100,7 +100,7 @@ function Hero_section() {
             </div>
             <div className='start-assesment-btn'>
               {(index.startDate === usedDate
-              ) ? <button type="button" className="btn btn-primary">Start Assessment</button> : <button type="button" className="btn btn-primary" disabled>Start Assessment</button>}
+              ) ? <button type="button" className="btn btn-primary" onClick={() => navigate('/assessmentid/termsandcondition')}>Start Assessment</button> : <button type="button" className="btn btn-primary" onClick={() => navigate('/assessmentid/termsandcondition')}>Start Assessment</button>}
 
             </div>
           </div>

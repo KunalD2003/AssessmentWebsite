@@ -24,7 +24,7 @@ const FaceDetection = () => {
       if (newCount >= 3) {
         videoRef.current.srcObject.getTracks().forEach((track) => track.stop());
         alert("Test submitted due to multiple warnings."); // Show final alert
-        navigate('/guidlinesvoilated'); // Redirect to the results page
+        navigate('/assessmentid/guidlinesvoilated'); // Redirect to the results page
         return newCount; // Stop further processing after redirecting
       }
 

@@ -7,7 +7,6 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
 import './App.css'
 import Dashboard from './Pages/Candidate_Dashboard/Dashbored/Dashboard';
-import TermsAndConditions from './Pages/Terms_And_Conditions/TermsAndCondition';
 import React from 'react';
 import WebScanning from './Pages/WebScanning/WebcamCapture';
 import { Outlet, Route, Routes } from "react-router-dom";

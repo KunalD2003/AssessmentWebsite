@@ -4,9 +4,9 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
     server:{
       proxy:{
-      '/api/mcqquestions': 'http://localhost:3000',
+      '/api/mcqquestions': 'http://localhost:3001',
       '/api/codingProblems': 'http://localhost:3000',
-      '/api/assessments': 'http://localhost:3001',
+      '/api/assessments': 'http://localhost:3000',
       },
     },
   plugins: [react()],

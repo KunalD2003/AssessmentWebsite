@@ -25,9 +25,6 @@ import User from './Pages/User/User.jsx';
 //     </Route>
 //   )
 // )
-import { Provider } from "react-redux";
-import store from "./Store/store.js";
-import { AssessmentPage} from './index.js'
 
 
 const router = createBrowserRouter([
@@ -64,7 +61,23 @@ const router = createBrowserRouter([
             element: <User />
           },
         ]
-      }
+      },
+      {
+        path: '/assessmentid/termsandcondition',
+        element: <TermsandCondition/>,
+      },
+      {
+        path: '/assessmentid/scanfaceid',
+        element: <WebcamCapture/>,
+      },
+      {
+        path: '/assessmentid/assessment',
+        element: <AssessmentPage/>,
+      },
+      {
+        path: '/assessmentid/guidlinesvoilated',
+        element: <TestAutoSubmittedPage/>,
+      },
     ]
   }
 ])

@@ -62,14 +62,14 @@ const WebcamCapture = () => {
     } else {
       console.error('Face and/or ID not captured.'); // Ensure both images are captured before submitting
     }
+    navigate('/assessmentid/assessment')
   };
 
   function StartTest() {
-    navigate('/assessment')
   }
 
   return (
-    <div style={{ textAlign: 'center', display: 'flex', justifyContent: 'center', gap: '3rem' }}>
+    <div style={{ textAlign: 'center', display: 'flex', justifyContent: 'center', gap: '3rem', paddingBlock: '2rem' }}>
       {/* Display message based on capture mode */}
       <div >
         {captureMode === 'face' ? (
@@ -110,10 +110,7 @@ const WebcamCapture = () => {
         {/* Submit button */}
         <div className='submit-btn'>
           <button onClick={handleSubmit} className="button">
-            Submit
-          </button>
-          <button className="button" onClick={StartTest}>
-            Start Test
+            Submit & Start
           </button>
         </div>
         <div>

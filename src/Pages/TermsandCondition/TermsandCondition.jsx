@@ -15,13 +15,13 @@ function TermsandCondition() {
         if (isAgreed) {
             // Handle form submission logic here
             console.log("Terms and Conditions accepted");
-            navigate('/scanfaceid')
+            navigate('/assessmentid/scanfaceid')
         } else {
             console.log("You must agree to the terms and conditions");
         }
     };
     return (
-        <div className="container terms">
+        <div className="terms">
             <h2>Guidelines to Online Examination for Students</h2>
             <ul>
                 <li>Arrange for stable Internet connectivity.</li>
@@ -64,6 +64,7 @@ function TermsandCondition() {
                         type="checkbox"
                         checked={isAgreed}
                         onChange={handleCheckboxChange}
+                        className='me-2'
                     />
                     I agree to the terms and conditions
                 </label>
