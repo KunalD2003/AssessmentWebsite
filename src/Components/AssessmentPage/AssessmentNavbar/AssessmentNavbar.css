@@ -4,7 +4,10 @@
     padding-right: 0.5rem;
 }
 .camera-monitoring{
-    border: 1px solid black;
+    height: 50%;
+    margin-left: 5px;
+    margin-top: 5px;
+    /* border: 1px solid black; */
     width:7rem;
 }
 .assessment-navbar-two-section{
