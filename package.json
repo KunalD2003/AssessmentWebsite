@@ -1,17 +1,25 @@
 {
-  "name": "candidateassessment",
+  "name": "assessment-website",
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "proxy": "https://084c-49-43-2-29.ngrok-free.app",
   "scripts": {
     "start": "node index.js",
     "dev": "vite",
-    "build": "vite build",
-    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "build": "vite build"
   },
   "dependencies": {
-    "@monaco-editor/react": "^4.6.0",
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.3",
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
+    "@fortawesome/free-brands-svg-icons": "^6.5.2",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "@mui/icons-material": "^5.15.15",
+    "@mui/material": "^5.15.15",
+    "@mui/styled-engine": "^5.15.14",
     "@reduxjs/toolkit": "^2.2.3",
     "@tensorflow-models/blazeface": "^0.1.0",
     "@tensorflow-models/coco-ssd": "^2.2.3",
@@ -29,10 +37,14 @@
     "redux": "^5.0.1",
     "redux-thunk": "^3.1.0",
     "uuid": "^9.0.1"
+    "bootstrap": "^5.3.3",
+    "react-bootstrap": "^2.10.2",
+    "@monaco-editor/react": "^4.6.0",
+    "firebase": "^10.11.1",
+    "react-hook-form": "^7.51.4",
+    "react-paginate": "^8.2.0",
   },
   "devDependencies": {
-    "@types/react": "^18.2.66",
-    "@types/react-dom": "^18.2.22",
     "@vitejs/plugin-react": "^4.2.1",
     "eslint": "^8.57.0",
     "eslint-plugin-react": "^7.34.1",
@@ -43,5 +55,8 @@
   "description": "This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.",
   "main": "vite.config.js",
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+    "nodemon": "^2.0.15",
+    "vite": "^5.2.10"
+  }
 }

@@ -9,8 +9,8 @@ function AssessmentCodingQuestion() {
       <div className='coding-question-description'>
         <AssessmentProblemStatement />
         <div>
-          <AssessmentInputExample />
-          <AssessmentInputExample isInput={false} />
+         
+          {/* <AssessmentInputExample isInput={false} /> */}
         </div>
       </div>
     </div>

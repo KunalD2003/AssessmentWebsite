@@ -1,28 +1,19 @@
 import React from 'react'
 import './AssessmentInputExample.css'
 
-function AssessmentInputExample({ isInput = true }) {
+function AssessmentInputExample({examples}) {
   return (
     <div className='AssementInputExample'>
-      {(isInput) ? (
-        <>
-          <h6>Sample Input:</h6>
-          <div>
-            <p>2</p>
-            <p>0 0 1</p>
-            <p>1 1 1</p>
-          </div>
-        </>
-      ) :
-        (<>
-          <h6>Sample Output:</h6>
-          <div>
-            <p>2</p>
-            <p>0 0 1</p>
-            <p>1 1 1</p>
-          </div>
-        </>
-        )}
+      
+       
+      {examples.map((example, index) => (
+        <div key={index}>
+          <h5>Example {index + 1}:</h5>
+          <h6>Input: {example.input}</h6>
+          <h6>Output: {example.output}</h6>
+        </div>
+      ))}
+      
 
     </div>
   )

@@ -49,7 +49,7 @@ function AssessmentCodeEditor() {
       </div>
       <div className='output-container'>
         <h3>Output:</h3>
-        <h3></h3>
+        <h3>   <pre>{output}</pre> </h3>
        
       </div>
       <div className='compiler-div'>
@@ -58,5 +58,4 @@ function AssessmentCodeEditor() {
     </div>
   );
 }
-
 export default AssessmentCodeEditor;

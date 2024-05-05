@@ -1,0 +1,83 @@
+.register-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.register-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    padding: 30px;
+    padding-block: 40px;
+    background-color: azure;
+}
+
+.register-col {
+    flex: 1;
+}
+
+.Register-container {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.Register-container form {
+    display: grid;
+    gap: 15px;
+}
+
+.Register-container .form-group {
+    display: grid;
+    gap: 5px;
+}
+
+.Register-container label {
+    font-weight: bold;
+}
+
+.Register-container input[type='text'],
+.Register-container input[type='email'],
+.Register-container input[type='password'] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.Register-container button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.Register-container button:hover {
+    background-color: #0056b3;
+}
+
+.register-image {
+    text-align: center;
+}
+
+.register-image h1 {
+    font-size: 24px;
+}
+
+.register-image p {
+    margin-top: 10px;
+    color: #888;
+}
+.register-col-heading{
+    margin-bottom: 1.3rem;
+}
+
+.Register-container p{
+    text-align: center;
+    margin-top: 0.5rem;
+}

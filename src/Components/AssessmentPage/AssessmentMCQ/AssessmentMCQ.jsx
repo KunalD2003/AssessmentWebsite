@@ -28,7 +28,7 @@ function AssessmentMCQ() {
   return (
     <div className='assessment-mcq'>
         <AssessmentQuestionHeading />
-        <AssessmentProblemStatement/>
+        {/* <AssessmentProblemStatement/> */}
         <AssessmentMCQ_Options mcqOptions={sampleOptions}/>
     </div>
   )
