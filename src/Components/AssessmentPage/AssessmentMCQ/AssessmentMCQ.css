@@ -1,7 +1,42 @@
-.assessment-mcq{
+.assessment-mcq {
     margin: 0.5rem;
     border: 1px solid rgb(214, 214, 214);
     border-radius: 0.5rem;
     padding-block: 0.3rem;
     height: 100%;
+}
+
+.assessment-mcq ul li label {
+    margin-left: 12px;
+}
+
+.mcq-question-heading{
+    margin-inline: 1rem;
+    margin-top: 1rem;
+}
+.question-navigation-btn{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding-inline: 1rem;
+    border-top: 1px solid rgb(214, 214, 214);
+    padding-top: 0.7rem;
+}
+.question-navigation{
+    display: flex;
+    height: 100%;
+    gap: 0.5rem;
+}
+.question-navigation button {
+    padding: 0.5rem;
+    border-radius: 3px;
+}
+.questions-staticstics {
+    display: flex;
+    gap: 1.5rem;
+}
+.questions-count {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }

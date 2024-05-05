@@ -3,7 +3,12 @@ import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-import {createBrowserRouter,RouterProvider, Route, createRoutesFromElements} from 'react-router-dom'
+import './index.css'
+import { createBrowserRouter, RouterProvider, Route, createRoutesFromElements } from 'react-router-dom'
+import { Provider } from 'react-redux';
+import store from './Store/store.js';
+import {AssessmentPage,TermsandCondition,WebcamCapture, Login, Register } from './index.js'
+import {TestAutoSubmittedPage} from './Components/index.js'
 import Dashboard from './Pages/Candidate_Dashboard/Dashbored/Dashboard.jsx';
 import Hero_section from './Pages/Candidate_Dashboard/Dashbored/Hero_section.jsx';
 import ArchievedExams from './Pages/ArchievedExams/ArchievedExams.jsx';
@@ -12,17 +17,17 @@ import User from './Pages/User/User.jsx';
 
 // const router = createBrowserRouter(
 //   createRoutesFromElements(
-//     <Route path='/' element={<Dashboard />}>
-//       <Route path='' element={<Hero_section />} />
-//       <Route path='/archivedexams' element={<ArchievedExams />} />
-//       <Route path='/support' element={<Support />} />
-//       <Route path='/user' element={<User />} />
+//     <Route path='/' element={<App />}>
+//       <Route path='/' element={<TermsandCondition />} />
+//       <Route path='/scanfaceid' element={<WebcamCapture />} />
+//       <Route path='/assessment' element={<AssessmentPage />} />
+//       <Route path='/guidlinesvoilated' element = {<TestAutoSubmittedPage />}/>
 //     </Route>
 //   )
 // )
 import { Provider } from "react-redux";
 import store from "./Store/store.js";
-import { AssessmentPage, Login, Register } from './index.js'
+import { AssessmentPage} from './index.js'
 
 
 const router = createBrowserRouter([
