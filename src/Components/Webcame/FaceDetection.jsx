@@ -2,6 +2,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as blazeface from '@tensorflow-models/blazeface';
 import * as cocoSsd from '@tensorflow-models/coco-ssd';
+import { useNavigate } from 'react-router';
 
 const FaceDetection = () => {
   const videoRef = useRef(null);
@@ -10,6 +11,7 @@ const FaceDetection = () => {
   const [multipleFacesWarning, setMultipleFacesWarning] = useState(false);
   const [warningCount, setWarningCount] = useState(0); // Track warning counts
   const faceTimer = useRef(null);
+  const navigate = useNavigate()
 
   const handleWarning = (message) => {
  
@@ -20,8 +22,9 @@ const FaceDetection = () => {
       const newCount = prevCount + 1;
 
       if (newCount >= 3) {
+        videoRef.current.srcObject.getTracks().forEach((track) => track.stop());
         alert("Test submitted due to multiple warnings."); // Show final alert
-        navigate('/SampleHome.jsx'); // Redirect to the results page
+        navigate('/guidlinesvoilated'); // Redirect to the results page
         return newCount; // Stop further processing after redirecting
       }
 
@@ -62,7 +65,7 @@ const FaceDetection = () => {
             faceTimer.current = setTimeout(() => {
               handleWarning("No face detected for 10 seconds. Click OK to continue.");
               setNoFaceWarning(true);
-            }, 10000); // 10 seconds
+            }, 30000); // 10 seconds
           } else {
             clearTimeout(faceTimer.current); // Clear the no-face timer
             setNoFaceWarning(false); // Reset warning
@@ -101,32 +104,9 @@ const FaceDetection = () => {
 
   return (
     <div>
-      {noFaceWarning && (
-        <div style={{ color: 'red', fontWeight: 'bold' }}>
-          Warning: No face detected for 10 seconds!
-        </div>
-      )}
-      {gadgetWarning && (
-        <div style={{ color: 'orange', fontWeight: 'bold' }}>
-          Warning: Electronic gadget detected!
-        </div>
-      )}
-      {multipleFacesWarning && (
-        <div style={{ color: 'yellow', fontWeight: 'bold' }}>
-          Warning: Multiple faces detected!
-        </div>
-      )}
       <video ref={videoRef} autoPlay playsInline style={{ width: '100%' }} /> {/* Display the video */}
     </div>
   );
 };
 
 export default FaceDetection;
-
-
-
-
-
-
-
-

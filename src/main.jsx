@@ -6,6 +6,7 @@ import { createBrowserRouter, RouterProvider, Route, createRoutesFromElements } 
 import { Provider } from 'react-redux';
 import store from './Store/store.js';
 import {AssessmentPage,TermsandCondition,WebcamCapture} from './index.js'
+import {TestAutoSubmittedPage} from './Components/index.js'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -13,6 +14,7 @@ const router = createBrowserRouter(
       <Route path='/' element={<TermsandCondition />} />
       <Route path='/scanfaceid' element={<WebcamCapture />} />
       <Route path='/assessment' element={<AssessmentPage />} />
+      <Route path='/guidlinesvoilated' element = {<TestAutoSubmittedPage />}/>
     </Route>
   )
 )
