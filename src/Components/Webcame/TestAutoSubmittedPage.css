@@ -1,21 +1,43 @@
-.test-auto-submitted-container {
-    text-align: center;
-    padding: 50px; /* Padding for a clean layout */
-  }
-  
-  .navigate-dashboard-button {
-    background-color: blue;
-    color: white;
-    padding: 10px 20px; /* Padding around the text */
-    border: none;
-    border-radius: 5px; /* Rounded corners */
-    cursor: pointer;
-    position: absolute;
-    bottom: 20px; /* Position the button at the bottom right */
-    right: 20px; /* Position the button at the bottom right */
-  }
-  
-  .navigate-dashboard-button:hover {
-    background-color: darkblue; /* Darker blue on hover */
-  }
-  
+.violation-page h1 {
+  text-align: center;
+  color: #333;
+}
+.violation-page h3 {
+  text-align: center;
+  color: #333;
+}
+.red-cross-image {
+  height: 10rem;
+  width: 10rem;
+}
+.violation-page p {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 0.3rem;
+  color: #555;
+  text-align: center;
+}
+.violation-page button {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  font-size: 16px;
+  color: white;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.violation-page button:hover {
+  background-color: #0056b3;
+}
+.violation-page{
+  min-height: 100vh;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

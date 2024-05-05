@@ -52,20 +52,20 @@ const AssessmentCard = [
 ]
 
 function Hero_section() {
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
   const date = new Date();
-  const [usedDate,setDate] = useState(new Date().toLocaleDateString())
+  const [usedDate, setDate] = useState(new Date().toLocaleDateString())
   const assessments = assessmentData()
   console.log(assessments);
-  useEffect (() => {
+  useEffect(() => {
     setDate(new Date().toLocaleDateString())
     console.log(new Date().toLocaleDateString());
-  },[])
+  }, [])
 
   return (
     <div className="herosection">
       {assessments.map((index) => (
-        <div className="card user-dashboard-card"key={index.id}>
+        <div className="card user-dashboard-card" key={index.id}>
           <div className='assessment-role-title'>
             <h1>{index.AssessmentTitle}</h1>
           </div>
@@ -82,14 +82,15 @@ function Hero_section() {
                 <i className='bx bx-stopwatch assessment-details-icon'></i>
                 <p>Duration:</p>
               </div>
-              <p>1 hour</p>
+              <p>{index.AssessmentDuration}</p>
             </div>
             <div className='assessment-details'>
               <div>
                 <i className='bx bx-calendar assessment-details-icon'></i>
                 <p>Start on:</p>
               </div>
-              <p>{index.AssessmentStartDate}</p>
+              <div>
+              </div>
             </div>
             <div className='assessment-details'>
               <div>

@@ -1,4 +1,4 @@
-
+import { nanoid } from "@reduxjs/toolkit";
 const QuestionBank = [
     {
         id: nanoid(),
