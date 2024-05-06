@@ -1,5 +1,6 @@
 const Question = require("../models/question");
 
+// Function to get all questions
 const getAllquestions = async (req, res) => {
     try {
         const { type } = req.query;
@@ -9,13 +10,11 @@ const getAllquestions = async (req, res) => {
             queryObject.type = type;
         }
 
-        let apiData = Question.find(queryObject);
-
         let page = Number(req.query.page) || 1;
-        let limit = Number(req.query.limit) || 12;
+        let limit = 1; // Display one question per page
         let skip = (page - 1) * limit;
 
-        apiData = apiData.skip(skip).limit(limit);
+        let apiData = Question.find(queryObject).skip(skip).limit(limit);
 
         const myData = await apiData;
 
@@ -26,6 +25,7 @@ const getAllquestions = async (req, res) => {
     }
 };
 
+// Function to submit an answer to a question
 const submitAnswer = async (req, res) => {
     try {
         const { questionId } = req.params; 
@@ -42,7 +42,6 @@ const submitAnswer = async (req, res) => {
         question.userAnswer = userAnswer;
         question.isCorrect = isCorrect;
 
-      
         await question.save();
 
         res.status(200).json({ message: "Answer submitted successfully", isCorrect });
@@ -52,6 +51,7 @@ const submitAnswer = async (req, res) => {
     }
 };
 
+// Function to get a random question for testing
 const getAllquestionsTesting = async (req, res) => {
     try {
         const myData = await Question.aggregate([{ $sample: { size: 1 } }]);
@@ -63,4 +63,38 @@ const getAllquestionsTesting = async (req, res) => {
     }
 };
 
-module.exports = { getAllquestions, getAllquestionsTesting, submitAnswer };
+// Function to insert a new question
+const insertQuestion = async (req, res) => {
+    try {
+        const { question, options, correctAnswer } = req.body;
+        const newQuestion = await Question.create({ question, options, correctAnswer });
+        res.status(201).json(newQuestion);
+    } catch (error) {
+        console.error("Error inserting question:", error);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+};
+
+// Function to update a question
+const updateQuestion = async (req, res) => {
+    try {
+        const { questionId } = req.params;
+        const { question, options, correctAnswer } = req.body;
+        
+        const updatedQuestion = await Question.findByIdAndUpdate(
+            questionId,
+            { question, options, correctAnswer },
+            { new: true }
+        );
+
+        if (!updatedQuestion) {
+            return res.status(404).json({ message: 'Question not found' });
+        }
+
+        res.json(updatedQuestion);
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+};
+
+module.exports = { getAllquestions, getAllquestionsTesting, submitAnswer, insertQuestion, updateQuestion };
