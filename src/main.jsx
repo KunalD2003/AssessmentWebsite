@@ -14,17 +14,7 @@ import Hero_section from './Pages/Candidate_Dashboard/Dashbored/Hero_section.jsx
 import ArchievedExams from './Pages/ArchievedExams/ArchievedExams.jsx';
 import Support from './Pages/Support/Support.jsx';
 import User from './Pages/User/User.jsx';
-
-// const router = createBrowserRouter(
-//   createRoutesFromElements(
-//     <Route path='/' element={<App />}>
-//       <Route path='/' element={<TermsandCondition />} />
-//       <Route path='/scanfaceid' element={<WebcamCapture />} />
-//       <Route path='/assessment' element={<AssessmentPage />} />
-//       <Route path='/guidlinesvoilated' element = {<TestAutoSubmittedPage />}/>
-//     </Route>
-//   )
-// )
+import ResultPage from './Pages/ResultPage/ResultPage.jsx';
 
 
 const router = createBrowserRouter([
@@ -63,20 +53,24 @@ const router = createBrowserRouter([
         ]
       },
       {
-        path: '/assessmentid/termsandcondition',
+        path: '/:assessmentid/termsandcondition',
         element: <TermsandCondition/>,
       },
       {
-        path: '/assessmentid/scanfaceid',
+        path: '/:assessmentid/scanfaceid',
         element: <WebcamCapture/>,
       },
       {
-        path: '/assessmentid/assessment',
+        path: '/:assessmentid/assessment',
         element: <AssessmentPage/>,
       },
       {
-        path: '/assessmentid/guidlinesvoilated',
+        path: '/:assessmentid/guidlinesvoilated',
         element: <TestAutoSubmittedPage/>,
+      },
+      {
+        path: '/:assessmentid/result',
+        element: <ResultPage />,
       },
     ]
   }

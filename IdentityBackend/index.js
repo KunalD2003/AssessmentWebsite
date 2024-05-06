@@ -40,3 +40,4 @@ const PORT = process.env.PORT || 3000; // Set the server port
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`); // Confirm the server is running
 });
+

@@ -1,53 +1,45 @@
-import React from 'react'
-import './User.css'
 import { useRef, useState } from "react";
-import userPic from "../../assets/img/user.jpg";
+import "./User.css";
 import logo from "../../assets/img/logo.webp";
 import CallIcon from "@mui/icons-material/Call";
 import { Button, Col, Container, Modal, Row } from "react-bootstrap";
-import { DateRange, Email, EmailRounded, Link, LocationCity, Person } from "@mui/icons-material";
-import { useNavigate } from 'react-router';
-
-
-function User() {
+import {
+  DateRange,
+  Email,
+  EmailRounded,
+  Link,
+  LocationCity,
+  Person,
+} from "@mui/icons-material";
+export default function User() {
   const inputRef = useRef(null);
-  const navigate = useNavigate()
   //Modal state
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   // ..........function for add a input image on input field
-  const [image, setImage] = useState("");
-  const handleImageClick = () => {
-    inputRef.current.click();
-  };
+  // const [image, setImage] = useState("");
+  // const handleImageClick = () => {
+  //   inputRef.current.click();
+  // };
   // ......function for user profile change on input field
-  const handleImageChange = (event) => {
-    const file = event.target.files[0];
-    console.log(file);
-    setImage(event.target.files[0]);
-  };
-  const logout = () => {
-    navigate('/')
-  }
-
+  // const handleImageChange = (event) => {
+  //   const file = event.target.files[0];
+  //   console.log(file);
+  //   setImage(event.target.files[0]);
+  // };
   return (
     <div id="Details">
       {/* ............head.......... */}
       <div id="firstDetails">
-        <div style={{display: "flex", width: "100%"}}>
-          <img src={logo} alt="user" id="logo" />
-          <h1 style={{ textAlign: "center", marginTop: '1%', alignSelf: 'center' }}>User Profile</h1>
-        </div>
-        <div>
-          <button type="button" class="btn btn-danger log-out-btn" onClick={logout}>Log out</button>
-        </div>
+        <img src={logo} alt="user" id="logo" />
+        <h1 style={{ textAlign: "center", marginTop: '1%', alignSelf: 'center' }}>User Profile</h1>
       </div>
       <hr id="line" />
       {/* .............about */}
       <div style={{ paddingBottom: "3%" }}>
         {/* <h1 style={{ textAlign: "center" }}>About me</h1> */}
-        <div id="secondDetails">
+        {/* <div id="secondDetails">
           <div id="userPic" onClick={handleImageClick}>
             {image ? (
               <img
@@ -65,22 +57,19 @@ function User() {
               ref={inputRef}
             />
           </div>
-        </div>
+        </div> */}
         <Container class="container">
           <Row>
-            <Col lg={6}>
+            <Col lg={12}>
               <div className="detailsContainer">
                 <Person
                   style={{
-                    marginTop: "1%",
-                    marginRight: "2%",
-                    marginLeft: "3%",
                   }}
                 />
                 <h3>Name: Krishna Tripathi</h3>
               </div>
             </Col>
-            <Col lg={6}>
+            {/* <Col lg={6}>
               <div className="detailsContainer">
                 <LocationCity
                   style={{
@@ -91,32 +80,28 @@ function User() {
                 />
                 <h3>Location: Indore</h3>
               </div>
-            </Col>
-            <Col lg={6}>
+            </Col> */}
+            <Col lg={12}>
               <div className="detailsContainer">
                 <CallIcon
                   style={{
-                    marginTop: "1%",
-                    marginRight: "2%",
-                    marginLeft: "3%",
                   }}
                 />
-                <h3>Mobile: +91 0000000000</h3>
+                <h3>Mobile: <span className="details-user">+91 0000000000</span></h3>
               </div>
             </Col>
-            <Col lg={6}>
+            <Col lg={12}>
               <div className="detailsContainer">
                 <EmailRounded
                   style={{
-                    marginTop: "1%",
-                    marginRight: "2%",
-                    marginLeft: "3%",
                   }}
                 />
-                <h3>Email: onlineExam@gmail.com</h3>
+                <div>
+                  <h3>Email: <span className="details-user">onlineExam@gmail.com</span></h3>
+                </div>
               </div>
             </Col>
-            <Col lg={6}>
+            {/* <Col lg={6}>
               <div className="detailsContainer">
                 <DateRange
                   style={{
@@ -139,18 +124,18 @@ function User() {
                 />
                 <h3>GitHub Link: --------</h3>
               </div>
-            </Col>
+            </Col> */}
           </Row>
         </Container>
-        <div id="btnContainer">
+        {/* <div id="btnContainer">
           <Button
             variant="success"
             onClick={handleShow}
-            style={{ display: "flex", margin: "auto", marginTop: "2rem" }}
+            style={{ marginTop: "3%", marginLeft: "50%" }}
           >
             Update
           </Button>
-        </div>
+        </div> */}
       </div>
       {/* ......................Modal..... */}
       <Modal
@@ -165,8 +150,8 @@ function User() {
         <Modal.Body>
           <h6>Enter Name :</h6>
           <input className="input" type="number" placeholder="Enter Name" />
-          <h6>Enter Location :</h6>
-          <input className="input" type="number" placeholder="Enter Location" />
+          {/* <h6>Enter Location :</h6>
+          <input className="input" type="number" placeholder="Enter Location" /> */}
           <h6>Enter Mobile Number :</h6>
           <input
             className="input"
@@ -175,14 +160,14 @@ function User() {
           />
           <h6>Enter Email :</h6>
           <input className="input" type="email" placeholder="Enter Email" />
-          <h6>Enter DOB :</h6>
+          {/* <h6>Enter DOB :</h6>
           <input className="input" type="date" placeholder="Enter DOB" />
           <h6>Enter GitHub :</h6>
           <input
             className="input"
             type="email"
             placeholder="Enter GitHub Link"
-          />
+          /> */}
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
@@ -194,8 +179,10 @@ function User() {
         </Modal.Footer>
       </Modal>
     </div>
-
-  )
+  );
 }
 
-export default User
+
+
+
+

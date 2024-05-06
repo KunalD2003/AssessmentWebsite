@@ -204,7 +204,7 @@ const StoreUserIdentity = () => {
     console.log('Captured image:', screenshot); // Validate the captured image
 
     if (screenshot) {
-      fetch('http://localhost:3000/webcam/addImage', {
+      fetch('http://localhost:3002/webcam/addImage', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

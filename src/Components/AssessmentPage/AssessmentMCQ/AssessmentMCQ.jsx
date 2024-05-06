@@ -122,6 +122,7 @@ function AssessmentMCQ() {
     // Fetch MCQ questions from the API
     axios.get("/api/mcqquestions")
       .then((response) => {
+        console.log(response.data.myData);
         setMcqQuestions(response.data.myData); // Update state with fetched questions
       })
       .catch((error) => {

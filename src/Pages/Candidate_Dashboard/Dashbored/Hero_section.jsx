@@ -5,6 +5,8 @@ import fileIcon from '../../../assets/img/file-icon.svg';
 import { nanoid } from '@reduxjs/toolkit';
 import { Key } from '@mui/icons-material';
 import assessmentData from '../../../Hooks/assessmentData'
+import useQuestionData from '../../../Hooks/useQuestionData'
+import mcqQuestion from '../../../Hooks/mcqQuestion'
 import { useNavigate } from 'react-router';
 
 
@@ -54,13 +56,21 @@ const AssessmentCard = [
 function Hero_section() {
   const navigate = useNavigate();
   const date = new Date();
+  const temp = useQuestionData()
+  const mcq = mcqQuestion()
   const [usedDate, setDate] = useState(new Date().toLocaleDateString())
+  const [codingQuestionLength, setCodingQuestionLength] = useState();
+  const [mcqQuestionLength, setmcqQuestionLength] = useState();
+  let totalQuestion
   const assessments = assessmentData()
-  console.log(assessments);
   useEffect(() => {
     setDate(new Date().toLocaleDateString())
     console.log(new Date().toLocaleDateString());
-  }, [])
+    if (temp && mcq) {
+      setCodingQuestionLength(temp.length + mcq.length)
+      console.log(codingQuestionLength);
+    }
+  }, [temp,mcq])
 
   return (
     <div className="herosection">
@@ -75,34 +85,39 @@ function Hero_section() {
                 <i className='bx bx-question-mark assessment-details-icon'></i>
                 <p>Questions:</p>
               </div>
-              <p>45 Questions</p>
+              <p>{codingQuestionLength}</p>
             </div>
             <div className='assessment-details'>
               <div>
                 <i className='bx bx-stopwatch assessment-details-icon'></i>
                 <p>Duration:</p>
               </div>
-              <p>{index.AssessmentDuration}</p>
+              <p>{index.AssessmentDuration} Min</p>
             </div>
             <div className='assessment-details'>
               <div>
                 <i className='bx bx-calendar assessment-details-icon'></i>
-                <p>Start on:</p>
+                <p>Assessment Date:</p>
               </div>
-              <div>
-              </div>
+              <p>{index.AssessmentDate}</p>
             </div>
             <div className='assessment-details'>
               <div>
-                <i className='bx bx-calendar assessment-details-icon'></i>
-                <p>End on:</p>
+                <i className='bx bxs-watch assessment-details-icon'></i>
+                <p>Start Time:</p>
               </div>
-              <p>{index.AssessmentEndDate}</p>
+              <p>{index.AssessmentStartTime}</p>
+            </div>
+            <div className='assessment-details'>
+              <div>
+                <i className='bx bxs-watch assessment-details-icon'></i>
+                <p>End Time:</p>
+              </div>
+              <p>{index.AssessmentEndTime}</p>
             </div>
             <div className='start-assesment-btn'>
               {(index.startDate === usedDate
-              ) ? <button type="button" className="btn btn-primary" onClick={() => navigate('/assessmentid/termsandcondition')}>Start Assessment</button> : <button type="button" className="btn btn-primary" onClick={() => navigate('/assessmentid/termsandcondition')}>Start Assessment</button>}
-
+              ) ? <button type="button" className="btn btn-primary" onClick={() => navigate(`/${index._id}/termsandcondition`)}>Start Assessment</button> : <button type="button" className="btn btn-primary" onClick={() => navigate(`/${index._id}/termsandcondition`)}>Start Assessment</button>}
             </div>
           </div>
         </div>

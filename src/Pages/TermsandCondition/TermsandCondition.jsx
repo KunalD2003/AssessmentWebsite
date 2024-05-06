@@ -1,12 +1,12 @@
 import React from 'react'
 import './TermsandCondition.css';
 import { useState } from 'react';
-import { useNavigate } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 
 function TermsandCondition() {
     const [isAgreed, setIsAgreed] = useState(false);
     const navigate = useNavigate()
-
+    const {assessmentid} = useParams()
     const handleCheckboxChange = (e) => {
         setIsAgreed(e.target.checked);
     };
@@ -15,7 +15,7 @@ function TermsandCondition() {
         if (isAgreed) {
             // Handle form submission logic here
             console.log("Terms and Conditions accepted");
-            navigate('/assessmentid/scanfaceid')
+            navigate(`/${assessmentid}/scanfaceid`)
         } else {
             console.log("You must agree to the terms and conditions");
         }
@@ -55,7 +55,7 @@ function TermsandCondition() {
             <h3>Helpline Numbers</h3>
             <ul>
                 <li>For technical queries/difficulties, email with proper screenshots and student details to test@geca.ac.in.</li>
-                <li>Contact the CAW Incharge Miss Priyanka Parihar at 8275235489, or CoE Kunal Deshmukh at 9404357432.</li>
+                <li>Contact the CAW Incharge Miss abc at 8275235489, or CEO xyz at 9404357432.</li>
             </ul>
 
             <div className="agreement-section">

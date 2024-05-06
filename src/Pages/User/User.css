@@ -28,7 +28,7 @@
 #firstDetails{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     margin-inline: 1rem;
     padding-top: 1rem;
@@ -77,6 +77,10 @@ background-color: gray;
     flex-direction: row;
     margin-top: 2%;
     margin-inline: 0.5rem;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
 }
 .input{
     width: 100%;
@@ -87,4 +91,10 @@ background-color: gray;
 }
 .log-out-btn{
     width: 5rem;
+}
+.detailsContainer h3 {
+    margin-bottom: 0;
+}
+.details-user{
+    margin-left: 0.3rem;
 }

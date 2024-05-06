@@ -7,6 +7,9 @@ export default defineConfig({
       '/api/mcqquestions': 'http://localhost:3001',
       '/api/codingProblems': 'http://localhost:3000',
       '/api/assessments': 'http://localhost:3000',
+      '/webcam/addImage': 'http://localhost:3002',
+      '/webcam/saveImage': 'http://localhost:3002',
+      '/api/register': 'http://localhost:3000'
       },
     },
   plugins: [react()],

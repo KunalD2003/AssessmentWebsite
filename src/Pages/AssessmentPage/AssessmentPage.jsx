@@ -1,6 +1,6 @@
 import React from 'react'
 import './AssessmentPage.css'
-import { AssessmentNavbar, AssessmentBody ,AssessmentMCQ} from '../../Components/index'
+import { AssessmentNavbar, AssessmentBody, AssessmentMCQ } from '../../Components/index'
 import { useDispatch, useSelector } from 'react-redux';
 
 function AssessmentPage() {

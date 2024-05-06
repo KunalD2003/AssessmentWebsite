@@ -16,7 +16,7 @@ function AssessmentCodeEditor() {
     try {
       const code = editorRef.current?.getValue(); // Get the user's code from the editor
       const language = document.getElementById('language-selector').value; // Get the selected language
-      const response = await axios.post('http://localhost:3001/compilex', {
+      const response = await axios.post('http://localhost:3000/compilex', {
         code: code,
         input: '',
         lang: language
@@ -49,7 +49,6 @@ function AssessmentCodeEditor() {
       </div>
       <div className='output-container'>
         <h3>Output:</h3>
-        <h3>   <pre>{output}</pre> </h3>
        
       </div>
       <div className='compiler-div'>

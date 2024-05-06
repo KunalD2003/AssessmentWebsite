@@ -1,37 +1,33 @@
-
-
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './AssessmentProblemStatement.css';
 import AssessmentInputExample from '../AssessmentInputField/AssessmentInputExample';
 
-function AssessmentProblemStatement() {
-  const [questionData, setQuestionData] = useState(null);
+function AssessmentProblemStatement({question}) {
+  const [questionData, setQuestionData] = useState();
   const [count, setCount] = useState(1);
-
+  console.log(question);
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(`http://localhost:3000/api/codingProblems/${count}`);
-        setQuestionData(response.data); // Update state with fetched data
-        console.log(response.data)
-      } catch (error) {
-        console.error('Error fetching question data:', error);
-      }
-    };
-
-    fetchData(); // Call the fetchData function when the component mounts or count changes
-  }, [count]); // Depend on count so that the effect is re-run when count changes
+    // const fetchData = async () => {
+    //   try {
+    //     const response = await axios.get(`http://localhost:3000/api/codingProblems/${count}`);
+    //     setQuestionData(response.data); // Update state with fetched data
+    //     console.log(response.data)
+    //   } catch (error) {
+    //     console.error('Error fetching question data:', error);
+    //   }
+    // };
+    setQuestionData(question)
+    console.log(questionData);
+    // fetchData(); // Call the fetchData function when the component mounts or count changes
+  }, [question]); // Depend on count so that the effect is re-run when count changes
 
   return (
     <>
     <div className='problem-statement-div'>
-      <button onClick={() => setCount(count + 1)}>Fetch Next Question</button>
-      <br/>
       {questionData && (
         <div>
-          <h5>Question {count} : {questionData.question}</h5>
+          <h5>{questionData.question}</h5>
           <br />
           <p>Problem: {questionData.problem}</p>
 

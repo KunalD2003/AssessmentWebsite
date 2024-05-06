@@ -6,30 +6,74 @@ import ReactPaginate from 'react-paginate';
 import axios from 'axios'; // Importing axios
 import FaceDetection from '../../Webcame/FaceDetection';
 import * as tf from '@tensorflow/tfjs';
+import assessmentData from '../../../Hooks/assessmentData'
+import { useNavigate, useParams } from 'react-router';
+
+const CountdownTimer = ({ minutes, seconds }) => {
+    const [timeLeft, setTimeLeft] = useState({
+        minutes: parseInt(minutes),
+        seconds: parseInt(seconds),
+    });
+    const navigate = useNavigate()
+    useEffect(() => {
+        const timer = setInterval(() => {
+            if (timeLeft.seconds > 0) {
+                setTimeLeft((prevTimeLeft) => ({
+                    ...prevTimeLeft,
+                    seconds: prevTimeLeft.seconds - 1,
+                }));
+            } else if (timeLeft.minutes > 0) {
+                setTimeLeft((prevTimeLeft) => ({
+                    minutes: prevTimeLeft.minutes - 1,
+                    seconds: 59,
+                }));
+            }
+            else if(timeLeft.minutes == 0  && timeLeft.minutes == 0){
+                navigate('/userid/assessments')
+            }
+        }, 1000);
+
+        return () => clearInterval(timer);
+    }, [timeLeft]);
+
+    return (
+        <div>
+            {timeLeft.minutes}:{timeLeft.seconds < 10 ? `0${timeLeft.seconds}` : timeLeft.seconds}
+        </div>
+    );
+};
 
 
 function AssessmentNavbar() {
-    useEffect(() => {
-        // Set WebGL as backend
-        tf.setBackend('webgl')
-          .then(() => console.log('Using WebGL backend'))
-          .catch((error) => {
-            console.error('Error setting backend:', error);
-            // Optionally fallback to another backend
-          });
-    
-        // Ensure TensorFlow.js is ready
-        tf.ready().then(() => {
-          console.log('TensorFlow.js is ready');
-        });
-      }, []);
-
     const AssessmentData = useSelector((state) => {
         return state.getAssessment;
     });
     const dispatch = useDispatch();
     const [section, setSection] = useState(AssessmentData.questionBank[0].sectionName);
     const [pageNumber, setPageNumber] = useState(0); // For pagination
+    const [assessmentDuration, SetAssessmentDuration] = useState()
+    const { assessmentid } = useParams()
+    const assessments = assessmentData()
+
+
+    useEffect(() => {
+        // Set WebGL as backend
+        tf.setBackend('webgl')
+            .then(() => console.log('Using WebGL backend'))
+            .catch((error) => {
+                console.error('Error setting backend:', error);
+                // Optionally fallback to another backend
+            });
+
+        // Ensure TensorFlow.js is ready
+        tf.ready().then(() => {
+            console.log('TensorFlow.js is ready');
+        });
+
+
+    }, []);
+
+
 
     const handlePageClick = (data) => {
         setPageNumber(data.selected); // Update pageNumber when page is clicked
@@ -59,11 +103,16 @@ function AssessmentNavbar() {
                 console.error("Error fetching next question:", error);
             });
     };
+    const formatTime = (timeInSeconds) => {
+        const minutes = Math.floor(timeInSeconds / 1);
+        const seconds = timeInSeconds % 60;
+        return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(1, '0')}`;
+    };
 
     return (
         <div className='assessment-navbar'>
             <div className='camera-monitoring'>
-             <FaceDetection ></FaceDetection>
+                <FaceDetection ></FaceDetection>
             </div>
             <div className='assessment-navbar-two-section'>
                 <div className='camera-title-timer-submit'>
@@ -71,7 +120,10 @@ function AssessmentNavbar() {
                         <h3>Candidate Assesment Test</h3>
                     </div>
                     <div className='timer-submit'>
-                        <div>timer</div>
+                        {assessments.map((index) => (
+                            (assessmentid === index._id) ? <div><CountdownTimer minutes={index.AssessmentDuration} seconds="00" /></div> : ''
+                            
+                        ))}
                         <a className="btn btn-primary" href="#" role="button">Submit Test</a>
                     </div>
                 </div>
@@ -92,7 +144,7 @@ function AssessmentNavbar() {
                                 ))}
                             </select>
                         </div>
-                                
+
                     </div>
                 </div>
             </div>

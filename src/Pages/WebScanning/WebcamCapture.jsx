@@ -4,7 +4,7 @@ import React, { useRef, useState } from 'react';
 import Webcam from 'react-webcam';
 import { v4 as uuidv4 } from 'uuid'; // Generate unique IDs
 import './WebcamCapture.css';
-import { useNavigate } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 
 const WebcamCapture = () => {
   const webcamRef = useRef(null); // Reference for the webcam component
@@ -14,7 +14,7 @@ const WebcamCapture = () => {
   const [submitedMessage, setSubmitedMessage] = useState(""); // State to store captured ID image
   const [startDisplay, setStartDisplay] = useState("none")
   const navigate = useNavigate()
-
+  const {assessmentid} = useParams()
   // Function to capture images based on the current mode
   const captureImage = () => {
     const screenshot = webcamRef.current.getScreenshot(); // Capture image from the webcam
@@ -34,7 +34,7 @@ const WebcamCapture = () => {
     if (capturedFace && capturedID) { // Ensure both images are captured
       const uniqueID = uuidv4(); // Generate a unique ID for this submission
 
-      fetch('http://localhost:3000/webcam/saveImage', { // POST request to backend
+      fetch('http://localhost:3002/webcam/saveImage', { // POST request to backend
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -53,6 +53,7 @@ const WebcamCapture = () => {
         })
         .then((data) => {
           console.log('Server response:', data); // Log successful response
+          navigate(`/${assessmentid}/assessment`)  
           setSubmitedMessage("Images Submitted Successfully! Now Start the Test")
           setStartDisplay("block")
         })
@@ -62,7 +63,6 @@ const WebcamCapture = () => {
     } else {
       console.error('Face and/or ID not captured.'); // Ensure both images are captured before submitting
     }
-    navigate('/assessmentid/assessment')
   };
 
   function StartTest() {

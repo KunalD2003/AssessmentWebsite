@@ -15,8 +15,7 @@ export default function useQusetionData() {
                 response.map((index) => {
                     index.code = ""
                     index.sectionSwitchType = "coding"
-                })
-                dispatch()
+                })  
                 return setData(response)
             })
     }, [])
