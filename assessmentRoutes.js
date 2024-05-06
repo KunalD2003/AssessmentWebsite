@@ -52,16 +52,27 @@ router.get('/assessments', async (req, res) => {
     try {
         const assessments = await Assessment.find({});
 
-        assessments.forEach(assessment => {
-            console.log(`Title: ${assessment.AssessmentTitle}, Start Date: ${assessment.AssessmentStartDate}, End Date: ${assessment.AssessmentEndDate}, Duration: ${assessment.AssessmentDuration}`);
+        // Map assessments to include only the date in DD/MM/YY format
+        const formattedAssessments = assessments.map(assessment => {
+            const dateObj = new Date(assessment.AssessmentDate);
+            const formattedDate = `${dateObj.getDate()}/${dateObj.getMonth() + 1}/${dateObj.getFullYear() % 100}`;
+            return {
+                ...assessment._doc,
+                AssessmentDate: formattedDate
+            };
         });
 
-        res.json(assessments);
+        formattedAssessments.forEach(assessment => {
+            console.log(`Title: ${assessment.AssessmentTitle}, Assessment Date: ${assessment.AssessmentDate}, AssessmentStartTime: ${assessment.AssessmentStartTime}, AssessmentEndTime: ${assessment.AssessmentEndTime}, Duration: ${assessment.AssessmentDuration}`);
+        });
+
+        res.json(formattedAssessments);
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });
+
 
 
 // Get an assessment by ID
@@ -73,7 +84,15 @@ router.get('/assessments/:id', async (req, res) => {
             return res.status(404).json({ error: 'Assessment not found' });
         }
 
-        res.json(assessment);
+        // Format the AssessmentDate to DD/MM/YY format
+        const dateObj = new Date(assessment.AssessmentDate);
+        const formattedDate = `${dateObj.getDate()}/${dateObj.getMonth() + 1}/${dateObj.getFullYear() % 100}`;
+        const formattedAssessment = {
+            ...assessment._doc,
+            AssessmentDate: formattedDate
+        };
+
+        res.json(formattedAssessment);
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Internal Server Error' });
