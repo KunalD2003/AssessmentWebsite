@@ -13,6 +13,14 @@ const archivedExamSchema = new mongoose.Schema({
         type: Date,
         required: true,
         default: Date.now
+    },
+    userid:{
+        type: String,
+              
+    },
+    assessmentid :{
+        type: String,
+
     }
 });
 

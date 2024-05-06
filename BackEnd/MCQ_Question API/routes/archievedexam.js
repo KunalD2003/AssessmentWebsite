@@ -4,10 +4,10 @@ const ArchivedExamResult = require('../models/archievedexam.js');
 
 router.post('/', async (req, res) => {
     try {
-        const { examname, score, date } = req.body;
+        const { examname, score, date , userid,assessmentid } = req.body;
         // Create a new archived exam result with the provided data
-        const archivedExamResult = new ArchivedExamResult({ examname, score, date });
-
+        const archivedExamResult = new ArchivedExamResult({ examname, score, date , userid,assessmentid });
+ 
         await archivedExamResult.save();
   
         res.status(201).json(archivedExamResult);
