@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 
 const userScoreSchema = new mongoose.Schema({
+    userId: { type: String },
     Uscore: { type: Number },
     UcodingScore: { type: Number },
     UansweredQuestions: { type: Number },

@@ -1,18 +1,22 @@
 const express = require('express');
 const router = express.Router();
-const UserScore= require("../models/userScore.js");
+const UserScore = require("../models/userScore.js");
 
-
+// Submit user's test result
 router.post('/', async (req, res) => {
     try {
-        const { score, codingScore, answeredQuestions, totalQuestions, correctAnswers ,id} = req.body;
-        /*  const id = req.params.id;*/
-        const Uscore = score
-        const UcodingScore = codingScore
-        const UansweredQuestions = answeredQuestions
-        const UtotalQuestions = totalQuestions
-        const UcorrectAnswers = correctAnswers
-        await UserScore.findByIdAndUpdate(id, { Uscore, UcodingScore, UansweredQuestions, UtotalQuestions,UcorrectAnswers  });
+        const { userId, Uscore, UcodingScore, UansweredQuestions, UtotalQuestions, UcorrectAnswers } = req.body;
+
+        const userScore = new UserScore({
+            userId,
+            Uscore,
+            UcodingScore,
+            UansweredQuestions,
+            UtotalQuestions,
+            UcorrectAnswers
+        });
+
+        await userScore.save();
 
         res.status(201).json({ message: 'User test submitted successfully' });
     } catch (error) {
@@ -20,11 +24,11 @@ router.post('/', async (req, res) => {
     }
 });
 
-// Get user's result
-router.get('/', async (req, res) => {
+// Get user's result by userId
+router.get('/:userId', async (req, res) => {
     try {
-       const id = req.params.id;
-        const userScore = await UserScore.findById(id);
+        const userId = req.params.userId;
+        const userScore = await UserScore.findOne({ userId });
 
         if (!userScore) {
             return res.status(404).json({ message: 'User score not found' });
@@ -36,4 +40,4 @@ router.get('/', async (req, res) => {
     }
 });
 
-module.exports= router;
+module.exports = router;
