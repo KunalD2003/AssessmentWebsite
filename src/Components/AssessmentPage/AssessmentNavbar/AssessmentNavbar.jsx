@@ -25,7 +25,7 @@ const CountdownTimer = ({ minutes, seconds }) => {
         }));
       } else if (timeLeft.minutes > 0) {
         setTimeLeft((prevTimeLeft) => ({
-          minutes: prevTimeLeft.minutes - 31,
+          minutes: prevTimeLeft.minutes - 1,
           seconds: 59,
         }));
       } else if (timeLeft.minutes == 0 && timeLeft.minutes == 0) {
