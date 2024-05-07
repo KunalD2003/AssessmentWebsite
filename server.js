@@ -29,7 +29,7 @@ const bodyParser = require("body-parser");
 const { error } = require("console");
 const { TIMEOUT } = require("dns");
 app.use(bodyParser.json());
-
+app.use(cors());
 app.use("/api", assessmentRoutes);
 app.use("/api", registrationRouter);
 // Apply the middleware to all API routes
@@ -37,7 +37,7 @@ app.use("/api", ngrokSkipBrowserWarning);
 // Mount the login route
 // app.use('/', loginRouter);
 
-app.use(cors()); // Use this after the variable declaration
+ // Use this after the variable declaration
 // Middleware to parse JSON data
 // app.use(cors());
 app.use(express.json());
