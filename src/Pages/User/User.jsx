@@ -3,6 +3,7 @@ import "./User.css";
 import logo from "../../assets/img/logo.webp";
 import CallIcon from "@mui/icons-material/Call";
 import { Button, Col, Container, Modal, Row } from "react-bootstrap";
+import { useSelector } from "react-redux";
 import {
   DateRange,
   Email,
@@ -17,6 +18,9 @@ export default function User() {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const AssessmentData = useSelector((state) => {
+    return state.getAssessment;
+  });
   // ..........function for add a input image on input field
   // const [image, setImage] = useState("");
   // const handleImageClick = () => {
@@ -28,6 +32,7 @@ export default function User() {
   //   console.log(file);
   //   setImage(event.target.files[0]);
   // };
+  console.log(AssessmentData);
   return (
     <div id="Details">
       {/* ............head.......... */}
@@ -35,10 +40,10 @@ export default function User() {
         <img src={logo} alt="user" id="logo" />
         <h1 style={{ textAlign: "center", marginTop: '1%', alignSelf: 'center' }}>User Profile</h1>
       </div>
-      <hr id="line" /> 
+      <hr id="line" />
       {/* .............about */}
       <div style={{ paddingBottom: "3%" }}>
-        
+
         <Container class="container">
           <Row className="row">
             <Col lg={6} >
@@ -47,13 +52,13 @@ export default function User() {
                   style={{
                   }}
                 />
-                <h3>Name: Krishna Tripathi</h3>
+                <h3>Name: {AssessmentData.userDetails.name}</h3>
               </div>
             </Col>
-            </Row>
-            </Container>
-            
-            <Container class="container">
+          </Row>
+        </Container>
+
+        <Container class="container">
           <Row className="row">
             <Col lg={6}>
               <div className="detailsContainer">
@@ -61,12 +66,12 @@ export default function User() {
                   style={{
                   }}
                 />
-                <h3>Mobile: <span className="details-user">+91 0000000000</span></h3>
+                <h3>Mobile: <span className="details-user">+91 {AssessmentData.userDetails.phone}</span></h3>
               </div>
             </Col>
-            </Row>
-            </Container>
-            <Container class="container">
+          </Row>
+        </Container>
+        <Container class="container">
           <Row className="row">
             <Col lg={6}>
               <div className="detailsContainer">
@@ -75,13 +80,13 @@ export default function User() {
                   }}
                 />
                 <div>
-                  <h3>Email: <span className="details-user">onlineExam@gmail.com</span></h3>
+                  <h3>Email: <span className="details-user">{AssessmentData.userDetails.email}</span></h3>
                 </div>
               </div>
             </Col>
-            </Row>
-            </Container>
-            
+          </Row>
+        </Container>
+
       </div>
       {/* ......................Modal..... */}
       <Modal

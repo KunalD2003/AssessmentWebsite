@@ -1,16 +1,20 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './CSS/Login.css';
 import loginImage from './images/andrew-neel-ute2XAFQU2I-unsplash.jpg'; // Assuming this is your image path
 import { Link, useNavigate } from 'react-router-dom';
 import { getAuth, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
-
+import { useDispatch } from 'react-redux'
+import { setLoginStatus } from '../../Store/assessmentData';
 import logo from './images/AveryBit-Full-114.webp'
 import { Alert } from 'react-bootstrap';
+import axios from 'axios';
+import { setUserId } from 'firebase/analytics';
 
 
 function Login() {
 
     const navigate = useNavigate();
+    const dispatch = useDispatch()
     const [formData, setFormData] = useState({
         email: '',
         password: '',
@@ -31,12 +35,18 @@ function Login() {
             const userCredential = await signInWithEmailAndPassword(auth, formData.email, formData.password);
             const user = userCredential.user;
             console.log('User signed in:', user);
+            console.log(user.uid)
             updateProfile(user, {
                 displayName: user.email,
             });
-            
+            axios.get(`/api/users/${user.uid}`)
+                .then((response) => {
+                    return response.data
+                })
+                .then((response) => {
+                    dispatch(setLoginStatus(response))
+                })
             alert('Login successfully')
-            console.log("Login successfully")
             navigate("/userid/assessments");
 
             // Redirect to a new page or handle successful login
@@ -47,7 +57,6 @@ function Login() {
 
         }
     };
-
     return (
         <div className='container login-container'>
             <div className='login-row'>
