@@ -73,11 +73,11 @@ function Hero_section() {
   }, [temp,mcq])
 
   return (
-    <div className="herosection">
+    <div className="herosection" >
       {assessments.map((index) => (
         <div className="card user-dashboard-card" key={index.id}>
           <div className='assessment-role-title'>
-            <h1>{index.AssessmentTitle}</h1>
+            <h1 className='headTest'>{index.AssessmentTitle}</h1>
           </div>
           <div className="card-body assessment-start-card-body">
             <div className='assessment-details'>

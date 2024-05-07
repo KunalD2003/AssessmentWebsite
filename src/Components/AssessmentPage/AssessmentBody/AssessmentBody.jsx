@@ -38,7 +38,7 @@ function AssessmentBody() {
         </div>
       </div>
       <div className='question-navigation-btn'>
-        <div className='question-navigation'>
+        <div className='question-navigation' style={{paddingBottom:'1%'}}>
           <button onClick={() => {
             setCurrentQuestionIndex(currentQuestionIndex - 1)
             setcurrentQuestion(temp[currentQuestionIndex])
@@ -49,7 +49,7 @@ function AssessmentBody() {
           }} disabled={currentQuestionIndex === codingQuestionLength - 1} className='btn btn-outline-primary'>Next</button>
           <button className='btn btn-success' onClick={() => {navigate(`/${assessmentid}/result`)}}>Submit</button>
         </div>
-        <div className='questions-staticstics'>
+        {/* <div className='questions-staticstics'>
           <div>
             <div className='questions-count'>{0}</div>
             <div>Answered</div>
@@ -62,7 +62,7 @@ function AssessmentBody() {
             <div>{0}</div>
             <div>Unanswered</div>
           </div>
-        </div>
+        </div> */}
       </div>
     </>
   )

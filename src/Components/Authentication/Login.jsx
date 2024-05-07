@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { getAuth, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 
 import logo from './images/AveryBit-Full-114.webp'
+import { Alert } from 'react-bootstrap';
 
 
 function Login() {
@@ -33,11 +34,14 @@ function Login() {
             updateProfile(user, {
                 displayName: user.email,
             });
+            
+            alert('Login successfully')
             console.log("Login successfully")
             navigate("/userid/assessments");
 
             // Redirect to a new page or handle successful login
         } catch (error) {
+            alert('Invalid Email and password')
             console.error('Login error:', error.message);
             // Display an error message to the user
 
@@ -75,8 +79,8 @@ function Login() {
                 </div>
                 <div className='login-col'>
                     <div className='login-image'>
-                        <h1>Login Image</h1>
-                        <p>Some text about Digital Recruitment</p>
+                        {/* <h1>Login Image</h1>
+                        <p>Some text about Digital Recruitment</p> */}
                         <img src={loginImage} alt='Login' />
                     </div>
                 </div>

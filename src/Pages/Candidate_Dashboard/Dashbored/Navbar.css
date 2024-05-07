@@ -16,9 +16,30 @@
   border-radius: 50%;
   background-color: #50BCB6;
   padding: 0.7rem 1.2rem;
+  margin-right: 5%;
 }
 .user-btn-div a {
   text-decoration: none;
   color: white;
   font-size: 28px;
+  
+}
+.logOutImg{
+  height: 30px;
+  width: 30px;
+  margin-right: 6%;
+}
+.logOut{
+  display: flex;
+  flex-direction: row;
+  background-color: #50BCB6;
+  margin-right: 5%;
+  width: 10%;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  border-radius: 5px;
+}
+.logOutText{
+  color: white;
 }

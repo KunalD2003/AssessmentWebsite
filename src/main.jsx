@@ -8,7 +8,7 @@ import { createBrowserRouter, RouterProvider, Route, createRoutesFromElements } 
 import { Provider } from 'react-redux';
 import store from './Store/store.js';
 import {AssessmentPage,TermsandCondition,WebcamCapture, Login, Register } from './index.js'
-import {TestAutoSubmittedPage} from './Components/index.js'
+import {AssessmentMCQ, TestAutoSubmittedPage} from './Components/index.js'
 import Dashboard from './Pages/Candidate_Dashboard/Dashbored/Dashboard.jsx';
 import Hero_section from './Pages/Candidate_Dashboard/Dashbored/Hero_section.jsx';
 import ArchievedExams from './Pages/ArchievedExams/ArchievedExams.jsx';
@@ -64,6 +64,7 @@ const router = createBrowserRouter([
         path: '/:assessmentid/assessment',
         element: <AssessmentPage/>,
       },
+      
       {
         path: '/:assessmentid/guidlinesvoilated',
         element: <TestAutoSubmittedPage/>,

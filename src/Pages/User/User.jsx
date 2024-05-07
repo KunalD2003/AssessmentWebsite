@@ -35,32 +35,13 @@ export default function User() {
         <img src={logo} alt="user" id="logo" />
         <h1 style={{ textAlign: "center", marginTop: '1%', alignSelf: 'center' }}>User Profile</h1>
       </div>
-      <hr id="line" />
+      <hr id="line" /> 
       {/* .............about */}
       <div style={{ paddingBottom: "3%" }}>
-        {/* <h1 style={{ textAlign: "center" }}>About me</h1> */}
-        {/* <div id="secondDetails">
-          <div id="userPic" onClick={handleImageClick}>
-            {image ? (
-              <img
-                src={URL.createObjectURL(image)}
-                alt=""
-                style={{ height: "100px", width: "100px", borderRadius: 50 }}
-              />
-            ) : (
-              <img src={userPic} alt="user" id="user" />
-            )}
-            <input
-              onChange={handleImageChange}
-              type="file"
-              style={{ display: "none" }}
-              ref={inputRef}
-            />
-          </div>
-        </div> */}
+        
         <Container class="container">
-          <Row>
-            <Col lg={12}>
+          <Row className="row">
+            <Col lg={6} >
               <div className="detailsContainer">
                 <Person
                   style={{
@@ -69,19 +50,12 @@ export default function User() {
                 <h3>Name: Krishna Tripathi</h3>
               </div>
             </Col>
-            {/* <Col lg={6}>
-              <div className="detailsContainer">
-                <LocationCity
-                  style={{
-                    marginTop: "1%",
-                    marginRight: "2%",
-                    marginLeft: "3%",
-                  }}
-                />
-                <h3>Location: Indore</h3>
-              </div>
-            </Col> */}
-            <Col lg={12}>
+            </Row>
+            </Container>
+            
+            <Container class="container">
+          <Row className="row">
+            <Col lg={6}>
               <div className="detailsContainer">
                 <CallIcon
                   style={{
@@ -90,7 +64,11 @@ export default function User() {
                 <h3>Mobile: <span className="details-user">+91 0000000000</span></h3>
               </div>
             </Col>
-            <Col lg={12}>
+            </Row>
+            </Container>
+            <Container class="container">
+          <Row className="row">
+            <Col lg={6}>
               <div className="detailsContainer">
                 <EmailRounded
                   style={{
@@ -101,41 +79,9 @@ export default function User() {
                 </div>
               </div>
             </Col>
-            {/* <Col lg={6}>
-              <div className="detailsContainer">
-                <DateRange
-                  style={{
-                    marginTop: "1%",
-                    marginRight: "2%",
-                    marginLeft: "3%",
-                  }}
-                />
-                <h3>DOB: DD/MM/YYYY</h3>
-              </div>
-            </Col>
-            <Col lg={6}>
-              <div className="detailsContainer">
-                <Link
-                  style={{
-                    marginTop: "1%",
-                    marginRight: "2%",
-                    marginLeft: "3%",
-                  }}
-                />
-                <h3>GitHub Link: --------</h3>
-              </div>
-            </Col> */}
-          </Row>
-        </Container>
-        {/* <div id="btnContainer">
-          <Button
-            variant="success"
-            onClick={handleShow}
-            style={{ marginTop: "3%", marginLeft: "50%" }}
-          >
-            Update
-          </Button>
-        </div> */}
+            </Row>
+            </Container>
+            
       </div>
       {/* ......................Modal..... */}
       <Modal

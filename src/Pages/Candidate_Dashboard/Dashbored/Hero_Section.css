@@ -2,6 +2,8 @@
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
 
 .user-dashboard-card{
@@ -17,6 +19,10 @@
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   height: 40%;
+}
+.headTest{
+  text-align: center;
+  font-size: 30px;
 }
 .assessment-role-title h1{
   margin: auto;

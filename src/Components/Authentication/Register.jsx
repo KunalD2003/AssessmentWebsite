@@ -2,7 +2,10 @@ import React, { useState } from 'react';
 import './CSS/Register.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import logo from './images/AveryBit-Full-114.webp'
+import logo from './images/AveryBit-Full-114.webp';
+import register from '../../assets/img/rj.webp';
+import { Col, Container, Row } from 'react-bootstrap';
+import { height } from '@fortawesome/free-brands-svg-icons/fa42Group';
 
 function Register() {
     const navigate = useNavigate();
@@ -51,20 +54,20 @@ function Register() {
             if (!response.ok) {
                 throw new Error('Failed to save user data in the database');
             }
-
+            alert('User registered successfully')
             console.log("User registered successfully");
             navigate("/"); // Redirect to login or home page
         } catch (error) {
             console.error("Error registering user:", error.message);
-            setError('Error registering user');
+            alert("user not register");
         }
     };
 
     return (
         <>
-            <div className='register-container'>
-                <div className='register-row'>
-                    <div className='register-col'>
+            <Container>
+                <Row>
+                    <Col lg={6}>
                         <img className='login-logo' src={logo} alt='logo' />
                         <h1 className='register-col-heading'>Create an Account</h1>
                         <div className='Register-container'>
@@ -90,15 +93,14 @@ function Register() {
                             </form>
                             <p>Already have an account? <Link to='/'>Login</Link></p>
                         </div>
-                    </div>
-                    <div className='register-col'>
+                    </Col>
+                    <Col lg={6}>
                         <div className='register-image'>
-                            <h1>Register Image</h1>
-                            <p>Some text about registration</p>
+                            <img src={register} />
                         </div>
-                    </div>
-                </div>
-            </div>
+                    </Col>
+                </Row>
+            </Container>
         </>
     );
 }

@@ -24,7 +24,7 @@ const ResultCard = ({ title, value }) => (
 const ResultPage = () => {
   const navigate = useNavigate(); // Using useNavigate instead of useHistory
   const handleBackClick = () => {
-    navigate(-1); // Navigates back to the previous page
+    navigate(`/userid/assessments`); // Navigates back to the previous page
   };
   return (
     <div className="container result-page">

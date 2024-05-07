@@ -43,7 +43,7 @@ function Support() {
     e.preventDefault();
     if (validateForm()) {
       try {
-        const response = await axios.post("http://localhost:3000/contacts", formData);
+        const response = await axios.post("http://localhost:3005/contacts", formData);
         if (response) {
           console.log(response)
           alert("Successfully send ",);
@@ -78,7 +78,7 @@ function Support() {
                   required
                   onChange={handleChange}
                 />
-                {errors.name && <h6 style={{ color: 'red', marginLeft: '2%' }}>:exclamation:{errors.name}</h6>}
+                {errors.name && <h6 style={{ color: 'red', marginLeft: '2%' }}>❗{errors.name}</h6>}
               </div>
               <div className='label-input-field'>
                 <h6 className="inputText"><span style={{ color: "red" }}>*</span>Enter Mobile :</h6>
@@ -91,7 +91,7 @@ function Support() {
                   onChange={handleChange}
                   alue={formData.mobile}
                 />
-                {errors.mobile && <h6 style={{ color: 'red', marginLeft: '2%' }}>:exclamation:{errors.mobile}</h6>}
+                {errors.mobile && <h6 style={{ color: 'red', marginLeft: '2%' }}>❗{errors.mobile}</h6>}
               </div>
               <div className='label-input-field'>
                 <h6 className="inputText"><span style={{ color: "red" }}>*</span>Enter Email :</h6>
@@ -100,7 +100,7 @@ function Support() {
                   alue={formData.email}
                   onChange={handleChange}
                 />
-                {errors.email && <h6 style={{ color: 'red', marginLeft: '2%' }}>:exclamation:{errors.email}</h6>}
+                {errors.email && <h6 style={{ color: 'red', marginLeft: '2%' }}>❗{errors.email}</h6>}
               </div>
               <div className='label-input-field'>
                 <h6 className="inputText"><span style={{ color: "red" }}>*</span>Message</h6>
@@ -114,7 +114,7 @@ function Support() {
                   onChange={handleChange}
                 />
                 {errors.message && (
-                  <h6 style={{ color: 'red', marginLeft: '2%' }}>:exclamation:{errors.message}</h6>
+                  <h6 style={{ color: 'red', marginLeft: '2%' }}>❗{errors.message}</h6>
                 )}
               </div>
               <Button
