@@ -12,7 +12,7 @@ function ArchievedExams() {
         <thead>
           <tr>
             <th scope="col">Exam Name</th>
-            <th scope="col">Status</th>
+            <th scope="col">Score</th>
             <th scope="col">Date</th>
           </tr>
         </thead>
