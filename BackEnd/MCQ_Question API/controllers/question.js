@@ -11,14 +11,13 @@ const getAllquestions = async (req, res) => {
         }
 
         let page = Number(req.query.page) || 1;
-        let limit = 1; // Display one question per page
-        let skip = (page - 1) * limit;
 
-        let apiData = Question.find(queryObject).skip(skip).limit(limit);
+
+        let apiData = Question.find(queryObject);
 
         const myData = await apiData;
 
-        res.status(200).json({ myData, nbHits: myData.length });
+        res.status(200).json({ myData });
     } catch (error) {
         console.error("Error getting questions:", error);
         res.status(500).json({ error: "Internal Server Error" });
