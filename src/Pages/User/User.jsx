@@ -47,7 +47,7 @@ export default function User() {
                   style={{
                   }}
                 />
-                <h3>Name: Krishna Tripathi</h3>
+                <h3>Name: prashu tripathi</h3>
               </div>
             </Col>
             </Row>
@@ -61,7 +61,7 @@ export default function User() {
                   style={{
                   }}
                 />
-                <h3>Mobile: <span className="details-user">+91 0000000000</span></h3>
+                <h3>Mobile: <span className="details-user">+91 9098077658</span></h3>
               </div>
             </Col>
             </Row>
@@ -75,7 +75,7 @@ export default function User() {
                   }}
                 />
                 <div>
-                  <h3>Email: <span className="details-user">onlineExam@gmail.com</span></h3>
+                  <h3>Email: <span className="details-user">prashu10@gmail.com</span></h3>
                 </div>
               </div>
             </Col>
