@@ -3,7 +3,7 @@ import './CSS/Login.css';
 import loginImage from './images/andrew-neel-ute2XAFQU2I-unsplash.jpg'; // Assuming this is your image path
 import { Link, useNavigate } from 'react-router-dom';
 import { getAuth, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { setLoginStatus } from '../../Store/assessmentData';
 import logo from './images/AveryBit-Full-114.webp'
 import { Alert } from 'react-bootstrap';
@@ -20,7 +20,10 @@ function Login() {
         password: '',
         rememberMe: false,
     });
-
+    const AssessmentData = useSelector((state) => {
+        return state.getAssessment;
+      });
+      console.log(AssessmentData);
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
         const newValue = type === 'checkbox' ? checked : value;

@@ -46,10 +46,14 @@ export const assessmentData = createSlice({
             }
             console.log(action.payload);
             state.userDetails = action.payload
+        },
+        setLogoutStatus: (state) => {
+            state.authStatus = false
+            state.userDetails = null
         }
     }
 })
 
-export const { setQuestionSection, setCodingQuestion, setLoginStatus } = assessmentData.actions
+export const { setQuestionSection, setCodingQuestion, setLoginStatus, setLogoutStatus} = assessmentData.actions
 
 export default assessmentData.reducer

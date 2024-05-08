@@ -15,11 +15,6 @@ const Navbar = () => {
       <div className='user-btn-div'>
         <Link to="/userid/profile"><i className='bx bx-user'></i></Link>
       </div>
-      <Link to="/" className='logOut'>
-      
-        <h5 className='logOutText'>LogOut</h5>
-      
-      </Link>
       
 
     </div>

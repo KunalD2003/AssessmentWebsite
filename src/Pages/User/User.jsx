@@ -3,7 +3,8 @@ import "./User.css";
 import logo from "../../assets/img/logo.webp";
 import CallIcon from "@mui/icons-material/Call";
 import { Button, Col, Container, Modal, Row } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setLogoutStatus } from "../../Store/assessmentData";
 import {
   DateRange,
   Email,
@@ -12,15 +13,18 @@ import {
   LocationCity,
   Person,
 } from "@mui/icons-material";
+import { useNavigate } from "react-router";
 export default function User() {
   const inputRef = useRef(null);
   //Modal state
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const navigate = useNavigate()
   const AssessmentData = useSelector((state) => {
     return state.getAssessment;
   });
+  const dispatch = useDispatch()
   // ..........function for add a input image on input field
   // const [image, setImage] = useState("");
   // const handleImageClick = () => {
@@ -33,6 +37,10 @@ export default function User() {
   //   setImage(event.target.files[0]);
   // };
   console.log(AssessmentData);
+  function handleLogout() {
+    dispatch(setLogoutStatus())
+    navigate('/')
+  }
   return (
     <div id="Details">
       {/* ............head.......... */}
@@ -86,7 +94,17 @@ export default function User() {
             </Col>
           </Row>
         </Container>
-
+        <Container class="container">
+          <Row className="row">
+            <Col lg={6}>
+              <div className="detailsContainer logout-btn-container">
+                <div>
+                  <button type="button" class="btn btn-danger" onClick={handleLogout}>LogOut</button>
+                </div>
+              </div>
+            </Col>
+          </Row>
+        </Container>
       </div>
       {/* ......................Modal..... */}
       <Modal
