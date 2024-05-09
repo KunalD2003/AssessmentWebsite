@@ -5,9 +5,10 @@ const UserScore = require("../models/userScore.js");
 // Submit user's test result
 router.post('/', async (req, res) => {
     try {
-        const { userId, Uscore, UcodingScore, UansweredQuestions, UtotalQuestions, UcorrectAnswers } = req.body;
+        const { AssessmentId,userId, Uscore, UcodingScore, UansweredQuestions, UtotalQuestions, UcorrectAnswers } = req.body;
 
         const userScore = new UserScore({
+            AssessmentId,
             userId,
             Uscore,
             UcodingScore,

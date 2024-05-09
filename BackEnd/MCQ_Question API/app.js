@@ -11,7 +11,7 @@ app.use(express.json())
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 const question_routes = require("./routes/question");
 const contact_routes =require("./routes/contact");

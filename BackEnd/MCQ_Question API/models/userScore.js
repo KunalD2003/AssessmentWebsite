@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 
 const userScoreSchema = new mongoose.Schema({
+    AssessmentId: { type: String },
     userId: { type: String },
     Uscore: { type: Number },
     UcodingScore: { type: Number },
