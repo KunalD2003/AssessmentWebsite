@@ -43,7 +43,7 @@ function Support() {
     e.preventDefault();
     if (validateForm()) {
       try {
-        const response = await axios.post("http://localhost:3005/contacts", formData);
+        const response = await axios.post("http://localhost:3001/contacts", formData);
         if (response) {
           console.log(response)
           alert("Successfully send ",);
@@ -74,7 +74,7 @@ function Support() {
               <div className='label-input-field'>
                 <h6 className="inputText"><span style={{ color: "red" }}>*</span>Enter Name :</h6>
                 <input className="support-input" type="text" placeholder="Enter Name" name="name"
-                  alue={formData.name}
+                  value={formData.name}
                   required
                   onChange={handleChange}
                 />
@@ -89,7 +89,7 @@ function Support() {
                   required
                   name="mobile"
                   onChange={handleChange}
-                  alue={formData.mobile}
+                  value={formData.mobile}
                 />
                 {errors.mobile && <h6 style={{ color: 'red', marginLeft: '2%' }}>❗{errors.mobile}</h6>}
               </div>
@@ -97,7 +97,7 @@ function Support() {
                 <h6 className="inputText"><span style={{ color: "red" }}>*</span>Enter Email :</h6>
                 <input className="support-input" type="email" placeholder="Enter Email" required
                   name="email"
-                  alue={formData.email}
+                  value={formData.email}
                   onChange={handleChange}
                 />
                 {errors.email && <h6 style={{ color: 'red', marginLeft: '2%' }}>❗{errors.email}</h6>}
@@ -110,7 +110,7 @@ function Support() {
                   cols={60} // Width of the text area (number of characters)
                   required
                   name="message"
-                  alue={formData.message}
+                  value={formData.message}
                   onChange={handleChange}
                 />
                 {errors.message && (

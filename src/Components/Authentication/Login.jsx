@@ -9,6 +9,7 @@ import logo from './images/AveryBit-Full-114.webp'
 import { Alert } from 'react-bootstrap';
 import axios from 'axios';
 import { setUserId } from 'firebase/analytics';
+import { toast } from 'react-toastify';
 
 
 function Login() {
@@ -51,12 +52,21 @@ function Login() {
                     console.log(response)
                     dispatch(setLoginStatus(response))
                 })
-            alert('Login successfully')
+            // alert('Login successfully')
+            toast.success('Login successfully',{
+                position: "top-left",
+                // theme: "dark",
+            })
             navigate("/userid/assessments");
 
             // Redirect to a new page or handle successful login
         } catch (error) {
-            alert('Invalid Email and password')
+            // alert('Invalid Email and password')
+            toast.error('Invalid Email and Password',{
+                position:'top-left',
+                // theme: "dark",
+            })
+
             console.error('Login error:', error.message);
             // Display an error message to the user
 

@@ -6,8 +6,7 @@ import logo from './images/AveryBit-Full-114.webp';
 import register from '../../assets/img/rj.webp';
 import { Col, Container, Row } from 'react-bootstrap';
 import { height } from '@fortawesome/free-brands-svg-icons/fa42Group';
-
-function Register() {
+import { toast } from 'react-toastify';function Register() {
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
         name: '',
@@ -54,12 +53,22 @@ function Register() {
             if (!response.ok) {
                 throw new Error('Failed to save user data in the database');
             }
-            alert('User registered successfully')
+            
+            // alert('User registered successfully')
+            toast.success('User registered Successfully',{
+                position: "top-left",
+                theme: "dark",
+            })
             console.log("User registered successfully");
             navigate("/"); // Redirect to login or home page
         } catch (error) {
             console.error("Error registering user:", error.message);
-            alert("user not register");
+            toast.error('Please Enter Valid Email and Mobile',{
+                position:'top-left',
+                theme: "dark",
+            })
+
+            // alert("user not register");
         }
     };
 
