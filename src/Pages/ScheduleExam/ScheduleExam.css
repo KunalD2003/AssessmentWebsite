@@ -1,3 +1,26 @@
+.headText{
+    text-align: center;
+}
+.FormContainer{
+    justify-content: center;
+    background-color: white;
+    align-items: center;
+    border-radius: 5px;
+    padding-left: 30%;
+}
+.inputContainer{
+    justify-content: center;
+    align-items: center;
+    margin-top: 1%;
+    padding-top: 2%;
+}
+.btnContainer{
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 1%;
+    padding-top: 1%;
+    margin-left: 20%;
+}
 .schedule-exam{
     display: flex;
     align-items: center;
