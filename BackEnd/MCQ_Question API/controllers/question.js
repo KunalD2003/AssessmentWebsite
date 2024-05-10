@@ -95,5 +95,20 @@ const updateQuestion = async (req, res) => {
         res.status(400).json({ error: error.message });
     }
 };
+const deleteMCQQuestion = async (req, res) => {
+    try {
+        const { questionId } = req.params;
+        
+        const deletedQuestion = await Question.findByIdAndDelete(questionId);
 
-module.exports = { getAllquestions, getAllquestionsTesting, submitAnswer, insertQuestion, updateQuestion };
+        if (!deletedQuestion) {
+            return res.status(404).json({ message: 'MCQ question not found' });
+        }
+
+        res.json({ message: ' Question deleted successfully' });
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+};
+
+module.exports = { getAllquestions, getAllquestionsTesting, submitAnswer, insertQuestion, updateQuestion, deleteMCQQuestion };

@@ -9,14 +9,12 @@ const contactSchema = new mongoose.Schema({
     email: {
         type: String,
         required: true,
-        unique: true,
         // Regular expression to validate email format
         match: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
     },
     mobile: {
         type: Number,
         required: true,
-        unique: true,
         match: /^[0-9]{10}$/
     },
     message: {
