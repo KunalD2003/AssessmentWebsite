@@ -1,26 +1,20 @@
 import React from 'react';
-import './Navbar.css'
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap/dist/js/bootstrap.js';
-import { Link } from 'react-router-dom';
+import "./Navbar.css";
+import "bootstrap/dist/css/bootstrap.css";
+import "bootstrap/dist/js/bootstrap.js";
+
+import { Button, Nav, NavDropdown } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
+import { ReactTyped } from "react-typed";
+
 
 const Navbar = () => {
 
   return (
-    <div className="bg-dark text-white navbar">
-      <div className='note mx-auto'>
-        <h4 className='welnote '>Welcome to Candidate Assessment Website</h4>
+    <div className="navbar-candidate">
+        <h2>Welcome to <ReactTyped style={{color:'#50BCB6'}} strings={["Candidate Assessment Website",'Averybit']} typeSpeed={40} backSpeed={50} loop /></h2>
+        <Button variant="danger"><h5>↪️ Logout</h5></Button>
       </div>
-
-      <div className='profile justify-content-center align-items-center'>
-
-        <Link to="/admin" className="d-flex justify-content-center align-items-center text-white text-decoration-none d-flex">
-          <div className='user-icon d-flex justify-content-center align-items-center'>
-            <i className='bx bx-user'></i>
-          </div>
-        </Link>
-      </div>
-    </div>
   );
 };
 
