@@ -57,8 +57,8 @@ function Hero() {
     <div className="herosection">
       {assessment.map((index) => (
         <div className="card user-dashboard-card" key={index.id}>
-          <div className='assessment-role-title'>
-            <h1>{index.AssessmentTitle}</h1>
+          <div className='assessment-role-title' style={{justifyContent:'center',alignItems:'center'}}>
+            <h2 style={{textAlign:'center'}}>{index.AssessmentTitle}</h2>
           </div>
           <div className="card-body assessment-start-card-body">
             <div className='assessment-details'>
