@@ -43,3 +43,7 @@
 .logOutText{
   color: white;
 }
+.btn-logout{
+  background-color: white;
+  border: none;
+}

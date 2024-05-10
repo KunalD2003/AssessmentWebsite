@@ -6,9 +6,15 @@ import "bootstrap/dist/js/bootstrap.js";
 import { Nav, NavDropdown } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { ReactTyped } from "react-typed";
+import { useNavigate } from "react-router";
+import { setLogoutStatus } from "../../../Store/assessmentData";
+import { useDispatch } from "react-redux";
 const Navbar = () => {
-  
- 
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  function logoutBtn(){
+    dispatch(setLogoutStatus())
+  }
 
   return (
     <>
@@ -29,7 +35,7 @@ const Navbar = () => {
               <NavDropdown.Item> 👤Profile</NavDropdown.Item>
             </LinkContainer>
             <LinkContainer to="/">
-              <NavDropdown.Item> ↪️Logout</NavDropdown.Item>
+              <NavDropdown.Item><button className="btn-logout" onClick={logoutBtn}>↪️Logout</button></NavDropdown.Item>
             </LinkContainer>
             
           </NavDropdown>
