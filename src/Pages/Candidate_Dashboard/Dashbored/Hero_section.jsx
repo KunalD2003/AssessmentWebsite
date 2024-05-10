@@ -71,7 +71,6 @@ function Hero_section() {
       console.log(codingQuestionLength);
     }
   }, [temp,mcq])
-
   return (
     <div className="herosection" >
       {assessments.map((index) => (

@@ -65,9 +65,9 @@ function Register() {
 
     return (
         <>
-            <Container>
+            <Container className='reg-container'>
                 <Row>
-                    <Col lg={6}>
+                    <Col>
                         <img className='login-logo' src={logo} alt='logo' />
                         <h1 className='register-col-heading'>Create an Account</h1>
                         <div className='Register-container'>
@@ -94,7 +94,7 @@ function Register() {
                             <p>Already have an account? <Link to='/'>Login</Link></p>
                         </div>
                     </Col>
-                    <Col lg={6}>
+                    <Col>
                         <div className='register-image'>
                             <img src={register} />
                         </div>

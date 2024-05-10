@@ -5,8 +5,8 @@ import Hero_section from './Hero_section';
 import Navbar from './Navbar';
 import Sidebar from './Sidebar';
 import { Outlet } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 function Dashboard() {
-
     return (
         <div className='user-side-dashboard'>
             <div className='sidebar-outer-div'>

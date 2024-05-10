@@ -12,6 +12,8 @@ import {
   Person,
 } from "@mui/icons-material";
 export default function User() {
+
+
   const inputRef = useRef(null);
   //Modal state
   const [show, setShow] = useState(false);
@@ -39,7 +41,7 @@ export default function User() {
       {/* .............about */}
       <div style={{ paddingBottom: "3%" }}>
         
-        <Container class="container">
+        <Container className="container">
           <Row className="row">
             <Col lg={6} >
               <div className="detailsContainer">
@@ -53,7 +55,7 @@ export default function User() {
             </Row>
             </Container>
             
-            <Container class="container">
+            <Container className="container">
           <Row className="row">
             <Col lg={6}>
               <div className="detailsContainer">
@@ -66,7 +68,7 @@ export default function User() {
             </Col>
             </Row>
             </Container>
-            <Container class="container">
+            <Container className="container">
           <Row className="row">
             <Col lg={6}>
               <div className="detailsContainer">
@@ -75,7 +77,7 @@ export default function User() {
                   }}
                 />
                 <div>
-                  <h3>Email: <span className="details-user">prashu10@gmail.com</span></h3>
+                  <h3>Email: <span className="details-user">p@gmail.com</span></h3>
                 </div>
               </div>
             </Col>
