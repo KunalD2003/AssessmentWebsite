@@ -15,6 +15,7 @@ const CountdownTimer = ({ minutes, seconds }) => {
     minutes: parseInt(minutes),
     seconds: parseInt(seconds),
   });
+  const { assessmentid } = useParams();
   const navigate = useNavigate();
   useEffect(() => {
     const timer = setInterval(() => {
@@ -29,7 +30,7 @@ const CountdownTimer = ({ minutes, seconds }) => {
           seconds: 59,
         }));
       } else if (timeLeft.minutes == 0 && timeLeft.minutes == 0) {
-        navigate("/userid/assessments");
+        navigate(`/${assessmentid}/result`);
       }
     }, 1000);
 
@@ -47,9 +48,10 @@ const CountdownTimer = ({ minutes, seconds }) => {
 function AssessmentNavbar() {
 
     const navigate = useNavigate(); // Using useNavigate instead of useHistory
+    const { assessmentid } = useParams();
     const handleSubmit = () => {
         alert('Do you want to submit the exam?')
-      navigate('/:assessmentid/result'); // Navigates back to the previous page
+      navigate(`/${assessmentid}/result`, {replace: true}); // Navigates back to the previous page
     };
 
   const AssessmentData = useSelector((state) => {
@@ -61,7 +63,6 @@ function AssessmentNavbar() {
   );
   const [pageNumber, setPageNumber] = useState(0); // For pagination
   const [assessmentDuration, SetAssessmentDuration] = useState();
-  const { assessmentid } = useParams();
   const assessments = assessmentData();
 
   useEffect(() => {
@@ -155,7 +156,7 @@ function AssessmentNavbar() {
         <div className="camera-questions">
           <div className="questions-pagination">
             <div>
-              <select
+              {/* <select
                 name="Choose Section"
                 id="id"
                 value={section}
@@ -182,7 +183,8 @@ function AssessmentNavbar() {
                     {index.sectionName}
                   </option>
                 ))}
-              </select>
+              </select> */}
+              {assessmentData.currentPage}
             </div>
           </div>
         </div>
