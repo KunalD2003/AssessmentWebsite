@@ -231,7 +231,9 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import './AssessmentMCQ.css';
+import { useDispatch, useSelector } from "react-redux";
 import { AssessmentQuestionHeading, AssessmentMCQ_Options } from '../../index';
+import { setQuestionSection } from "../../../Store/assessmentData";
 
 function AssessmentMCQ() {
   const [mcqQuestions, setMcqQuestions] = useState([]);
@@ -278,10 +280,14 @@ function AssessmentMCQ() {
       }));
     }
   };
+  const AssessmentData = useSelector((state) => {
+    return state.getAssessment;
+  });
 
+  const dispatch = useDispatch()
   const handleSubmit = () => {
     // Send user answers to the backend
-    axios.post(`/api/mcqquestions/${userId}`, {
+    axios.post(`/api/mcqquestions/${AssessmentData.userDetails.userId}`, {
       score
     })
       .then((response) => {
@@ -291,8 +297,8 @@ function AssessmentMCQ() {
         console.error("Error submitting MCQ answer:", error);
         setSubmitStatus("Error submitting MCQ answer");
       });
+    dispatch(setQuestionSection(["Programming Test", "coding"]))
   };
-
   const handleNextQuestion = () => {
     // Go to next question
     setCurrentQuestionIndex(prevIndex => {

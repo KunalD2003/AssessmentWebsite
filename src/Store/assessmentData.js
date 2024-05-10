@@ -7,13 +7,13 @@ import { useState,useEffect } from "react";
 const QuestionBank = [
     {
         id: nanoid(),
-        sectionType: "coding",
-        sectionName: "Coding",
+        sectionType: "MCQ",
+        sectionName: "Logical Apptitude",
     },
     {
         id: nanoid(),
-        sectionType: "MCQ",
-        sectionName: "Logical Aptitude",
+        sectionType: "coding",
+        sectionName: "Programming Test",
     }
 ]
 const initialState = {

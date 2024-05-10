@@ -12,6 +12,7 @@ import { useDispatch } from "react-redux";
 const Navbar = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  
   function logoutBtn(){
     dispatch(setLogoutStatus())
   }
