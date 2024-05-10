@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import "./User.css";
 import logo from "../../assets/img/logo.webp";
 import CallIcon from "@mui/icons-material/Call";
+import { useSelector } from "react-redux";
 import { Button, Col, Container, Modal, Row } from "react-bootstrap";
 import {
   DateRange,
@@ -19,7 +20,10 @@ export default function User() {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  
+  const AssessmentData = useSelector((state) => {
+    return state.getAssessment;
+  });
+
   return (
     <div id="Details">
       {/* ............head.......... */}
@@ -39,7 +43,7 @@ export default function User() {
                   style={{
                   }}
                 />
-                <h3>Name: prashu tripathi</h3>
+                <h3>Name: {AssessmentData.userDetails.name}</h3>
               </div>
             </Col>
             </Row>
@@ -53,7 +57,7 @@ export default function User() {
                   style={{
                   }}
                 />
-                <h3>Mobile: <span className="details-user">+91 9098077658</span></h3>
+                <h3>Mobile: <span className="details-user">{AssessmentData.userDetails.phone}</span></h3>
               </div>
             </Col>
             </Row>
@@ -67,7 +71,7 @@ export default function User() {
                   }}
                 />
                 <div>
-                  <h3>Email: <span className="details-user">p@gmail.com</span></h3>
+                  <h3>Email: <span className="details-user">{AssessmentData.userDetails.email}</span></h3>
                 </div>
               </div>
             </Col>
