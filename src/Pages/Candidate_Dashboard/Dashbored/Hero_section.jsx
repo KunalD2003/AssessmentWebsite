@@ -75,6 +75,7 @@ function Hero_section() {
     <div className="herosection" >
       {assessments.map((index) => (
         <div className="card user-dashboard-card" key={index.id}>
+          {/* console.log(index.id) */}
           <div className='assessment-role-title'>
             <h1 className='headTest'>{index.AssessmentTitle}</h1>
           </div>

@@ -19,17 +19,7 @@ export default function User() {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  // ..........function for add a input image on input field
-  // const [image, setImage] = useState("");
-  // const handleImageClick = () => {
-  //   inputRef.current.click();
-  // };
-  // ......function for user profile change on input field
-  // const handleImageChange = (event) => {
-  //   const file = event.target.files[0];
-  //   console.log(file);
-  //   setImage(event.target.files[0]);
-  // };
+  
   return (
     <div id="Details">
       {/* ............head.......... */}

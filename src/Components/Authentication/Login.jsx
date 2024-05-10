@@ -33,7 +33,7 @@ function Login() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const auth = getAuth();
+      const auth = getAuth();
         try {
             const userCredential = await signInWithEmailAndPassword(auth, formData.email, formData.password);
             const user = userCredential.user;
@@ -44,9 +44,11 @@ function Login() {
             });
             axios.get(`/api/users/${user.uid}`)
                 .then((response) => {
+                    console.log(response)
                     return response.data
                 })
                 .then((response) => {
+                    console.log(response)
                     dispatch(setLoginStatus(response))
                 })
             alert('Login successfully')

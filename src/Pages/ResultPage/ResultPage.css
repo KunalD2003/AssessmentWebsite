@@ -1,7 +1,51 @@
-.result-page{
+/* .result-page{
     display: flex;
     flex-direction: column;
     min-height: 100vh;
     max-height: 100%;
     justify-content: center;
-}
+} */
+
+
+/* ResultPage.css */
+
+/* Full-page background color */
+.result-page {
+    background-color: aqua; /* A light gray background */
+    height: 100vh; /* Full viewport height */
+    padding: 0; /* Reset padding */
+    margin: 0; /* Reset margin */
+    display: flex; /* Flex layout for centering */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+  }
+  
+  /* Style for individual result cards */
+  .result-card {
+    height: 150px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* Border shadow */
+    transition: 0.3s; /* Smooth transition on hover */
+    border-radius: 10px; /* Rounded corners */
+  }
+  
+  /* Different background colors for individual cards */
+  .result-card:nth-child(1) {
+    background-color: #e0f7fa; /* Light cyan */
+  }
+  
+  .result-card:nth-child(2) {
+    background-color: #ffebee; /* Light pink */
+  }
+  
+  .result-card:nth-child(3) {
+    background-color: #f1f8e9; /* Light green */
+  }
+  
+  .result-card:nth-child(4) {
+    background-color: #fff8e1; /* Light yellow */
+  }
+  
+  /* Hover effect to increase the shadow */
+  .result-card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
+  }

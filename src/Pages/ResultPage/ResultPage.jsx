@@ -1,52 +1,78 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom'; // Correct import
-import './ResultPage.css'
-// import 'bootstrap/dist/css/bootstrap.min.css';
-// Sample data to be displayed on the ResultPage
-const results = {
-  totalQuestions: 40,
-  attempted: 28,
-  timeTaken: '20:00 mins',
-  correctAnswers: 15,
-  partialCorrectAnswers: 0,
-  score: 45,
-};
-const ResultCard = ({ title, value }) => (
-  <div className="col-6 mb-3">
-    <div className="card">
+
+
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './ResultPage.css'; // Custom CSS for styling
+
+// Component for individual result cards with text and icons
+const ResultCard = ({ title, value, icon }) =>
+ (
+  <div className="col-md-6 col-sm-12 mb-3">
+    <div className="card result-card">
       <div className="card-body">
-        <h5 className="card-title">{title}</h5>
-        <p className="card-text">{value}</p>
+        <div className="card-title text-center">
+          <h5 className="card-title" style={{ fontSize: '1.5rem' }}>{title.charAt(0).toUpperCase() + title.slice(1)}</h5>
+        </div>
+        <hr />
+        <div className="d-flex justify-content-between align-items-center">
+          <p className="card-text" style={{ fontSize: '1.2rem' }}>{value}</p>
+          {icon && <i className={icon} style={{ fontSize: '1.5rem' }}></i>}
+        </div>
       </div>
     </div>
   </div>
 );
-const ResultPage = () => {
-  const navigate = useNavigate(); // Using useNavigate instead of useHistory
-  const handleBackClick = () => {
-    navigate(`/userid/assessments`); // Navigates back to the previous page
-  };
+
+// Main component for the results page
+const ResultPage = ({id}) => {
+  // State to hold the fetched result data
+  const [results, setResults] = useState(null); // Changed to null to handle loading state
+
+  // Function to fetch result data from backend
+  useEffect(() => {
+    // Fetch MCQ questions from the API
+    axios.get(`/result/${id}`)
+      .then((response) => {
+        setResults(response.data);
+        console.log(response.data); // Update state with fetched questions
+      })
+      .catch((error) => {
+        console.error("Error in result fetch:", error);
+      });
+  }, []);
+
+  
+  // If results are not fetched or loading, return loading message
+  if (!results) {
+    return <div>Loading...</div>;
+  }
+
   return (
-    <div className="container result-page">
-      <div className="row">
-        <ResultCard title="Total Questions" value={results.totalQuestions} />
-        <ResultCard title="Attempted" value={results.attempted} />
-        <ResultCard title="Time Taken" value={results.timeTaken} />
-        <ResultCard title="Correct Answers" value = {results.correctAnswers} />
-        <ResultCard title="Partial Correct Answers" value ={results.partialCorrectAnswers} />
-        <ResultCard title="Score" value={results.score} />
-      </div>
-      <div className="d-flex justify-content-center mt-4">
-        <button className="btn btn-primary" onClick={handleBackClick}>
-          Back to Assessment
-        </button>
+    <div className="result-page" style={{ height: '100vh' }}>
+      <div className="container-fluid">
+        <div className="row justify-content-center align-items-center" style={{ height: '100vh' }}>
+          <div className="col-md-8">
+            <div className="row justify-content-center">
+              <ResultCard title="totalQuestions" value={results.UtotalQuestions} icon="bx bx-file" />
+              <ResultCard title="answeredQuestions" value={results.UansweredQuestions} icon="bx bx-select-multiple" />
+            </div>
+            <div className="row justify-content-center">
+              <ResultCard title="correctAnswers" value={results.UcorrectAnswers} icon="bx bx-check-circle" />
+              {/* Use different value for Score if needed */}
+              <ResultCard title="score" value={results.Uscore} icon="bx bx-archive" /> 
+            </div>
+            <div className="d-flex justify-content-start mt-4">
+              <button className="btn btn-primary">Back to Dashboard</button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
 };
+
 export default ResultPage;
-
-
 
 
 
