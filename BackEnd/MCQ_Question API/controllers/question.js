@@ -102,7 +102,7 @@ const deleteMCQQuestion = async (req, res) => {
         const deletedQuestion = await Question.findByIdAndDelete(questionId);
 
         if (!deletedQuestion) {
-            return res.status(404).json({ message: 'MCQ question not found' });
+            return res.status(404).json({ message: ' Question not found' });
         }
 
         res.json({ message: ' Question deleted successfully' });
