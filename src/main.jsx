@@ -7,15 +7,15 @@ import './index.css'
 import { createBrowserRouter, RouterProvider, Route, createRoutesFromElements } from 'react-router-dom'
 import { Provider } from 'react-redux';
 import store from './Store/store.js';
-import {AssessmentPage,TermsandCondition,WebcamCapture, Login, Register } from './index.js'
-import {AssessmentMCQ, TestAutoSubmittedPage} from './Components/index.js'
+import { AssessmentPage, TermsandCondition, WebcamCapture, Login, Register } from './index.js'
+import { AssessmentMCQ, TestAutoSubmittedPage } from './Components/index.js'
 import Dashboard from './Pages/Candidate_Dashboard/Dashbored/Dashboard.jsx';
 import Hero_section from './Pages/Candidate_Dashboard/Dashbored/Hero_section.jsx';
 import ArchievedExams from './Pages/ArchievedExams/ArchievedExams.jsx';
 import Support from './Pages/Support/Support.jsx';
 import User from './Pages/User/User.jsx';
 import ResultPage from './Pages/ResultPage/ResultPage.jsx';
-
+import AuthLayout from './Components/AuthLayout/AuthLayout.jsx';
 
 const router = createBrowserRouter([
   {
@@ -24,54 +24,98 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <Login />
+        element: (
+          <AuthLayout authentication={false}>
+            <Login />
+          </AuthLayout>
+        )
       },
       {
         path: '/register',
-        element: <Register />
+        element: (
+          <AuthLayout authentication={false}>
+            <Register />
+          </AuthLayout>
+        )
       },
       {
         path: '/userid',
-        element: <Dashboard />,
+        element: <Dashboard authentication />,
         children: [
           {
             path: '/userid/assessments',
-            element: <Hero_section />
+            element: (
+              <AuthLayout authentication>
+                <Hero_section />
+              </AuthLayout>
+            )
           },
           {
             path: '/userid/archivedexams',
-            element: <ArchievedExams />
+            element: (
+              <AuthLayout authentication>
+                <ArchievedExams />
+              </AuthLayout>
+            )
           },
           {
             path: '/userid/support',
-            element: <Support />
+            element: (
+              <AuthLayout authentication>
+                <Support />
+              </AuthLayout>
+            )
           },
           {
             path: '/userid/profile',
-            element: <User />
+            element: (
+              <AuthLayout authentication>
+                <User />
+              </AuthLayout>
+            )
           },
         ]
       },
       {
         path: '/:assessmentid/termsandcondition',
-        element: <TermsandCondition/>,
+        element: (
+          <AuthLayout authentication>
+            <TermsandCondition />
+          </AuthLayout>
+        ),
       },
       {
         path: '/:assessmentid/scanfaceid',
-        element: <WebcamCapture/>,
+        element: (
+          <AuthLayout authentication>
+            <WebcamCapture />
+          </AuthLayout>
+        ),
       },
       {
         path: '/:assessmentid/assessment',
-        element: <AssessmentPage/>,
+        element: (
+          <AuthLayout authentication>
+            <AssessmentPage />
+          </AuthLayout>
+        ),
       },
-      
+
       {
         path: '/:assessmentid/guidlinesvoilated',
-        element: <TestAutoSubmittedPage/>,
+        element: (
+          <AuthLayout authentication>
+            <TestAutoSubmittedPage />
+          </AuthLayout>
+        ),
       },
       {
         path: '/:assessmentid/result',
-        element: <ResultPage />,
+        element: (
+          <AuthLayout authentication>
+            <ResultPage />
+          </AuthLayout>
+        ),
       },
     ]
   }

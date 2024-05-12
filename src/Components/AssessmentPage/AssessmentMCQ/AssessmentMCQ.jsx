@@ -116,7 +116,7 @@
 //   const [answeredCount, setAnsweredCount] = useState(0);
 //   const [unansweredCount, setUnansweredCount] = useState(12);
 //   const [score, setScore] = useState(0);
-  
+
 
 //   useEffect(() => {
 //     // Fetch MCQ questions from the API
@@ -233,7 +233,8 @@ import React, { useEffect, useState } from 'react';
 import './AssessmentMCQ.css';
 import { useDispatch, useSelector } from "react-redux";
 import { AssessmentQuestionHeading, AssessmentMCQ_Options } from '../../index';
-import { setQuestionSection } from "../../../Store/assessmentData";
+import { setQuestionSection } from '../../../Store/assessmentData';
+import { useParams } from 'react-router';
 
 function AssessmentMCQ() {
   const [mcqQuestions, setMcqQuestions] = useState([]);
@@ -242,8 +243,9 @@ function AssessmentMCQ() {
   const [submitStatus, setSubmitStatus] = useState("");
   const [answeredCount, setAnsweredCount] = useState(0);
   const [unansweredCount, setUnansweredCount] = useState(14);
+  const { assessmentid } = useParams()
   const [score, setScore] = useState(0);
-  
+  const dispatch = useDispatch()
 
   useEffect(() => {
     // Fetch MCQ questions from the API
@@ -283,22 +285,38 @@ function AssessmentMCQ() {
   const AssessmentData = useSelector((state) => {
     return state.getAssessment;
   });
-
-  const dispatch = useDispatch()
-  const handleSubmit = () => {
+  const userid = AssessmentData.userDetails.userId
+  const handleSubmit = async () => {
     // Send user answers to the backend
-    axios.post(`/api/mcqquestions/${AssessmentData.userDetails.userId}`, {
-      score
-    })
-      .then((response) => {
-        setSubmitStatus(response.data.message);
-      })
-      .catch((error) => {
-        console.error("Error submitting MCQ answer:", error);
-        setSubmitStatus("Error submitting MCQ answer");
-      });
-    dispatch(setQuestionSection(["Programming Test", "coding"]))
+    console.log("Hello");
+    const passData = {
+      AssessmentId: assessmentid,
+      userId: userid,
+      Uscore: score,
+      UcodingScore: 0,
+      UansweredQuestions: answeredCount,
+      UtotalQuestions: mcqQuestions.length,
+      UcorrectAnswers: score
+    }
+    console.log(passData);
+    const response = await fetch('http://localhost:3001/result', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(passData)
+    });
+
+    if (response) {
+      console.log(response);
+      dispatch(setQuestionSection(["Programming Test", "coding"]))
+    }
+    else {
+      console.error("Error submitting MCQ answer:", error);
+      setSubmitStatus("Error submitting MCQ answer");
+    };
   };
+
   const handleNextQuestion = () => {
     // Go to next question
     setCurrentQuestionIndex(prevIndex => {
@@ -335,16 +353,16 @@ function AssessmentMCQ() {
             </div>
             <div className='questions-staticstics'>
               <div>
-                <h5 style={{color:'green'}} className='questions-count'>{answeredCount}</h5>
-                <h5 style={{color:'green'}}>Answered</h5>
+                <h5 style={{ color: 'green' }} className='questions-count'>{answeredCount}</h5>
+                <h5 style={{ color: 'green' }}>Answered</h5>
               </div>
               {/* <div className='questions-count'>
                 <div>0</div>
                 <div>Flag</div>
               </div> */}
               <div className='questions-count'>
-                <h5 style={{color:'red'}}>{unansweredCount}</h5>
-                <h5 style={{color:'red'}}>Unanswered</h5>
+                <h5 style={{ color: 'red' }}>{unansweredCount}</h5>
+                <h5 style={{ color: 'red' }}>Unanswered</h5>
               </div>
             </div>
           </div>

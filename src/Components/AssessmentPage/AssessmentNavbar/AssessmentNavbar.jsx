@@ -47,13 +47,8 @@ const CountdownTimer = ({ minutes, seconds }) => {
 
 function AssessmentNavbar() {
 
-    const navigate = useNavigate(); // Using useNavigate instead of useHistory
-    const { assessmentid } = useParams();
-    const handleSubmit = () => {
-        alert('Do you want to submit the exam?')
-      navigate(`/${assessmentid}/result`, {replace: true}); // Navigates back to the previous page
-    };
-
+  const navigate = useNavigate(); // Using useNavigate instead of useHistory
+  const { assessmentid } = useParams();
   const AssessmentData = useSelector((state) => {
     return state.getAssessment;
   });
@@ -138,19 +133,18 @@ function AssessmentNavbar() {
             {assessments.map((index) =>
               assessmentid === index._id ? (
                 <div>
-                  <CountdownTimer
-                    minutes={index.AssessmentDuration}
-                    seconds="00"
-                  />
+                  Remaining Time:
+                  <span>
+                    <CountdownTimer
+                      minutes={index.AssessmentDuration}
+                      seconds="00"
+                    />
+                  </span>
                 </div>
               ) : (
                 ""
               )
             )}
-            {/* <Link className="btn btn-primary" to='/:assessmentid/result' role="button">Submit Test</Link> */}
-            <button className="btn btn-primary" onClick={handleSubmit}>
-              Submit Test
-            </button>
           </div>
         </div>
         <div className="camera-questions">
@@ -184,7 +178,7 @@ function AssessmentNavbar() {
                   </option>
                 ))}
               </select> */}
-              {assessmentData.currentPage}
+              <h6>Current Section: <span>{AssessmentData.currentPage}</span></h6>
             </div>
           </div>
         </div>

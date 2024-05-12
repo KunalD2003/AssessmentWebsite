@@ -25,7 +25,7 @@
 .compiler-div{
     height: 15rem;
     padding-top: 0.3rem;
-    padding-inline: 0.3rem;
+    padding-inline: 0.5rem;
     width: 100%;
 }
 .compiler{
@@ -36,4 +36,8 @@
     padding-top: 0.3rem;
     background-color: rgb(194, 191, 191);
     color: white;
+}
+.output-container h3{
+    margin-inline: 0.5rem;
+    margin-top: 0.5rem;
 }

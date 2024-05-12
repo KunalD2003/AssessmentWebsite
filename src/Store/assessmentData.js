@@ -23,6 +23,7 @@ const initialState = {
     currentPageType: `${QuestionBank[0].sectionType}`,
     authStatus: false,
     userDetails: null,
+    webcamStatus: true
 }
 
 export const assessmentData = createSlice({
@@ -50,10 +51,13 @@ export const assessmentData = createSlice({
         setLogoutStatus: (state) => {
             state.authStatus = false
             state.userDetails = null
+        },
+        disableWebcam: (state) => {
+            state.webcamStatus = false
         }
     }
 })
 
-export const { setQuestionSection, setCodingQuestion, setLoginStatus, setLogoutStatus} = assessmentData.actions
+export const { setQuestionSection, setCodingQuestion, setLoginStatus, setLogoutStatus, disableWebcam} = assessmentData.actions
 
 export default assessmentData.reducer

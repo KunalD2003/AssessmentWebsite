@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './ResultPage.css'; // Custom CSS for styling
+import { useSelector } from 'react-redux';
 
 // Component for individual result cards with text and icons
 const ResultCard = ({ title, value, icon }) =>
@@ -28,11 +29,14 @@ const ResultCard = ({ title, value, icon }) =>
 const ResultPage = ({id}) => {
   // State to hold the fetched result data
   const [results, setResults] = useState(null); // Changed to null to handle loading state
-
+  const userId = useSelector((state) => {
+    return state.getAssessment.userDetails.userId
+  })
+  console.log(userId);
   // Function to fetch result data from backend
   useEffect(() => {
     // Fetch MCQ questions from the API
-    axios.get(`/result/${id}`)
+    axios.get(`/result/${userId}`)
       .then((response) => {
         setResults(response.data);
         console.log(response.data); // Update state with fetched questions

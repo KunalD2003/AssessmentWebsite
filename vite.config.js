@@ -12,6 +12,7 @@ export default defineConfig({
       '/api/register': 'http://localhost:3000',
       '/api/users': 'http://localhost:3000',
       '/archievedexamresult': 'http://localhost:3001',
+      '/result': 'http://localhost:3001',
       },
     },
   plugins: [react()],

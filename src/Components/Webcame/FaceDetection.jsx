@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import * as blazeface from '@tensorflow-models/blazeface';
 import * as cocoSsd from '@tensorflow-models/coco-ssd';
 import { useNavigate } from 'react-router';
+import { useDispatch, useSelector } from 'react-redux';
 
 const FaceDetection = () => {
   const videoRef = useRef(null);
@@ -12,9 +13,14 @@ const FaceDetection = () => {
   const [warningCount, setWarningCount] = useState(0); // Track warning counts
   const faceTimer = useRef(null);
   const navigate = useNavigate()
-
+  const camStatus = useSelector((state) => {
+    return state.getAssessment.webcamStatus
+  })
+  console.log(camStatus);
+  if(!camStatus){
+    videoRef.current.srcObject.getTracks().forEach((track) => track.stop());
+  }
   const handleWarning = (message) => {
- 
 
     alert(message); // Display an alert with the warning message
 
@@ -35,15 +41,18 @@ const FaceDetection = () => {
   useEffect(() => {
     const initializeCamera = async () => {
       try {
-        const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-        if (videoRef.current) {
-          videoRef.current.srcObject = stream;
+        if(camStatus){
+          console.log(camStatus);
+          const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+          if (videoRef.current) {
+            videoRef.current.srcObject = stream;
+          }
         }
       } catch (error) {
         console.error("Error accessing camera:", error);
       }
     };
-
+    console.log(camStatus);
     const detectFacesAndObjects = async () => {
       const faceModel = await blazeface.load();
       const objectModel = await cocoSsd.load();
@@ -88,19 +97,18 @@ const FaceDetection = () => {
           requestAnimationFrame(checkForFacesAndObjects); // Continue checking
         }
       };
-
       checkForFacesAndObjects(); // Start checking for faces and gadgets
     };
-
+    
     initializeCamera(); // Start the camera
     detectFacesAndObjects(); // Start face and object detection
-
     return () => {
-      if (videoRef.current && videoRef.current.srcObject) {
+      if ((videoRef.current && videoRef.current.srcObject) || !camStatus) {
+        console.log(camStatus);
         videoRef.current.srcObject.getTracks().forEach((track) => track.stop()); // Stop the camera
       }
     };
-  }, []); // Run only once when component mounts
+  }, [camStatus]); // Run only once when component mounts
 
   return (
     <div>

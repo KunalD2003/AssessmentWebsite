@@ -24,11 +24,11 @@ const Navbar = () => {
         <h2>Welcome to <ReactTyped style={{color:'#50BCB6'}} strings={["Candidate Assessment Website",'Averybit']} typeSpeed={40} backSpeed={50} loop /></h2>
         <Nav>
           <NavDropdown
-            title="👤Profile"
+            title="👤"
             style={{
               color: "white",
               borderWidth: 1,
-              backgroundColor: "white",
+              backgroundColor: "#50BCB6",
               borderRadius: 5,
             }}
           >

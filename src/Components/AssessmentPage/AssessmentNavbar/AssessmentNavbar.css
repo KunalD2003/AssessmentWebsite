@@ -13,6 +13,7 @@
 .assessment-navbar-two-section{
     width: 100%;
     margin-top: 0.5rem;
+    margin-inline: 0.5rem;
 }
 .camera-title-timer-submit {
     display: flex;
@@ -46,3 +47,16 @@
     margin-bottom: 0rem;
 }
 
+.questions-pagination h6{
+    color: grey;
+}
+.questions-pagination h6 span {
+    color: green;
+}
+.timer-submit div{
+    display: flex;
+    gap: 0.5rem;
+}
+.timer-submit div span {
+    color: red;
+}
