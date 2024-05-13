@@ -38,18 +38,14 @@ function Login() {
         try {
             const userCredential = await signInWithEmailAndPassword(auth, formData.email, formData.password);
             const user = userCredential.user;
-            console.log('User signed in:', user);
-            console.log(user.uid)
             updateProfile(user, {
                 displayName: user.email,
             });
             axios.get(`/api/users/${user.uid}`)
                 .then((response) => {
-                    console.log(response)
                     return response.data
                 })
                 .then((response) => {
-                    console.log(response)
                     dispatch(setLoginStatus(response))
                 })
             // alert('Login successfully')

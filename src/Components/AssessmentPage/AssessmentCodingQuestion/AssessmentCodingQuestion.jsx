@@ -3,7 +3,6 @@ import { AssessmentQuestionHeading, AssessmentProblemStatement, AssessmentInputE
 import './AssessmentCodingQuestion.css'
 
 function AssessmentCodingQuestion({codingQuestion, questionIndex}) {
-  console.log(codingQuestion);
   return (
     <div className='assessment-coding-question'>
       <AssessmentQuestionHeading number={questionIndex}/>

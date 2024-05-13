@@ -8,8 +8,6 @@ function AssessmentPage() {
         return state.getAssessment
     })
     // console.log(AssessmentData1.questionBank[1].questions())
-    
-    console.log(AssessmentData1);
     return (
         <div className='assessment-page'>
             <AssessmentNavbar />

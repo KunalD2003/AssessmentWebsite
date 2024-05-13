@@ -14,7 +14,6 @@ function TermsandCondition() {
     const handleSubmit = () => {
         if (isAgreed) {
             // Handle form submission logic here
-            console.log("Terms and Conditions accepted");
             navigate(`/${assessmentid}/scanfaceid`)
         } else {
             console.log("You must agree to the terms and conditions");

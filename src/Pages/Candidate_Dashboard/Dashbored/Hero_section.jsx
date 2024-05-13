@@ -68,7 +68,6 @@ function Hero_section() {
     console.log(new Date().toLocaleDateString());
     if (temp && mcq) {
       setCodingQuestionLength(temp.length + mcq.length)
-      console.log(codingQuestionLength);
     }
   }, [temp,mcq])
   return (

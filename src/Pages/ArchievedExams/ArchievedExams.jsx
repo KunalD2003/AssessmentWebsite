@@ -5,7 +5,6 @@ import assessmentData from '../../Hooks/assessmentData'
 
 function ArchievedExams() {
   const tempData = assessmentData();
-  console.log(tempData);
   return (
     <div className='archieved-exams'>
       <table className="table table-dark table-striped">

@@ -251,7 +251,6 @@ function AssessmentMCQ() {
     // Fetch MCQ questions from the API
     axios.get("/api/mcqquestions")
       .then((response) => {
-        console.log(response.data.myData);
         setMcqQuestions(response.data.myData); // Update state with fetched questions
       })
       .catch((error) => {
@@ -288,7 +287,6 @@ function AssessmentMCQ() {
   const userid = AssessmentData.userDetails.userId
   const handleSubmit = async () => {
     // Send user answers to the backend
-    console.log("Hello");
     const passData = {
       AssessmentId: assessmentid,
       userId: userid,
@@ -308,7 +306,6 @@ function AssessmentMCQ() {
     });
 
     if (response) {
-      console.log(response);
       dispatch(setQuestionSection(["Programming Test", "coding"]))
     }
     else {

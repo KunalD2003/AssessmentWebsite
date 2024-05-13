@@ -6,7 +6,6 @@ import AssessmentInputExample from '../AssessmentInputField/AssessmentInputExamp
 function AssessmentProblemStatement({question}) {
   const [questionData, setQuestionData] = useState();
   const [count, setCount] = useState(1);
-  console.log(question);
   useEffect(() => {
     // const fetchData = async () => {
     //   try {
@@ -18,7 +17,6 @@ function AssessmentProblemStatement({question}) {
     //   }
     // };
     setQuestionData(question)
-    console.log(questionData);
     // fetchData(); // Call the fetchData function when the component mounts or count changes
   }, [question]); // Depend on count so that the effect is re-run when count changes
 

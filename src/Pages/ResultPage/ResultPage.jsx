@@ -32,14 +32,12 @@ const ResultPage = ({id}) => {
   const userId = useSelector((state) => {
     return state.getAssessment.userDetails.userId
   })
-  console.log(userId);
   // Function to fetch result data from backend
   useEffect(() => {
     // Fetch MCQ questions from the API
     axios.get(`/result/${userId}`)
       .then((response) => {
         setResults(response.data);
-        console.log(response.data); // Update state with fetched questions
       })
       .catch((error) => {
         console.error("Error in result fetch:", error);

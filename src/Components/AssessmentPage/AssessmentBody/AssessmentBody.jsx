@@ -19,11 +19,8 @@ function AssessmentBody() {
   const {assessmentid} = useParams()
   useEffect(() => {
     if (temp) {
-      console.log('Fetched data:', temp);
       setCodingQuestionLength(temp.length)
-      console.log(currentQuestionIndex);
       setcurrentQuestion(temp[currentQuestionIndex])
-      console.log(currentQuestion);
       // dispatch(setCodingQuestion(temp));
     }
   }, [dispatch, temp]);
