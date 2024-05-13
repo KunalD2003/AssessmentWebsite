@@ -1,11 +1,11 @@
 
+
 import React, { useEffect, useState } from 'react';
-import Accordion from 'react-bootstrap/Accordion';
 import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useForm } from 'react-hook-form';
-import { fetchAllQuestions, updateQuestionById, deleteQuestionById } from '../../../Hooks/questionService'; // Import service functions
+import { fetchAllQuestions, updateQuestionById, deleteQuestionById, insertQuestion } from '../../../Hooks/questionService'; // Import service functions
 
 const ShowQuestions = () => {
   const [questions, setQuestions] = useState([]);
@@ -13,6 +13,7 @@ const ShowQuestions = () => {
   const [error, setError] = useState(null);
   const { register, handleSubmit, reset } = useForm(); // React Hook Form with reset functionality
   const [editMode, setEditMode] = useState(null); // State to track the current question in edit mode
+  const [showNewQuestionForm, setShowNewQuestionForm] = useState(false); // State to control new question form visibility
 
   // Toggle edit mode for a specific question
   const handleEdit = (question) => {
@@ -34,7 +35,7 @@ const ShowQuestions = () => {
     }
   };
 
-  // Function to update a question
+  // Function to handle form submission for updating a question
   const handleUpdate = async (data) => {
     try {
       const questionId = data.questionId; // Get the question ID from the form
@@ -60,7 +61,7 @@ const ShowQuestions = () => {
     }
   };
 
-  // Function to delete a question
+  // Function to handle deletion of a question
   const handleDelete = async (questionId) => {
     try {
       await deleteQuestionById(questionId); // Delete the question by ID
@@ -72,25 +73,49 @@ const ShowQuestions = () => {
     }
   };
 
-  useEffect(() => {
-    const fetchQuestions = async () => {
-      try {
-        const data = await fetchAllQuestions(); // Fetch all questions
-        console.log('Fetched data:', data); // Log fetched data
+  // Function to handle form submission for adding a new question
+  const handleNewQuestionSubmit = async (data) => {
+    try {
+      // Prepare the new question data object
+      const newQuestionData = {
+        question: data.questionDescription,
+        options: [data.option1, data.option2, data.option3, data.option4],
+        correctAnswer: data.correctAnswer
+      };
 
-        if (data && Array.isArray(data.myData)) {
-          setQuestions(data.myData); // Store fetched questions
-        } else {
-          throw new Error('Unexpected data format'); // Handle unexpected structure
-        }
-      } catch (err) {
-        console.error('Error while fetching:', err); // Log errors
-        setError(err.message); // Set error state
-      } finally {
-        setLoading(false); // Stop loading whether successful or not
+      // Insert the new question
+      await insertQuestion(newQuestionData);
+
+      // Hide the form after submission
+      setShowNewQuestionForm(false);
+
+      // Refetch questions to update the list
+      fetchQuestions();
+    } catch (error) {
+      console.error('Error inserting question:', error);
+    }
+  };
+
+  // Fetch questions function
+  const fetchQuestions = async () => {
+    try {
+      const data = await fetchAllQuestions(); // Fetch all questions
+      console.log('Fetched data:', data); // Log fetched data
+
+      if (data && Array.isArray(data.myData)) {
+        setQuestions(data.myData); // Store fetched questions
+      } else {
+        throw new Error('Unexpected data format'); // Handle unexpected structure
       }
-    };
+    } catch (err) {
+      console.error('Error while fetching:', err); // Log errors
+      setError(err.message); // Set error state
+    } finally {
+      setLoading(false); // Stop loading whether successful or not
+    }
+  };
 
+  useEffect(() => {
     fetchQuestions(); // Fetch questions on component mount
   }, []);
 
@@ -105,76 +130,91 @@ const ShowQuestions = () => {
   return (
     <div>
       <h2>Questions List</h2>
-      <Accordion defaultActiveKey="0">
-        {questions.map((question, index) => (
-          <Card key={question._id || index}>
+      <Button className="mb-3" onClick={() => setShowNewQuestionForm(true)}>Add New Question</Button>
+      {showNewQuestionForm && (
+        <Card>
+          <Card.Body>
+            <h3>Add New Question</h3>
+            <Form onSubmit={handleSubmit(handleNewQuestionSubmit)}>
+              <Form.Group>
+                <Form.Label>Question Description</Form.Label>
+                <Form.Control
+                  type="text"
+                  {...register('questionDescription')}
+                />
+              </Form.Group>
+              {[1, 2, 3, 4].map((index) => (
+                <Form.Group key={`option-${index}`}>
+                  <Form.Label>Option {index}</Form.Label>
+                  <Form.Control
+                    type="text"
+                    {...register(`option${index}`)}
+                  />
+                </Form.Group>
+              ))}
+              <Form.Group>
+                <Form.Label>Correct Answer</Form.Label>
+                <Form.Control
+                  type="text"
+                  {...register('correctAnswer')}
+                />
+              </Form.Group>
+              <Button type="submit">Add Question</Button>
+            </Form>
+          </Card.Body>
+        </Card>
+      )}
+      {questions.map((question) => (
+        <div key={question._id}>
+          <Card>
             <Card.Header>
-              {question.question}
-              <Button
-                variant="primary"
-                className="float-end"
-                onClick={() => handleEdit(question)} // Toggle edit mode
-              >
-                Edit
-              </Button>
-
-              <Button
-                variant="danger"
-                className="float-end me-2"
-                onClick={() => handleDelete(question._id)} // Delete button
-              >
-                Delete
-              </Button>
+              <div className="d-flex justify-content-between align-items-center">
+                <span>{question.question}</span>
+                <div>
+                  <Button variant="primary" onClick={() => handleEdit(question)}>Edit</Button>
+                  <Button variant="danger" onClick={() => handleDelete(question._id)}>Delete</Button>
+                </div>
+              </div>
             </Card.Header>
-            <Accordion.Collapse eventKey={index.toString()}>
+            {editMode === question._id && (
               <Card.Body>
-                {editMode === question._id ? ( // Only display form when in edit mode
-                  <Form onSubmit={handleSubmit(handleUpdate)}> {/* Form for updating */}
-                    <Form.Group>
-                      <Form.Label>Question Description</Form.Label>
+                <Form onSubmit={handleSubmit(handleUpdate)}>
+                  <Form.Group>
+                    <Form.Label>Question Description</Form.Label>
+                    <Form.Control
+                      type="text"
+                      defaultValue={question.question}
+                      {...register('questionDescription')}
+                    />
+                  </Form.Group>
+                  {question.options.map((option, i) => (
+                    <Form.Group key={`option-${i}`}>
+                      <Form.Label>Option {i + 1}</Form.Label>
                       <Form.Control
                         type="text"
-                        defaultValue={question.question}
-                        {...register('questionDescription')}
+                        defaultValue={option}
+                        {...register(`option${i + 1}`)}
                       />
                     </Form.Group>
-                    {question.options.map((option, i) => (
-                      <Form.Group key={`option-${i}`}>
-                        <Form.Label>Option {i + 1}</Form.Label>
-                        <Form.Control
-                          type="text"
-                          defaultValue={option}
-                          {...register(`option${i + 1}`)}
-                        />
-                      </Form.Group>
-                    ))}
-                    <Form.Group>
-                      <Form.Label>Correct Answer</Form.Label>
-                      <Form.Control
-                        type="text"
-                        defaultValue={question.correctAnswer}
-                        {...register('correctAnswer')}
-                      />
-                    </Form.Group>
-                    <Form.Control type="hidden" value={question._id} {...register('questionId')} />
-                    <Button type="submit">Update</Button> {/* Submit button to update */}
-                  </Form>
-                ) : (
-                  <div>
-                    <p>Question Description: {question.question}</p> {/* Display question description */}
-                    {question.options.map((option, i) => (
-                      <p key={`display-option-${i}`}>Option {i + 1}: {option}</p> 
-                    ))}
-                    <p>Correct Answer: {question.correctAnswer}</p> {/* Display correct answer */}
-                  </div>
-                )}
+                  ))}
+                  <Form.Group>
+                    <Form.Label>Correct Answer</Form.Label>
+                    <Form.Control
+                      type="text"
+                      defaultValue={question.correctAnswer}
+                      {...register('correctAnswer')}
+                    />
+                  </Form.Group>
+                  <Form.Control type="hidden" value={question._id} {...register('questionId')} />
+                  <Button type="submit">Update</Button>
+                </Form>
               </Card.Body>
-            </Accordion.Collapse>
+            )}
           </Card>
-        ))}
-      </Accordion>
+        </div>
+      ))}
     </div>
   );
 };
 
-export default ShowQuestions; // Export the component
+export default ShowQuestions;
