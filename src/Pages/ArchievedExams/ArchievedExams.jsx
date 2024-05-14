@@ -1,12 +1,20 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './ArchievedExams.css'
 import assessmentData from '../../Hooks/assessmentData'
-
+import archievedexamresult from '../../Hooks/archievedExamsData';
 
 function ArchievedExams() {
-  const tempData = assessmentData();
+  const [archievedList, setArchievedList] = useState([])
+  const tempData = archievedexamresult();
+  useEffect(() => {
+    if(tempData){
+      setArchievedList(tempData)
+      console.log(archievedList);
+    }
+  },[tempData])
   return (
     <div className='archieved-exams'>
+      {(archievedList.length ===  0) ? <div>There is no Archieved Exams here</div> : (
       <table className="table table-dark table-striped">
         <thead>
           <tr>
@@ -16,15 +24,16 @@ function ArchievedExams() {
           </tr>
         </thead>
         <tbody className=''>
-          {tempData.map((index) => (
+           {archievedList.map((index) => (
             <tr>
-              <td>{index.assessmentName}</td>
-              <td>{index.status}</td>
+              <td>{index.examname}</td>
+              <td>{index.score}</td>
               <td>{index.date}</td>
             </tr>
           ))}
         </tbody>
       </table>
+      )}
     </div>
   )
 }

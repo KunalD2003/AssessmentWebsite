@@ -53,6 +53,9 @@ function Login() {
                 position: "top-left",
                 // theme: "dark",
             })
+            if(formData.email==="admin@averybit.in"){
+                navigate("/userid/")
+            }
             navigate("/userid/assessments");
 
             // Redirect to a new page or handle successful login

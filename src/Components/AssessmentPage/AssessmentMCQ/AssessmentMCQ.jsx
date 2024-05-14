@@ -242,7 +242,7 @@ function AssessmentMCQ() {
   const [userAnswers, setUserAnswers] = useState({});
   const [submitStatus, setSubmitStatus] = useState("");
   const [answeredCount, setAnsweredCount] = useState(0);
-  const [unansweredCount, setUnansweredCount] = useState(14);
+  const [unansweredCount, setUnansweredCount] = useState();
   const { assessmentid } = useParams()
   const [score, setScore] = useState(0);
   const dispatch = useDispatch()
@@ -252,6 +252,7 @@ function AssessmentMCQ() {
     axios.get("/api/mcqquestions")
       .then((response) => {
         setMcqQuestions(response.data.myData); // Update state with fetched questions
+        setUnansweredCount(response.data.myData.length)
       })
       .catch((error) => {
         console.error("Error fetching MCQ questions:", error);
