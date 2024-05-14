@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // import React, { useState } from "react";
 // import "./ScheduleExam.css";
 // import Form from "react-bootstrap/Form";
@@ -97,6 +98,16 @@ import axios from "axios";
 import "./ScheduleExam.css";
 import { Button } from "react-bootstrap";
 import { toast } from "react-toastify";
+=======
+import React, { useState } from 'react'
+import './ScheduleExam.css'
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+// import { getquestionData } from '../../Hooks/questionData';
+import { nanoid } from '@reduxjs/toolkit';
+import { useForm } from "react-hook-form";
+import axios from 'axios';
+>>>>>>> 5746691 (Coading Question API commit)
 
 function ScheduleExam() {
   const [formData, setFormData] = useState({

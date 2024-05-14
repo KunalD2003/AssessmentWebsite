@@ -1,49 +1,72 @@
-import React, { useEffect, useState } from 'react'
-import './QuestionBank.css'
-import { Navigate, useNavigate } from 'react-router-dom'
-import { deleteSection, getquestionData, setSection } from '../../Hooks/questionData'
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
-import Form from 'react-bootstrap/Form';
-import { useForm } from "react-hook-form"
 
 
+
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import { Button, Modal, Form } from 'react-bootstrap';
+import {
+  useQuestionData,
+  addSection,
+  deleteSection,
+  getSectionByName,
+  fetchMCQQuestionsAndCount,
+  // Import the function
+} from '../../Hooks/questionData';
+
+import './QuestionBank.css';
 
 function QuestionBank() {
-  const [deleteBtnDisplay, setDeleteBtnDisplay] = useState("none")
-  const navigate = useNavigate()
-  const [sectionList, setSectionList] = useState(getquestionData())
+  const [deleteBtnDisplay, setDeleteBtnDisplay] = useState("none");
+  const navigate = useNavigate();
+  const sections = useQuestionData();
+  const [sectionList, setSectionList] = useState(sections);
   const [show, setShow] = useState(false);
 
-  const sections = getquestionData()
   useEffect(() => {
-    setSectionList(sections)
-    console.log(sections);
-  },[sections, sectionList, setSectionList])
+    setSectionList(sections);
+  }, [sections]);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const { register, handleSubmit } = useForm()
+  const { register, handleSubmit } = useForm();
 
-  const onSubmit = async (data) => {
-    setSection(data)
-    handleClose()
-  }
+  const onSubmit = (data) => {
+    addSection(data);
+    setSectionList([...sections]); // Update the state to trigger re-render
+    handleClose();
+  };
+
+  const handleDelete = (sectionID) => {
+    deleteSection(sectionID);
+    setSectionList([...sections]); // Update the state to trigger re-render
+  };
+
+  const fetchSectionData = async (section) => {
+    if (section.sectionType === "MCQ") {
+      // Fetch MCQ questions and their count
+      const { mcqQuestions, totalMCQQuestions } = await fetchMCQQuestionsAndCount();
+      navigate(`/questionbank/showquestions/${section.id}`, { state: { mcqQuestions, totalMCQQuestions }});
+    } else if (section.sectionType === "Coding") {
+      // API call for Coding type data
+      navigate(`/questionbank/CodingProblems/${section.id}`);
+    }
+  };
 
   return (
     <div className='question-bank-page'>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title>Add Section</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={handleSubmit(onSubmit)}>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1" >
+            <Form.Group className="mb-3">
               <Form.Label>Enter Section Title</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="name@example.com"
+                placeholder="Section Title"
                 autoFocus
                 {...register("sectionName")}
               />
@@ -53,47 +76,53 @@ function QuestionBank() {
               <option value="Coding">Coding</option>
               <option value="MCQ">MCQ</option>
             </Form.Select>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1" >
-              <Form.Label>Enter Section Title</Form.Label>
+            <Form.Group className="mb-3">
               <Form.Control
                 type="submit"
-                value={"Add"}
+                value="Add"
               />
             </Form.Group>
           </Form>
         </Modal.Body>
       </Modal>
       <div className='question-bank-cards-container'>
-        {sectionList.map((index) => (
-          <div className="card question-bank-card" key={index.id}>
+        {sectionList.map((section) => (
+          <div className="card question-bank-card" key={section.id}>
             <div className="card-body question-bank-card-body">
-              <h3 className="card-title section-title">{index.sectionName}</h3>
+              <h3 className="card-title section-title">{section.sectionName}</h3>
               <div className='sections-details'>
                 <p>Total Questions: </p>
-                <p>{index.questions.length}</p>
+                <p>{section.sectionType === 'MCQ' ? totalMCQQuestions : section.mcqQuestions.length}</p>
+                {/* <p>{section.mcqQuestions.length}</p> */}
               </div>
               <div className='sections-details'>
                 <p>Section Type: </p>
-                <p>{index.sectionType}</p>
+                <p>{section.sectionType}</p>
               </div>
               <div className='section-card-btn'>
-                <button type="button" className="btn btn-danger" style={{ display: `${deleteBtnDisplay}` }} onClick={async () => {
-                  sections.pop(index.id)
-                  console.log(sections);
-                }}>Delete</button>
-                <button type="button" className="btn btn-primary" onClick={() => navigate(`/questionbank/showquestions/${index.id}`)}>Edit</button>
+                <button
+                  type="button"
+                  className="btn btn-danger"
+                  style={{ display: deleteBtnDisplay }}
+                  onClick={() => handleDelete(section.id)}
+                >
+                  Delete
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={() => fetchSectionData(section)}
+                >
+                  Edit
+                </button>
               </div>
             </div>
           </div>
         ))}
       </div>
-
-      {/* <div className='add-delete-question-bank'>
-        <button type="button" className="btn btn-danger" onClick={() => (deleteBtnDisplay === "none") ? setDeleteBtnDisplay("block") : setDeleteBtnDisplay("none")}>Delete Question bank</button>
-        <Button variant="success" onClick={handleShow}> Add Question bank </Button>
-      </div> */}
+    
     </div>
-  )
+  );
 }
 
-export default QuestionBank
+export default QuestionBank;
