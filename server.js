@@ -133,7 +133,6 @@ app.get("/api/codingProblems/:questionId", async (req, res) => {
   try {
     const { questionId } = req.params;
 
-    // Find the document with the specified questionId
     const question = await Question.findOne(
       { questionId },
       { question: 1, problem: 1, examples: 1 }
@@ -149,7 +148,58 @@ app.get("/api/codingProblems/:questionId", async (req, res) => {
     res.status(500).send("Error fetching question");
   }
 });
+app.put("/api/codingProblems/:questionId", async (req, res) => {
+  try {
+      const { questionId } = req.params;
+      const { question, problem, examples } = req.body;
 
+      if (!question || !problem || !examples) {
+          return res.status(400).send("Invalid request body");
+      }
+
+      const updatedQuestion = await Question.findOneAndUpdate(
+          { questionId: questionId }, 
+          { question, problem, examples },
+          { new: true } 
+      );
+
+      if (!updatedQuestion) {
+          return res.status(404).send("Question not found");
+      }
+
+      res.status(200).send("Question updated successfully");
+      console.log("Question updated successfully");
+      console.log(updatedQuestion);
+  } catch (error) {
+      console.error("Error updating question:", error);
+      res.status(500).send("Error updating question");
+  }
+});
+
+// DELETE endpoint to delete a question by questionId
+app.delete("/api/codingProblems/:questionId", async (req, res) => {
+  try {
+      const { questionId } = req.params;
+
+      // Check if questionId is valid
+      if (!questionId) {
+          return res.status(400).send("Invalid questionId");
+      }
+
+      const deletedQuestion = await Question.findOneAndDelete({ questionId });
+
+      if (!deletedQuestion) {
+          return res.status(404).send("Question not found");
+      }
+
+      res.status(200).send("Question deleted successfully");
+      console.log("Question deleted successfully");
+      console.log(deletedQuestion);
+  } catch (error) {
+      console.error("Error deleting question:", error);
+      res.status(500).send("Error deleting question");
+  }
+});
 
 //compiler API
 
