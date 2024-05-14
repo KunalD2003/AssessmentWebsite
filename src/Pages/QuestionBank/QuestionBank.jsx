@@ -1,6 +1,3 @@
-
-
-
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
@@ -10,10 +7,7 @@ import {
   addSection,
   deleteSection,
   getSectionByName,
-  fetchMCQQuestionsAndCount,
-  // Import the function
 } from '../../Hooks/questionData';
-
 import './QuestionBank.css';
 
 function QuestionBank() {
@@ -22,10 +16,13 @@ function QuestionBank() {
   const sections = useQuestionData();
   const [sectionList, setSectionList] = useState(sections);
   const [show, setShow] = useState(false);
+  const [totalMCQQuestions, setTotalMCQQuestions] = useState(0); // State to hold total MCQ questions count
 
   useEffect(() => {
     setSectionList(sections);
   }, [sections]);
+
+
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -43,13 +40,10 @@ function QuestionBank() {
     setSectionList([...sections]); // Update the state to trigger re-render
   };
 
-  const fetchSectionData = async (section) => {
+  const fetchSectionData = (section) => {
     if (section.sectionType === "MCQ") {
-      // Fetch MCQ questions and their count
-      const { mcqQuestions, totalMCQQuestions } = await fetchMCQQuestionsAndCount();
-      navigate(`/questionbank/showquestions/${section.id}`, { state: { mcqQuestions, totalMCQQuestions }});
+      navigate(`/questionbank/showquestions/${section.id}`);
     } else if (section.sectionType === "Coding") {
-      // API call for Coding type data
       navigate(`/questionbank/CodingProblems/${section.id}`);
     }
   };
@@ -92,8 +86,7 @@ function QuestionBank() {
               <h3 className="card-title section-title">{section.sectionName}</h3>
               <div className='sections-details'>
                 <p>Total Questions: </p>
-                <p>{section.sectionType === 'MCQ' ? totalMCQQuestions : section.mcqQuestions.length}</p>
-                {/* <p>{section.mcqQuestions.length}</p> */}
+                <p>{section.questions.length}</p>
               </div>
               <div className='sections-details'>
                 <p>Section Type: </p>
@@ -120,7 +113,6 @@ function QuestionBank() {
           </div>
         ))}
       </div>
-    
     </div>
   );
 }

@@ -326,19 +326,9 @@ export function editQuestion(sectionID, questionID, questionDescription) {
   }
 }
 
-// questionData.js
 
-export async function fetchMCQQuestionsAndCount() {
-  try {
-    const response = await axios.get(`${BASE_URL}/api/mcqquestions`);
-    const mcqQuestions = response.data;
-    const totalMCQQuestions = mcqQuestions.length; // Calculate the total number of MCQ questions
-    return { mcqQuestions, totalMCQQuestions }; // Return both the questions and the total count
-  } catch (error) {
-    console.error("Error fetching MCQ questions:", error);
-    return { mcqQuestions: [], totalMCQQuestions: 0 }; // Return empty array and 0 count on error
-  }
-}
+
+
 
 
 
