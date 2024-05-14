@@ -25,6 +25,20 @@ router.post('/', async (req, res) => {
     }
 });
 
+// Get results of all users
+router.get('/all', async (req, res) => {
+    try {
+        const allScores = await UserScore.find();
+
+        if (!allScores || allScores.length === 0) {
+            return res.status(404).json({ message: 'No user scores found' });
+        }
+
+        res.status(200).json(allScores);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
 // Get user's result by userId
 router.get('/:userId', async (req, res) => {
     try {
@@ -40,6 +54,7 @@ router.get('/:userId', async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 });
+
 
 router.put('/:userId', async (req, res) => {
     try {
