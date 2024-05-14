@@ -148,6 +148,25 @@ app.get("/api/codingProblems/:questionId", async (req, res) => {
     res.status(500).send("Error fetching question");
   }
 });
+
+// DELETE endpoint to delete a question based on questionId
+app.delete("/api/codingProblems/:questionId", async (req, res) => {
+  try {
+    const { questionId } = req.params;
+
+    // Find and delete the document with the specified questionId
+    const deletedQuestion = await Question.findOneAndDelete({ questionId });
+
+    if (!deletedQuestion) {
+      return res.status(404).send("Question not found");
+    }
+
+    res.json(deletedQuestion); // Return the deleted question document
+  } catch (error) {
+    console.error("Error deleting question:", error);
+    res.status(500).send("Error deleting question");
+  }
+});
 app.put("/api/codingProblems/:questionId", async (req, res) => {
   try {
       const { questionId } = req.params;
