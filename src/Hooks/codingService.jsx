@@ -52,7 +52,7 @@
 
 import axios from 'axios';
 
-// Base URL for your backend API
+
 const BASE_URL = 'http://localhost:3000';
 
 // Fetch all coding problems
