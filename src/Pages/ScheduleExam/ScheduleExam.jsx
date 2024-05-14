@@ -97,7 +97,6 @@ import React, { useState } from "react";
 import "./ScheduleExam.css";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import { getquestionData } from "../../Hooks/questionData";
 import { nanoid } from "@reduxjs/toolkit";
 import { useForm } from "react-hook-form";
 import axios from "axios";
