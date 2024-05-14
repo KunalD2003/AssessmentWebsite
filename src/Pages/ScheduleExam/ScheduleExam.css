@@ -49,7 +49,7 @@
 .schedule-add-section-btn{
     display: flex;
     width: 100%;
-    justify-content: end;
+    justify-content: center;
     margin-top: 2rem;
     gap: 0.5rem;
 }
