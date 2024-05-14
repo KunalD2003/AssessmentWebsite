@@ -1,3 +1,97 @@
+// import React, { useState } from "react";
+// import "./ScheduleExam.css";
+// import Form from "react-bootstrap/Form";
+// import Button from "react-bootstrap/Button";
+// import { getquestionData } from "../../Hooks/questionData";
+// import { nanoid } from "@reduxjs/toolkit";
+// import { useForm } from "react-hook-form";
+// import axios from "axios";
+
+// function ScheduleExam() {
+//   const { register, handleSubmit } = useForm();
+//   const [indexCount, setIndexCount] = useState(0);
+//   const [newFormData, setFormData] = useState({});
+//   const [sectionList, setSectionList] = useState([
+//     {
+//       id: nanoid(),
+//       index: indexCount,
+//     },
+//   ]);
+
+//   const section = getquestionData();
+//   const onSubmit = async (data) => {
+//     newFormData.AssessmentTitle = data.AssessmentTitle;
+//     newFormData.AssessmentStartDate = data.AssessmentStartDate;
+//     newFormData.AssessmentEndDate = data.AssessmentEndDate;
+//     newFormData.Sections = [{}, {}];
+//     console.log(newFormData);
+
+//     try {
+//       const response = await axios({
+//         method: "post",
+//         url: "/api/assessments",
+//         data: newFormData,
+//         headers: { "Content-Type": "multipart/form-data" },
+//       });
+//       console.log(response.data);
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   };
+
+//   return (
+//     <div className="schedule-exam">
+//       <div>
+//         <h1>Schedule Assessment</h1>
+//       </div>
+//       <Form className="schedule-form" onSubmit={handleSubmit(onSubmit)}>
+//         <h3>1. Enter Assessment Details</h3>
+//         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+//           <Form.Label>Enter Assessment Title:</Form.Label>
+//           <Form.Control
+//             type="text"
+//             placeholder="Enter Assessment Title"
+//             {...register("AssessmentTitle")}
+//           />
+//         </Form.Group>
+//         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+//           <Form.Label>Assessment Start Date:</Form.Label>
+//           <Form.Control type="date" {...register("AssessmentStartDate")} />
+//         </Form.Group>
+//         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+//           <Form.Label>Assessment Start Time:</Form.Label>
+//           <Form.Control type="time" {...register("AssessmentStartTime")} />
+//         </Form.Group>
+//         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+//           <Form.Label>Assessment End Date:</Form.Label>
+//           <Form.Control type="date" {...register("AssessmentEndDate")} />
+//         </Form.Group>
+//         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+//           <Form.Label>Assessment End Time:</Form.Label>
+//           <Form.Control type="time" {...register("AssessmentEndTime")} />
+//         </Form.Group>
+
+//         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+//           <Form.Label>Assessment Duration (in min.) :</Form.Label>
+//           <Form.Control type="number" {...register("AssessmentDuration")} />
+//         </Form.Group>
+
+//         <div className="schedule-add-section-btn">
+//           {/* ...............Button crete........... */}
+//           <Form.Control
+//             variant="secondary"
+//             type="submit"
+//             value={"Create Assessment"}
+//             className="create-assessment-btn"
+//           />
+//         </div>
+//       </Form>
+//     </div>
+//   );
+// }
+
+// export default ScheduleExam;
+
 import React, { useState } from "react";
 import "./ScheduleExam.css";
 import Form from "react-bootstrap/Form";
@@ -7,6 +101,16 @@ import { nanoid } from "@reduxjs/toolkit";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { toast } from "react-toastify";
+=======
+import React, { useState } from 'react'
+import './ScheduleExam.css'
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+// import { getquestionData } from '../../Hooks/questionData';
+import { nanoid } from '@reduxjs/toolkit';
+import { useForm } from "react-hook-form";
+import axios from 'axios';
+>>>>>>> 5746691 (Coading Question API commit)
 
 function ScheduleExam() {
   const [formData, setFormData] = useState({
