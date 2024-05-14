@@ -53,7 +53,7 @@ function UserData() {
       <div className="userDataContainer" >
         <Container>
           <Row>
-            <Col lg={3}>
+            <Col lg={4}>
               <h6
                 style={{
                   fontWeight: 800,
@@ -64,7 +64,7 @@ function UserData() {
                 Name
               </h6>
             </Col>
-            <Col lg={3}>
+            <Col lg={4}>
               <h6
                 style={{
                   fontWeight: 800,
@@ -80,7 +80,7 @@ function UserData() {
               return (
                 <Col lg={12} key={currentElement.id}>
                   <div className="dataContainer">
-                    <Col lg={3}>
+                    <Col lg={4}>
                       <h5
                         style={{
                           textAlign: "center",
@@ -89,16 +89,14 @@ function UserData() {
                         {currentElement.name}
                       </h5>
                     </Col>
-                    <Col lg={3}>
-                      <h5 style={{}}>{currentElement.email}</h5>
+                    <Col lg={4}>
+                      <h5 style={{textAlign: "center"}}>{currentElement.email}</h5>
                     </Col>
 
-                    <Col lg={3}>
+                    <Col lg={4}  className="user-data-column-btn">
                       <div>
-                        <Button variant="success" onClick={() => handleDelete(currentElement.userId)}>Delete</Button>
+                        <Button variant="danger" onClick={() => handleDelete(currentElement.userId)}>Delete</Button>
                       </div>
-                    </Col>
-                    <Col lg={3}>
                       <div>
                         {/* Pass currentElement as parameter to handleShow */}
                         <Button
