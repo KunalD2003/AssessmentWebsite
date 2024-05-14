@@ -3,7 +3,7 @@
 import React from 'react';
 import './Sidebar.css'; // Ensure this CSS file has the correct styles
 import 'bootstrap/dist/css/bootstrap.min.css';
-import logo from '../../assets/img/logo.png';
+import logo from '../../assets/img/Alogo.png';
 import { Link } from 'react-router-dom';
 const Sidebar = () => {
   return (
@@ -13,7 +13,6 @@ const Sidebar = () => {
         <div className="d-flex justify-content-center"> {/* Flexbox for horizontal centering */}
           <img src={logo} alt="Company Logo" className="logo" /> {/* Adjust width as needed */}
         </div>
-        <hr />
 
         <ul className="nav nav-pills flex-column mb-auto justify-content-center align-items-center">
           <li className="nav-item">
@@ -28,6 +27,9 @@ const Sidebar = () => {
           </li>
           <li className="nav-item">
             <Link to="/questionbank" className="nav-link text-white"><h4>Question bank</h4></Link>
+          </li>
+          <li className="nav-item">
+            <Link to="/supportDesk" className="nav-link text-white"><h4>Support Desk</h4></Link>
           </li>
         </ul>
 

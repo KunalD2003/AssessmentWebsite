@@ -50,7 +50,7 @@ function UserData() {
 
   return (
     <div>
-      <div className="userDataContainer" style={{ overflow: "scroll" }}>
+      <div className="userDataContainer" >
         <Container>
           <Row>
             <Col lg={3}>
@@ -154,8 +154,8 @@ function UserData() {
                 <tr>
                   <th>No.</th>
                   <th>Assesment Name</th>
-                  <th>Attempted</th>
-                  <th>Status</th>
+                  <th>Date</th>
+                  <th>Score</th>
                 </tr>
               </thead>
               <tbody>
