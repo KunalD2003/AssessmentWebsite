@@ -170,7 +170,7 @@ const ShowQuestions = () => {
             <Card.Header>
               <div className="d-flex justify-content-between align-items-center">
                 <span>{question.question}</span>
-                <div>
+                <div style={{display: "flex", gap: "0.5rem"}}>
                   <Button variant="primary" onClick={() => handleEdit(question)}>Edit</Button>
                   <Button variant="danger" onClick={() => handleDelete(question._id)}>Delete</Button>
                 </div>
@@ -188,7 +188,7 @@ const ShowQuestions = () => {
                     />
                   </Form.Group>
                   {question.options.map((option, i) => (
-                    <Form.Group key={`option-${i}`}>
+                    <Form.Group key={`option-${i}`} style={{marginTop: "0.5rem"}}>
                       <Form.Label>Option {i + 1}</Form.Label>
                       <Form.Control
                         type="text"
@@ -197,8 +197,8 @@ const ShowQuestions = () => {
                       />
                     </Form.Group>
                   ))}
-                  <Form.Group>
-                    <Form.Label>Correct Answer</Form.Label>
+                  <Form.Group style={{marginTop: "0.5rem"}}>
+                    <Form.Label style={{color: "green"}}>Correct Answer</Form.Label>
                     <Form.Control
                       type="text"
                       defaultValue={question.correctAnswer}
@@ -206,7 +206,7 @@ const ShowQuestions = () => {
                     />
                   </Form.Group>
                   <Form.Control type="hidden" value={question._id} {...register('questionId')} />
-                  <Button type="submit">Update</Button>
+                  <Button type="submit" style={{marginTop: "1rem"}}>Update</Button>
                 </Form>
               </Card.Body>
             )}

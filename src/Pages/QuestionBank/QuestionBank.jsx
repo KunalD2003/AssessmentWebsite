@@ -88,10 +88,10 @@ function QuestionBank() {
         ))}
       </div>
 
-      <div className='add-delete-question-bank'>
+      {/* <div className='add-delete-question-bank'>
         <button type="button" className="btn btn-danger" onClick={() => (deleteBtnDisplay === "none") ? setDeleteBtnDisplay("block") : setDeleteBtnDisplay("none")}>Delete Question bank</button>
         <Button variant="success" onClick={handleShow}> Add Question bank </Button>
-      </div>
+      </div> */}
     </div>
   )
 }
