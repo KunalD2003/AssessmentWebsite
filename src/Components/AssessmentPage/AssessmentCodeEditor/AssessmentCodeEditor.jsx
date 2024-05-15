@@ -1,57 +1,53 @@
 import React, { useRef, useState } from 'react';
 import { Editor } from '@monaco-editor/react';
-import axios from 'axios'; // Import Axios for making HTTP requests
+import axios from 'axios';
 import './AssessmentCodeEditor.css';
 
 function AssessmentCodeEditor() {
   const [output, setOutput] = useState('');
   const [inputValue, setInputValue] = useState('');
-  const [expectedOutput, setExpectedOutput] = useState('4'); // Set the expected output here
+  const [expectedOutputs, setExpectedOutputs] = useState(['4', '-1']); // Added more expected outputs
   const editorRef = useRef(null);
 
   function handleEditorDidMount(editor, monaco) {
     editorRef.current = editor;
   }
 
-  // Function to fetch output from API
   async function fetchOutput() {
     try {
-      const code = editorRef.current?.getValue(); // Get the user's code from the editor
-      const language = document.getElementById('language-selector').value; // Get the selected language
+      const code = editorRef.current?.getValue();
+      const language = document.getElementById('language-selector').value;
       console.log(code);
       const response = await axios.post('http://localhost:3000/compilex', {
         code: code,
-        input: inputValue, // Use inputValue for the input data
+        input: inputValue,
         lang: language
       });
-      console.log(response.data); // Output received from the API
-      const result = response.data.output.replace(/[\r\n]+/g, ''); // Process the output
-      setOutput(result); // Update state with the output
-      return result; // Return the result for comparison
+      console.log(response.data);
+      const result = response.data.output.replace(/[\r\n]+/g, '');
+      setOutput(result);
+      return result;
     } catch (error) {
       console.error('Error:', error);
-      // Handle errors
     }
   }
 
-  function compareOutputs(actualOutput, expectedOutput) {
-    // Remove leading and trailing whitespace from both outputs
+  function compareOutputs(actualOutput, expectedOutputs) {
+    // Remove leading and trailing whitespace from the actual output
     const cleanedActual = actualOutput.trim();
-    const cleanedExpected = expectedOutput.trim();
 
-    // Compare the cleaned outputs
-    if (cleanedActual === cleanedExpected) {
-        console.log('Outputs match!'); // Outputs match
+    // Check if the actual output matches any expected output
+    const matchedOutput = expectedOutputs.find(expected => expected.trim() === cleanedActual);
+    if (matchedOutput) {
+      console.log('Output matched:', matchedOutput);
     } else {
-        console.log('Outputs do not match!'); // Outputs don't match
+      console.log('Output did not match:', actualOutput);
     }
   }
 
   async function handleSubmit() {
-
-    //add here code when output array is check with actual output 
-    const actualOutput = await fetchOutput(); // Fetch the actual output
-    compareOutputs(actualOutput, expectedOutput); // Compare the outputs
+    const actualOutput = await fetchOutput();
+    compareOutputs(actualOutput, expectedOutputs);
   }
 
   return (
