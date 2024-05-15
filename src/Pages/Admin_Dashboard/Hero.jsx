@@ -31,7 +31,7 @@ function Hero() {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/api/assessments");
+      const response = await axios.get("https://assessmentwebsite-6.onrender.com/api/assessments");
       setAssessmentData(response.data);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -74,7 +74,7 @@ function Hero() {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:3000/api/assessments/${id}`);
+      await axios.delete(`https://assessmentwebsite-6.onrender.com/api/assessments/${id}`);
       alert("Assessment Deleted");
       fetchData();
     } catch (error) {
@@ -85,7 +85,7 @@ function Hero() {
 
   const handleUpdate = async () => {
     try {
-      await axios.put(`http://localhost:3000/api/assessments/${formData._id}`, formData);
+      await axios.put(`https://assessmentwebsite-6.onrender.com/api/assessments/${formData._id}`, formData);
       alert("Assessment Updated");
       handleClose();
       fetchData();

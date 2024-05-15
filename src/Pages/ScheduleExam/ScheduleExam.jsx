@@ -23,7 +23,7 @@ function ScheduleExam() {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/assessments",
+        "https://assessmentwebsite-6.onrender.com/api/assessments",
         formData
       );
       alert('Successfully Scheduled Exam')

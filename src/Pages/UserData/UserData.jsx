@@ -19,7 +19,7 @@ function UserData() {
   // Function to fetch user data
   const fetchData = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/api/users");
+      const response = await axios.get("https://assessmentwebsite-6.onrender.com/api/users");
       setUserData(response.data);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -42,12 +42,12 @@ function UserData() {
   useEffect(() => {
     fetchData();
   }, []);
-  
+
   //delete API integration function
   // Function to delete a user
   const handleDelete = async (userId) => {
     try {
-      await axios.delete(`http://localhost:3000/api/users/${userId}`);
+      await axios.delete(`https://assessmentwebsite-6.onrender.com/api/users/${userId}`);
       fetchData(); // Fetch data again after deletion
       alert('User Data Deleted');
     } catch (error) {
