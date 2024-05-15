@@ -48,6 +48,8 @@ function AssessmentCodeEditor() {
   }
 
   async function handleSubmit() {
+
+    //add here code when output array is check with actual output 
     const actualOutput = await fetchOutput(); // Fetch the actual output
     compareOutputs(actualOutput, expectedOutput); // Compare the outputs
   }
