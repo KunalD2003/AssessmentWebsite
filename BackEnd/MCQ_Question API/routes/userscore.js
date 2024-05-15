@@ -67,7 +67,7 @@ router.put('/:userId/:assessmentId', async (req, res) => {
     }
 
     try {
-        const existingUserScore = await UserScore.findOne({ userId });
+        const existingUserScore = await UserScore.findOne({ userId, AssessmentId: assessmentId });
 
         if (!existingUserScore) {
             return res.status(404).json({ message: 'User score not found' });
