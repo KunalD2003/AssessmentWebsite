@@ -1,11 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./Hero.css";
-import { Button, Modal } from "react-bootstrap";
+import { Button, Modal, Table } from "react-bootstrap";
 
 function Hero() {
-  const [assesmentdata, setAssesmentData] = useState([]);
+  const [resultShow, setResultShow] = useState(false);
+  const [resultHistory, setResultHistory] = useState([]);
+
+  const handleResultClose = () => setResultShow(false);
+
+  const handleResultShow = (assessmentId) => {
+    setResultShow(true);
+    fetchResultHistory(assessmentId);
+  };
+
+  const [assessmentData, setAssessmentData] = useState([]);
   const [show, setShow] = useState(false);
   const [formData, setFormData] = useState({
     _id: "",
@@ -21,10 +30,19 @@ function Hero() {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get("/api/assessments");
-      setAssesmentData(response.data);
+      const response = await axios.get("http://localhost:3000/api/assessments");
+      setAssessmentData(response.data);
     } catch (error) {
       console.error("Error fetching data:", error);
+    }
+  };
+
+  const fetchResultHistory = async (assessmentId) => {
+    try {
+      const response = await axios.get("http://localhost:3001/archievedexamresult");
+      setResultHistory(response.data.filter((result) => result.assessmentid === assessmentId));
+    } catch (error) {
+      console.error("Error fetching exam history:", error);
     }
   };
 
@@ -62,7 +80,7 @@ function Hero() {
 
   return (
     <div className="herosection">
-      {assesmentdata.map((index) => (
+      {assessmentData.map((index) => (
         <div className="card user-dashboard-card" key={index._id}>
           <div
             className="assessment-role-title"
@@ -77,7 +95,7 @@ function Hero() {
                 <p>Date:</p>
               </div>
               <p>
-                {index.AssessmentDate}{" "}
+                {index.AssessmentDate}
                 <span className="start-assessment-time"></span>
               </p>
             </div>
@@ -100,7 +118,7 @@ function Hero() {
               </p>
             </div>
             <div className="start-assesment-btn">
-              <button type="button" className="btn btn-info">
+              <button type="button" className="btn btn-info" onClick={() => handleResultShow(index._id)}>
                 View Results
               </button>
               <button
@@ -237,6 +255,41 @@ function Hero() {
           Close
         </Button>
       </Modal>
+
+
+      {/* ...............Modal for results */}
+
+      <Modal show={resultShow} onHide={handleResultClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Users Result</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Table striped bordered hover>
+            <thead>
+              <tr>
+                <th>User Name</th>
+                <th>Date</th>
+                <th>Score</th>
+              </tr>
+            </thead>
+            <tbody>
+              {resultHistory.map((result) => (
+                <tr key={result._id}>
+                  <td>{result.userid}</td>
+                  <td>{result.date}</td>
+                  <td>{result.score}</td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleResultClose}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
     </div>
   );
 }
