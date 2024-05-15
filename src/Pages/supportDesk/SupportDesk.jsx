@@ -9,7 +9,7 @@ export function SupportDesk() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:3001/contacts");
+        const response = await axios.get("https://assessmentwebsite-4-3u7s.onrender.com/contacts");
         console.log(response)
         setSupportData(response.data);
       } catch (error) {

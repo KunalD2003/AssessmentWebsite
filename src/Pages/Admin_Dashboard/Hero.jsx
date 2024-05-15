@@ -40,7 +40,7 @@ function Hero() {
 
   const fetchResultHistory = async (assessmentId) => {
     try {
-      const response = await axios.get("http://localhost:3001/archievedexamresult");
+      const response = await axios.get("https://assessmentwebsite-4-3u7s.onrender.com/archievedexamresult");
       setResultHistory(response.data.filter((result) => result.assessmentid === assessmentId));
       const userIds = response.data.map((result) => result.userid);
       const userNamesData = await fetchUserNames(userIds);

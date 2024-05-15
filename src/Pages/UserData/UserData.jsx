@@ -29,7 +29,7 @@ function UserData() {
   // Function to fetch exam history for a specific user
   const fetchExamHistory = async (userId) => {
     try {
-      const response = await axios.get(`http://localhost:3001/archievedexamresult`);
+      const response = await axios.get(`https://assessmentwebsite-4-3u7s.onrender.com/archievedexamresult`);
       // Filter exam history based on user ID
       setExamHistory(response.data.filter((exam) => exam.userid === userId));
     } catch (error) {
