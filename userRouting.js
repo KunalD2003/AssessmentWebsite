@@ -100,6 +100,27 @@ router.get('/users/:userId', async (req, res) => {
         res.status(500).json({ message: 'Internal server error' });
     }
 });
+
+ 
+  router.delete('/users/:userId', async (req, res) => {
+    try {
+        const { userId } = req.params;
+  
+        // Find the user by userId and delete it
+        const deletedUser = await User.findOneAndDelete({ userId });
+  
+        if (!deletedUser) {
+            console.log("User not found")
+            return res.status(404).json({ message: 'User not found' });
+        }
+  
+        res.status(200).json({ message: 'User deleted successfully', deletedUser });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
+
   
 // Export the router
 module.exports = router;
