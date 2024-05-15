@@ -18,7 +18,6 @@ const QuestionBank = [
 ]
 const initialState = {
     questionBank: QuestionBank,
-    codingQuestions: null,
     currentPage: `${QuestionBank[0].sectionName}`,
     currentPageType: `${QuestionBank[0].sectionType}`,
     authStatus: false,
@@ -54,10 +53,15 @@ export const assessmentData = createSlice({
         },
         disableWebcam: (state) => {
             state.webcamStatus = false
+        },
+        setCode: (state, action) => {
+            console.log(action.payload.code);
+            state.questionBank[action.payload.questionIndex].code = action.payload.code
+            console.log(state.questionBank);
         }
     }
 })
 
-export const { setQuestionSection, setCodingQuestion, setLoginStatus, setLogoutStatus, disableWebcam} = assessmentData.actions
+export const { setQuestionSection, setCodingQuestion, setLoginStatus, setLogoutStatus, disableWebcam, setCode} = assessmentData.actions
 
 export default assessmentData.reducer

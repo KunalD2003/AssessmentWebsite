@@ -7,7 +7,7 @@ function AssessmentCodingQuestion({codingQuestion, questionIndex}) {
     <div className='assessment-coding-question'>
       <AssessmentQuestionHeading number={questionIndex}/>
       <div className='coding-question-description'>
-        <AssessmentProblemStatement question={codingQuestion}/>
+        <AssessmentProblemStatement question={codingQuestion} questionIndex={questionIndex}/>
         <div>
          
           {/* <AssessmentInputExample isInput={false} /> */}

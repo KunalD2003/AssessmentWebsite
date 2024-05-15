@@ -21,6 +21,7 @@
     padding-right: 1rem;
     padding-bottom: 0.3rem;
     border-bottom: 1px solid rgb(214, 214, 214);
+    gap: 0.5rem;
 }
 .compiler-div{
     height: 15rem;

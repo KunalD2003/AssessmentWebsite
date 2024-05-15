@@ -235,6 +235,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { AssessmentQuestionHeading, AssessmentMCQ_Options } from '../../index';
 import { setQuestionSection } from '../../../Store/assessmentData';
 import { useParams } from 'react-router';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 
 function AssessmentMCQ() {
   const [mcqQuestions, setMcqQuestions] = useState([]);
@@ -246,6 +248,8 @@ function AssessmentMCQ() {
   const { assessmentid } = useParams()
   const [score, setScore] = useState(0);
   const dispatch = useDispatch()
+  const [show, setShow] = useState(false);
+  
 
   useEffect(() => {
     // Fetch MCQ questions from the API
@@ -286,7 +290,7 @@ function AssessmentMCQ() {
     return state.getAssessment;
   });
   const userid = AssessmentData.userDetails.userId
-  const handleSubmit = async () => {
+  const handleConfirm = async () => {
     // Send user answers to the backend
     const passData = {
       AssessmentId: assessmentid,
@@ -330,9 +334,25 @@ function AssessmentMCQ() {
       return previousIndex >= 0 ? previousIndex : prevIndex;
     });
   };
+  const handleSubmit = () => setShow(true);
+  const handleClose = () => setShow(false);
 
   return (
     <div className='assessment-mcq'>
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Submit Logical Aptitude Section</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Do you want to Submit This Section ?</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Cancel
+          </Button>
+          <Button variant="success" onClick={handleConfirm}>
+            Submit
+          </Button>
+        </Modal.Footer>
+      </Modal>
       <AssessmentQuestionHeading number={currentQuestionIndex} />
       {mcqQuestions.length > 0 && (
         <div>
