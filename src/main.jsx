@@ -14,10 +14,8 @@ import Admin from './Pages/Admin/Admin.jsx'
 
 // import { SupportDesk } from './Pages/supportDesk/SupportDesk.jsx'
 import CodingProblems from './Pages/QuestionBank/CodingProblems/CodingProblems.jsx'
+import { SupportDesk } from './Pages/supportDesk/SupportDesk.jsx'
 
-
-// import { SupportDesk } from './Pages/supportDesk/SupportDesk.jsx'
-import CodingProblems from './Pages/QuestionBank/CodingProblems/CodingProblems.jsx'
 
 
 const router = createBrowserRouter(

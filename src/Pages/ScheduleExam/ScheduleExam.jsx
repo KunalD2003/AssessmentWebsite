@@ -93,28 +93,13 @@
 
 // export default ScheduleExam;
 
-<<<<<<< HEAD
 
-import { toast } from "react-toastify";
-import React, { useState } from 'react'
-import './ScheduleExam.css'
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-
-import { nanoid } from '@reduxjs/toolkit';
-import { useForm } from "react-hook-form";
-import axios from 'axios';
-
-=======
+import './ScheduleExam.css';
 import React, { useState } from "react";
-import "./ScheduleExam.css";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import { nanoid } from "@reduxjs/toolkit";
-import { useForm } from "react-hook-form";
 import axios from "axios";
 import { toast } from "react-toastify";
->>>>>>> 8429edd54c8bee56c1eedb8e44aa61fd71d2394a
 
 function ScheduleExam() {
   const [formData, setFormData] = useState({
