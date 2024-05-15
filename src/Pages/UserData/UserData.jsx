@@ -64,24 +64,50 @@ function UserData() {
       <div className="userDataContainer">
         <Container>
           <Row>
-            {/* Map through user data and render each user */}
+            <Col lg={3}>
+              <h6
+                style={{
+                  fontWeight: 800,
+                  textAlign: "center",
+                  paddingTop: "5%",
+                }}
+              >
+                Name
+              </h6>
+            </Col>
+            <Col lg={3}>
+              <h6
+                style={{
+                  fontWeight: 800,
+                  textAlign: "center",
+                  paddingTop: "5%",
+                }}
+              >
+                Email
+              </h6>
+            </Col>
+
             {userData.map((currentElement) => {
               return (
                 <Col lg={12} key={currentElement.userId}>
                   <div className="dataContainer">
                     <Col lg={3}>
-                      <h5 style={{ textAlign: "center" }}>{currentElement.name}</h5>
+                      <h5
+                        style={{
+                          textAlign: "center",
+                        }}
+                      >
+                        {currentElement.name}
+                      </h5>
                     </Col>
                     <Col lg={3}>
-                      <h5>{currentElement.email}</h5>
+                      <h5 style={{}}>{currentElement.email}</h5>
                     </Col>
+
                     <Col lg={3}>
                       <div>
-                        {/* Button to delete the user */}
                         <Button variant="success" onClick={() => handleDelete(currentElement.userId)}>Delete</Button>
                       </div>
-                    </Col>
-                    <Col lg={3}>
                       <div>
                         {/* Button to explore user details */}
                         <Button variant="success" onClick={() => handleShow(currentElement)}>Explore</Button>

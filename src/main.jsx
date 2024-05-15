@@ -10,7 +10,15 @@ import ScheduleExam from './Pages/ScheduleExam/ScheduleExam.jsx'
 import QuestionBank from './Pages/QuestionBank/QuestionBank.jsx'
 import ShowQuestions from './Pages/QuestionBank/ShowQuestions/ShowQuestions.jsx'
 import Admin from './Pages/Admin/Admin.jsx'
-import { SupportDesk } from './Pages/supportDesk/SupportDesk.jsx'
+
+
+// import { SupportDesk } from './Pages/supportDesk/SupportDesk.jsx'
+import CodingProblems from './Pages/QuestionBank/CodingProblems/CodingProblems.jsx'
+
+
+// import { SupportDesk } from './Pages/supportDesk/SupportDesk.jsx'
+import CodingProblems from './Pages/QuestionBank/CodingProblems/CodingProblems.jsx'
+
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -20,6 +28,7 @@ const router = createBrowserRouter(
       <Route path='/scheduleexam' element={<ScheduleExam />} />
       <Route path='/questionbank' element={<QuestionBank />} />
       <Route path='/questionbank/showquestions/:sectionID' element={<ShowQuestions />} />
+      <Route path='/questionbank/CodingProblems/:sectionID' element={<CodingProblems/>} />
       <Route path='/admin' element={<Admin />} />
       <Route path='/supportDesk' element={<SupportDesk />} />
 

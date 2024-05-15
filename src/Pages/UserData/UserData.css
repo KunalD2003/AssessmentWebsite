@@ -12,7 +12,7 @@
 .dataContainer{
     display: flex;
     flex-direction: row;
-    margin: 1%;
+    margin-block: 1%;
 }
 .buttonAdd{
     position: absolute;
@@ -25,4 +25,9 @@
     border: 2px solid;
     border-color: gray;
     margin-top: 3%;
+}
+.user-data-column-btn{
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
 }
