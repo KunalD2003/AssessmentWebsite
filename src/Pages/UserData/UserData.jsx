@@ -6,16 +6,17 @@ function UserData() {
   const [show, setShow] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null); // State to store selected user
   const handleClose = () => setShow(false);
+  // Function to open the modal and set selected user details
   const handleShow = (user) => {
-    // Modify handleShow to accept user parameter
-    setSelectedUser(user); // Set selected user details
+    setSelectedUser(user);
+    fetchExamHistory(user.userId); // Fetch exam history for the selected user
     setShow(true);
   };
-  // Modal Add User
-  const [showAdd, setShowAdd] = useState(false);
-  const AddhandleClose = () => setShowAdd(false);
-  const AddhandleShow = () => setShowAdd(true);
+  
+
   const [userData, setUserData] = useState([]);
+  const [examHistory, setExamHistory] = useState([]); // State to store exam history data
+  // Function to fetch user data
   const fetchData = async () => {
     try {
       const response = await axios.get("http://localhost:3000/api/users");
@@ -24,23 +25,39 @@ function UserData() {
       console.error("Error fetching data:", error);
     }
   };
+
+  // Function to fetch exam history for a specific user
+  const fetchExamHistory = async (userId) => {
+    try {
+      const response = await axios.get(`http://localhost:3001/archievedexamresult`);
+      // Filter exam history based on user ID
+      setExamHistory(response.data.filter((exam) => exam.userid === userId));
+    } catch (error) {
+      console.error("Error fetching exam history:", error);
+    }
+  };
+
+
+  // Fetch user data when the component mounts
   useEffect(() => {
     fetchData();
   }, []);
+  
   //delete API integration function
+  // Function to delete a user
   const handleDelete = async (userId) => {
     try {
-      await axios.delete(`http://localhost:3000/api/users/${userId}`); // Remove colon (:) before userId
+      await axios.delete(`http://localhost:3000/api/users/${userId}`);
       fetchData(); // Fetch data again after deletion
-      alert('User Data Delete');
+      alert('User Data Deleted');
     } catch (error) {
       console.error("Error deleting user:", error);
-      alert('User Data not Delete');
+      alert('User Data not Deleted');
     }
   };
   return (
     <div>
-      <div className="userDataContainer" >
+      <div className="userDataContainer">
         <Container>
           <Row>
             <Col lg={4}>
@@ -79,11 +96,18 @@ function UserData() {
                       </h5>
                     </Col>
                     <Col lg={4}>
-                      <h5 style={{textAlign: "center"}}>{currentElement.email}</h5>
+                      <h5 style={{ textAlign: "center" }}>
+                        {currentElement.email}
+                      </h5>
                     </Col>
-                    <Col lg={4}  className="user-data-column-btn">
+                    <Col lg={4} className="user-data-column-btn">
                       <div>
-                        <Button variant="danger" onClick={() => handleDelete(currentElement.userId)}>Delete</Button>
+                        <Button
+                          variant="danger"
+                          onClick={() => handleDelete(currentElement.userId)}
+                        >
+                          Delete
+                        </Button>
                       </div>
                       <div>
                         {/* Pass currentElement as parameter to handleShow */}
@@ -133,34 +157,23 @@ function UserData() {
             <Table striped bordered hover>
               <thead>
                 <tr>
-                  <th colSpan={4}>Assesment History</th>
+                  <th colSpan={3}>Assessment History</th>
                 </tr>
                 <tr>
-                  <th>No.</th>
-                  <th>Assesment Name</th>
+                  <th>Assessment Name</th>
                   <th>Date</th>
                   <th>Score</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>react</td>
-                  <td>....</td>
-                  <td>...</td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>angular</td>
-                  <td>.........</td>
-                  <td>.....</td>
-                </tr>
-                <tr>
-                  <td>3</td>
-                  <td>DBMS</td>
-                  <td>.....</td>
-                  <td>....</td>
-                </tr>
+                {/* Map through exam history and render each exam */}
+                {examHistory.map((exam) => (
+                  <tr key={exam._id}>
+                    <td>{exam.examname}</td>
+                    <td>{exam.date}</td>
+                    <td>{exam.score}</td>
+                  </tr>
+                ))}
               </tbody>
             </Table>
           </div>
@@ -171,8 +184,6 @@ function UserData() {
           </Button>
         </Modal.Footer>
       </Modal>
-      {/* Modal Add User */}
-      {/* Add your modal content here */}
     </div>
   );
 }
