@@ -1,9 +1,9 @@
 .navbar-candidate{
-  padding-block: 1rem;
+  padding-block: 1.8rem;
   color: white;
   display: flex;
   justify-content: space-between;
-  width: 98%;
+  /* width: 98%; */
   align-items: center;
   margin-left: 1%;
 }

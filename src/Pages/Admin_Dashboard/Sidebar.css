@@ -18,13 +18,13 @@
 }
 
 .button:hover {
-  background-color: blue;
+  /* background-color: blue; */
   color: white; /* Hover text color */
 }
 
 .nav-item:hover{
   border-radius: 5px; 
- background-color: blue;
+ /* background-color: blue; */
 }
 
 .logo {
