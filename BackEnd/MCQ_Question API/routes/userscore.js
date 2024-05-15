@@ -56,30 +56,48 @@ router.get('/:userId', async (req, res) => {
 });
 
 
-router.put('/:userId', async (req, res) => {
-    try {
-        const userId = req.params.userId;
-        const updatedScore = req.body;
+router.put('/:userId/:assessmentId', async (req, res) => {
+    const userId = req.params.userId;
+    const assessmentId = req.params.assessmentId; // Not used, but included for completeness
 
+    const updatedScore = req.body;
+
+    if (!updatedScore) {
+        return res.status(400).json({ message: 'No update data provided' });
+    }
+
+    try {
         const existingUserScore = await UserScore.findOne({ userId });
 
         if (!existingUserScore) {
             return res.status(404).json({ message: 'User score not found' });
         }
 
-        // Update the fields you want to update
-        existingUserScore.Uscore = updatedScore.Uscore || existingUserScore.Uscore;
-        existingUserScore.UcodingScore = updatedScore.UcodingScore || existingUserScore.UcodingScore;
-        existingUserScore.UansweredQuestions = updatedScore.UansweredQuestions || existingUserScore.UansweredQuestions;
-        existingUserScore.UtotalQuestions = updatedScore.UtotalQuestions || existingUserScore.UtotalQuestions;
-        existingUserScore.UcorrectAnswers = updatedScore.UcorrectAnswers || existingUserScore.UcorrectAnswers;
+        // Update only the fields that are provided in the request body
+        if (updatedScore.Uscore !== undefined) {
+            existingUserScore.Uscore = updatedScore.Uscore;
+        }
+        if (updatedScore.UcodingScore !== undefined) {
+            existingUserScore.UcodingScore = updatedScore.UcodingScore;
+        }
+        if (updatedScore.UansweredQuestions !== undefined) {
+            existingUserScore.UansweredQuestions = updatedScore.UansweredQuestions;
+        }
+        if (updatedScore.UtotalQuestions !== undefined) {
+            existingUserScore.UtotalQuestions = updatedScore.UtotalQuestions;
+        }
+        if (updatedScore.UcorrectAnswers !== undefined) {
+            existingUserScore.UcorrectAnswers = updatedScore.UcorrectAnswers;
+        }
 
         await existingUserScore.save();
 
         res.status(200).json({ message: 'User score updated successfully' });
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        console.error(error);
+        res.status(500).json({ error: 'Internal server error' });
     }
 });
+
 
 module.exports = router;
