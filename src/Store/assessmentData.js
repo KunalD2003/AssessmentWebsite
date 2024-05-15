@@ -58,10 +58,13 @@ export const assessmentData = createSlice({
             console.log(action.payload.code);
             state.questionBank[action.payload.questionIndex].code = action.payload.code
             console.log(state.questionBank);
+        },
+        setAttempt: (state, action) => {
+            state.questionBank[action.payload].isAttempted = true
         }
     }
 })
 
-export const { setQuestionSection, setCodingQuestion, setLoginStatus, setLogoutStatus, disableWebcam, setCode} = assessmentData.actions
+export const { setQuestionSection, setCodingQuestion, setLoginStatus, setLogoutStatus, disableWebcam, setCode, setAttempt} = assessmentData.actions
 
 export default assessmentData.reducer

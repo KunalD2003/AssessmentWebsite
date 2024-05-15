@@ -13,6 +13,7 @@ export default defineConfig({
       '/api/users': 'http://localhost:3000',
       '/archievedexamresult': 'http://localhost:3001',
       '/result': 'http://localhost:3001',
+      '/compilex': 'https://assessmentwebsite-6.onrender.com'
       },
     },
   plugins: [react()],

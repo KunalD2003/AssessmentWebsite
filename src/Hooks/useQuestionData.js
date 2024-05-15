@@ -15,6 +15,7 @@ export default function useQusetionData() {
                 response.map((index) => {
                     index.code = "// Write your code here"
                     index.sectionSwitchType = "coding"
+                    index.isAttempted = false
                 })
                 dispatch(setCodingQuestion(response))
                 return setData(response)

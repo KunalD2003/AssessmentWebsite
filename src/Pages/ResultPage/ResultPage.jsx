@@ -53,7 +53,7 @@ const ResultPage = ({ id }) => {
           })
         const passData = {
           examname: currentAssessment.AssessmentTitle,
-          score: data.Uscore,
+          score: (data.Uscore + data.UcodingScore),
           Date: date.toLocaleDateString,
           userid: data.userId,
           assessmentid: data.AssessmentId
