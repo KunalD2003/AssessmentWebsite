@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 const Sidebar = () => {
   return (
     <>
-      <div className="d-flex flex-column flex-shrink-0 text-white bg-dark" style={{ height: '100%' }}>
+      <div className="d-flex flex-column flex-shrink-0 text-white bg-dark" style={{ height: '100%',position:'fixed',width:'20%' }}>
         {/* Center the logo horizontally */}
         <div className="d-flex justify-content-center"> {/* Flexbox for horizontal centering */}
           <img src={logo} alt="Company Logo" className="logo" /> {/* Adjust width as needed */}
