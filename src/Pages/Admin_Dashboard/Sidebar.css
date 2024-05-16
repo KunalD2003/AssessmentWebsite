@@ -28,7 +28,7 @@
 }
 
 .logo {
-  margin-top: 10px;
+  /* margin-top: 10px; */
   width: 100%; /* Adjust size */
   height: auto; /* Maintain aspect ratio */
   display: inline-block; /* Align with other elements */
