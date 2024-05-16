@@ -146,7 +146,7 @@ function UserData() {
                 <h6>Email : {selectedUser.email} </h6>
               </div>
               <div style={{ display: "flex", flexDirection: "row" }}>
-                <h6>Email : {selectedUser.phone} </h6>
+                <h6>Mobile : {selectedUser.phone} </h6>
               </div>
               {/* Add more user details here */}
             </div>
