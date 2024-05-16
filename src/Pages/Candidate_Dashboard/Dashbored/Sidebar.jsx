@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 import logo from '../../../Components/Authentication/images/AveryBit-Full-114.webp'
 const Sidebar = () => {
     return (
-        <div className='sidebar' style={{position:"fixed",width:'18%'}}>
+        <div className='sidebar' style={{position:"fixed",width:'15%'}}>
             <div className='sidebar-logo-div'>
                 <img src={logo} alt="" className='sidebar-logo' />
             </div>
