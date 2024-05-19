@@ -47,16 +47,16 @@ function Login() {
                 })
                 .then((response) => {
                     dispatch(setLoginStatus(response))
+                    navigate("/userid/assessments");
+                    toast.success('Login successfully',{
+                        position: "top-left",
+                        // theme: "dark",
+                    })
                 })
             // alert('Login successfully')
-            toast.success('Login successfully',{
-                position: "top-left",
-                // theme: "dark",
-            })
             if(formData.email==="admin@averybit.in"){
                 navigate("/userid/")
             }
-            navigate("/userid/assessments");
 
             // Redirect to a new page or handle successful login
         } catch (error) {

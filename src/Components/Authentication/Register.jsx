@@ -42,7 +42,7 @@ import { toast } from 'react-toastify';function Register() {
             };
 
             // Send userData to the backend API for storing in the database
-            const response = await fetch('http://localhost:3000/api/register', {
+            const response = await fetch('https://assessmentwebsite-6.onrender.com/api/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

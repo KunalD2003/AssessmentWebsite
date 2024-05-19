@@ -3,7 +3,7 @@ import { Editor } from '@monaco-editor/react';
 import axios from 'axios'; // Import Axios for making HTTP requests
 import './AssessmentCodeEditor.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { setCode, setAttempt } from '../../../Store/assessmentData';
+import { setCode, setAttempt, setCodingScore } from '../../../Store/assessmentData';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { useParams } from 'react-router';
@@ -15,7 +15,8 @@ function AssessmentCodeEditor({ questionIndex }) {
   const editorRef = useRef(null);
   const dispatch = useDispatch()
   const [questionData, setQuestionData] = useState();
-  const [codingScore, setCodingScore] = useState();
+  const [disabled, setDisabled] = useState();
+  // const [codingScore, setCodingScore] = useState();
   const [show, setShow] = useState(false);
   const [show1, setShow1] = useState(false);
   const { assessmentid } = useParams()
@@ -31,23 +32,9 @@ function AssessmentCodeEditor({ questionIndex }) {
   useEffect(() => {
     setQuestionData(questions[questionIndex].code)
     setExpectedOutput([questions[questionIndex].examples[0].output, questions[questionIndex].examples[1].output])
-    // console.log(expectedOutput);
-    // console.log(questions[questionIndex].code);
-    axios.get(`/result/all`)
-      .then((response) => {
-        console.log(response);
-        const data = response.data.find((index) => {
-          console.log(assessmentid, userId);
-          if (index.AssessmentId === assessmentid && index.userId === userId) {
-            console.log(index.UcodingScore);
-            setCodingScore(index.UcodingScore)
-            console.log(codingScore);
-          }
-        })
-        // console.log(codingScore);
-      })
+    setDisabled(attemptedStatus)
 
-  }, [questionIndex, questions])
+  }, [questionIndex, questions, attemptedStatus])
   function handleEditorDidMount(editor, monaco) {
     editorRef.current = editor;
   }
@@ -79,36 +66,33 @@ function AssessmentCodeEditor({ questionIndex }) {
 
   async function compareOutputs(actualOutput, expectedOutput) {
     // Remove leading and trailing whitespace from both outputs
-    if (!attemptedStatus) {
-      dispatch(setAttempt(questionIndex))
-      
-      const cleanedActual = actualOutput.trim();
-      const cleanedExpected = expectedOutput[0].trim();
-      const cleanedExpected1 = expectedOutput[1].trim();
-      // Compare the cleaned outputs
-      if (cleanedActual === cleanedExpected || cleanedActual === cleanedExpected1) {
-        console.log('Outputs match!'); // Outputs match
-        setCodingScore((prevScore) => prevScore + 5)
-        console.log(codingScore);
-        await axios.put(`http://localhost:3001/result/${userId}/${assessmentid}`, {
-          UcodingScore: codingScore
-        })
-          .then((response) => {
-            console.log(response);
-          })
-      } else {
-        console.log('Outputs do not match!'); // Outputs don't match
+    const cleanedActual = actualOutput.trim();
+    const cleanedExpected = expectedOutput[0].trim();
+    const cleanedExpected1 = expectedOutput[1].trim();
+    // Compare the cleaned outputs
+    if (cleanedActual === cleanedExpected || cleanedActual === cleanedExpected1) {
+      console.log('Outputs match!'); // Outputs match
+      dispatch(setCodingScore())
+      // setCodingScore((prevScore) => prevScore + 5)
+      // console.log(codingScore);
+      // await axios.put(`http://localhost:3001/result/${userId}/${assessmentid}`, {
+        //   UcodingScore: codingScore
+        // })
+        //   .then((response) => {
+          //     console.log(response);
+          //   })
+        } else {
+          console.log('Outputs do not match!'); // Outputs don't match
+        }
       }
-    }else{
-      setShow1(true)
-    }
-  }
-
-  async function handleSubmit() {
-    const actualOutput = await fetchOutput(); // Fetch the actual output
-    await compareOutputs(actualOutput, expectedOutput); // Compare the outputs
-  }
-  const handleClose = () => setShow(false);
+      
+      async function handleSubmit() {
+        const actualOutput = await fetchOutput(); // Fetch the actual output
+        await compareOutputs(actualOutput, expectedOutput); // Compare the outputs
+        dispatch(setAttempt(questionIndex))
+        console.log(attemptedStatus);
+      }
+      const handleClose = () => setShow(false);
   const handleClose1 = () => setShow(false);
   return (
     <div>
@@ -116,7 +100,7 @@ function AssessmentCodeEditor({ questionIndex }) {
         <Modal.Header closeButton>
           <Modal.Title>Hey! you can't directly print output. You have to generate it!</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Do you want to Submit This Section ?</Modal.Body>
+        <Modal.Body>Now edit your code and then Submit.</Modal.Body>
         <Modal.Footer>
           <Button variant="success" onClick={handleClose}>
             Close
@@ -149,7 +133,8 @@ function AssessmentCodeEditor({ questionIndex }) {
       <div className='run-btn-container'>
         <input type="text" style={{ paddingInline: "0.3rem" }} value={inputValue} onChange={(e) => setInputValue(e.target.value)} placeholder="Enter input here" />
         <button type="button" className="btn btn-success code-run" onClick={fetchOutput}>Run</button>
-        <button type="button" className="btn btn-success code-run" onClick={handleSubmit}>Submit Code</button>
+        {(disabled) ? <button type="button" className="btn btn-success code-run" onClick={handleSubmit}disabled>Submit Code</button> : <button type="button" className="btn btn-success code-run" onClick={handleSubmit}>Submit Code</button>}
+        
       </div>
       <div className='inputField-container'>
         <h3>Input Field:</h3>
