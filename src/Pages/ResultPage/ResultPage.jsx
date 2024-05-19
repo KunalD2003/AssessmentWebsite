@@ -46,7 +46,7 @@ const ResultPage = ({ id }) => {
       if (!isAddedToArchive) {
         isAddedToArchive = true;
         const date = new Date()
-        const currentAssessment = await axios.get(`http://localhost:3000/api/assessments/${data.AssessmentId}`)
+        const currentAssessment = await axios.get(`https://assessmentwebsite-4-3u7s.onrender.com/${data.AssessmentId}`)
           .then((response) => {
             console.log(response.data);
             return response.data
@@ -58,7 +58,7 @@ const ResultPage = ({ id }) => {
           userid: data.userId,
           assessmentid: data.AssessmentId
         }
-        const response = await fetch('http://localhost:3001/archievedexamresult', {
+        const response = await fetch('https://assessmentwebsite-4-3u7s.onrender.com/archievedexamresult', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'

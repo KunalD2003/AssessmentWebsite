@@ -22,7 +22,8 @@ const initialState = {
     currentPageType: `${QuestionBank[0].sectionType}`,
     authStatus: false,
     userDetails: null,
-    webcamStatus: true
+    webcamStatus: true,
+    codingScore: 0,
 }
 
 export const assessmentData = createSlice({
@@ -61,10 +62,16 @@ export const assessmentData = createSlice({
         },
         setAttempt: (state, action) => {
             state.questionBank[action.payload].isAttempted = true
-        }
+        },
+        setCodingScore: (state) => {
+            state.codingScore = state.codingScore+5
+        },
+        resetCodingScore: (state) => {
+            state.codingScore = 0
+        },
     }
 })
 
-export const { setQuestionSection, setCodingQuestion, setLoginStatus, setLogoutStatus, disableWebcam, setCode, setAttempt} = assessmentData.actions
+export const { setQuestionSection, setCodingQuestion, setLoginStatus, setLogoutStatus, disableWebcam, setCode, setAttempt, setCodingScore, resetCodingScore} = assessmentData.actions
 
 export default assessmentData.reducer

@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router'
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-
+import axios from 'axios'
 
 function AssessmentBody() {
   const temp = useQuestionData()
@@ -24,8 +24,17 @@ function AssessmentBody() {
     return state.getAssessment;
   });
   console.log(AssessmentData);
-  const handleConfirm = () => {
-    dispatch(disableWebcam())
+  const handleConfirm = async () => {
+    console.log(AssessmentData.codingScore);
+    // dispatch(disableWebcam())
+    console.log(AssessmentData.userDetails.userId); 
+    console.log(assessmentid);
+    await axios.put(`https://assessmentwebsite-4-3u7s.onrender.com/result/${AssessmentData.userDetails.userId}/${assessmentid}`, {
+      UcodingScore: AssessmentData.codingScore
+    })
+      .then((response) => {
+        console.log(response);
+      })
     navigate(`/${assessmentid}/result`)
   }
   const handleClose = () => setShow(false);

@@ -302,7 +302,7 @@ function AssessmentMCQ() {
       UcorrectAnswers: score
     }
     console.log(passData);
-    const response = await fetch('http://localhost:3001/result', {
+    const response = await fetch('https://assessmentwebsite-4-3u7s.onrender.com/result', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

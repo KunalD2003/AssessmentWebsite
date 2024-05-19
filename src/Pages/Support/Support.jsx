@@ -43,7 +43,7 @@ function Support() {
     e.preventDefault();
     if (validateForm()) {
       try {
-        const response = await axios.post("http://localhost:3001/contacts", formData);
+        const response = await axios.post("https://assessmentwebsite-4-3u7s.onrender.com/contacts", formData);
         if (response) {
           console.log(response)
           alert("Successfully send ",);

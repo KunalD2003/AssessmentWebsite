@@ -4,16 +4,17 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
     server:{
       proxy:{
-      '/api/mcqquestions': 'http://localhost:3001',
-      '/api/codingProblems': 'http://localhost:3000',
-      '/api/assessments': 'http://localhost:3000',
+      '/api/mcqquestions': 'https://assessmentwebsite-4-3u7s.onrender.com',
+      '/api/codingProblems': 'https://assessmentwebsite-6.onrender.com',
+      '/api/assessments': 'https://assessmentwebsite-6.onrender.com',
       '/webcam/addImage': 'http://localhost:3002',
       '/webcam/saveImage': 'http://localhost:3002',
-      '/api/register': 'http://localhost:3000',
-      '/api/users': 'http://localhost:3000',
-      '/archievedexamresult': 'http://localhost:3001',
-      '/result': 'http://localhost:3001',
-      '/compilex': 'https://assessmentwebsite-6.onrender.com'
+      '/api/register': 'https://assessmentwebsite-6.onrender.com',
+      '/api/users': 'https://assessmentwebsite-6.onrender.com',
+      '/archievedexamresult': 'https://assessmentwebsite-4-3u7s.onrender.com',
+      '/result': 'https://assessmentwebsite-4-3u7s.onrender.com',
+      '/compilex': 'https://assessmentwebsite-6.onrender.com',
+      '/contacts': 'https://assessmentwebsite-4-3u7s.onrender.com/contacts'
       },
     },
   plugins: [react()],
