@@ -3,7 +3,7 @@ const router = express.Router();
 const MCQ = require("../models/question.js");
 
 
-const { getAllquestions, getAllquestionsTesting,insertQuestion, updateQuestion, deleteAssessment, deleteMCQQuestion} = require("../controllers/question.js");
+const { getAllquestions, getAllquestionsTesting,insertQuestion, updateQuestion, deleteMCQQuestion} = require("../controllers/question.js");
 
 router.route("/").get(getAllquestions);
 router.route("/testing").get(getAllquestionsTesting);

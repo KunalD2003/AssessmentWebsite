@@ -61,6 +61,7 @@ router.put('/:userId/:assessmentId', async (req, res) => {
     const assessmentId = req.params.assessmentId; // Not used, but included for completeness
 
     const updatedScore = req.body;
+    console.log(updatedScore);
 
     if (!updatedScore) {
         return res.status(400).json({ message: 'No update data provided' });
