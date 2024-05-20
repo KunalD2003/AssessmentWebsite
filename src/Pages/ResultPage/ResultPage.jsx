@@ -4,8 +4,9 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './ResultPage.css'; // Custom CSS for styling
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router';
+import { setAssessmentStatus } from '../../Store/assessmentData';
 
 // Component for individual result cards with text and icons
 const ResultCard = ({ title, value, icon }) =>
@@ -32,6 +33,7 @@ const ResultPage = ({ id }) => {
   const [results, setResults] = useState(null); // Changed to null to handle loading state
   const [assessmentTitle, setAssessmentTitle] = useState("")
   const [codingQuestionLength, setCodingQuestionLength] = useState(0)
+  const dispatch = useDispatch()
   const navigate = useNavigate()
   const { assessmentid } = useParams()
   const userId = useSelector((state) => {
@@ -108,6 +110,7 @@ const ResultPage = ({ id }) => {
             </div>
             <div className="d-flex justify-content-center mt-4">
               <button className="btn btn-primary" onClick={() => {
+                dispatch(setAssessmentStatus())
                 navigate("/userid/assessments")
               }}>Back to Dashboard</button>
             </div>

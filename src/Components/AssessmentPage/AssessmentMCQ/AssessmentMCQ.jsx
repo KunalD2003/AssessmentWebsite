@@ -233,7 +233,7 @@ import React, { useEffect, useState } from 'react';
 import './AssessmentMCQ.css';
 import { useDispatch, useSelector } from "react-redux";
 import { AssessmentQuestionHeading, AssessmentMCQ_Options } from '../../index';
-import { setQuestionSection } from '../../../Store/assessmentData';
+import { setQuestionSection, setResultData } from '../../../Store/assessmentData';
 import { useParams } from 'react-router';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
@@ -302,21 +302,23 @@ function AssessmentMCQ() {
       UcorrectAnswers: score
     }
     console.log(passData);
-    const response = await fetch('https://assessmentwebsite-4-3u7s.onrender.com/result', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(passData)
-    });
+    dispatch(setResultData(passData))
+    console.log(AssessmentData.resultData);
+    // const response = await fetch('https://assessmentwebsite-4-3u7s.onrender.com/result', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json'
+    //   },
+    //   body: JSON.stringify(passData)
+    // });
 
-    if (response) {
-      dispatch(setQuestionSection(["Programming Test", "coding"]))
-    }
-    else {
-      console.error("Error submitting MCQ answer:", error);
-      setSubmitStatus("Error submitting MCQ answer");
-    };
+    dispatch(setQuestionSection(["Programming Test", "coding"]))
+    // if (response) {
+    // }
+    // else {
+    //   console.error("Error submitting MCQ answer:", error);
+    //   setSubmitStatus("Error submitting MCQ answer");
+    // };
   };
 
   const handleNextQuestion = () => {

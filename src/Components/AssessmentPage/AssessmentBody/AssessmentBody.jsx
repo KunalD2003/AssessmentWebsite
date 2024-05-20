@@ -31,17 +31,22 @@ function AssessmentBody() {
     // dispatch(disableWebcam())
     console.log(AssessmentData.userDetails.userId);
     console.log(assessmentid);
-    const passData = {
-      UcodingScore: codingScore
-    }
+    const passData = AssessmentData.resultData
     // await axios.put(`https://assessmentwebsite-4-3u7s.onrender.com/result/`, {
     //   UcodingScore: AssessmentData.codingScore
     // })
     //   .then((response) => {
     //     console.log(response);
     //   })
-    const response = await fetch(`https://assessmentwebsite-4-3u7s.onrender.com/result/${AssessmentData.userDetails.userId}/${assessmentid}`, {
-      method: 'PUT',
+    // const response = await fetch(`https://assessmentwebsite-4-3u7s.onrender.com/result/${AssessmentData.userDetails.userId}/${assessmentid}`, {
+    //   method: 'PUT',
+    //   headers: {
+    //     'Content-Type': 'application/json'
+    //   },
+    //   body: JSON.stringify(passData)
+    // });
+    const response = await fetch('https://assessmentwebsite-4-3u7s.onrender.com/result', {
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },

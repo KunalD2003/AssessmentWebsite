@@ -5,6 +5,8 @@ import Webcam from 'react-webcam';
 import { v4 as uuidv4 } from 'uuid'; // Generate unique IDs
 import './WebcamCapture.css';
 import { useNavigate, useParams } from 'react-router';
+import { useDispatch } from 'react-redux';
+import { setAssessmentStatus } from '../../Store/assessmentData';
 
 const WebcamCapture = () => {
   const webcamRef = useRef(null); // Reference for the webcam component
@@ -13,6 +15,7 @@ const WebcamCapture = () => {
   const [capturedID, setCapturedID] = useState(null); // State to store captured ID image
   const [submitedMessage, setSubmitedMessage] = useState(""); // State to store captured ID image
   const [startDisplay, setStartDisplay] = useState("none")
+  const dispatch = useDispatch()
   const navigate = useNavigate()
   const {assessmentid} = useParams()
   // Function to capture images based on the current mode
@@ -53,7 +56,8 @@ const WebcamCapture = () => {
         })
         .then((data) => {
           console.log('Server response:', data); // Log successful response
-          navigate(`/${assessmentid}/assessment`)  
+          dispatch(setAssessmentStatus())
+          navigate(`/${assessmentid}/assessment`)
           setSubmitedMessage("Images Submitted Successfully! Now Start the Test")
           setStartDisplay("block")
         })
