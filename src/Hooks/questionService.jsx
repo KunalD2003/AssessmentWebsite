@@ -106,7 +106,7 @@
 import axios from 'axios';
 
 // Base URL for your backend API
-const BASE_URL = 'http://localhost:3001';
+const BASE_URL = 'https://assessmentwebsite-4-3u7s.onrender.com';
 
 // Fetch all questions
 export async function fetchAllQuestions() {

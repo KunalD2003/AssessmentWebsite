@@ -6,7 +6,7 @@
 import axios from 'axios';
 
 
-const BASE_URL = 'http://localhost:3000';
+const BASE_URL = 'https://assessmentwebsite-6.onrender.com';
 
 // Fetch all coding problems
 export async function fetchAllCodingProblems() {
