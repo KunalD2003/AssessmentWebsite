@@ -11,6 +11,8 @@ import { useNavigate } from 'react-router';
 import archievedexamresult from '../../../Hooks/archievedExamsData';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import { useDispatch } from 'react-redux';
+import { setCurrentAssessment } from '../../../Store/assessmentData';
 
 const AssessmentCard = [
   {
@@ -67,6 +69,7 @@ function Hero_section() {
   const tempData = archievedexamresult();
   const [show, setShow] = useState(false);
   const assessments = assessmentData()
+  const dispatch = useDispatch()
 
   useEffect(() => {
     setDate(new Date().toLocaleDateString())
@@ -90,6 +93,7 @@ function Hero_section() {
       setShow(true)
     }
     else{
+      dispatch(setCurrentAssessment(assessmentId))
       navigate(`/${assessmentId}/termsandcondition`)
     }
   }

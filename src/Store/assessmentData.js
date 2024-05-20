@@ -20,10 +20,13 @@ const initialState = {
     questionBank: QuestionBank,
     currentPage: `${QuestionBank[0].sectionName}`,
     currentPageType: `${QuestionBank[0].sectionType}`,
+    resultData: null,
+    currentAssessmentId: null,
     authStatus: false,
     userDetails: null,
     webcamStatus: true,
     codingScore: 0,
+    assessmentStatus: false,
 }
 
 export const assessmentData = createSlice({
@@ -64,14 +67,28 @@ export const assessmentData = createSlice({
             state.questionBank[action.payload].isAttempted = true
         },
         setCodingScore: (state) => {
-            state.codingScore = state.codingScore+5
+            state.resultData.UcodingScore = state.resultData.UcodingScore+5
         },
         resetCodingScore: (state) => {
-            state.codingScore = 0
+            state.resultData.UcodingScore = 0
         },
+        setAssessmentStatus: (state) => {
+            if(state.assessmentStatus){
+                state.assessmentStatus = false
+            }
+            else{
+                state.assessmentStatus = true
+            }
+        },
+        setCurrentAssessment: (state, action) => {
+            state.currentAssessmentId = action.payload
+        },
+        setResultData: (state, action) => {
+            state.resultData = action.payload
+        }
     }
 })
 
-export const { setQuestionSection, setCodingQuestion, setLoginStatus, setLogoutStatus, disableWebcam, setCode, setAttempt, setCodingScore, resetCodingScore} = assessmentData.actions
+export const { setQuestionSection, setCodingQuestion, setLoginStatus, setLogoutStatus, disableWebcam, setCode, setAttempt, setCodingScore, resetCodingScore, setAssessmentStatus, setCurrentAssessment, setResultData} = assessmentData.actions
 
 export default assessmentData.reducer

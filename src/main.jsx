@@ -16,6 +16,7 @@ import Support from './Pages/Support/Support.jsx';
 import User from './Pages/User/User.jsx';
 import ResultPage from './Pages/ResultPage/ResultPage.jsx';
 import AuthLayout from './Components/AuthLayout/AuthLayout.jsx';
+import AssessmentLayout from './Components/AssessmentLayout/AssessmentLayout.jsx';
 
 const router = createBrowserRouter([
   {
@@ -96,7 +97,9 @@ const router = createBrowserRouter([
         path: '/:assessmentid/assessment',
         element: (
           <AuthLayout authentication>
-            <AssessmentPage />
+            <AssessmentLayout assessment>
+              <AssessmentPage />
+            </AssessmentLayout>
           </AuthLayout>
         ),
       },
@@ -105,7 +108,9 @@ const router = createBrowserRouter([
         path: '/:assessmentid/guidlinesvoilated',
         element: (
           <AuthLayout authentication>
-            <TestAutoSubmittedPage />
+            <AssessmentLayout assessment = {false}>
+              <TestAutoSubmittedPage/>
+            </AssessmentLayout>
           </AuthLayout>
         ),
       },
@@ -113,7 +118,9 @@ const router = createBrowserRouter([
         path: '/:assessmentid/result',
         element: (
           <AuthLayout authentication>
-            <ResultPage />
+            <AssessmentLayout assessment = {false}>
+              <ResultPage />
+            </AssessmentLayout>
           </AuthLayout>
         ),
       },
