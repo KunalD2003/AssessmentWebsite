@@ -1,0 +1,24 @@
+.headText{
+    text-align: center;
+    padding-bottom: 2%;
+}
+.mainContainer{
+    box-shadow: 4px 4px 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    /* margin: 10%;
+    padding-bottom: 5%;
+    padding-top: 1%; */
+    background-color: white;
+}
+.containerTextHead{
+    text-align: center;
+    font-weight: 800;
+}
+.containerText{
+    text-align: center;
+}
+.boxDesign{
+    padding: 1%;
+}
