@@ -140,7 +140,7 @@ router.put('/:userId/:assessmentId', async (req, res) => {
         await existingUserScore.save();
 
         // Return a 200 OK response indicating success
-        res.status(200).json({ message: 'User score updated successfully' });
+        res.status(200).json({ message: 'User score updated successfullyyyy' });
     } catch (error) {
         // Log any errors that occur during the process
         console.error(error);
