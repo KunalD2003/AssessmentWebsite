@@ -102,8 +102,6 @@ router.get('/assessments/:id', async (req, res) => {
 // Update an assessment by ID
 router.put('/assessments/:id', async (req, res) => {
     try {
-      //  const { AssessmentTitle } = req.body;
-
         const { AssessmentTitle, AssessmentDate, AssessmentStartTime, AssessmentEndTime, AssessmentDuration } = req.body;
         const assessmentId = req.params.id;
 
@@ -116,15 +114,13 @@ router.put('/assessments/:id', async (req, res) => {
         // Update the assessment fields
         existingAssessment.AssessmentTitle = AssessmentTitle;
         existingAssessment.AssessmentDate = AssessmentDate;
-         existingAssessment.AssessmentStartTime = AssessmentStartTime;
-     
-         existingAssessment.AssessmentEndTime = AssessmentEndTime;
-         existingAssessment.AssessmentDuration = AssessmentDuration;
-       
+        existingAssessment.AssessmentStartTime = AssessmentStartTime;
+        existingAssessment.AssessmentEndTime = AssessmentEndTime;
+        existingAssessment.AssessmentDuration = AssessmentDuration;
 
         // Save the updated assessment
         const updatedAssessment = await existingAssessment.save();
-        console.log("update successfully");
+        console.log("Update successful");
         res.json(updatedAssessment);
     } catch (error) {
         console.error(error);
