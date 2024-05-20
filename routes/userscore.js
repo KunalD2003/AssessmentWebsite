@@ -60,6 +60,10 @@ router.put('/:userId/:assessmentId', async (req, res) => {
     const userId = req.params.userId;
     const assessmentId = req.params.assessmentId; // Not used, but included for completeness
 
+    if (!userId || !assessmentId) {
+        return res.status(400).json({ message: 'Both userId and assessmentId are required' });
+    }
+    
     const updatedScore = req.body;
     console.log(updatedScore);
 
