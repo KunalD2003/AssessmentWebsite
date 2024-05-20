@@ -102,7 +102,6 @@ router.get('/:userId', async (req, res) => {
 //         res.status(500).json({ error: 'Internal server error' });
 //     }
 // });
-
 router.put('/:userId/:assessmentId', async (req, res) => {
     // Extract userId and assessmentId from the route parameters
     const { userId, assessmentId } = req.params;
@@ -127,6 +126,11 @@ router.put('/:userId/:assessmentId', async (req, res) => {
         // If no such document is found, return a 404 Not Found response with a message
         if (!existingUserScore) {
             return res.status(404).json({ message: 'User score not found' });
+        }
+
+        // Ensure that the userId and assessmentId in the URL match the document's userId and assessmentId
+        if (existingUserScore.userId !== userId || existingUserScore.AssessmentId !== assessmentId) {
+            return res.status(400).json({ message: 'Provided userId or assessmentId does not match the user score document' });
         }
 
         // Update the fields in the existing user score document
