@@ -114,7 +114,6 @@ router.put('/:userId/:assessmentId', async (req, res) => {
 
     // Get the updated score details from the request body
     const updatedScore = req.body;
-    console.log(updatedScore);
 
     // Check if the updated score data is provided in the request body
     if (!updatedScore) {
@@ -123,29 +122,15 @@ router.put('/:userId/:assessmentId', async (req, res) => {
 
     try {
         // Find an existing user score document by userId and assessmentId in the database
-        const existingUserScore = await UserScore.findOne({ userId: userId, AssessmentId: assessmentId });
+        const existingUserScore = await UserScore.findOne({ userId, AssessmentId: assessmentId });
 
         // If no such document is found, return a 404 Not Found response with a message
         if (!existingUserScore) {
             return res.status(404).json({ message: 'User score not found' });
         }
 
-        // Update only the fields that are provided in the request body
-        if (updatedScore.Uscore !== undefined) {
-            existingUserScore.Uscore = updatedScore.Uscore;
-        }
-        if (updatedScore.UcodingScore !== undefined) {
-            existingUserScore.UcodingScore = updatedScore.UcodingScore;
-        }
-        if (updatedScore.UansweredQuestions !== undefined) {
-            existingUserScore.UansweredQuestions = updatedScore.UansweredQuestions;
-        }
-        if (updatedScore.UtotalQuestions !== undefined) {
-            existingUserScore.UtotalQuestions = updatedScore.UtotalQuestions;
-        }
-        if (updatedScore.UcorrectAnswers !== undefined) {
-            existingUserScore.UcorrectAnswers = updatedScore.UcorrectAnswers;
-        }
+        // Update the fields in the existing user score document
+        Object.assign(existingUserScore, updatedScore);
 
         // Save the updated document back to the database
         await existingUserScore.save();
@@ -160,7 +145,6 @@ router.put('/:userId/:assessmentId', async (req, res) => {
         res.status(500).json({ error: 'Internal server error' });
     }
 });
-
 
 
 module.exports = router;
