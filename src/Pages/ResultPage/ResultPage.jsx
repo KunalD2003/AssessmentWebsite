@@ -10,7 +10,7 @@ import { useNavigate, useParams } from 'react-router';
 // Component for individual result cards with text and icons
 const ResultCard = ({ title, value, icon }) =>
 (
-  <div className="col-md-6 col-sm-12 mb-3">
+  <div className="col-md-4 col-sm-12 mb-3">
     <div className="card result-card">
       <div className="card-body">
         <div className="card-title text-center">
@@ -31,22 +31,25 @@ const ResultPage = ({ id }) => {
   // State to hold the fetched result data
   const [results, setResults] = useState(null); // Changed to null to handle loading state
   const [assessmentTitle, setAssessmentTitle] = useState("")
+  const [codingQuestionLength, setCodingQuestionLength] = useState(0)
   const navigate = useNavigate()
   const { assessmentid } = useParams()
   const userId = useSelector((state) => {
     return state.getAssessment.userDetails.userId
   })
+  
   // Function to fetch result data from backend
-
+  let questions = useSelector((state) => {
+    return state.getAssessment.questionBank
+  })
   useEffect(() => {
     let isAddedToArchive = false;
-
-
+    setCodingQuestionLength(questions.length)
     const addArchievedExams = async (data) => {
       if (!isAddedToArchive) {
         isAddedToArchive = true;
         const date = new Date()
-        const currentAssessment = await axios.get(`https://assessmentwebsite-4-3u7s.onrender.com/${data.AssessmentId}`)
+        const currentAssessment = await axios.get(`https://assessmentwebsite-6.onrender.com/api/assessments/${data.AssessmentId}`)
           .then((response) => {
             console.log(response.data);
             return response.data
@@ -94,15 +97,16 @@ const ResultPage = ({ id }) => {
         <div className="row justify-content-center align-items-center" style={{ height: '100vh' }}>
           <div className="col-md-8">
             <div className="row justify-content-center">
-              <ResultCard title="totalQuestions" value={results.UtotalQuestions} icon="bx bx-file" />
-              <ResultCard title="answeredQuestions" value={results.UansweredQuestions} icon="bx bx-select-multiple" />
-            </div>
-            <div className="row justify-content-center">
-              <ResultCard title="correctAnswers" value={results.UcorrectAnswers} icon="bx bx-check-circle" />
+              <ResultCard title="Total Logical Aptitude Questions" value={results.UtotalQuestions} icon="bx bx-file" />
+              <ResultCard title="Logical Aptitude Correct Answers" value={results.UansweredQuestions} icon="bx bx-select-multiple" />
+              <ResultCard title="Score in Logical Aptitude" value={results.Uscore} icon="bx bx-select-multiple" />
+              <ResultCard title="Total Programming Test Question" value={codingQuestionLength} icon="bx bx-file" />
+              <ResultCard title="Programming Test Correct Answers" value={results.UcodingScore/5} icon="bx bx-check-circle" />
+              <ResultCard title="Programming Test Correct Answers" value={results.UcodingScore} icon="bx bx-check-circle" />
               {/* Use different value for Score if needed */}
-              <ResultCard title="score" value={results.Uscore} icon="bx bx-archive" />
+              <ResultCard title="Total Score" value={(results.Uscore + results.UcodingScore)} icon="bx bx-archive" />
             </div>
-            <div className="d-flex justify-content-start mt-4">
+            <div className="d-flex justify-content-center mt-4">
               <button className="btn btn-primary" onClick={() => {
                 navigate("/userid/assessments")
               }}>Back to Dashboard</button>

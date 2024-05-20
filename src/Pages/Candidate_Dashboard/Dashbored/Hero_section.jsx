@@ -8,7 +8,9 @@ import assessmentData from '../../../Hooks/assessmentData'
 import useQuestionData from '../../../Hooks/useQuestionData'
 import mcqQuestion from '../../../Hooks/mcqQuestion'
 import { useNavigate } from 'react-router';
-
+import archievedexamresult from '../../../Hooks/archievedExamsData';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 
 const AssessmentCard = [
   {
@@ -59,19 +61,54 @@ function Hero_section() {
   const temp = useQuestionData()
   const mcq = mcqQuestion()
   const [usedDate, setDate] = useState(new Date().toLocaleDateString())
+  const [archievedList, setArchievedList] = useState([])
   const [codingQuestionLength, setCodingQuestionLength] = useState();
   const [mcqQuestionLength, setmcqQuestionLength] = useState();
-  let totalQuestion
+  const tempData = archievedexamresult();
+  const [show, setShow] = useState(false);
   const assessments = assessmentData()
+
   useEffect(() => {
     setDate(new Date().toLocaleDateString())
+    
     console.log(new Date().toLocaleDateString());
     if (temp && mcq) {
       setCodingQuestionLength(temp.length + mcq.length)
     }
+    if(tempData){
+      setArchievedList(tempData)
+    }
   }, [temp,mcq])
+  function attemptedStatus(assessmentId) {
+    let attemptedStatus = false
+    archievedList.find((index) => {
+      if(index.assessmentid === assessmentId){
+        attemptedStatus = true
+      }
+    })
+    if(attemptedStatus){
+      return
+    }
+  }
+
+  const handleClose = () => setShow(false);
+
   return (
     <div className="herosection" >
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Submit Logical Aptitude Section</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Do you want to Submit This Section ?</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Cancel
+          </Button>
+          <Button variant="success" onClick={handleConfirm}>
+            Submit
+          </Button>
+        </Modal.Footer>
+      </Modal>
       {assessments.map((index) => (
         <div className="card user-dashboard-card" key={index.id}>
           {/* console.log(index.id) */}
@@ -116,7 +153,13 @@ function Hero_section() {
             </div>
             <div className='start-assesment-btn'>
               {(index.startDate === usedDate
-              ) ? <button type="button" className="btn btn-primary" onClick={() => navigate(`/${index._id}/termsandcondition`)}>Start Assessment</button> : <button type="button" className="btn btn-primary" onClick={() => navigate(`/${index._id}/termsandcondition`)}>Start Assessment</button>}
+              ) ? <button type="button" className="btn btn-primary" onClick={() => {
+                attemptedStatus()
+                navigate(`/${index._id}/termsandcondition`)
+                }}>Start Assessment</button> : <button type="button" className="btn btn-primary" onClick={() => {
+                  attemptedStatus(index._id)
+                  navigate(`/${index._id}/termsandcondition`)
+                }}>Start Assessment</button>}
             </div>
           </div>
         </div>

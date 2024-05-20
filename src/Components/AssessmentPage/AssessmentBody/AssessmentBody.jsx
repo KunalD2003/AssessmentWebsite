@@ -2,7 +2,7 @@ import React from 'react'
 import './AssessmentBody.css'
 import { AssessmentCodingQuestion, AssessmentCodeEditor } from '../../index'
 import useQuestionData from '../../../Hooks/useQuestionData'
-import { setCodingQuestion, disableWebcam } from '../../../Store/assessmentData'
+import { setCodingQuestion, disableWebcam, resetCodingScore } from '../../../Store/assessmentData'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router'
@@ -14,6 +14,7 @@ function AssessmentBody() {
   const temp = useQuestionData()
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [codingQuestionLength, setCodingQuestionLength] = useState();
+  const [codingScore, setCodingScore] = useState()
   const [currentQuestion, setcurrentQuestion] = useState()
   const [submitStatus, setSubmitStatus] = useState("");
   const [show, setShow] = useState(false);
@@ -25,16 +26,30 @@ function AssessmentBody() {
   });
   console.log(AssessmentData);
   const handleConfirm = async () => {
-    console.log(AssessmentData.codingScore);
+    // console.log(AssessmentData.codingScore);
+    console.log(codingScore);
     // dispatch(disableWebcam())
-    console.log(AssessmentData.userDetails.userId); 
+    console.log(AssessmentData.userDetails.userId);
     console.log(assessmentid);
-    await axios.put(`https://assessmentwebsite-4-3u7s.onrender.com/result/${AssessmentData.userDetails.userId}/${assessmentid}`, {
-      UcodingScore: AssessmentData.codingScore
-    })
-      .then((response) => {
-        console.log(response);
-      })
+    const passData = {
+      UcodingScore: codingScore
+    }
+    // await axios.put(`https://assessmentwebsite-4-3u7s.onrender.com/result/`, {
+    //   UcodingScore: AssessmentData.codingScore
+    // })
+    //   .then((response) => {
+    //     console.log(response);
+    //   })
+    const response = await fetch(`https://assessmentwebsite-4-3u7s.onrender.com/result/${AssessmentData.userDetails.userId}/${assessmentid}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(passData)
+    });
+    if(response){
+      console.log(response);
+    }
     navigate(`/${assessmentid}/result`)
   }
   const handleClose = () => setShow(false);
@@ -43,9 +58,10 @@ function AssessmentBody() {
     if (temp) {
       setCodingQuestionLength(temp.length)
       setcurrentQuestion(temp[currentQuestionIndex])
+      setCodingScore(AssessmentData.codingScore)
       // dispatch(setCodingQuestion(temp));
     }
-  }, [dispatch, temp]);
+  }, [dispatch, temp, codingScore]);
   return (
     <>
       <Modal show={show} onHide={handleClose}>
