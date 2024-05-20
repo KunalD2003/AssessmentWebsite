@@ -8,7 +8,8 @@ dotenv.config(); // Load environment variables
 
 const app = express(); // Initialize Express application
 
-app.use(cors({ origin: 'http://localhost:5173' }));
+// app.use(cors({ origin: 'http://localhost:5173' }));
+app.use(cors());
 
 
 // Use JSON parser with larger payload limit
