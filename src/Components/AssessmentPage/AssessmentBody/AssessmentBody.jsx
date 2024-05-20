@@ -58,10 +58,10 @@ function AssessmentBody() {
     if (temp) {
       setCodingQuestionLength(temp.length)
       setcurrentQuestion(temp[currentQuestionIndex])
-      setCodingScore(AssessmentData.codingScore)
       // dispatch(setCodingQuestion(temp));
     }
-  }, [dispatch, temp, codingScore]);
+    setCodingScore(AssessmentData.codingScore)
+  }, [dispatch, temp, AssessmentData]);
   return (
     <>
       <Modal show={show} onHide={handleClose}>
