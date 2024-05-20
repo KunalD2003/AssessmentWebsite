@@ -56,24 +56,76 @@ router.get('/:userId', async (req, res) => {
 });
 
 
-router.put('/:userId/:assessmentId', async (req, res) => {
-    const userId = req.params.userId;
-    const assessmentId = req.params.assessmentId; // Not used, but included for completeness
+// router.put('/:userId/:assessmentId', async (req, res) => {
+//     const {userId,assessmentId } = req.params;
 
+//     if (!userId || !assessmentId) {
+//         return res.status(400).json({ message: 'Both userId and assessmentId are required' });
+//     }
+    
+//     const updatedScore = req.body;
+//     console.log(updatedScore);
+
+//     if (!updatedScore) {
+//         return res.status(400).json({ message: 'No update data provided' });
+//     }
+
+//     try {
+//         const existingUserScore = await UserScore.findOne({ userId, AssessmentId: assessmentId });
+
+//         if (!existingUserScore) {
+//             return res.status(404).json({ message: 'User score not found' });
+//         }
+
+//         // Update only the fields that are provided in the request body
+//         if (updatedScore.Uscore !== undefined) {
+//             existingUserScore.Uscore = updatedScore.Uscore;
+//         }
+//         if (updatedScore.UcodingScore !== undefined) {
+//             existingUserScore.UcodingScore = updatedScore.UcodingScore;
+//         }
+//         if (updatedScore.UansweredQuestions !== undefined) {
+//             existingUserScore.UansweredQuestions = updatedScore.UansweredQuestions;
+//         }
+//         if (updatedScore.UtotalQuestions !== undefined) {
+//             existingUserScore.UtotalQuestions = updatedScore.UtotalQuestions;
+//         }
+//         if (updatedScore.UcorrectAnswers !== undefined) {
+//             existingUserScore.UcorrectAnswers = updatedScore.UcorrectAnswers;
+//         }
+
+//         await existingUserScore.save();
+
+//         res.status(200).json({ message: 'User score updated successfully' });
+//     } catch (error) {
+//         console.error(error);
+//         res.status(500).json({ error: 'Internal server error' });
+//     }
+// });
+
+router.put('/:userId/:assessmentId', async (req, res) => {
+    // Extract userId and assessmentId from the route parameters
+    const { userId, assessmentId } = req.params;
+
+    // Validate that both userId and assessmentId are provided
     if (!userId || !assessmentId) {
         return res.status(400).json({ message: 'Both userId and assessmentId are required' });
     }
-    
+
+    // Get the updated score details from the request body
     const updatedScore = req.body;
     console.log(updatedScore);
 
+    // Check if the updated score data is provided in the request body
     if (!updatedScore) {
         return res.status(400).json({ message: 'No update data provided' });
     }
 
     try {
-        const existingUserScore = await UserScore.findOne({ userId, AssessmentId: assessmentId });
+        // Find an existing user score document by userId and assessmentId in the database
+        const existingUserScore = await UserScore.findOne({ userId: userId, AssessmentId: assessmentId });
 
+        // If no such document is found, return a 404 Not Found response with a message
         if (!existingUserScore) {
             return res.status(404).json({ message: 'User score not found' });
         }
@@ -95,14 +147,20 @@ router.put('/:userId/:assessmentId', async (req, res) => {
             existingUserScore.UcorrectAnswers = updatedScore.UcorrectAnswers;
         }
 
+        // Save the updated document back to the database
         await existingUserScore.save();
 
+        // Return a 200 OK response indicating success
         res.status(200).json({ message: 'User score updated successfully' });
     } catch (error) {
+        // Log any errors that occur during the process
         console.error(error);
+
+        // Return a 500 Internal Server Error response with an error message
         res.status(500).json({ error: 'Internal server error' });
     }
 });
+
 
 
 module.exports = router;
