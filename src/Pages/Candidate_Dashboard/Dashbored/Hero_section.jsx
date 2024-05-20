@@ -87,7 +87,10 @@ function Hero_section() {
       }
     })
     if(attemptedStatus){
-      return
+      setShow(true)
+    }
+    else{
+      navigate(`/${assessmentId}/termsandcondition`)
     }
   }
 
@@ -97,15 +100,12 @@ function Hero_section() {
     <div className="herosection" >
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Submit Logical Aptitude Section</Modal.Title>
+          <Modal.Title>Hey! you already attempted this exam</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Do you want to Submit This Section ?</Modal.Body>
+        <Modal.Body>If you think this is a mistake, confirm it with admin.</Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
-            Cancel
-          </Button>
-          <Button variant="success" onClick={handleConfirm}>
-            Submit
+            Ok
           </Button>
         </Modal.Footer>
       </Modal>
@@ -158,7 +158,6 @@ function Hero_section() {
                 navigate(`/${index._id}/termsandcondition`)
                 }}>Start Assessment</button> : <button type="button" className="btn btn-primary" onClick={() => {
                   attemptedStatus(index._id)
-                  navigate(`/${index._id}/termsandcondition`)
                 }}>Start Assessment</button>}
             </div>
           </div>
