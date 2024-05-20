@@ -11,7 +11,7 @@
 
 /* Full-page background color */
 .result-page {
-    background-color: aqua; /* A light gray background */
+    background-color: #50BCB6; /* A light gray background */
     height: 100vh; /* Full viewport height */
     padding: 0; /* Reset padding */
     margin: 0; /* Reset margin */

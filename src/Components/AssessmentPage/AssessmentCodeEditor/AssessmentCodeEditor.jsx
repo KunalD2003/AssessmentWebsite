@@ -3,7 +3,7 @@ import { Editor } from '@monaco-editor/react';
 import axios from 'axios'; // Import Axios for making HTTP requests
 import './AssessmentCodeEditor.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { setCode, setAttempt, setCodingScore } from '../../../Store/assessmentData';
+import { setCode, setAttempt, setCodingScore, resetCodingScore } from '../../../Store/assessmentData';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { useParams } from 'react-router';
@@ -27,7 +27,7 @@ function AssessmentCodeEditor({ questionIndex }) {
     return state.getAssessment.userDetails.userId;
   })
   const attemptedStatus = useSelector((state) => {
-    return state.getAssessment.userDetails.isAttempted
+    return state.getAssessment.questionBank[questionIndex].isAttempted
   })
   useEffect(() => {
     setQuestionData(questions[questionIndex].code)
@@ -76,24 +76,28 @@ function AssessmentCodeEditor({ questionIndex }) {
       // setCodingScore((prevScore) => prevScore + 5)
       // console.log(codingScore);
       // await axios.put(`http://localhost:3001/result/${userId}/${assessmentid}`, {
-        //   UcodingScore: codingScore
-        // })
-        //   .then((response) => {
-          //     console.log(response);
-          //   })
-        } else {
-          console.log('Outputs do not match!'); // Outputs don't match
-        }
-      }
-      
-      async function handleSubmit() {
-        const actualOutput = await fetchOutput(); // Fetch the actual output
-        await compareOutputs(actualOutput, expectedOutput); // Compare the outputs
-        dispatch(setAttempt(questionIndex))
-        console.log(attemptedStatus);
-      }
-      const handleClose = () => setShow(false);
-  const handleClose1 = () => setShow(false);
+      //   UcodingScore: codingScore
+      // })
+      //   .then((response) => {
+      //     console.log(response);
+      //   })
+    } else {
+      console.log('Outputs do not match!'); // Outputs don't match
+    }
+  }
+
+  async function handleSubmit() {
+    setShow1(true)
+  }
+  async function handleConfirm() {
+    const actualOutput = await fetchOutput(); // Fetch the actual output
+    await compareOutputs(actualOutput, expectedOutput); // Compare the outputs
+    dispatch(setAttempt(questionIndex))
+    console.log(attemptedStatus);  
+    setShow1(false)
+  }
+  const handleClose = () => setShow(false);
+  const handleClose1 = () => setShow1(false);
   return (
     <div>
       <Modal show={show} onHide={handleClose}>
@@ -109,12 +113,15 @@ function AssessmentCodeEditor({ questionIndex }) {
       </Modal>
       <Modal show={show1} onHide={handleClose1}>
         <Modal.Header closeButton>
-          <Modal.Title>Hey! you can't directly print output. You have to generate it!</Modal.Title>
+          <Modal.Title>Do you want to submit this code ?</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Do you want to Submit This Section ?</Modal.Body>
+        <Modal.Body>Remember, once you submit this code, then you can't resubmit it.</Modal.Body>
         <Modal.Footer>
           <Button variant="success" onClick={handleClose1}>
             Close
+          </Button>
+          <Button variant="success" onClick={handleConfirm}>
+            Submit
           </Button>
         </Modal.Footer>
       </Modal>
@@ -133,8 +140,8 @@ function AssessmentCodeEditor({ questionIndex }) {
       <div className='run-btn-container'>
         <input type="text" style={{ paddingInline: "0.3rem" }} value={inputValue} onChange={(e) => setInputValue(e.target.value)} placeholder="Enter input here" />
         <button type="button" className="btn btn-success code-run" onClick={fetchOutput}>Run</button>
-        {(disabled) ? <button type="button" className="btn btn-success code-run" onClick={handleSubmit}disabled>Submit Code</button> : <button type="button" className="btn btn-success code-run" onClick={handleSubmit}>Submit Code</button>}
-        
+        {(disabled) ? <button type="button" className="btn btn-success code-run" onClick={handleSubmit} disabled>Submit Code</button> : <button type="button" className="btn btn-success code-run" onClick={handleSubmit}>Submit Code</button>}
+
       </div>
       <div className='inputField-container'>
         <h3>Input Field:</h3>
