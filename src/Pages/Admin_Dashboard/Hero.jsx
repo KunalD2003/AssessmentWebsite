@@ -91,6 +91,7 @@ function Hero() {
   // Function to handle assessment update
   const handleUpdate = async () => {
     try {
+      console.log(formData);
       await axios.put(`https://assessmentwebsite-6.onrender.com/api/assessments/${formData._id}`, formData);
       alert("Assessment Updated");
       handleClose();
