@@ -40,10 +40,17 @@ function Support() {
     return Object.keys(newErrors).length === 0;
   };
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     if (validateForm()) {
       try {
-        const response = await axios.post("https://assessmentwebsite-4-3u7s.onrender.com/contacts", formData);
+        console.log(formData);
+        const response = await fetch('https://assessmentwebsite-4-3u7s.onrender.com/contacts', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(formData)
+        });
         if (response) {
           console.log(response)
           alert("Successfully send ",);
