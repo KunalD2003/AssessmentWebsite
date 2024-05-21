@@ -6,7 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './ResultPage.css'; // Custom CSS for styling
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router';
-import { setAssessmentStatus } from '../../Store/assessmentData';
+import { resetCodingScore, setAssessmentStatus, setQuestionSection } from '../../Store/assessmentData';
 
 // Component for individual result cards with text and icons
 const ResultCard = ({ title, value, icon }) =>
@@ -100,7 +100,7 @@ const ResultPage = ({ id }) => {
           <div className="col-md-8">
             <div className="row justify-content-center">
               <ResultCard title="Total Logical Aptitude Questions" value={results.UtotalQuestions} icon="bx bx-file" />
-              <ResultCard title="Logical Aptitude Correct Answers" value={results.UansweredQuestions} icon="bx bx-select-multiple" />
+              <ResultCard title="Logical Aptitude Correct Answers" value={results.Uscore/1} icon="bx bx-select-multiple" />
               <ResultCard title="Score in Logical Aptitude" value={results.Uscore} icon="bx bx-select-multiple" />
               <ResultCard title="Total Programming Test Question" value={codingQuestionLength} icon="bx bx-file" />
               <ResultCard title="Programming Test Correct Answers" value={results.UcodingScore/5} icon="bx bx-check-circle" />
@@ -111,6 +111,8 @@ const ResultPage = ({ id }) => {
             <div className="d-flex justify-content-center mt-4">
               <button className="btn btn-primary" onClick={() => {
                 dispatch(setAssessmentStatus())
+                dispatch(setQuestionSection(["Logical Apptitude", "MCQ"]))
+                dispatch(resetCodingScore())
                 navigate("/userid/assessments")
               }}>Back to Dashboard</button>
             </div>
