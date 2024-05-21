@@ -37,7 +37,7 @@ const WebcamCapture = () => {
     if (capturedFace && capturedID) { // Ensure both images are captured
       const uniqueID = uuidv4(); // Generate a unique ID for this submission
 
-      fetch('http://localhost:3002/webcam/saveImage', { // POST request to backend
+      fetch('https://assessmentwebsite-webcam4.onrender.com/webcam/saveImage', { // POST request to backend
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
