@@ -3,6 +3,8 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
     server:{
+      host: '0.0.0.0',
+      port: process.env.PORT || 5143,
       proxy:{
       '/api/mcqquestions': 'https://assessmentwebsite-4-3u7s.onrender.com',
       '/api/codingProblems': 'https://assessmentwebsite-6.onrender.com',
