@@ -24,7 +24,7 @@ const initialState = {
     currentAssessmentId: null,
     authStatus: false,
     userDetails: null,
-    webcamStatus: true,
+    webcamStatus: null,
     codingScore: 0,
     assessmentStatus: false,
 }
@@ -55,8 +55,8 @@ export const assessmentData = createSlice({
             state.authStatus = false
             state.userDetails = null
         },
-        disableWebcam: (state) => {
-            state.webcamStatus = false
+        setWebcam: (state, action) => {
+            state.webcamStatus = action.payload
         },
         setCode: (state, action) => {
             console.log(action.payload.code);
@@ -89,6 +89,6 @@ export const assessmentData = createSlice({
     }
 })
 
-export const { setQuestionSection, setCodingQuestion, setLoginStatus, setLogoutStatus, disableWebcam, setCode, setAttempt, setCodingScore, resetCodingScore, setAssessmentStatus, setCurrentAssessment, setResultData} = assessmentData.actions
+export const { setQuestionSection, setCodingQuestion, setLoginStatus, setLogoutStatus, setWebcam, setCode, setAttempt, setCodingScore, resetCodingScore, setAssessmentStatus, setCurrentAssessment, setResultData} = assessmentData.actions
 
 export default assessmentData.reducer

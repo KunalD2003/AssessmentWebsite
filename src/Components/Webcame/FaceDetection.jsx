@@ -4,6 +4,7 @@ import * as blazeface from '@tensorflow-models/blazeface';
 import * as cocoSsd from '@tensorflow-models/coco-ssd';
 import { useNavigate } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
+import { setWebcam } from '../../Store/assessmentData';
 
 const FaceDetection = () => {
   const videoRef = useRef(null);
@@ -13,13 +14,7 @@ const FaceDetection = () => {
   const [warningCount, setWarningCount] = useState(0); // Track warning counts
   const faceTimer = useRef(null);
   const navigate = useNavigate()
-  const camStatus = useSelector((state) => {
-    return state.getAssessment.webcamStatus
-  })
-  console.log(camStatus);
-  if(!camStatus){
-    videoRef.current.srcObject.getTracks().forEach((track) => track.stop());
-  }
+  const dispatch = useDispatch()
   const handleWarning = (message) => {
 
     alert(message); // Display an alert with the warning message
@@ -31,6 +26,7 @@ const FaceDetection = () => {
         videoRef.current.srcObject.getTracks().forEach((track) => track.stop());
         alert("Test submitted due to multiple warnings."); // Show final alert
         navigate('/assessmentid/guidlinesvoilated'); // Redirect to the results page
+        
         return newCount; // Stop further processing after redirecting
       }
 
@@ -41,18 +37,15 @@ const FaceDetection = () => {
   useEffect(() => {
     const initializeCamera = async () => {
       try {
-        if(camStatus){
-          console.log(camStatus);
           const stream = await navigator.mediaDevices.getUserMedia({ video: true });
           if (videoRef.current) {
             videoRef.current.srcObject = stream;
+            console.log(stream);
           }
-        }
       } catch (error) {
         console.error("Error accessing camera:", error);
       }
     };
-    console.log(camStatus);
     const detectFacesAndObjects = async () => {
       const faceModel = await blazeface.load();
       const objectModel = await cocoSsd.load();
@@ -103,12 +96,11 @@ const FaceDetection = () => {
     initializeCamera(); // Start the camera
     detectFacesAndObjects(); // Start face and object detection
     return () => {
-      if ((videoRef.current && videoRef.current.srcObject) || !camStatus) {
-        console.log(camStatus);
+      if ((videoRef.current && videoRef.current.srcObject)) {
         videoRef.current.srcObject.getTracks().forEach((track) => track.stop()); // Stop the camera
       }
     };
-  }, [camStatus]); // Run only once when component mounts
+  }, []); // Run only once when component mounts
 
   return (
     <div>
