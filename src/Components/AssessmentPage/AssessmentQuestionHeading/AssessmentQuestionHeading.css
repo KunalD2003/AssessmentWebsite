@@ -1,0 +1,9 @@
+.assessment-question-heading{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding-inline: 0.5rem 1rem;
+}
+.assessment-question-heading{
+    border-bottom: 1px solid rgb(214, 214, 214);
+}

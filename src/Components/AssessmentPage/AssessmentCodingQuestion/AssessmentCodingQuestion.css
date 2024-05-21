@@ -1,0 +1,8 @@
+.assessment-coding-question{
+    width: 100%;
+    height: 100%;
+}
+.coding-question-description{
+    display: flex;
+    flex-direction: column;
+}

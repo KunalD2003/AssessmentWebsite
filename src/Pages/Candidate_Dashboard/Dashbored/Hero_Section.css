@@ -1,0 +1,57 @@
+.herosection{
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.user-dashboard-card{
+  width: 20rem;
+  border-radius: 5px;
+}
+.assessment-role-title{
+  display: flex;
+  padding-block: 2rem;
+  background: url('https://images.rawpixel.com/image_800/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvcm0zMDktYWV3LTAxM18xXzEuanBn.jpg');
+  background-size: 100%;
+  color: white;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  height: 40%;
+}
+.headTest{
+  text-align: center;
+  font-size: 30px;
+}
+.assessment-role-title h1{
+  margin: auto;
+  text-align: center;
+}
+.assessment-details{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  color: rgb(44, 44, 44);
+}
+.assessment-details div{
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+.assessment-details p{
+  margin-bottom: 0;
+}
+.assessment-details-icon{
+  font-size: 24px;
+}
+.start-assesment-btn{
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  padding-top: 0.5rem;
+}
+.start-assessment-time{
+  
+}

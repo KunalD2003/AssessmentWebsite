@@ -1,0 +1,43 @@
+.violation-page h1 {
+  text-align: center;
+  color: #333;
+}
+.violation-page h3 {
+  text-align: center;
+  color: #333;
+}
+.red-cross-image {
+  height: 10rem;
+  width: 10rem;
+}
+.violation-page p {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 0.3rem;
+  color: #555;
+  text-align: center;
+}
+.violation-page button {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  font-size: 16px;
+  color: white;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.violation-page button:hover {
+  background-color: #0056b3;
+}
+.violation-page{
+  min-height: 100vh;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

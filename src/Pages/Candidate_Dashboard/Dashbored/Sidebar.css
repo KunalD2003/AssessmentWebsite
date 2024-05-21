@@ -1,0 +1,30 @@
+.sidebar-logo-div{
+  width: 100%;
+}
+.sidebar-logo{
+  width: 100%;
+  padding: 0.8rem;
+}
+.sidebar-naivgation{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1rem;
+  gap: 0.5rem;
+}
+.sidebar-naivgation div{
+  padding-block: 0.5rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  
+}
+.sidebar-naivgation div h2{
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 0;
+}
+.sidebar-naivgation div a {
+  text-decoration: none;
+  color: white;
+}
