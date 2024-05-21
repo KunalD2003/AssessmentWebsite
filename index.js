@@ -28,6 +28,7 @@ app.use('/webcam', webcamRoutes);
 
 // Middleware for handling 404 errors
 app.use((req, res, next) => {
+  console.log("error")
   res.status(404).json({ error: 'Not Found' }); // Handle unknown routes
 });
 

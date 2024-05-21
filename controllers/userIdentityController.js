@@ -19,6 +19,7 @@ const addUserIdentity = async (req, res) => {
     });
 
     await newUser.save(); // Save the new user to MongoDB
+    console.log("User identity stored successfully");
 
     res.status(201).json({ message: 'User identity stored successfully', user: newUser }); // Return success message
   } catch (error) {
