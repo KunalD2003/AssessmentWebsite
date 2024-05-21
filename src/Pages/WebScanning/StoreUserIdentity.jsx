@@ -12,7 +12,7 @@ const StoreUserIdentity = () => {
     console.log('Captured image:', screenshot); // Validate the captured image
 
     if (screenshot) {
-      fetch('http://localhost:3002/webcam/addImage', {
+      fetch('https://assessmentwebsite-webcam4.onrender.com/webcam/addImage', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
