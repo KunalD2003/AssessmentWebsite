@@ -17,6 +17,7 @@ import User from './Pages/User/User.jsx';
 import ResultPage from './Pages/ResultPage/ResultPage.jsx';
 import AuthLayout from './Components/AuthLayout/AuthLayout.jsx';
 import AssessmentLayout from './Components/AssessmentLayout/AssessmentLayout.jsx';
+import assessmentData from './Hooks/assessmentData.js';
 
 const router = createBrowserRouter([
   {
