@@ -13,7 +13,7 @@ const Navbar = () => {
   return (
     <div className="navbar-candidate">
         <h2>Welcome to <ReactTyped style={{color:'#50BCB6'}} strings={["Candidate Assessment Website",'Averybit']} typeSpeed={40} backSpeed={50} loop /></h2>
-        <Button variant="danger"><h5>Logout</h5></Button>
+        {/* <Button variant="danger"><h5>Logout</h5></Button> */}
       </div>
   );
 };
