@@ -1,16 +1,17 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import "./Hero.css";
-import { Button, Modal, Table } from "react-bootstrap";
+import React, { useEffect, useState } from "react"; // Import necessary modules from React library
+import axios from "axios"; // Import Axios for making HTTP requests
+import "./Hero.css"; // Import CSS file for styling
+import { Button, Modal, Table } from "react-bootstrap"; // Import components from React Bootstrap
 
+// Define the Hero functional component
 function Hero() {
-  // State variables for showing/hiding result modal, storing result history, user names, assessment data, and modal visibility
-  const [resultShow, setResultShow] = useState(false);
-  const [resultHistory, setResultHistory] = useState([]);
-  const [userNames, setUserNames] = useState({});
-  const [assessmentData, setAssessmentData] = useState([]);
-  const [show, setShow] = useState(false);
-  const [formData, setFormData] = useState({
+  // Define state variables using useState hook
+  const [resultShow, setResultShow] = useState(false); // State to control visibility of result modal
+  const [resultHistory, setResultHistory] = useState([]); // State to store result history data
+  const [userNames, setUserNames] = useState({}); // State to store user names mapped by user IDs
+  const [assessmentData, setAssessmentData] = useState([]); // State to store assessment data
+  const [show, setShow] = useState(false); // State to control visibility of edit modal
+  const [formData, setFormData] = useState({ // State to store form data for editing assessment
     _id: "",
     AssessmentTitle: "",
     AssessmentDate: "",
@@ -34,13 +35,13 @@ function Hero() {
   // Function to open the edit modal
   const handleShow = () => setShow(true);
 
-  // Function to fetch assessment data
+  // Function to fetch assessment data from the API
   const fetchData = async () => {
     try {
       const response = await axios.get("https://assessmentwebsite-6.onrender.com/api/assessments");
-      setAssessmentData(response.data);
+      setAssessmentData(response.data); // Store fetched data in assessmentData state
     } catch (error) {
-      console.error("Error fetching data:", error);
+      console.error("Error fetching data:", error); // Log any error that occurs during the fetch
     }
   };
 
@@ -48,12 +49,12 @@ function Hero() {
   const fetchResultHistory = async (assessmentId) => {
     try {
       const response = await axios.get("https://assessmentwebsite-4-3u7s.onrender.com/archievedexamresult");
-      setResultHistory(response.data.filter((result) => result.assessmentid === assessmentId));
-      const userIds = response.data.map((result) => result.userid);
-      const userNamesData = await fetchUserNames(userIds);
-      setUserNames(userNamesData);
+      setResultHistory(response.data.filter((result) => result.assessmentid === assessmentId)); // Filter results by assessment ID
+      const userIds = response.data.map((result) => result.userid); // Extract user IDs from the results
+      const userNamesData = await fetchUserNames(userIds); // Fetch user names based on user IDs
+      setUserNames(userNamesData); // Store fetched user names in userNames state
     } catch (error) {
-      console.error("Error fetching exam history:", error);
+      console.error("Error fetching exam history:", error); // Log any error that occurs during the fetch
     }
   };
 
@@ -62,17 +63,17 @@ function Hero() {
     try {
       const response = await axios.get("https://assessmentwebsite-6.onrender.com/api/users", {
         params: {
-          userIds: userIds.join(","),
+          userIds: userIds.join(","), // Join user IDs into a comma-separated string for the API request
         },
       });
-      const userNameMap = {};
+      const userNameMap = {}; // Create an empty object to store user names
       response.data.forEach((user) => {
-        userNameMap[user.userId] = user.name;
+        userNameMap[user.userId] = user.name; // Map user IDs to user names
       });
-      return userNameMap;
+      return userNameMap; // Return the map of user IDs to user names
     } catch (error) {
-      console.error("Error fetching user names:", error);
-      return {};
+      console.error("Error fetching user names:", error); // Log any error that occurs during the fetch
+      return {}; // Return an empty object if an error occurs
     }
   };
 
@@ -80,32 +81,32 @@ function Hero() {
   const handleDelete = async (id) => {
     try {
       await axios.delete(`https://assessmentwebsite-6.onrender.com/api/assessments/${id}`);
-      alert("Assessment Deleted");
-      fetchData();
+      alert("Assessment Deleted"); // Show an alert message if deletion is successful
+      fetchData(); // Fetch updated assessment data
     } catch (error) {
-      console.error("Error deleting assessment:", error);
-      alert("Assessment not Deleted");
+      console.error("Error deleting assessment:", error); // Log any error that occurs during the delete
+      alert("Assessment not Deleted"); // Show an alert message if deletion fails
     }
   };
 
   // Function to handle assessment update
   const handleUpdate = async () => {
     try {
-      console.log(formData);
+      console.log(formData); // Log the form data to console
       await axios.put(`https://assessmentwebsite-6.onrender.com/api/assessments/${formData._id}`, formData);
-      alert("Assessment Updated");
-      handleClose();
-      fetchData();
+      alert("Assessment Updated"); // Show an alert message if update is successful
+      handleClose(); // Close the edit modal
+      fetchData(); // Fetch updated assessment data
     } catch (error) {
-      console.error("Error updating assessment:", error);
-      alert("Assessment not Updated");
+      console.error("Error updating assessment:", error); // Log any error that occurs during the update
+      alert("Assessment not Updated"); // Show an alert message if update fails
     }
   };
 
   // Function to handle changes in form fields
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    const { name, value } = e.target; // Extract name and value from the event target
+    setFormData({ ...formData, [name]: value }); // Update formData state with the new value
   };
 
   // useEffect hook to fetch assessment data on component mount
@@ -321,4 +322,5 @@ function Hero() {
   );
 }
 
+// Export the Hero component as the default export
 export default Hero;
