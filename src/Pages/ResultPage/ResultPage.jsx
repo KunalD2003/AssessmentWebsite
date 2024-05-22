@@ -90,7 +90,7 @@ const ResultPage = ({ id }) => {
 
   // If results are not fetched or loading, return loading message
   if (!results) {
-    return <div>Loading...</div>;
+    return <h1 style={{color:'green',display:'flex',justifyContent:"center",alignItems:'center'}}>Loading...</h1>;
   }
 
   return (
