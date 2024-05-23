@@ -2,6 +2,7 @@ import { useEffect, useCallback, useState } from "react";
 import axios from 'axios';
 import { useDispatch, useSelector } from "react-redux";
 import { setCodingQuestion } from "../Store/assessmentData";
+import { AxiosInstance } from "../AxiosInstance";
 
 export default function useQusetionData() {
     const [data, setData] = useState()

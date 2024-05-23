@@ -1,5 +1,6 @@
 import { useEffect, useCallback, useState } from "react";
 import axios from 'axios';
+import { AxiosInstance } from "../AxiosInstance";
 
 const TestData = [
     {
@@ -26,7 +27,7 @@ const TestData = [
 let assessmentData = () => {
     const [data, setData] = useState([``])
     useEffect(() => {
-        axios.get("/api/assessments")
+        AxiosInstance.get("/api/assessments")
             .then((response) => {
                 console.log(response.data);
                 return response.data

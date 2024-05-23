@@ -12,6 +12,7 @@ import { setUserId } from 'firebase/analytics';
 import { toast } from 'react-toastify';
 import Button from 'react-bootstrap/Button';
 import Spinner from 'react-bootstrap/Spinner';
+import { AxiosInstance } from '../../AxiosInstance';
 
 function Login() {
     const [loader, setLoader] = useState(false)
@@ -42,7 +43,7 @@ function Login() {
             updateProfile(user, {
                 displayName: user.email,
             });
-            axios.get(`/api/users/${user.uid}`)
+            AxiosInstance.get(`/api/users/${user.uid}`)
                 .then((response) => {
                     return response.data
                 })
@@ -55,6 +56,7 @@ function Login() {
                         // theme: "dark",
                     })
                 })
+                .catch((error) => console.log(error))
             // alert('Login successfully')
             // if(formData.email==="admin@averybit.in"){
             //     navigate("/userid/")
