@@ -11,10 +11,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 38%;
-    background-color: rgb(218, 255, 255);
+    width: 43%;
+    background-color: #daffff;
     border-radius: 5px;
-    padding: 3rem 3rem;
+    padding: 1.3rem 3rem;
     gap: 3rem;
 }
 
@@ -126,7 +126,7 @@
     max-width: 150px;
 }
 .login-logo{
-    margin-bottom: 1.8rem;
+    margin-bottom: 1.5rem;
 }
 .Login-container p{
     text-align: center;

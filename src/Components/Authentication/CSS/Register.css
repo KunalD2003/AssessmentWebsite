@@ -9,12 +9,11 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 30px;
-    padding-block: 40px;
+    padding: 1.3rem 3rem;
     background-color: rgb(218, 255, 255);
 }
 .register-row{
-    width: 38%;
+    width: 43%;
 }
 .register-col {
     flex: 1;
