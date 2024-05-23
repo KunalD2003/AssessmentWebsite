@@ -83,10 +83,12 @@ function Register() {
     return (
         <>
             <Container className='reg-container'>
-                <Row>
+                <Row className='register-row'>
                     <Col>
-                        <img className='login-logo' src={logo} alt='logo' />
-                        <h1 className='register-col-heading'>Create an Account</h1>
+                        <div className='login-logo-container' style={{flexDirection: "column"}}>
+                            <img className='login-logo' src={logo} alt='logo' />
+                            <h1 className='register-col-heading'>Create an Account</h1>
+                        </div>
                         <div className='Register-container'>
                             <form onSubmit={handleSubmit}>
                                 <div className='form-group'>
@@ -119,11 +121,6 @@ function Register() {
                                 {error && <p className="error-message">{error}</p>}
                             </form>
                             <p>Already have an account? <Link to='/'>Login</Link></p>
-                        </div>
-                    </Col>
-                    <Col>
-                        <div className='register-image'>
-                            <img src={register} />
                         </div>
                     </Col>
                 </Row>

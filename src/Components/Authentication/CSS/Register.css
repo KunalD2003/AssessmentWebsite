@@ -9,18 +9,19 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 90%;
     padding: 30px;
     padding-block: 40px;
-    background-color: azure;
+    background-color: rgb(218, 255, 255);
 }
-
+.register-row{
+    width: 38%;
+}
 .register-col {
     flex: 1;
 }
 
 .Register-container {
-    background-color: #fff6f6;
+    background-color: #f9f9f9;
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -88,5 +89,11 @@
     border-radius: 7px;
 }
 .reg-container{
+    display: flex;
+    justify-content: center;
     margin-block: 3rem;
+}
+.heading-logo-container{
+    display: flex;
+    flex-direction: column;
 }

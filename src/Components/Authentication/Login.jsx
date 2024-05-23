@@ -80,7 +80,9 @@ function Login() {
         <div className='container login-container'>
             <div className='login-row'>
                 <div className='login-col'>
-                    <img className='login-logo' src={logo} alt='logo' />
+                    <div className='login-logo-container'>
+                        <img className='login-logo' src={logo} alt='logo' />
+                    </div>
                     {/* <h4>AveryBit Solutions</h4> */}
 
                     <div className='Login-container'>
@@ -100,26 +102,19 @@ function Login() {
                                 </div> */}
                             </div>
                             {(loader) ? (<Button variant="success" disabled>
-                                    <Spinner
-                                        as="span"
-                                        animation="grow"
-                                        size="sm"
-                                        role="status"
-                                        aria-hidden="true"
-                                    />
-                                    Login
-                                </Button>) : (<Button variant='success' type='submit'>Login</Button>)}
+                                <Spinner
+                                    as="span"
+                                    animation="grow"
+                                    size="sm"
+                                    role="status"
+                                    aria-hidden="true"
+                                />
+                                Login
+                            </Button>) : (<Button variant='success' type='submit'>Login</Button>)}
                             {/* <button type='submit'>Login</button> */}
                         </form>
                         <p>Don't have an account? <Link to='/register'>Register</Link></p>
                         <h1></h1>
-                    </div>
-                </div>
-                <div className='login-col'>
-                    <div className='login-image'>
-                        {/* <h1>Login Image</h1>
-                        <p>Some text about Digital Recruitment</p> */}
-                        <img src={loginImage} alt='Login' />
                     </div>
                 </div>
             </div>
