@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import './TestAutoSubmittedPage.css'
 import Cross from '../../assets/img/RedCross.jpg'
 import { useDispatch } from 'react-redux';
-import { setAssessmentStatus } from '../../Store/assessmentData';
+import { setAssessmentStatus, setQuestionSection } from '../../Store/assessmentData';
 
 const TestAutoSubmittedPage = () => {
   const navigate = useNavigate();
@@ -20,7 +20,7 @@ const TestAutoSubmittedPage = () => {
       <h3>The assessment has been ended because you have exceeded the warning limit.</h3>
       <p>Please review the guidelines and ensure compliance in the future assessments.</p>
       <button onClick={() => {
-        dispatch(setAssessmentStatus)
+        dispatch(setQuestionSection(["Logical Apptitude", "MCQ"]))
         navigate('/userid/assessments')
       }}>Back to Dashboard</button>
     </div>

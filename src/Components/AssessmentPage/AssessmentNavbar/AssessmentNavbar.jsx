@@ -11,6 +11,9 @@ import { useNavigate, useParams } from "react-router";
 import { Link } from "react-router-dom";
 
 const CountdownTimer = ({ minutes, seconds }) => {
+  const AssessmentData = useSelector((state) => {
+    return state.getAssessment;
+  });
   const [timeLeft, setTimeLeft] = useState({
     minutes: parseInt(minutes),
     seconds: parseInt(seconds),
@@ -30,7 +33,19 @@ const CountdownTimer = ({ minutes, seconds }) => {
           seconds: 59,
         }));
       } else if (timeLeft.minutes == 0 && timeLeft.minutes == 0) {
-        navigate(`/${assessmentid}/result`);
+        const passData = AssessmentData.resultData
+        const response = fetch('https://assessmentwebsite-4-3u7s.onrender.com/result', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(passData)
+        }).then((response) => {
+          console.log(response);
+          navigate(`/${assessmentid}/result`)
+        }).catch((error) => {
+          console.log("error: ", error);
+        })
       }
     }, 1000);
 
