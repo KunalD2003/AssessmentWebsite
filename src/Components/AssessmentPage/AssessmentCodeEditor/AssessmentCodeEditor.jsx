@@ -48,7 +48,7 @@ function AssessmentCodeEditor({ questionIndex }) {
       if (code.includes(`print(${expectedOutput[0]})`) || code.includes(`print(${expectedOutput[1]})`)) {
         setShow(true)
       } else {
-        const response = await axios.post('https://assessmentwebsite-6.onrender.com/compilex', {
+        const response = await axios.post(`${import.meta.env.VITE_API_SHIVAM_URL}/compilex`, {
           code: code,
           input: inputValue, // Use inputValue for the input data
           lang: language

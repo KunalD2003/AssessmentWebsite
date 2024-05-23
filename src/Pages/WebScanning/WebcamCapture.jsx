@@ -40,7 +40,7 @@ const WebcamCapture = () => {
       setLoader(true)
       const uniqueID = uuidv4(); // Generate a unique ID for this submission
       console.log("Hello");
-      await fetch('https://assessmentwebsite-webcam4.onrender.com/webcam/saveImage', { // POST request to backend
+      await fetch(`${import.meta.env.VITE_API_PRIYANKA_URL}/webcam/saveImage`, { // POST request to backend
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

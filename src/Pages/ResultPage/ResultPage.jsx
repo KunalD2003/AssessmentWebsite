@@ -1,5 +1,3 @@
-
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -7,6 +5,7 @@ import './ResultPage.css'; // Custom CSS for styling
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router';
 import { resetCodingScore, setAssessmentStatus, setQuestionSection } from '../../Store/assessmentData';
+import { AxiosInstance, AxiosInstance1 } from '../../AxiosInstance';
 
 // Component for individual result cards with text and icons
 const ResultCard = ({ title, value, icon }) =>
@@ -51,7 +50,7 @@ const ResultPage = ({ id }) => {
       if (!isAddedToArchive) {
         isAddedToArchive = true;
         const date = new Date()
-        const currentAssessment = await axios.get(`https://assessmentwebsite-6.onrender.com/api/assessments/${data.AssessmentId}`)
+        const currentAssessment = await AxiosInstance.get(`https://assessmentwebsite-6.onrender.com/api/assessments/${data.AssessmentId}`)
           .then((response) => {
             console.log(response.data);
             return response.data
@@ -63,7 +62,7 @@ const ResultPage = ({ id }) => {
           userid: data.userId,
           assessmentid: data.AssessmentId
         }
-        const response = await fetch('https://assessmentwebsite-4-3u7s.onrender.com/archievedexamresult', {
+        const response = await fetch(`${import.meta.env.VITE_API_ANKIT_URL}/archievedexamresult`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -73,7 +72,7 @@ const ResultPage = ({ id }) => {
       }
     }
     // Fetch MCQ questions from the API
-    axios.get(`/result/all`)
+    AxiosInstance1.get(`/result/all`)
       .then((response) => {
         const data = response.data.find((index) => {
           if (index.AssessmentId === assessmentid && index.userId === userId) {

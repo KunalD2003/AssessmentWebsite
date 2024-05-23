@@ -1,6 +1,7 @@
 import { useEffect, useCallback, useState } from "react";
 import axios from 'axios';
 import { useSelector } from "react-redux";
+import { AxiosInstance1 } from "../AxiosInstance";
 
 let archievedexamresult = () => {
   const [data, setData] = useState([])
@@ -8,7 +9,7 @@ let archievedexamresult = () => {
     return state.getAssessment.userDetails.userId
   })
   useEffect(() => {
-    axios.get(`/archievedexamresult`)
+    AxiosInstance1.get(`/archievedexamresult`)
       .then((response) => {
         console.log(response.data);
         const archievedData = response.data.filter((index) => {

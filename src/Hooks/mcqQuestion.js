@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import axios from 'axios';
+import { AxiosInstance1 } from "../AxiosInstance";
 
 export default function mcqQuestion() {
     const [data, setData] = useState()
     useEffect(() => {
-        axios.get("/api/mcqquestions")
+        AxiosInstance1.get("/api/mcqquestions")
             .then((response) => {
                 return response.data.myData; // Update state with fetched questions
             })

@@ -12,7 +12,7 @@ const StoreUserIdentity = () => {
     console.log('Captured image:', screenshot); // Validate the captured image
 
     if (screenshot) {
-      fetch('https://assessmentwebsite-webcam4.onrender.com/webcam/addImage', {
+      fetch(`${import.meta.env.VITE_API_PRIYANKA_URL}/webcam/addImage`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

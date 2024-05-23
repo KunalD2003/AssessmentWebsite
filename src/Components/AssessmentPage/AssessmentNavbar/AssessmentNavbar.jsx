@@ -34,7 +34,7 @@ const CountdownTimer = ({ minutes, seconds }) => {
         }));
       } else if (timeLeft.minutes == 0 && timeLeft.minutes == 0) {
         const passData = AssessmentData.resultData
-        const response = fetch('https://assessmentwebsite-4-3u7s.onrender.com/result', {
+        const response = fetch(`${import.meta.env.VITE_API_ANKIT_URL}-4-3u7s.onrender.com/result`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'

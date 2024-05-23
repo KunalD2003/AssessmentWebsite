@@ -7,14 +7,26 @@ server:{
       port: process.env.PORT || 5143,
 
       proxy:{
-      '/api/mcqquestions': 'https://assessmentwebsite-4-3u7s.onrender.com',
+      '/api/mcqquestions': {
+        target: process.env.VITE_API_ANKIT_URL,  // Your backend API URL for development
+        changeOrigin: true,
+      },
       '/api/codingProblems': {
         target: process.env.VITE_API_SHIVAM_URL,  // Your backend API URL for development
         changeOrigin: true,
       },
-      '/api/assessments': 'https://assessmentwebsite-6.onrender.com',
-      '/webcam/addImage': 'https://assessmentwebsite-webcam4.onrender.com',
-      '/webcam/saveImage': 'https://assessmentwebsite-webcam4.onrender.com',
+      '/api/assessments': {
+        target: process.env.VITE_API_SHIVAM_URL,  // Your backend API URL for development
+        changeOrigin: true,
+      },
+      '/webcam/addImage': {
+        target: process.env.VITE_API_PRIYANKA_URL,  // Your backend API URL for development
+        changeOrigin: true,
+      },
+      '/webcam/saveImage': {
+        target: process.env.VITE_API_PRIYANKA_URL,  // Your backend API URL for development
+        changeOrigin: true,
+      },
       '/api/register': {
         target: process.env.VITE_API_SHIVAM_URL,  // Your backend API URL for development
         changeOrigin: true,
@@ -23,13 +35,22 @@ server:{
         target: process.env.VITE_API_SHIVAM_URL,  // Your backend API URL for development
         changeOrigin: true,
       },
-      '/archievedexamresult': 'https://assessmentwebsite-4-3u7s.onrender.com',
-      '/result': 'https://assessmentwebsite-4-3u7s.onrender.com',
+      '/archievedexamresult': {
+        target: process.env.VITE_API_SHIVAM_URL,  // Your backend API URL for development
+        changeOrigin: true,
+      },
+      '/result': {
+        target: process.env.VITE_API_ANKIT_URL,  // Your backend API URL for development
+        changeOrigin: true,
+      },
       '/compilex': {
         target: process.env.VITE_API_SHIVAM_URL,  // Your backend API URL for development
         changeOrigin: true,
       },
-      '/contacts': 'https://assessmentwebsite-4-3u7s.onrender.com/contacts'
+      '/contacts': {
+        target: process.env.VITE_API_ANKIT_URL,  // Your backend API URL for development
+        changeOrigin: true,
+      },
       },
       preview: {
         host: '0.0.0.0',

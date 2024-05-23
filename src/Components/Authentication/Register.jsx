@@ -47,7 +47,7 @@ function Register() {
             };
 
             // Send userData to the backend API for storing in the database
-            const response = await fetch('https://assessmentwebsite-6.onrender.com/api/register', {
+            const response = await fetch(`${import.meta.env.VITE_API_SHIVAM_URL}/api/register`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

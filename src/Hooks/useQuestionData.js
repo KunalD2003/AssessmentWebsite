@@ -8,7 +8,7 @@ export default function useQusetionData() {
     const [data, setData] = useState()
     const dispatch = useDispatch()
     useEffect(() => {
-        axios.get("/api/codingProblems")
+        AxiosInstance.get("/api/codingProblems")
             .then((response) => {
                 return response.data
             })

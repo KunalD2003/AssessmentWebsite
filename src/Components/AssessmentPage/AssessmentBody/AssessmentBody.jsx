@@ -45,7 +45,7 @@ function AssessmentBody() {
     //   },
     //   body: JSON.stringify(passData)
     // });
-    const response = await fetch('https://assessmentwebsite-4-3u7s.onrender.com/result', {
+    const response = await fetch(`${import.meta.env.VITE_API_ANKIT_URL}/result`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

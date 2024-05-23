@@ -11,7 +11,7 @@ import { useLoaderData, useNavigate } from 'react-router';
 import archievedexamresult from '../../../Hooks/archievedExamsData';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setCurrentAssessment } from '../../../Store/assessmentData';
 
 const AssessmentCard = [

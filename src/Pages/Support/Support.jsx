@@ -44,7 +44,7 @@ function Support() {
     if (validateForm()) {
       try {
         console.log(formData);
-        const response = await fetch('https://assessmentwebsite-4-3u7s.onrender.com/contacts', {
+        const response = await fetch(`${import.meta.env.VITE_API_ANKIT_URL}/contacts`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
