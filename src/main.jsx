@@ -7,7 +7,7 @@ import './index.css'
 import { createBrowserRouter, RouterProvider, Route, createRoutesFromElements } from 'react-router-dom'
 import { Provider } from 'react-redux';
 import store from './Store/store.js';
-import { AssessmentPage, TermsandCondition, WebcamCapture, Login, Register } from './index.js'
+import { AssessmentPage, TermsandCondition, WebcamCapture, Login, Register } from './import.js'
 import { AssessmentMCQ, TestAutoSubmittedPage } from './Components/index.js'
 import Dashboard from './Pages/Candidate_Dashboard/Dashbored/Dashboard.jsx';
 import Hero_section from './Pages/Candidate_Dashboard/Dashbored/Hero_section.jsx';
