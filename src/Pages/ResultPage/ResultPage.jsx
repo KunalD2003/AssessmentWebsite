@@ -90,7 +90,7 @@ const ResultPage = ({ id }) => {
 
   // If results are not fetched or loading, return loading message
   if (!results) {
-    return <div>Loading...</div>;
+    return <h1 style={{color:'green',display:'flex',justifyContent:"center",alignItems:'center'}}>Loading...</h1>;
   }
 
   return (
@@ -104,7 +104,7 @@ const ResultPage = ({ id }) => {
               <ResultCard title="Score in Logical Aptitude" value={results.Uscore} icon="bx bx-select-multiple" />
               <ResultCard title="Total Programming Test Question" value={codingQuestionLength} icon="bx bx-file" />
               <ResultCard title="Programming Test Correct Answers" value={results.UcodingScore/5} icon="bx bx-check-circle" />
-              <ResultCard title="Programming Test Correct Answers" value={results.UcodingScore} icon="bx bx-check-circle" />
+              <ResultCard title="Score in Programming Test" value={results.UcodingScore} icon="bx bx-check-circle" />
               {/* Use different value for Score if needed */}
               <ResultCard title="Total Score" value={(results.Uscore + results.UcodingScore)} icon="bx bx-archive" />
             </div>

@@ -14,7 +14,7 @@ function ArchievedExams() {
   },[tempData])
   return (
     <div className='archieved-exams'>
-      {(archievedList.length ===  0) ? <div>There is no Archieved Exams here</div> : (
+      {(archievedList.length ===  0) ? <h1 style={{color:'green',display:'flex',justifyContent:"center",alignItems:'center'}}>Loading...</h1> : (
       <table className="table table-dark table-striped">
         <thead>
           <tr>

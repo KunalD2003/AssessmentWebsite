@@ -6,7 +6,11 @@ import logo from './images/AveryBit-Full-114.webp';
 import register from '../../assets/img/rj.webp';
 import { Col, Container, Row } from 'react-bootstrap';
 import { height } from '@fortawesome/free-brands-svg-icons/fa42Group';
-import { toast } from 'react-toastify';function Register() {
+import { toast } from 'react-toastify';
+import Button from 'react-bootstrap/Button';
+import Spinner from 'react-bootstrap/Spinner';
+
+function Register() {
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
         name: '',
@@ -15,6 +19,7 @@ import { toast } from 'react-toastify';function Register() {
         phone: ''
     });
     const [error, setError] = useState(null);
+    const [loader, setLoader] = useState(false)
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -24,7 +29,7 @@ import { toast } from 'react-toastify';function Register() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const auth = getAuth();
-
+        setLoader(true)
         try {
             const userCredential = await createUserWithEmailAndPassword(auth, formData.email, formData.password);
             const user = userCredential.user;
@@ -53,21 +58,24 @@ import { toast } from 'react-toastify';function Register() {
             if (!response.ok) {
                 throw new Error('Failed to save user data in the database');
             }
-            
+            else {
+                toast.success('User registered Successfully', {
+                    position: "top-left",
+                    theme: "dark",
+                })
+                console.log("User registered successfully");
+                setLoader(false)
+                navigate("/"); // Redirect to login or home page
+            }
+
             // alert('User registered successfully')
-            toast.success('User registered Successfully',{
-                position: "top-left",
-                theme: "dark",
-            })
-            console.log("User registered successfully");
-            navigate("/"); // Redirect to login or home page
         } catch (error) {
             console.error("Error registering user:", error.message);
-            toast.error('Please Enter Valid Email and Mobile',{
-                position:'top-left',
+            toast.error('Please Enter Valid Email and Mobile', {
+                position: 'top-left',
                 theme: "dark",
             })
-
+            setLoader(false)
             // alert("user not register");
         }
     };
@@ -97,7 +105,17 @@ import { toast } from 'react-toastify';function Register() {
                                     <label htmlFor='phone'>Phone Number</label>
                                     <input type='tel' id='phone' name='phone' value={formData.phone} onChange={handleChange} placeholder='Enter your phone number' required style={{ padding: '10px', border: '1px solid #ccc', borderRadius: '3px' }} />
                                 </div>
-                                <button type='submit'>Register</button>
+                                {(loader) ? (<Button variant="success" disabled>
+                                    <Spinner
+                                        as="span"
+                                        animation="grow"
+                                        size="sm"
+                                        role="status"
+                                        aria-hidden="true"
+                                    />
+                                    Registering
+                                </Button>) : (<Button variant='success' type='submit'>Register</Button>)}
+                                {/* <button type='submit'>Register</button> */}
                                 {error && <p className="error-message">{error}</p>}
                             </form>
                             <p>Already have an account? <Link to='/'>Login</Link></p>

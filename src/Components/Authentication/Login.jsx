@@ -10,10 +10,11 @@ import { Alert } from 'react-bootstrap';
 import axios from 'axios';
 import { setUserId } from 'firebase/analytics';
 import { toast } from 'react-toastify';
-
+import Button from 'react-bootstrap/Button';
+import Spinner from 'react-bootstrap/Spinner';
 
 function Login() {
-
+    const [loader, setLoader] = useState(false)
     const navigate = useNavigate();
     const dispatch = useDispatch()
     const [formData, setFormData] = useState({
@@ -23,8 +24,8 @@ function Login() {
     });
     const AssessmentData = useSelector((state) => {
         return state.getAssessment;
-      });
-      console.log(AssessmentData);
+    });
+    console.log(AssessmentData);
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
         const newValue = type === 'checkbox' ? checked : value;
@@ -33,8 +34,8 @@ function Login() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-      const auth = getAuth();
+        setLoader(true)
+        const auth = getAuth();
         try {
             const userCredential = await signInWithEmailAndPassword(auth, formData.email, formData.password);
             const user = userCredential.user;
@@ -47,22 +48,24 @@ function Login() {
                 })
                 .then((response) => {
                     dispatch(setLoginStatus(response))
+                    setLoader(false)
                     navigate("/userid/assessments");
-                    toast.success('Login successfully',{
+                    toast.success('Login successfully', {
                         position: "top-left",
                         // theme: "dark",
                     })
                 })
             // alert('Login successfully')
-            if(formData.email==="admin@averybit.in"){
-                navigate("/userid/")
-            }
+            // if(formData.email==="admin@averybit.in"){
+            //     navigate("/userid/")
+            // }
 
             // Redirect to a new page or handle successful login
         } catch (error) {
             // alert('Invalid Email and password')
-            toast.error('Invalid Email and Password',{
-                position:'top-left',
+            setLoader(false)
+            toast.error('Invalid Email and Password', {
+                position: 'top-left',
                 // theme: "dark",
             })
 
@@ -94,7 +97,17 @@ function Login() {
                                     <label htmlFor='rememberMe'>Remember Me</label>
                                 </div> */}
                             </div>
-                            <button type='submit'>Login</button>
+                            {(loader) ? (<Button variant="success" disabled>
+                                    <Spinner
+                                        as="span"
+                                        animation="grow"
+                                        size="sm"
+                                        role="status"
+                                        aria-hidden="true"
+                                    />
+                                    Login
+                                </Button>) : (<Button variant='success' type='submit'>Login</Button>)}
+                            {/* <button type='submit'>Login</button> */}
                         </form>
                         <p>Don't have an account? <Link to='/register'>Register</Link></p>
                         <h1></h1>

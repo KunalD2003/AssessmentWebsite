@@ -7,7 +7,7 @@ import { Key } from '@mui/icons-material';
 import assessmentData from '../../../Hooks/assessmentData'
 import useQuestionData from '../../../Hooks/useQuestionData'
 import mcqQuestion from '../../../Hooks/mcqQuestion'
-import { useNavigate } from 'react-router';
+import { useLoaderData, useNavigate } from 'react-router';
 import archievedexamresult from '../../../Hooks/archievedExamsData';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
@@ -70,11 +70,8 @@ function Hero_section() {
   const [show, setShow] = useState(false);
   const assessments = assessmentData()
   const dispatch = useDispatch()
-
   useEffect(() => {
     setDate(new Date().toLocaleDateString())
-    
-    console.log(new Date().toLocaleDateString());
     if (temp && mcq) {
       setCodingQuestionLength(temp.length + mcq.length)
     }
@@ -113,9 +110,8 @@ function Hero_section() {
           </Button>
         </Modal.Footer>
       </Modal>
-      {assessments.map((index) => (
+      {(assessments) ? (assessments.map((index) => (
         <div className="card user-dashboard-card" key={index.id}>
-          {/* console.log(index.id) */}
           <div className='assessment-role-title'>
             <h1 className='headTest'>{index.AssessmentTitle}</h1>
           </div>
@@ -166,7 +162,8 @@ function Hero_section() {
             </div>
           </div>
         </div>
-      ))}
+      ))) : (<h2>Loading.....</h2>)}
+      
     </div>
   )
 }
