@@ -1,6 +1,5 @@
 
 import { useState } from 'react'
-import {AssessmentPage} from './index'
 import './App.css'
 import TestAutoSubmittedPage from './Components/Webcame/TestAutoSubmittedPage'
 import 'bootstrap/dist/css/bootstrap.css';
