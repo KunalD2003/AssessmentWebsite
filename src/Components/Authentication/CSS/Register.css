@@ -9,7 +9,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1.3rem 3rem;
+    padding: 3rem;
     background-color: rgb(218, 255, 255);
 }
 .register-row{
