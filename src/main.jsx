@@ -109,9 +109,7 @@ const router = createBrowserRouter([
         path: '/:assessmentid/guidlinesvoilated',
         element: (
           <AuthLayout authentication>
-            <AssessmentLayout assessment = {false}>
               <TestAutoSubmittedPage/>
-            </AssessmentLayout>
           </AuthLayout>
         ),
       },

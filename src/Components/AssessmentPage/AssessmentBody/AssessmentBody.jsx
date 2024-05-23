@@ -51,11 +51,12 @@ function AssessmentBody() {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(passData)
-    });
-    if(response){
+    }).then((response) => {
       console.log(response);
-    }
-    navigate(`/${assessmentid}/result`)
+      navigate(`/${assessmentid}/result`)
+    }).catch((error) => {
+      
+    })
   }
   const handleClose = () => setShow(false);
 
