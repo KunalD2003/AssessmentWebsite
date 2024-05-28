@@ -1,95 +1,123 @@
 import React, { useEffect, useState } from 'react';
 import './Hero_Section.css';
-import clockIcon from '../../../assets/img/time-icon.svg';
-import fileIcon from '../../../assets/img/file-icon.svg';
-import { nanoid } from '@reduxjs/toolkit';
-import { Key } from '@mui/icons-material';
 import assessmentData from '../../../Hooks/assessmentData'
 import useQuestionData from '../../../Hooks/useQuestionData'
 import mcqQuestion from '../../../Hooks/mcqQuestion'
-import { useLoaderData, useNavigate } from 'react-router';
+import { useNavigate } from 'react-router';
 import archievedexamresult from '../../../Hooks/archievedExamsData';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setCurrentAssessment } from '../../../Store/assessmentData';
 
-const AssessmentCard = [
-  {
-    id: nanoid(),
-    title: "Web Developer",
-    totalQuestions: 45,
-    duration: "1 hour",
-    startDate: "4/27/2024",
-    startTime: "12:30 PM",
-    endDate: "4/27/2024",
-    endTime: "1:50 PM"
-  },
-  {
-    id: nanoid(),
-    title: "Andorid Developer",
-    totalQuestions: 45,
-    duration: "1 hour",
-    startDate: "4/28/2024",
-    startTime: "12:30 PM",
-    endDate: "4/27/2024",
-    endTime: "1:50 PM"
-  },
-  {
-    id: nanoid(),
-    title: "Frontend Developer",
-    totalQuestions: 50,
-    duration: "45 min",
-    startDate: "4/27/2024",
-    startTime: "12:30 PM",
-    endDate: "4/27/2024",
-    endTime: "1:50 PM"
-  },
-  {
-    id: nanoid(),
-    title: "React Developer",
-    totalQuestions: 60,
-    duration: "1:30 hour",
-    startDate: "4/27/2024",
-    startTime: "12:30 PM",
-    endDate: "4/27/2024",
-    endTime: "1:50 PM"
-  },
-]
+
 
 function Hero_section() {
   const navigate = useNavigate();
-  const date = new Date();
   const temp = useQuestionData()
   const mcq = mcqQuestion()
   const [usedDate, setDate] = useState(new Date().toLocaleDateString())
   const [archievedList, setArchievedList] = useState([])
   const [codingQuestionLength, setCodingQuestionLength] = useState();
-  const [mcqQuestionLength, setmcqQuestionLength] = useState();
   const tempData = archievedexamresult();
   const [show, setShow] = useState(false);
   const assessments = assessmentData()
   const dispatch = useDispatch()
+  const [modalContent, setModalContent] = useState({ header: "", body: "" })
+  const [timeStatus, setTimeStatus] = useState()
   useEffect(() => {
     setDate(new Date().toLocaleDateString())
     if (temp && mcq) {
       setCodingQuestionLength(temp.length + mcq.length)
     }
-    if(tempData){
+    if (tempData) {
       setArchievedList(tempData)
     }
-  }, [temp,mcq])
-  function attemptedStatus(assessmentId) {
+  }, [temp, mcq])
+  function attemptedStatus(assessmentId, assessmentDetails) {
     let attemptedStatus = false
+    console.log(assessmentDetails);
+    // Specify the start date in d/m/yy or dd/mm/yy format
+    const startDateStr = assessmentDetails.AssessmentDate; // Start date
+
+    // Specify the time range (24-hour format)
+    const startTime = assessmentDetails.AssessmentStartTime; // 9:00 AM
+    const endTime = assessmentDetails.AssessmentEndTime; // 5:00 PM
+
+    const parseDate = (dateStr) => {
+      const [day, month, year] = dateStr.split('/').map(num => parseInt(num, 10));
+      return new Date(`20${year}`, month - 1, day);
+    };
+
+    const getCurrentDate = () => {
+      const now = new Date();
+      return new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    };
+
+    const getCurrentTime = () => {
+      const now = new Date();
+      const hours = now.getHours().toString().padStart(2, '0');
+      const minutes = now.getMinutes().toString().padStart(2, '0');
+      return `${hours}:${minutes}`;
+    };
+
+    const isAfterOrOnDate = (current, start) => {
+      return current >= start;
+    };
+
+    const isWithinTimeRange = (current, start, end) => {
+      return current >= start && current <= end;
+    };
+
+    const startDate = parseDate(startDateStr);
+    const currentDate = getCurrentDate();
+    const currentTime = getCurrentTime();
+
+    const dateCheck = isAfterOrOnDate(currentDate, startDate);
+    const timeCheck = isWithinTimeRange(currentTime, startTime, endTime);
+
+
     archievedList.find((index) => {
-      if(index.assessmentid === assessmentId){
+      if (index.assessmentid === assessmentId) {
         attemptedStatus = true
       }
     })
-    if(attemptedStatus){
+
+    if (attemptedStatus) {
+      setModalContent({
+        header: "Hey! you already attempted this exam",
+        body: "If you think this is a mistake, confirm it with admin."
+      })
       setShow(true)
     }
-    else{
+    else if (!dateCheck) {
+      setModalContent({
+        header: "Assessment not started",
+        body: "Hey Candidate! It looks like you are early before the assessment start. Come back later during assessment time."
+      })
+      setShow(true)
+    } else if (currentDate > startDate) {
+      setModalContent({
+        header: "Assessment Ended",
+        body: "Hey Candidate! This exam is ended now."
+      })
+      setShow(true)
+    } else if (dateCheck && !timeCheck) {
+      if (currentTime < startTime) {
+        setModalContent({
+          header: "Assessment not started",
+          body: "Hey Candidate! It looks like you are early before the given assessment start time. Come back later during assessment time."
+        })
+        setShow(true)
+      } else if (currentTime > endTime) {
+        setModalContent({
+          header: "Assessment Ended",
+          body: "Hey Candidate! This exam is ended now."
+        })
+        setShow(true)
+      }
+    }
+    else {
       dispatch(setCurrentAssessment(assessmentId))
       navigate(`/${assessmentId}/termsandcondition`)
     }
@@ -101,9 +129,9 @@ function Hero_section() {
     <div className="herosection" >
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Hey! you already attempted this exam</Modal.Title>
+          <Modal.Title>{modalContent.header}</Modal.Title>
         </Modal.Header>
-        <Modal.Body>If you think this is a mistake, confirm it with admin.</Modal.Body>
+        <Modal.Body>{modalContent.body}</Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Ok
@@ -156,14 +184,14 @@ function Hero_section() {
               ) ? <button type="button" className="btn btn-primary" onClick={() => {
                 attemptedStatus()
                 navigate(`/${index._id}/termsandcondition`)
-                }}>Start Assessment</button> : <button type="button" className="btn btn-primary" onClick={() => {
-                  attemptedStatus(index._id)
-                }}>Start Assessment</button>}
+              }}>Start Assessment</button> : <button type="button" className="btn btn-primary" onClick={() => {
+                attemptedStatus(index._id, index)
+              }}>Start Assessment</button>}
             </div>
           </div>
         </div>
       ))) : (<h2>Loading.....</h2>)}
-      
+
     </div>
   )
 }
