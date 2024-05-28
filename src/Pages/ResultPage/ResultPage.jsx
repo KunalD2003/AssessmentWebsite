@@ -92,7 +92,7 @@ const ResultPage = ({ id }) => {
   }
 
   return (
-    <div className="result-page" style={{ height: '100vh' }}>
+    <div className="result-page" style={{ height: '100vh', paddingBlock: '2rem'}}>
       <div className="container-fluid">
         <div className="row justify-content-center align-items-center" style={{ height: '100vh' }}>
           <div className="col-md-8">
