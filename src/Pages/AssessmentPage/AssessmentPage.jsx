@@ -1,7 +1,7 @@
 import React from 'react'
 import './AssessmentPage.css'
 import { AssessmentNavbar, AssessmentBody, AssessmentMCQ } from '../../Components/index'
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 function AssessmentPage() {
     const AssessmentData1 = useSelector((state) => {

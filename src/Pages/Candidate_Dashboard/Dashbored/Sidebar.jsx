@@ -1,6 +1,5 @@
 import React from 'react';
 import './Sidebar.css';
-// import 'bootstrap/dist/css/bootstrap.min.css';
 import { NavLink } from 'react-router-dom';
 import logo from '../../../Components/Authentication/images/AveryBit-Full-114.webp'
 const Sidebar = () => {

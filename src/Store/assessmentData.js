@@ -1,6 +1,4 @@
 import { createSlice, nanoid } from "@reduxjs/toolkit";
-import useQusetionData from "../Hooks/useQuestionData";
-import { useState,useEffect } from "react";
 
 
 

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import './ArchievedExams.css'
-import assessmentData from '../../Hooks/assessmentData'
 import archievedexamresult from '../../Hooks/archievedExamsData';
 
 function ArchievedExams() {

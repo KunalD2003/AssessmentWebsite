@@ -1,6 +1,3 @@
-
-
-
 import React, { useRef } from 'react';
 import Webcam from 'react-webcam'; // Assuming you're using 'react-webcam'
 

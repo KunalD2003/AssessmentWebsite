@@ -1,5 +1,5 @@
 import React from 'react'
-import { AssessmentQuestionHeading, AssessmentProblemStatement, AssessmentInputExample } from '../../index'
+import { AssessmentQuestionHeading, AssessmentProblemStatement } from '../../index'
 import './AssessmentCodingQuestion.css'
 
 function AssessmentCodingQuestion({codingQuestion, questionIndex}) {

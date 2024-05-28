@@ -1,14 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, {useState} from 'react';
 import './CSS/Login.css';
-import loginImage from './images/andrew-neel-ute2XAFQU2I-unsplash.jpg'; // Assuming this is your image path
 import { Link, useNavigate } from 'react-router-dom';
 import { getAuth, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { useDispatch, useSelector } from 'react-redux'
 import { setLoginStatus } from '../../Store/assessmentData';
 import logo from './images/AveryBit-Full-114.webp'
-import { Alert } from 'react-bootstrap';
-import axios from 'axios';
-import { setUserId } from 'firebase/analytics';
 import { toast } from 'react-toastify';
 import Button from 'react-bootstrap/Button';
 import Spinner from 'react-bootstrap/Spinner';

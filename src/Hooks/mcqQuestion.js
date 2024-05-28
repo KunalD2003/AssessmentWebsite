@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import axios from 'axios';
 import { AxiosInstance1 } from "../AxiosInstance";
 
 export default function mcqQuestion() {

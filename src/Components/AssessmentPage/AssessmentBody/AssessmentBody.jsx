@@ -2,18 +2,18 @@ import React from 'react'
 import './AssessmentBody.css'
 import { AssessmentCodingQuestion, AssessmentCodeEditor } from '../../index'
 import useQuestionData from '../../../Hooks/useQuestionData'
-import { setCodingQuestion, resetCodingScore } from '../../../Store/assessmentData'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router'
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import axios from 'axios'
+import Spinner from 'react-bootstrap/Spinner';
 
 function AssessmentBody() {
   const temp = useQuestionData()
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [codingQuestionLength, setCodingQuestionLength] = useState();
+  const [loader, setLoader] = useState(false)
   const [codingScore, setCodingScore] = useState()
   const [currentQuestion, setcurrentQuestion] = useState()
   const [submitStatus, setSubmitStatus] = useState("");
@@ -26,25 +26,8 @@ function AssessmentBody() {
   });
   console.log(AssessmentData);
   const handleConfirm = async () => {
-    // console.log(AssessmentData.codingScore);
-    console.log(codingScore);
-    // dispatch(disableWebcam())
-    console.log(AssessmentData.userDetails.userId);
-    console.log(assessmentid);
+    setLoader(true)
     const passData = AssessmentData.resultData
-    // await axios.put(`https://assessmentwebsite-4-3u7s.onrender.com/result/`, {
-    //   UcodingScore: AssessmentData.codingScore
-    // })
-    //   .then((response) => {
-    //     console.log(response);
-    //   })
-    // const response = await fetch(`https://assessmentwebsite-4-3u7s.onrender.com/result/${AssessmentData.userDetails.userId}/${assessmentid}`, {
-    //   method: 'PUT',
-    //   headers: {
-    //     'Content-Type': 'application/json'
-    //   },
-    //   body: JSON.stringify(passData)
-    // });
     const response = await fetch(`${import.meta.env.VITE_API_ANKIT_URL}/result`, {
       method: 'POST',
       headers: {
@@ -53,6 +36,7 @@ function AssessmentBody() {
       body: JSON.stringify(passData)
     }).then((response) => {
       console.log(response);
+      setLoader(false)
       navigate(`/${assessmentid}/result`)
     }).catch((error) => {
       
@@ -79,9 +63,16 @@ function AssessmentBody() {
           <Button variant="secondary" onClick={handleClose}>
             Cancel
           </Button>
-          <Button variant="success" onClick={handleConfirm}>
-            Submit
-          </Button>
+          {(loader) ? (<Button variant="success" disabled>
+            <Spinner
+              as="span"
+              animation="grow"
+              size="sm"
+              role="status"
+              aria-hidden="true"
+            />
+            Submitting...
+          </Button>) : <Button variant='success' onClick={handleConfirm}>Submit</Button>}
         </Modal.Footer>
       </Modal>
       <div className='assessment-body'>
@@ -106,20 +97,6 @@ function AssessmentBody() {
             setShow(true)
           }}>Submit</button>
         </div>
-        {/* <div className='questions-staticstics'>
-          <div>
-            <div className='questions-count'>{0}</div>
-            <div>Answered</div>
-          </div>
-          <div className='questions-count'>
-            <div>0</div>
-            <div>Flag</div>
-          </div>
-          <div className='questions-count'>
-            <div>{0}</div>
-            <div>Unanswered</div>
-          </div>
-        </div> */}
       </div>
     </>
   )

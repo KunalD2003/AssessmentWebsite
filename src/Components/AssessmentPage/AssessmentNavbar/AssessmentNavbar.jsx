@@ -2,13 +2,11 @@ import React, { useEffect, useState } from "react";
 import "./AssessmentNavbar.css";
 import { useDispatch, useSelector } from "react-redux";
 import { setQuestionSection } from "../../../Store/assessmentData";
-import ReactPaginate from "react-paginate";
 import axios from "axios"; // Importing axios
 import FaceDetection from "../../Webcame/FaceDetection";
 import * as tf from "@tensorflow/tfjs";
 import assessmentData from "../../../Hooks/assessmentData";
 import { useNavigate, useParams } from "react-router";
-import { Link } from "react-router-dom";
 
 const CountdownTimer = ({ minutes, seconds }) => {
   const AssessmentData = useSelector((state) => {

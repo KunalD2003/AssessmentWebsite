@@ -1,4 +1,3 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import './AssessmentMCQ.css';
 import { useDispatch, useSelector } from "react-redux";

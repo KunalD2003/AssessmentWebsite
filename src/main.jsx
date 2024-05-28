@@ -4,11 +4,11 @@ import App from './App.jsx'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import './index.css'
-import { createBrowserRouter, RouterProvider, Route, createRoutesFromElements } from 'react-router-dom'
+import { createBrowserRouter, RouterProvider} from 'react-router-dom'
 import { Provider } from 'react-redux';
 import store from './Store/store.js';
 import { AssessmentPage, TermsandCondition, WebcamCapture, Login, Register } from './import.js'
-import { AssessmentMCQ, TestAutoSubmittedPage } from './Components/index.js'
+import { TestAutoSubmittedPage } from './Components/index.js'
 import Dashboard from './Pages/Candidate_Dashboard/Dashbored/Dashboard.jsx';
 import Hero_section from './Pages/Candidate_Dashboard/Dashbored/Hero_section.jsx';
 import ArchievedExams from './Pages/ArchievedExams/ArchievedExams.jsx';
@@ -17,7 +17,6 @@ import User from './Pages/User/User.jsx';
 import ResultPage from './Pages/ResultPage/ResultPage.jsx';
 import AuthLayout from './Components/AuthLayout/AuthLayout.jsx';
 import AssessmentLayout from './Components/AssessmentLayout/AssessmentLayout.jsx';
-import assessmentData from './Hooks/assessmentData.js';
 
 const router = createBrowserRouter([
   {

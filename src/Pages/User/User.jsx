@@ -5,11 +5,7 @@ import CallIcon from "@mui/icons-material/Call";
 import { useSelector } from "react-redux";
 import { Button, Col, Container, Modal, Row } from "react-bootstrap";
 import {
-  DateRange,
-  Email,
   EmailRounded,
-  Link,
-  LocationCity,
   Person,
 } from "@mui/icons-material";
 export default function User() {

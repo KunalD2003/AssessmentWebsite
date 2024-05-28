@@ -3,8 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import * as blazeface from '@tensorflow-models/blazeface';
 import * as cocoSsd from '@tensorflow-models/coco-ssd';
 import { useNavigate } from 'react-router';
-import { useDispatch, useSelector } from 'react-redux';
-import { setWebcam } from '../../Store/assessmentData';
+import { useDispatch } from 'react-redux';
 
 const FaceDetection = () => {
   const videoRef = useRef(null);

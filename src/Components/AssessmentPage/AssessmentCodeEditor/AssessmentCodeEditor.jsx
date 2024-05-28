@@ -3,7 +3,7 @@ import { Editor } from '@monaco-editor/react';
 import axios from 'axios'; // Import Axios for making HTTP requests
 import './AssessmentCodeEditor.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { setCode, setAttempt, setCodingScore, resetCodingScore } from '../../../Store/assessmentData';
+import { setCode, setAttempt, setCodingScore } from '../../../Store/assessmentData';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { useParams } from 'react-router';
@@ -45,7 +45,7 @@ function AssessmentCodeEditor({ questionIndex }) {
       const code = editorRef.current?.getValue(); // Get the user's code from the editor
       const language = document.getElementById('language-selector').value; // Get the selected language
       const temp = `print(${expectedOutput})`
-      if (code.includes(`print(${expectedOutput[0]})`) || code.includes(`print(${expectedOutput[1]})`)) {
+      if (code.includes(`print(${expectedOutput[0]})`) || code.includes(`print(${expectedOutput[1]})`) || code.includes(`print("${expectedOutput[0]}")`) || code.includes(`print("${expectedOutput[1]}")`) || code.includes(`cout << ${expectedOutput[0]} << endl;`) || code.includes(`cout << ${expectedOutput[1]} << endl;`) || code.includes(`cout << "${expectedOutput[0]}" << endl;`) || code.includes(`cout << "${expectedOutput[1]}" << endl;`) || code.includes(`System.out.println("${expectedOutput[0]}");`) || code.includes(`System.out.println("${expectedOutput[1]}");`) || code.includes(`System.out.println(${expectedOutput[0]});`) || code.includes(`System.out.println(${expectedOutput[1]});`)) {
         setShow(true)
       } else {
         const response = await axios.post(`${import.meta.env.VITE_API_SHIVAM_URL}/compilex`, {
@@ -131,7 +131,6 @@ function AssessmentCodeEditor({ questionIndex }) {
           <option value="python">Python</option>
           <option value="java">Java</option>
           <option value="cpp">CPP</option>
-          <option value="c">C</option>
         </select>
       </div>
       <div className='code-editor-div'>

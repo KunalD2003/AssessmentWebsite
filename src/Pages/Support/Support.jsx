@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
-import { Alert, Button, Col, Container, Row } from "react-bootstrap";
+import { Button, Col, Container, Row } from "react-bootstrap";
 import "./Support.css";
-import axios from "axios";
 import Sman from '../../assets/img/sman.png'
 
 
