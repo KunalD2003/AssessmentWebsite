@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import './AssessmentMCQ.css';
 import { useDispatch, useSelector } from "react-redux";
 import { AssessmentQuestionHeading, AssessmentMCQ_Options } from '../../index';
@@ -12,20 +12,17 @@ function AssessmentMCQ() {
   const [mcqQuestions, setMcqQuestions] = useState([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [userAnswers, setUserAnswers] = useState({});
-  const [submitStatus, setSubmitStatus] = useState("");
-  const [answeredCount, setAnsweredCount] = useState(0);
-  const [unansweredCount, setUnansweredCount] = useState();
-  const { assessmentid } = useParams()
-  const [score, setScore] = useState(0);
-  const dispatch = useDispatch()
   const [show, setShow] = useState(false);
-  
+  const { assessmentid } = useParams();
+  const dispatch = useDispatch();
+
+  const AssessmentData = useSelector((state) => state.getAssessment);
+  const userId = AssessmentData.userDetails.userId;
 
   useEffect(() => {
     AxiosInstance1.get("/api/mcqquestions")
       .then((response) => {
-        setMcqQuestions(response.data.myData); 
-        setUnansweredCount(response.data.myData.length)
+        setMcqQuestions(response.data.myData);
       })
       .catch((error) => {
         console.error("Error fetching MCQ questions:", error);
@@ -33,78 +30,47 @@ function AssessmentMCQ() {
   }, []);
 
   const handleOptionSelect = (selectedOption) => {
-    const isAnswered = userAnswers[currentQuestionIndex] !== undefined;
-
-   
-    if (!isAnswered) {
-      setUserAnswers(prevState => ({
-        ...prevState,
-        [currentQuestionIndex]: selectedOption
-      }));
-
-      setAnsweredCount(answeredCount + 1);
-
-      if (mcqQuestions[currentQuestionIndex].correctAnswer === selectedOption) {
-        setScore(score + 1);
-      }
-      setUnansweredCount(unansweredCount - 1);
-    } else {
-      setUserAnswers(prevState => ({
-        ...prevState,
-        [currentQuestionIndex]: selectedOption
-      }));
-    }
+    setUserAnswers((prevState) => ({
+      ...prevState,
+      [currentQuestionIndex]: selectedOption
+    }));
   };
-  const AssessmentData = useSelector((state) => {
-    return state.getAssessment;
-  });
-  const userid = AssessmentData.userDetails.userId
-  const handleConfirm = async () => {
-    
+
+  const calculateScore = useCallback(() => {
+    return mcqQuestions.reduce((score, question, index) => {
+      return score + (question.correctAnswer === userAnswers[index] ? 1 : 0);
+    }, 0);
+  }, [mcqQuestions, userAnswers]);
+
+  const handleConfirm = () => {
+    const score = calculateScore();
     const passData = {
       AssessmentId: assessmentid,
-      userId: userid,
+      userId,
       Uscore: score,
       UcodingScore: 0,
-      UansweredQuestions: answeredCount,
+      UansweredQuestions: Object.keys(userAnswers).length,
       UtotalQuestions: mcqQuestions.length,
-      UcorrectAnswers: score
-    }
-    dispatch(setResultData(passData))
-    // const response = await fetch('https://assessmentwebsite-4-3u7s.onrender.com/result', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json'
-    //   },
-    //   body: JSON.stringify(passData)
-    // });
+      UcorrectAnswers: score,
+    };
 
-    dispatch(setQuestionSection(["Programming Test", "coding"]))
-    // if (response) {
-    // }
-    // else {
-    //   console.error("Error submitting MCQ answer:", error);
-    //   setSubmitStatus("Error submitting MCQ answer");
-    // };
+    dispatch(setResultData(passData));
+    dispatch(setQuestionSection(["Programming Test", "coding"]));
   };
 
   const handleNextQuestion = () => {
-    // Go to next question
-    setCurrentQuestionIndex(prevIndex => {
-      const nextIndex = prevIndex + 1;
-      return nextIndex < mcqQuestions.length ? nextIndex : prevIndex;
-    });
+    setCurrentQuestionIndex((prevIndex) => Math.min(prevIndex + 1, mcqQuestions.length - 1));
   };
 
   const handlePreviousQuestion = () => {
-    
-    setCurrentQuestionIndex(prevIndex => {
-      const previousIndex = prevIndex - 1;
-      return previousIndex >= 0 ? previousIndex : prevIndex;
-    });
+    setCurrentQuestionIndex((prevIndex) => Math.max(prevIndex - 1, 0));
   };
+
   const handleSubmit = () => setShow(true);
   const handleClose = () => setShow(false);
+
+  const answeredCount = Object.keys(userAnswers).length;
+  const unansweredCount = mcqQuestions.length - answeredCount;
 
   return (
     <div className='assessment-mcq'>
@@ -112,14 +78,10 @@ function AssessmentMCQ() {
         <Modal.Header closeButton>
           <Modal.Title>Submit Logical Aptitude Section</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Do you want to Submit This Section ?</Modal.Body>
+        <Modal.Body>Do you want to Submit This Section?</Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Cancel
-          </Button>
-          <Button variant="success" onClick={handleConfirm}>
-            Submit
-          </Button>
+          <Button variant="secondary" onClick={handleClose}>Cancel</Button>
+          <Button variant="success" onClick={handleConfirm}>Submit</Button>
         </Modal.Footer>
       </Modal>
       <AssessmentQuestionHeading number={currentQuestionIndex} />
@@ -143,10 +105,6 @@ function AssessmentMCQ() {
                 <h5 style={{ color: 'green' }} className='questions-count'>{answeredCount}</h5>
                 <h5 style={{ color: 'green' }}>Answered</h5>
               </div>
-              {/* <div className='questions-count'>
-                <div>0</div>
-                <div>Flag</div>
-              </div> */}
               <div className='questions-count'>
                 <h5 style={{ color: 'red' }}>{unansweredCount}</h5>
                 <h5 style={{ color: 'red' }}>Unanswered</h5>
@@ -155,8 +113,8 @@ function AssessmentMCQ() {
           </div>
         </div>
       )}
-      {submitStatus && <p>{submitStatus}</p>}
     </div>
   );
 }
+
 export default AssessmentMCQ;
