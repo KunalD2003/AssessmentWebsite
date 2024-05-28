@@ -13,7 +13,6 @@ function TermsandCondition() {
 
     const handleSubmit = () => {
         if (isAgreed) {
-            // Handle form submission logic here
             navigate(`/${assessmentid}/scanfaceid`)
         } else {
             console.log("You must agree to the terms and conditions");
@@ -71,7 +70,7 @@ function TermsandCondition() {
                 <button
                     className="submit-button"
                     onClick={handleSubmit}
-                    disabled={!isAgreed} // Button is disabled until the checkbox is checked
+                    disabled={!isAgreed}
                 >
                     Submit
                 </button>

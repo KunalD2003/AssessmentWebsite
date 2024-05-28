@@ -22,7 +22,6 @@ function Login() {
     const AssessmentData = useSelector((state) => {
         return state.getAssessment;
     });
-    console.log(AssessmentData);
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
         const newValue = type === 'checkbox' ? checked : value;

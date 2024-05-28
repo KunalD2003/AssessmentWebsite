@@ -1,12 +1,12 @@
 import React, { useRef } from 'react';
-import Webcam from 'react-webcam'; // Assuming you're using 'react-webcam'
+import Webcam from 'react-webcam'; 
 
 const StoreUserIdentity = () => {
-  const webcamRef = useRef(null); // Reference for the webcam
+  const webcamRef = useRef(null); 
 
   const captureAndSendImage = () => {
-    const screenshot = webcamRef.current.getScreenshot(); // Capture the image
-    console.log('Captured image:', screenshot); // Validate the captured image
+    const screenshot = webcamRef.current.getScreenshot(); 
+    console.log('Captured image:', screenshot);
 
     if (screenshot) {
       fetch(`${import.meta.env.VITE_API_PRIYANKA_URL}/webcam/addImage`, {
@@ -14,19 +14,19 @@ const StoreUserIdentity = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ imageBase64: screenshot, uniqueID: '12345' }), // Include unique ID
+        body: JSON.stringify({ imageBase64: screenshot, uniqueID: '12345' }), 
       })
         .then((response) => {
           if (!response.ok) {
-            throw new Error(`Server error: ${response.status}`); // Handle server errors
+            throw new Error(`Server error: ${response.status}`); 
           }
           return response.json();
         })
         .then((data) => {
-          console.log('Server response:', data); // Validate the response
+          console.log('Server response:', data); 
         })
         .catch((error) => {
-          console.error('Error sending image:', error); // Handle errors
+          console.error('Error sending image:', error); 
         });
     }
   };
@@ -34,7 +34,7 @@ const StoreUserIdentity = () => {
   return (
     <div>
       <Webcam ref={webcamRef} screenshotFormat="image/jpeg" />
-      <button onClick={captureAndSendImage}>Capture and Send Image</button> {/* Button to send image */}
+      <button onClick={captureAndSendImage}>Capture and Send Image</button> 
     </div>
   );
 };

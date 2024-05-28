@@ -7,11 +7,9 @@ let assessmentData = () => {
     useEffect(() => {
         AxiosInstance.get("/api/assessments")
             .then((response) => {
-                console.log(response.data);
                 return response.data
             })
             .then((response) => {
-                console.log(response);
                 return setData(response)
             })
     }, [])

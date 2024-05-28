@@ -11,7 +11,6 @@ let useCompiler = (code) => {
         passedata = data;
     });
 
-    return data
 }
 
 export default useCompiler

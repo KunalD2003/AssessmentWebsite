@@ -12,7 +12,7 @@ export default function User() {
 
 
   const inputRef = useRef(null);
-  //Modal state
+
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -22,13 +22,11 @@ export default function User() {
 
   return (
     <div id="Details">
-      {/* ............head.......... */}
       <div id="firstDetails">
         <img src={logo} alt="user" id="logo" />
         <h1 style={{ textAlign: "center", marginTop: '1%', alignSelf: 'center' }}>User Profile</h1>
       </div>
       <hr id="line" /> 
-      {/* .............about */}
       <div style={{ paddingBottom: "3%" }}>
         
         <Container className="container">
@@ -75,7 +73,6 @@ export default function User() {
             </Container>
             
       </div>
-      {/* ......................Modal..... */}
       <Modal
         show={show}
         onHide={handleClose}

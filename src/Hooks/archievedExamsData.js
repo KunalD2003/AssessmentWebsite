@@ -10,15 +10,12 @@ let archievedexamresult = () => {
   useEffect(() => {
     AxiosInstance1.get(`/archievedexamresult`)
       .then((response) => {
-        console.log(response.data);
         const archievedData = response.data.filter((index) => {
           if (index.userid === userId) {
-            console.log(index);
             return index
             // addArchievedExams(index)
           }
         })
-        console.log(archievedData);
         return setData(archievedData)
       })
   }, [])

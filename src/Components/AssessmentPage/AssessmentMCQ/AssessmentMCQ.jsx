@@ -22,10 +22,9 @@ function AssessmentMCQ() {
   
 
   useEffect(() => {
-    // Fetch MCQ questions from the API
     AxiosInstance1.get("/api/mcqquestions")
       .then((response) => {
-        setMcqQuestions(response.data.myData); // Update state with fetched questions
+        setMcqQuestions(response.data.myData); 
         setUnansweredCount(response.data.myData.length)
       })
       .catch((error) => {
@@ -36,7 +35,7 @@ function AssessmentMCQ() {
   const handleOptionSelect = (selectedOption) => {
     const isAnswered = userAnswers[currentQuestionIndex] !== undefined;
 
-    // If not answered, or if the answer is changed
+   
     if (!isAnswered) {
       setUserAnswers(prevState => ({
         ...prevState,
@@ -61,7 +60,7 @@ function AssessmentMCQ() {
   });
   const userid = AssessmentData.userDetails.userId
   const handleConfirm = async () => {
-    // Send user answers to the backend
+    
     const passData = {
       AssessmentId: assessmentid,
       userId: userid,
@@ -71,9 +70,7 @@ function AssessmentMCQ() {
       UtotalQuestions: mcqQuestions.length,
       UcorrectAnswers: score
     }
-    console.log(passData);
     dispatch(setResultData(passData))
-    console.log(AssessmentData.resultData);
     // const response = await fetch('https://assessmentwebsite-4-3u7s.onrender.com/result', {
     //   method: 'POST',
     //   headers: {
@@ -100,7 +97,7 @@ function AssessmentMCQ() {
   };
 
   const handlePreviousQuestion = () => {
-    // Go to previous question
+    
     setCurrentQuestionIndex(prevIndex => {
       const previousIndex = prevIndex - 1;
       return previousIndex >= 0 ? previousIndex : prevIndex;

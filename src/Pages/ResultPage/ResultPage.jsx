@@ -6,7 +6,7 @@ import { useNavigate, useParams } from 'react-router';
 import { resetCodingScore, setAssessmentStatus, setQuestionSection } from '../../Store/assessmentData';
 import { AxiosInstance, AxiosInstance1 } from '../../AxiosInstance';
 
-// Component for individual result cards with text and icons
+
 const ResultCard = ({ title, value, icon }) =>
 (
   <div className="col-md-4 col-sm-12 mb-3">
@@ -25,9 +25,9 @@ const ResultCard = ({ title, value, icon }) =>
   </div>
 );
 
-// Main component for the results page
+
 const ResultPage = ({ id }) => {
-  // State to hold the fetched result data
+  
   const [results, setResults] = useState(null); // Changed to null to handle loading state
   const [assessmentTitle, setAssessmentTitle] = useState("")
   const [codingQuestionLength, setCodingQuestionLength] = useState(0)
@@ -38,7 +38,7 @@ const ResultPage = ({ id }) => {
     return state.getAssessment.userDetails.userId
   })
   
-  // Function to fetch result data from backend
+  
   let questions = useSelector((state) => {
     return state.getAssessment.questionBank
   })
@@ -51,7 +51,6 @@ const ResultPage = ({ id }) => {
         const date = new Date()
         const currentAssessment = await AxiosInstance.get(`https://assessmentwebsite-6.onrender.com/api/assessments/${data.AssessmentId}`)
           .then((response) => {
-            console.log(response.data);
             return response.data
           })
         const passData = {
@@ -70,14 +69,13 @@ const ResultPage = ({ id }) => {
         });
       }
     }
-    // Fetch MCQ questions from the API
+    
     AxiosInstance1.get(`/result/all`)
       .then((response) => {
         const data = response.data.find((index) => {
           if (index.AssessmentId === assessmentid && index.userId === userId) {
             setResults(index)
             addArchievedExams(index)
-            console.log(index);
           }
         })
       })
@@ -86,13 +84,13 @@ const ResultPage = ({ id }) => {
       });
   }, []);
 
-  // If results are not fetched or loading, return loading message
+  
   if (!results) {
     return <h1 style={{color:'green',display:'flex',justifyContent:"center",alignItems:'center'}}>Loading...</h1>;
   }
 
   return (
-    <div className="result-page" style={{ height: '100vh', paddingBlock: '2rem'}}>
+    <div className="result-page" style={{ height: '100%', minHeight:'100vh', paddingBlock: '2rem'}}>
       <div className="container-fluid">
         <div className="row justify-content-center align-items-center" style={{ height: '100vh' }}>
           <div className="col-md-8">
@@ -103,7 +101,7 @@ const ResultPage = ({ id }) => {
               <ResultCard title="Total Programming Test Question" value={codingQuestionLength} icon="bx bx-file" />
               <ResultCard title="Programming Test Correct Answers" value={results.UcodingScore/5} icon="bx bx-check-circle" />
               <ResultCard title="Score in Programming Test" value={results.UcodingScore} icon="bx bx-check-circle" />
-              {/* Use different value for Score if needed */}
+              
               <ResultCard title="Total Score" value={(results.Uscore + results.UcodingScore)} icon="bx bx-archive" />
             </div>
             <div className="d-flex justify-content-center mt-4">

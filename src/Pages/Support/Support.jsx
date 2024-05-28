@@ -15,7 +15,7 @@ function Support() {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
-    setErrors({ ...errors, [name]: "" }); // Clear the error when user starts typing again
+    setErrors({ ...errors, [name]: "" }); 
   };
   const validateForm = () => {
     const newErrors = {};
@@ -42,7 +42,6 @@ function Support() {
     // e.preventDefault();
     if (validateForm()) {
       try {
-        console.log(formData);
         const response = await fetch(`${import.meta.env.VITE_API_ANKIT_URL}/contacts`, {
           method: 'POST',
           headers: {
@@ -51,13 +50,11 @@ function Support() {
           body: JSON.stringify(formData)
         });
         if (response) {
-          console.log(response)
           alert("Successfully send ",);
         }
       } catch (error) {
         alert("Error:", error);
         console.log(error)
-        // Handle error, maybe show an error message to the user
       }
     }
   };
@@ -76,7 +73,6 @@ function Support() {
                 <h1 style={{ textAlign: "center" }}>Support</h1>
                 <p className="para">24/7 Hours Support</p>
               </div>
-              {/* .................input............. */}
               <div className='label-input-field'>
                 <h6 className="inputText"><span style={{ color: "red" }}>*</span>Enter Name :</h6>
                 <input className="support-input" type="text" placeholder="Enter Name" name="name"
@@ -112,8 +108,8 @@ function Support() {
                 <h6 className="inputText"><span style={{ color: "red" }}>*</span>Message</h6>
                 <textarea
                   placeholder="Message..."
-                  rows={6} // Number of visible text lines
-                  cols={60} // Width of the text area (number of characters)
+                  rows={6} 
+                  cols={60} 
                   required
                   name="message"
                   value={formData.message}

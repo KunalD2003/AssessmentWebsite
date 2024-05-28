@@ -36,13 +36,10 @@ function Hero_section() {
   }, [temp, mcq])
   function attemptedStatus(assessmentId, assessmentDetails) {
     let attemptedStatus = false
-    console.log(assessmentDetails);
-    // Specify the start date in d/m/yy or dd/mm/yy format
-    const startDateStr = assessmentDetails.AssessmentDate; // Start date
+    const startDateStr = assessmentDetails.AssessmentDate; 
 
-    // Specify the time range (24-hour format)
-    const startTime = assessmentDetails.AssessmentStartTime; // 9:00 AM
-    const endTime = assessmentDetails.AssessmentEndTime; // 5:00 PM
+    const startTime = assessmentDetails.AssessmentStartTime; 
+    const endTime = assessmentDetails.AssessmentEndTime; 
 
     const parseDate = (dateStr) => {
       const [day, month, year] = dateStr.split('/').map(num => parseInt(num, 10));

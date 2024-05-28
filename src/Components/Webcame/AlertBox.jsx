@@ -1,9 +1,9 @@
 import React from 'react';
-import './AlertBox.css'; // Styling for the alert box
+import './AlertBox.css';
 
 const AlertBox = ({ message, onDismiss }) => {
   if (!message) {
-    return null; // If there's no message, don't render the alert
+    return null;
   }
 
   return (

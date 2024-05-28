@@ -22,6 +22,5 @@ export default function useQusetionData() {
                 return setData(response)
             })
     }, [])
-    console.log(data);
     return data
 }

@@ -10,22 +10,22 @@ const FaceDetection = () => {
   const [noFaceWarning, setNoFaceWarning] = useState(false);
   const [gadgetWarning, setGadgetWarning] = useState(false);
   const [multipleFacesWarning, setMultipleFacesWarning] = useState(false);
-  const [warningCount, setWarningCount] = useState(0); // Track warning counts
+  const [warningCount, setWarningCount] = useState(0); 
   const faceTimer = useRef(null);
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const handleWarning = (message) => {
 
-    alert(message); // Display an alert with the warning message
+    alert(message); 
 
     setWarningCount((prevCount) => {
       const newCount = prevCount + 1;
 
       if (newCount >= 3) {
         videoRef.current.srcObject.getTracks().forEach((track) => track.stop());
-        alert("Test submitted due to multiple warnings."); // Show final alert
-        navigate('/assessmentid/guidlinesvoilated'); // Redirect to the results page
-        return newCount; // Stop further processing after redirecting
+        alert("Test submitted due to multiple warnings."); 
+        navigate('/assessmentid/guidlinesvoilated'); 
+        return newCount; 
       }
 
       return newCount; 
@@ -38,7 +38,6 @@ const FaceDetection = () => {
           const stream = await navigator.mediaDevices.getUserMedia({ video: true });
           if (videoRef.current) {
             videoRef.current.srcObject = stream;
-            console.log(stream);
           }
       } catch (error) {
         console.error("Error accessing camera:", error);
@@ -50,28 +49,26 @@ const FaceDetection = () => {
 
       const checkForFacesAndObjects = async () => {
         if (videoRef.current) {
-          // Detect faces
+          
           const facePredictions = await faceModel.estimateFaces(videoRef.current);
 
           if (facePredictions.length > 1) {
             handleWarning("Multiple faces detected. Click OK to continue.");
-            setMultipleFacesWarning(true); // Multiple faces detected
+            setMultipleFacesWarning(true); 
           } else {
-            setMultipleFacesWarning(false); // Clear the warning
+            setMultipleFacesWarning(false); 
           }
 
           if (facePredictions.length === 0) {
-            // Start a 10-second timer to trigger the no-face warning
             faceTimer.current = setTimeout(() => {
               handleWarning("No face detected for 10 seconds. Click OK to continue.");
               setNoFaceWarning(true);
-            }, 30000); // 10 seconds
+            }, 30000); 
           } else {
-            clearTimeout(faceTimer.current); // Clear the no-face timer
-            setNoFaceWarning(false); // Reset warning
+            clearTimeout(faceTimer.current); 
+            setNoFaceWarning(false); 
           }
 
-          // Detect electronic gadgets
           const objectPredictions = await objectModel.detect(videoRef.current);
           const gadgetClasses = ['cell phone', 'laptop', 'tablet'];
           const gadgetsFound = objectPredictions.some(prediction =>
@@ -80,29 +77,28 @@ const FaceDetection = () => {
 
           if (gadgetsFound) {
             handleWarning("Electronic gadget detected. Click OK to continue.");
-            setGadgetWarning(true); // Gadget detected
+            setGadgetWarning(true); 
           } else {
-            setGadgetWarning(false); // Reset warning
+            setGadgetWarning(false); 
           }
 
-          requestAnimationFrame(checkForFacesAndObjects); // Continue checking
+          requestAnimationFrame(checkForFacesAndObjects); 
         }
       };
-      checkForFacesAndObjects(); // Start checking for faces and gadgets
+      checkForFacesAndObjects(); 
     };
     
-    initializeCamera(); // Start the camera
-    detectFacesAndObjects(); // Start face and object detection
+    initializeCamera(); 
+    detectFacesAndObjects(); 
     return () => {
       if ((videoRef.current && videoRef.current.srcObject)) {
-        videoRef.current.srcObject.getTracks().forEach((track) => track.stop()); // Stop the camera
+        videoRef.current.srcObject.getTracks().forEach((track) => track.stop()); 
       }
     };
-  }, []); // Run only once when component mounts
-
+  }, []); 
   return (
     <div>
-      <video ref={videoRef} autoPlay playsInline style={{ width: '100%' }} /> {/* Display the video */}
+      <video ref={videoRef} autoPlay playsInline style={{ width: '100%' }} /> 
     </div>
   );
 };

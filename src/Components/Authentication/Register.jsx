@@ -32,10 +32,8 @@ function Register() {
             const userCredential = await createUserWithEmailAndPassword(auth, formData.email, formData.password);
             const user = userCredential.user;
 
-            // Fetch the userId from Firebase
             const userId = user.uid;
 
-            // Prepare data to send to the backend API
             const userData = {
                 userId,
                 name: formData.name,
@@ -44,7 +42,6 @@ function Register() {
                 phone: formData.phone
             };
 
-            // Send userData to the backend API for storing in the database
             const response = await fetch(`${import.meta.env.VITE_API_SHIVAM_URL}/api/register`, {
                 method: 'POST',
                 headers: {
@@ -61,12 +58,10 @@ function Register() {
                     position: "top-left",
                     theme: "dark",
                 })
-                console.log("User registered successfully");
                 setLoader(false)
-                navigate("/"); // Redirect to login or home page
+                navigate("/"); 
             }
 
-            // alert('User registered successfully')
         } catch (error) {
             console.error("Error registering user:", error.message);
             toast.error('Please Enter Valid Email and Mobile', {
@@ -74,7 +69,6 @@ function Register() {
                 theme: "dark",
             })
             setLoader(false)
-            // alert("user not register");
         }
     };
 

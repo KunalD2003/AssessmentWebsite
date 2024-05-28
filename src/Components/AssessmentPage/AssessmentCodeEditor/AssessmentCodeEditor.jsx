@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Editor } from '@monaco-editor/react';
-import axios from 'axios'; // Import Axios for making HTTP requests
+import axios from 'axios'; 
 import './AssessmentCodeEditor.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCode, setAttempt, setCodingScore } from '../../../Store/assessmentData';
@@ -16,7 +16,6 @@ function AssessmentCodeEditor({ questionIndex }) {
   const dispatch = useDispatch()
   const [questionData, setQuestionData] = useState();
   const [disabled, setDisabled] = useState();
-  // const [codingScore, setCodingScore] = useState();
   const [show, setShow] = useState(false);
   const [show1, setShow1] = useState(false);
   const { assessmentid } = useParams()
@@ -39,10 +38,10 @@ function AssessmentCodeEditor({ questionIndex }) {
     editorRef.current = editor;
   }
 
-  // Function to fetch output from API
+  
   async function fetchOutput() {
     try {
-      const code = editorRef.current?.getValue(); // Get the user's code from the editor
+      const code = editorRef.current?.getValue(); 
       const language = document.getElementById('language-selector').value; // Get the selected language
       const temp = `print(${expectedOutput})`
       if (code.includes(`print(${expectedOutput[0]})`) || code.includes(`print(${expectedOutput[1]})`) || code.includes(`print("${expectedOutput[0]}")`) || code.includes(`print("${expectedOutput[1]}")`) || code.includes(`cout << ${expectedOutput[0]} << endl;`) || code.includes(`cout << ${expectedOutput[1]} << endl;`) || code.includes(`cout << "${expectedOutput[0]}" << endl;`) || code.includes(`cout << "${expectedOutput[1]}" << endl;`) || code.includes(`System.out.println("${expectedOutput[0]}");`) || code.includes(`System.out.println("${expectedOutput[1]}");`) || code.includes(`System.out.println(${expectedOutput[0]});`) || code.includes(`System.out.println(${expectedOutput[1]});`)) {
@@ -50,28 +49,24 @@ function AssessmentCodeEditor({ questionIndex }) {
       } else {
         const response = await axios.post(`${import.meta.env.VITE_API_SHIVAM_URL}/compilex`, {
           code: code,
-          input: inputValue, // Use inputValue for the input data
+          input: inputValue, 
           lang: language
         });
         const result = response.data.output.replace(/[\r\n]+/g, ''); // Process the output
         dispatch(setCode({ code, questionIndex }))
-        setOutput(result); // Update state with the output
-        return result; // Return the result for comparison
+        setOutput(result); 
+        return result; 
       }
     } catch (error) {
       console.error('Error:', error);
-      // Handle errors
     }
   }
 
   async function compareOutputs(actualOutput, expectedOutput) {
-    // Remove leading and trailing whitespace from both outputs
     const cleanedActual = actualOutput.trim();
     const cleanedExpected = expectedOutput[0].trim();
     const cleanedExpected1 = expectedOutput[1].trim();
-    // Compare the cleaned outputs
     if (cleanedActual === cleanedExpected || cleanedActual === cleanedExpected1) {
-      console.log('Outputs match!'); // Outputs match
       dispatch(setCodingScore())
       // setCodingScore((prevScore) => prevScore + 5)
       // console.log(codingScore);
@@ -82,7 +77,6 @@ function AssessmentCodeEditor({ questionIndex }) {
       //     console.log(response);
       //   })
     } else {
-      console.log('Outputs do not match!'); // Outputs don't match
     }
   }
 
@@ -90,10 +84,9 @@ function AssessmentCodeEditor({ questionIndex }) {
     setShow1(true)
   }
   async function handleConfirm() {
-    const actualOutput = await fetchOutput(); // Fetch the actual output
-    await compareOutputs(actualOutput, expectedOutput); // Compare the outputs
+    const actualOutput = await fetchOutput(); 
+    await compareOutputs(actualOutput, expectedOutput); 
     dispatch(setAttempt(questionIndex))
-    console.log(attemptedStatus);  
     setShow1(false)
   }
   const handleClose = () => setShow(false);

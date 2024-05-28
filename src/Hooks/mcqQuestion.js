@@ -6,7 +6,7 @@ export default function mcqQuestion() {
     useEffect(() => {
         AxiosInstance1.get("/api/mcqquestions")
             .then((response) => {
-                return response.data.myData; // Update state with fetched questions
+                return response.data.myData; 
             })
             .then((response) => {
                 return setData(response)

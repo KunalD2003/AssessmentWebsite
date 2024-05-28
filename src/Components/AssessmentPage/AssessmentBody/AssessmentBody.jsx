@@ -24,7 +24,6 @@ function AssessmentBody() {
   const AssessmentData = useSelector((state) => {
     return state.getAssessment;
   });
-  console.log(AssessmentData);
   const handleConfirm = async () => {
     setLoader(true)
     const passData = AssessmentData.resultData
@@ -35,7 +34,6 @@ function AssessmentBody() {
       },
       body: JSON.stringify(passData)
     }).then((response) => {
-      console.log(response);
       setLoader(false)
       navigate(`/${assessmentid}/result`)
     }).catch((error) => {

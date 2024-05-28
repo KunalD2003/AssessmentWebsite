@@ -39,7 +39,6 @@ const CountdownTimer = ({ minutes, seconds }) => {
           },
           body: JSON.stringify(passData)
         }).then((response) => {
-          console.log(response);
           navigate(`/${assessmentid}/result`)
         }).catch((error) => {
           console.log("error: ", error);
@@ -60,7 +59,7 @@ const CountdownTimer = ({ minutes, seconds }) => {
 
 function AssessmentNavbar() {
 
-  const navigate = useNavigate(); // Using useNavigate instead of useHistory
+  const navigate = useNavigate(); 
   const { assessmentid } = useParams();
   const AssessmentData = useSelector((state) => {
     return state.getAssessment;
@@ -69,38 +68,35 @@ function AssessmentNavbar() {
   const [section, setSection] = useState(
     AssessmentData.questionBank[0].sectionName
   );
-  const [pageNumber, setPageNumber] = useState(0); // For pagination
+  const [pageNumber, setPageNumber] = useState(0); 
   const [assessmentDuration, SetAssessmentDuration] = useState();
   const assessments = assessmentData();
 
   useEffect(() => {
-    // Set WebGL as backend
+    
     tf.setBackend("webgl")
       .then(() => console.log("Using WebGL backend"))
       .catch((error) => {
         console.error("Error setting backend:", error);
-        // Optionally fallback to another backend
+        
       });
 
-    // Ensure TensorFlow.js is ready
     tf.ready().then(() => {
       console.log("TensorFlow.js is ready");
     });
   }, []);
 
   const handlePageClick = (data) => {
-    setPageNumber(data.selected); // Update pageNumber when page is clicked
+    setPageNumber(data.selected); 
   };
 
   const handleNextQuestion = () => {
-    // Fetch next question from API
+   
     fetchNextQuestion();
   };
 
   const fetchNextQuestion = () => {
-    // Call your API to fetch the next question
-    // Assuming the API returns the next question in AssessmentData
-    // You need to replace this with your actual API call
+    
     axios
       .get("/api/nextQuestion")
       .then((response) => {

@@ -8,7 +8,6 @@ function ArchievedExams() {
   useEffect(() => {
     if(tempData){
       setArchievedList(tempData)
-      console.log(archievedList);
     }
   },[tempData])
   return (
