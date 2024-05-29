@@ -99,10 +99,11 @@ function Login() {
                             {(loader) ? (<Button variant="success" disabled>
                                 <Spinner
                                     as="span"
-                                    animation="grow"
+                                    animation="border"
                                     size="sm"
                                     role="status"
                                     aria-hidden="true"
+                                    style={{marginRight: "0.5rem"}}
                                 />
                                 Login
                             </Button>) : (<Button variant='success' type='submit'>Login</Button>)}

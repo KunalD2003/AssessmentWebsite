@@ -102,10 +102,11 @@ function Register() {
                                 {(loader) ? (<Button variant="success" disabled>
                                     <Spinner
                                         as="span"
-                                        animation="grow"
+                                        animation="border"
                                         size="sm"
                                         role="status"
                                         aria-hidden="true"
+                                        style={{marginRight: "0.5rem"}}
                                     />
                                     Registering
                                 </Button>) : (<Button variant='success' type='submit'>Register</Button>)}
