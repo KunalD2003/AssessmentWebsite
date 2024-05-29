@@ -9,8 +9,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { useDispatch } from 'react-redux';
 import { setCurrentAssessment } from '../../../Store/assessmentData';
-
-
+import { Spinner } from 'react-bootstrap';
 
 function Hero_section() {
   const navigate = useNavigate();
@@ -25,21 +24,23 @@ function Hero_section() {
   const dispatch = useDispatch()
   const [modalContent, setModalContent] = useState({ header: "", body: "" })
   const [timeStatus, setTimeStatus] = useState()
+  const [loader, setloader] = useState(false)
+
   useEffect(() => {
+    setloader(true)
     setDate(new Date().toLocaleDateString())
-    if (temp && mcq) {
+    if (temp && mcq && tempData) {
       setCodingQuestionLength(temp.length + mcq.length)
-    }
-    if (tempData) {
       setArchievedList(tempData)
+      setloader(false)
     }
-  }, [temp, mcq, tempData])
+  }, [temp, mcq, tempData, loader])
   function attemptedStatus(assessmentId, assessmentDetails) {
     let attemptedStatus = false
-    const startDateStr = assessmentDetails.AssessmentDate; 
+    const startDateStr = assessmentDetails.AssessmentDate;
 
-    const startTime = assessmentDetails.AssessmentStartTime; 
-    const endTime = assessmentDetails.AssessmentEndTime; 
+    const startTime = assessmentDetails.AssessmentStartTime;
+    const endTime = assessmentDetails.AssessmentEndTime;
 
     const parseDate = (dateStr) => {
       const [day, month, year] = dateStr.split('/').map(num => parseInt(num, 10));
@@ -135,59 +136,71 @@ function Hero_section() {
           </Button>
         </Modal.Footer>
       </Modal>
-      {(assessments) ? (assessments.map((index) => (
-        <div className="card user-dashboard-card" key={index.id}>
-          <div className='assessment-role-title'>
-            <h1 className='headTest'>{index.AssessmentTitle}</h1>
-          </div>
-          <div className="card-body assessment-start-card-body">
-            <div className='assessment-details'>
-              <div>
-                <i className='bx bx-question-mark assessment-details-icon'></i>
-                <p>Questions:</p>
+      {(assessments) ? (
+        (!loader) ? (
+          assessments.map((index) => (
+            <div className="card user-dashboard-card" key={index.id}>
+              <div className='assessment-role-title'>
+                <h1 className='headTest'>{index.AssessmentTitle}</h1>
               </div>
-              <p>{codingQuestionLength}</p>
-            </div>
-            <div className='assessment-details'>
-              <div>
-                <i className='bx bx-stopwatch assessment-details-icon'></i>
-                <p>Duration:</p>
+              <div className="card-body assessment-start-card-body">
+                <div className='assessment-details'>
+                  <div>
+                    <i className='bx bx-question-mark assessment-details-icon'></i>
+                    <p>Questions:</p>
+                  </div>
+                  <p>{codingQuestionLength}</p>
+                </div>
+                <div className='assessment-details'>
+                  <div>
+                    <i className='bx bx-stopwatch assessment-details-icon'></i>
+                    <p>Duration:</p>
+                  </div>
+                  <p>{index.AssessmentDuration} Min</p>
+                </div>
+                <div className='assessment-details'>
+                  <div>
+                    <i className='bx bx-calendar assessment-details-icon'></i>
+                    <p>Assessment Date:</p>
+                  </div>
+                  <p>{index.AssessmentDate}</p>
+                </div>
+                <div className='assessment-details'>
+                  <div>
+                    <i className='bx bxs-watch assessment-details-icon'></i>
+                    <p>Start Time:</p>
+                  </div>
+                  <p>{index.AssessmentStartTime}</p>
+                </div>
+                <div className='assessment-details'>
+                  <div>
+                    <i className='bx bxs-watch assessment-details-icon'></i>
+                    <p>End Time:</p>
+                  </div>
+                  <p>{index.AssessmentEndTime}</p>
+                </div>
+                <div className='start-assesment-btn'>
+                  {(index.startDate === usedDate
+                  ) ? <button type="button" className="btn btn-primary" onClick={() => {
+                    attemptedStatus()
+                    navigate(`/${index._id}/termsandcondition`)
+                  }}>Start Assessment</button> : <button type="button" className="btn btn-primary" onClick={() => {
+                    attemptedStatus(index._id, index)
+                  }}>Start Assessment</button>}
+                </div>
               </div>
-              <p>{index.AssessmentDuration} Min</p>
             </div>
-            <div className='assessment-details'>
-              <div>
-                <i className='bx bx-calendar assessment-details-icon'></i>
-                <p>Assessment Date:</p>
-              </div>
-              <p>{index.AssessmentDate}</p>
+          ))
+        ) : (
+          <>
+            <div style={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", height: "100%"}}>
+              <Spinner animation="border" role="status">
+                <span className="visually-hidden" >Loading...</span>
+              </Spinner>
             </div>
-            <div className='assessment-details'>
-              <div>
-                <i className='bx bxs-watch assessment-details-icon'></i>
-                <p>Start Time:</p>
-              </div>
-              <p>{index.AssessmentStartTime}</p>
-            </div>
-            <div className='assessment-details'>
-              <div>
-                <i className='bx bxs-watch assessment-details-icon'></i>
-                <p>End Time:</p>
-              </div>
-              <p>{index.AssessmentEndTime}</p>
-            </div>
-            <div className='start-assesment-btn'>
-              {(index.startDate === usedDate
-              ) ? <button type="button" className="btn btn-primary" onClick={() => {
-                attemptedStatus()
-                navigate(`/${index._id}/termsandcondition`)
-              }}>Start Assessment</button> : <button type="button" className="btn btn-primary" onClick={() => {
-                attemptedStatus(index._id, index)
-              }}>Start Assessment</button>}
-            </div>
-          </div>
-        </div>
-      ))) : (<h2>Loading.....</h2>)}
+          </>
+        )
+      ) : (<h2>There is no </h2>)}
 
     </div>
   )
