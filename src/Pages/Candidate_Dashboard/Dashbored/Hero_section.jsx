@@ -200,7 +200,7 @@ function Hero_section() {
             </div>
           </>
         )
-      ) : (<h2>There is no </h2>)}
+      ) : (<h2>There is no Assessment Scheduled Here</h2>)}
 
     </div>
   )
