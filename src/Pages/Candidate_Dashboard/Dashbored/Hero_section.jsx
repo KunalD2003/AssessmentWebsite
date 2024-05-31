@@ -34,7 +34,7 @@ function Hero_section() {
       setArchievedList(tempData)
       setloader(false)
     }
-  }, [temp, mcq, tempData, loader])
+  }, [temp, mcq, tempData])
   function attemptedStatus(assessmentId, assessmentDetails) {
     let attemptedStatus = false
     const startDateStr = assessmentDetails.AssessmentDate;
